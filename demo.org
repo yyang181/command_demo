@@ -38,6 +38,31 @@ c-h 帮助
    c-h v 变量
    c-h k 快捷键
 #+END_SRC
+** Spacemacs 配置文件 添加package cuda-mode
+添加该段代码到.spacemacs.el文件中的合适位置
+#+BEGIN_SRC 
+(defun dotspacemacs/layers ()
+"Configuration Layers declaration."
+(setq-default
+;; ...
+;; List of additional packages that will be installed wihout being
+;; wrapped in a layer. If you need some configuration for these
+;; packages then consider to create a layer, you can also put the
+;; configuration in `dotspacemacs/config'.
+dotspacemacs-additional-packages '(cuda-mode)
+;; ...
+))
+
+(defun dotspacemacs/config ()
+"Configuration function.
+This function is called at the very end of Spacemacs initialization after
+layers configuration."
+;; ...
+(use-package cuda-mode
+:defer t)
+;; ...
+) 
+#+END_SRC
 * Latex 编辑命令
 ** 中文环境包
 #+BEGIN_SRC 
