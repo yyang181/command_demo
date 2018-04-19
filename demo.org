@@ -1,6 +1,16 @@
 * Emaces Usful Command
 ** Command
+<<<<<<< HEAD
 #+BEGIN_SRC 
+=======
+#+BEGIN_EXAMPLE 
+ c-x c-s 保存当前文件
+ m-x list-package 列出所有package
+ c-x o 切换窗口
+ m-> 文档底部
+ m-< 文档开头
+#+END_EXAMPLE
+>>>>>>> d09184592a2875be71098fa7362fa9a518e4cede
  cmd --insecure 模式打开emacs才能有网络连接
  cmd --insecure 用Texlive GUI command-line打开emacs之后默认用texlive编译.tex
  c-x c-s 保存当前文件
