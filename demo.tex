@@ -1,0 +1,109 @@
+% Created 2018-04-19 周四 12:41
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\date{\today}
+\title{}
+\hypersetup{
+ pdfauthor={},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 25.3.1 (Org mode 9.1.9)}, 
+ pdflang={English}}
+\begin{document}
+
+\tableofcontents
+
+\section{Emaces Usful Command}
+\label{sec:orgdddd02a}
+\subsection{Command}
+\label{sec:org58a34ee}
+\begin{verbatim}
+cmd --insecure 模式打开emacs才能有网络连接
+cmd --insecure 用Texlive GUI command-line打开emacs之后默认用texlive编译.tex
+c-x c-s 保存当前文件
+m-x list-package 列出所有package
+c-x o 切换窗口
+m-> 文档底部
+m-< 文档开头
+c-v 上滚屏
+m-v 下滚屏
+c-x c-b 列出所有缓冲区/没什么用 直接用打开文件就行了
+c-x h 全选
+c-space 标记
+c-@     标记
+c-/ 撤销命令
+c-_ 撤销命令
+M-m 打开spacemacs主菜单
+M-m TAB一键循环切换buffer
+c-e M-b 先切换到行尾 然后按句子单位回退
+M-e M-a 换行 到指定位置 最好用的命令
+\end{verbatim}
+\subsection{帮助}
+\label{sec:org0d824e6}
+\begin{verbatim}
+c-h 主命令
+c-h a 查找关键词对应的函数
+c-h f 函数
+c-h v 变量
+c-h k 快捷键
+\end{verbatim}
+\section{Latex 编辑命令}
+\label{sec:orgf2a7e1f}
+\subsection{中文环境包}
+\label{sec:orgd34735a}
+\begin{verbatim}
+% 中文支持包
+\usepackage{ctex}
+\usepackage{CJK}
+
+ % 调用环境变量 
+ \begin{CJK}{UTF8}{song}
+ some content here.
+ 具体内容
+ \end{CJK}
+\end{verbatim}
+\section{org mode}
+\label{sec:orgd1d7b30}
+\subsection{Useful Command}
+\label{sec:org1a8ba1a}
+\begin{verbatim}
+TAB 切换标题
+s-TAB 切换标题
+m-left/right 升降级标题
+m-enter 插入一个同级标题
+<s TAB 快速插入一个 源代码块标签
+<e TAB 快速插入一个 example块标签
+s    #+begin_src ... #+end_src   
+e    #+begin_example ... #+end_example  : 单行的例子以冒号开头  
+q    #+begin_quote ... #+end_quote      通常用于引用，与默认格式相比左右都会留出缩进  
+v    #+begin_verse ... #+end_verse      默认内容不换行，需要留出空行才能换行  
+c    #+begin_center ... #+end_center   
+l    #+begin_latex ... #+end_latex   
+L    #+latex:   
+h    #+begin_html ... #+end_html   
+H    #+html:   
+a    #+begin_ascii ... #+end_ascii   
+A    #+ascii:   
+i    #+index: line   
+I    #+include: line 
+\end{verbatim}
+\begin{itemize}
+\item 单纯文字编辑 空一行即可
+\item 可以用- 来表示要点提示的项目符号
+\item 可以用上述块标签来表示源代码等
+\end{itemize}
+\end{document}

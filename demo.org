@@ -1,25 +1,34 @@
 * Emaces Usful Command
 ** Command
+*** 常用命令
+ #+BEGIN_SRC 
+  cmd --insecure 模式打开emacs才能有网络连接
+  cmd --insecure 用Texlive GUI command-line打开emacs之后默认用texlive编译.tex
+  c-x c-s 保存当前文件
+  m-x list-package 列出所有package
+  c-x o 切换窗口
+  m-> 文档底部
+  m-< 文档开头
+  c-v 上滚屏
+  m-v 下滚屏
+  c-x c-b 列出所有缓冲区/没什么用 直接用打开文件就行了
+  c-x h 全选
+  c-space 标记
+  c-@     标记
+  c-/ 撤销命令
+  c-_ 撤销命令
+  M-m 打开spacemacs主菜单
+  M-m TAB一键循环切换buffer
+  c-e M-b 先切换到行尾 然后按句子单位回退
+  M-e M-a 换行 到指定位置 最好用的命令
+ #+END_SRC
+*** 命令主菜单
 #+BEGIN_SRC 
- cmd --insecure 模式打开emacs才能有网络连接
- cmd --insecure 用Texlive GUI command-line打开emacs之后默认用texlive编译.tex
- c-x c-s 保存当前文件
- m-x list-package 列出所有package
- c-x o 切换窗口
- m-> 文档底部
- m-< 文档开头
- c-v 上滚屏
- m-v 下滚屏
- c-x c-b 列出所有缓冲区/没什么用 直接用打开文件就行了
- c-x h 全选
- c-space 标记
- c-@     标记
- c-/ 撤销命令
- c-_ 撤销命令
- M-m 打开spacemacs主菜单
- M-m TAB一键循环切换buffer
- c-e M-b 先切换到行尾 然后按句子单位回退
- M-e M-a 换行 到指定位置 最好用的命令
+M-m spacemacs buffer管理
+M-x helm-command
+c-c 当前文档格式 编译菜单
+c-x 文档保存 新建等管理
+c-h 帮助
 #+END_SRC
 ** 帮助
 #+BEGIN_SRC 
@@ -44,27 +53,37 @@
 #+END_SRC
 * org mode 
 ** Useful Command
+*** 编译 
 #+BEGIN_SRC 
-TAB 切换标题
-s-TAB 切换标题
-m-left/right 升降级标题
-m-enter 插入一个同级标题
-<s TAB 快速插入一个 源代码块标签
-<e TAB 快速插入一个 example块标签
-s    #+begin_src ... #+end_src   
-e    #+begin_example ... #+end_example  : 单行的例子以冒号开头  
-q    #+begin_quote ... #+end_quote      通常用于引用，与默认格式相比左右都会留出缩进  
-v    #+begin_verse ... #+end_verse      默认内容不换行，需要留出空行才能换行  
-c    #+begin_center ... #+end_center   
-l    #+begin_latex ... #+end_latex   
-L    #+latex:   
-h    #+begin_html ... #+end_html   
-H    #+html:   
-a    #+begin_ascii ... #+end_ascii   
-A    #+ascii:   
-i    #+index: line   
-I    #+include: line 
+c-c c-e 编译生成html网站格式
+c-c c-e 可选生成latex pdf
 #+END_SRC
-- 单纯文字编辑 空一行即可
-- 可以用- 来表示要点提示的项目符号
-- 可以用上述块标签来表示源代码等
+*** 标题
+ #+BEGIN_SRC 
+ TAB 切换标题
+ s-TAB 切换标题
+ m-left/right 升降级标题
+ m-enter 插入一个同级标题
+ #+END_SRC
+*** 块标签
+#+BEGIN_SRC 
+ <s TAB 快速插入一个 源代码块标签
+ <e TAB 快速插入一个 example块标签
+ s    #+begin_src ... #+end_src   
+ e    #+begin_example ... #+end_example  : 单行的例子以冒号开头  
+ q    #+begin_quote ... #+end_quote      通常用于引用，与默认格式相比左右都会留出缩进  
+ v    #+begin_verse ... #+end_verse      默认内容不换行，需要留出空行才能换行  
+ c    #+begin_center ... #+end_center   
+ l    #+begin_latex ... #+end_latex   
+ L    #+latex:   
+ h    #+begin_html ... #+end_html   
+ H    #+html:   
+ a    #+begin_ascii ... #+end_ascii   
+ A    #+ascii:   
+ i    #+index: line   
+ I    #+include: line 
+#+END_SRC
+*** 排版段落格式
+ - 单纯文字编辑 空一行即可
+ - 可以用- 来表示要点提示的项目符号
+ - 可以用上述块标签来表示源代码等
