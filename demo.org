@@ -1,6 +1,6 @@
-
 * Emaces Usful Command
 ** Command
+#+BEGIN_SRC 
  cmd --insecure 模式打开emacs才能有网络连接
  cmd --insecure 用Texlive GUI command-line打开emacs之后默认用texlive编译.tex
  c-x c-s 保存当前文件
@@ -20,14 +20,18 @@
  M-m TAB一键循环切换buffer
  c-e M-b 先切换到行尾 然后按句子单位回退
  M-e M-a 换行 到指定位置 最好用的命令
+#+END_SRC
 ** 帮助
+#+BEGIN_SRC 
    c-h 主命令
    c-h a 查找关键词对应的函数
    c-h f 函数
    c-h v 变量
    c-h k 快捷键
+#+END_SRC
 * Latex 编辑命令
 ** 中文环境包
+#+BEGIN_SRC 
    % 中文支持包
    \usepackage{ctex}
    \usepackage{CJK}
@@ -37,10 +41,27 @@
     some content here.
     具体内容
     \end{CJK}
+#+END_SRC
 * org mode 
 ** Useful Command
+#+BEGIN_SRC 
 TAB 切换标题
 s-TAB 切换标题
 m-left/right 升降级标题
 m-enter 插入一个同级标题
-
+<s TAB 快速插入一个 源代码块标签
+<e TAB 快速插入一个 example块标签
+s    #+begin_src ... #+end_src   
+e    #+begin_example ... #+end_example  : 单行的例子以冒号开头  
+q    #+begin_quote ... #+end_quote      通常用于引用，与默认格式相比左右都会留出缩进  
+v    #+begin_verse ... #+end_verse      默认内容不换行，需要留出空行才能换行  
+c    #+begin_center ... #+end_center   
+l    #+begin_latex ... #+end_latex   
+L    #+latex:   
+h    #+begin_html ... #+end_html   
+H    #+html:   
+a    #+begin_ascii ... #+end_ascii   
+A    #+ascii:   
+i    #+index: line   
+I    #+include: line 
+#+END_SRC
