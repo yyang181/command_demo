@@ -88,6 +88,10 @@ Enter: to complete
 C-s, C-r and C-o: Search through the completions with 
 M-(digit) to quickly complete with one of the first 10 candidates.
 #+END_SRC
+** Expand-region 快捷键文本选中 package
+#+BEGIN_SRC 
+M-m v 选中当前光标所在的单词，继续按v则扩大选区 V则缩小选区 具体命令见下方说明
+#+END_SRC
 * Latex 编辑命令
 ** 中文环境包
 #+BEGIN_SRC 
