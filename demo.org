@@ -92,6 +92,16 @@ M-(digit) to quickly complete with one of the first 10 candidates.
 #+BEGIN_SRC 
 M-m v 选中当前光标所在的单词，继续按v则扩大选区 V则缩小选区 具体命令见下方说明
 #+END_SRC
+** Magit package自动上传本地文档到github
+#+BEGIN_SRC 
+C-x g 已通过global-set-key自定义绑定 键位 到命令magit-status
+#+END_SRC
+** 神器：global-set-key自定义绑定 键位 到命令
+#+BEGIN_SRC 
+M-x global-set-key 
+type 需要绑定的键位 并按enter确认
+type 需要绑定的命令 并按enter确认
+#+END_SRC
 * Latex 编辑命令
 ** 中文环境包
 #+BEGIN_SRC 
@@ -161,3 +171,9 @@ From https://github.com/kelvinh/kelvinh.github.com
 
 
 
+123
+23
+sd
+sd
+sdggd
+sd
