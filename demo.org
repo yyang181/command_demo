@@ -110,6 +110,12 @@ P u 大写P表示push命令
 #+BEGIN_SRC 
 git config --global user.email yyang181@github.com
 #+END_SRC
+** Git 综述
+结合两个package完美一键push到github
+- git-auto-commit: 保存当前文件时自动commit
+- magit: s打开magit status界面
+- magit: P u 一键push到github
+- 前提条件是配置了git config --global
 ** 神器：global-set-key自定义绑定 键位 到命令
 #+BEGIN_SRC 
 M-x global-set-key 
