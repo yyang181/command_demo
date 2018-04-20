@@ -98,6 +98,8 @@ C-x g 已通过global-set-key自定义绑定 键位 到命令magit-status
 #+END_SRC
 ** Git-auto-commit 每次保存文件自动commit到github
 下载下来package之后， 需要运行 M-m ! 打开shell窗口配置github
+
+显示信息: minor mode窗口会有gac标志
 #+BEGIN_SRC 
 git config --global user.email yyang181@github.com
 #+END_SRC
