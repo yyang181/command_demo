@@ -96,6 +96,11 @@ M-m v 选中当前光标所在的单词，继续按v则扩大选区 V则缩小�
 #+BEGIN_SRC 
 C-x g 已通过global-set-key自定义绑定 键位 到命令magit-status
 #+END_SRC
+** Git-auto-commit 每次保存文件自动commit到github
+下载下来package之后， 需要运行 M-m ! 打开shell窗口配置github
+#+BEGIN_SRC 
+git config --global user.email yyang181@github.com
+#+END_SRC
 ** 神器：global-set-key自定义绑定 键位 到命令
 #+BEGIN_SRC 
 M-x global-set-key 
