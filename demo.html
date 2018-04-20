@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2018-04-19 周四 15:30 -->
+<!-- 2018-04-19 周四 17:38 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
@@ -232,31 +232,37 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgc997dab">1. Emaces Usful Command</a>
+<li><a href="#org638be5f">1. Emaces Usful Command</a>
 <ul>
-<li><a href="#org340ca2f">1.1. Command</a>
+<li><a href="#org19439c8">1.1. Command</a>
 <ul>
-<li><a href="#org80ea9f9">1.1.1. 常用命令</a></li>
-<li><a href="#org9e90a2b">1.1.2. 命令主菜单</a></li>
+<li><a href="#org0494098">1.1.1. 常用命令</a></li>
+<li><a href="#org8042f37">1.1.2. 命令主菜单</a></li>
+<li><a href="#org8e7d16e">1.1.3. 帮助</a></li>
 </ul>
 </li>
-<li><a href="#orgd22d77b">1.2. 帮助</a></li>
-<li><a href="#org8e71113">1.3. Spacemacs 配置文件 添加package cuda-mode</a></li>
+<li><a href="#org0f48125">1.2. Spacemacs</a>
+<ul>
+<li><a href="#org79739eb">1.2.1. Spacemacs 配置文件 添加package cuda-mode</a></li>
+<li><a href="#org243b850">1.2.2. Spacemacs 配置文件 初始化init.el文件 使所有buffer默认打开company模式</a></li>
 </ul>
 </li>
-<li><a href="#org5c48ee1">2. Latex 编辑命令</a>
-<ul>
-<li><a href="#org8f39f81">2.1. 中文环境包</a></li>
+<li><a href="#org68d43fe">1.3. Company 自动补全包 命令集</a></li>
 </ul>
 </li>
-<li><a href="#org0864b0a">3. org mode</a>
+<li><a href="#orgbaecc12">2. Latex 编辑命令</a>
 <ul>
-<li><a href="#orgbd3ae75">3.1. Useful Command</a>
+<li><a href="#org5fa0235">2.1. 中文环境包</a></li>
+</ul>
+</li>
+<li><a href="#org4dfb878">3. Org mode</a>
 <ul>
-<li><a href="#orgad6a4bc">3.1.1. 编译</a></li>
-<li><a href="#orga77d07e">3.1.2. 标题</a></li>
-<li><a href="#org5b7a432">3.1.3. 块标签</a></li>
-<li><a href="#org44e407a">3.1.4. 排版段落格式</a></li>
+<li><a href="#orge1c7d6e">3.1. Useful Command</a>
+<ul>
+<li><a href="#org21bbc75">3.1.1. 编译</a></li>
+<li><a href="#orgbbd9946">3.1.2. 标题</a></li>
+<li><a href="#orgbd76352">3.1.3. 块标签</a></li>
+<li><a href="#org71dd954">3.1.4. 排版段落格式</a></li>
 </ul>
 </li>
 </ul>
@@ -264,16 +270,16 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc997dab" class="outline-2">
-<h2 id="orgc997dab"><span class="section-number-2">1</span> Emaces Usful Command</h2>
+<div id="outline-container-org638be5f" class="outline-2">
+<h2 id="org638be5f"><span class="section-number-2">1</span> Emaces Usful Command</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org340ca2f" class="outline-3">
-<h3 id="org340ca2f"><span class="section-number-3">1.1</span> Command</h3>
+<div id="outline-container-org19439c8" class="outline-3">
+<h3 id="org19439c8"><span class="section-number-3">1.1</span> Command</h3>
 <div class="outline-text-3" id="text-1-1">
 </div>
-<div id="outline-container-org80ea9f9" class="outline-4">
-<h4 id="org80ea9f9"><span class="section-number-4">1.1.1</span> 常用命令</h4>
+<div id="outline-container-org0494098" class="outline-4">
+<h4 id="org0494098"><span class="section-number-4">1.1.1</span> 常用命令</h4>
 <div class="outline-text-4" id="text-1-1-1">
 <pre class="example">
 cmd --insecure 模式打开emacs才能有网络连接
@@ -298,8 +304,8 @@ M-e M-a 换行 到指定位置 最好用的命令
 </pre>
 </div>
 </div>
-<div id="outline-container-org9e90a2b" class="outline-4">
-<h4 id="org9e90a2b"><span class="section-number-4">1.1.2</span> 命令主菜单</h4>
+<div id="outline-container-org8042f37" class="outline-4">
+<h4 id="org8042f37"><span class="section-number-4">1.1.2</span> 命令主菜单</h4>
 <div class="outline-text-4" id="text-1-1-2">
 <pre class="example">
 M-m spacemacs buffer管理
@@ -310,10 +316,9 @@ c-h 帮助
 </pre>
 </div>
 </div>
-</div>
-<div id="outline-container-orgd22d77b" class="outline-3">
-<h3 id="orgd22d77b"><span class="section-number-3">1.2</span> 帮助</h3>
-<div class="outline-text-3" id="text-1-2">
+<div id="outline-container-org8e7d16e" class="outline-4">
+<h4 id="org8e7d16e"><span class="section-number-4">1.1.3</span> 帮助</h4>
+<div class="outline-text-4" id="text-1-1-3">
 <pre class="example">
 c-h 主命令
 c-h a 查找关键词对应的函数
@@ -323,44 +328,82 @@ c-h k 快捷键
 </pre>
 </div>
 </div>
-<div id="outline-container-org8e71113" class="outline-3">
-<h3 id="org8e71113"><span class="section-number-3">1.3</span> Spacemacs 配置文件 添加package cuda-mode</h3>
-<div class="outline-text-3" id="text-1-3">
+</div>
+<div id="outline-container-org0f48125" class="outline-3">
+<h3 id="org0f48125"><span class="section-number-3">1.2</span> Spacemacs</h3>
+<div class="outline-text-3" id="text-1-2">
+</div>
+<div id="outline-container-org79739eb" class="outline-4">
+<h4 id="org79739eb"><span class="section-number-4">1.2.1</span> Spacemacs 配置文件 添加package cuda-mode</h4>
+<div class="outline-text-4" id="text-1-2-1">
 <p>
 添加该段代码到.spacemacs.el文件中的合适位置
 </p>
 <pre class="example">
+;; add packages 
+;;
 (defun dotspacemacs/layers ()
-"Configuration Layers declaration."
-(setq-default
-;; ...
-;; List of additional packages that will be installed wihout being
-;; wrapped in a layer. If you need some configuration for these
-;; packages then consider to create a layer, you can also put the
-;; configuration in `dotspacemacs/config'.
-dotspacemacs-additional-packages '(cuda-mode)
-;; ...
-))
+  "Configuration Layers declaration."
+  (setq-default
+   ;; ...
+   ;; List of additional packages that will be installed wihout being
+   ;; wrapped in a layer. If you need some configuration for these
+   ;; packages then consider to create a layer, you can also put the
+   ;; configuration in `dotspacemacs/config'.
+   ;; add packages
+   dotspacemacs-additional-packages '(
+                                      cuda-mode
+                                      company
+                                      )
+   ;; ...
+   ))
 
 (defun dotspacemacs/config ()
-"Configuration function.
+  "Configuration function.
 This function is called at the very end of Spacemacs initialization after
 layers configuration."
-;; ...
-(use-package cuda-mode
-:defer t)
-;; ...
-) 
+  ;; add packages
+  dotspacemacs-additional-packages '(
+                                     cuda-mode
+                                     company
+                                     )
+  ;; 
+  )
+</pre>
+</div>
+</div>
+<div id="outline-container-org243b850" class="outline-4">
+<h4 id="org243b850"><span class="section-number-4">1.2.2</span> Spacemacs 配置文件 初始化init.el文件 使所有buffer默认打开company模式</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<pre class="example">
+;; Enable global company mode
+(require 'company)
+(add-hook 'after-init-hook 'global-company-mode)
+(setq company-idle-delay 0.1)
+(setq company-minimum-prefix-length 1)
+(setq company-backends '((company-capf company-files company-elisp company-inf-ruby company-anaconda company-go company-irony company-clang company-cmake company-css company-yasnippet) (company-dabbrev company-dabbrev-code)))
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org5c48ee1" class="outline-2">
-<h2 id="org5c48ee1"><span class="section-number-2">2</span> Latex 编辑命令</h2>
+<div id="outline-container-org68d43fe" class="outline-3">
+<h3 id="org68d43fe"><span class="section-number-3">1.3</span> Company 自动补全包 命令集</h3>
+<div class="outline-text-3" id="text-1-3">
+<pre class="example">
+M-n M-p select
+Enter: to complete 
+C-s, C-r and C-o: Search through the completions with 
+M-(digit) to quickly complete with one of the first 10 candidates.
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbaecc12" class="outline-2">
+<h2 id="orgbaecc12"><span class="section-number-2">2</span> Latex 编辑命令</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org8f39f81" class="outline-3">
-<h3 id="org8f39f81"><span class="section-number-3">2.1</span> 中文环境包</h3>
+<div id="outline-container-org5fa0235" class="outline-3">
+<h3 id="org5fa0235"><span class="section-number-3">2.1</span> 中文环境包</h3>
 <div class="outline-text-3" id="text-2-1">
 <pre class="example">
 % 中文支持包
@@ -376,16 +419,16 @@ layers configuration."
 </div>
 </div>
 </div>
-<div id="outline-container-org0864b0a" class="outline-2">
-<h2 id="org0864b0a"><span class="section-number-2">3</span> org mode</h2>
+<div id="outline-container-org4dfb878" class="outline-2">
+<h2 id="org4dfb878"><span class="section-number-2">3</span> Org mode</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orgbd3ae75" class="outline-3">
-<h3 id="orgbd3ae75"><span class="section-number-3">3.1</span> Useful Command</h3>
+<div id="outline-container-orge1c7d6e" class="outline-3">
+<h3 id="orge1c7d6e"><span class="section-number-3">3.1</span> Useful Command</h3>
 <div class="outline-text-3" id="text-3-1">
 </div>
-<div id="outline-container-orgad6a4bc" class="outline-4">
-<h4 id="orgad6a4bc"><span class="section-number-4">3.1.1</span> 编译</h4>
+<div id="outline-container-org21bbc75" class="outline-4">
+<h4 id="org21bbc75"><span class="section-number-4">3.1.1</span> 编译</h4>
 <div class="outline-text-4" id="text-3-1-1">
 <pre class="example">
 c-c c-e 编译生成html网站格式
@@ -393,8 +436,8 @@ c-c c-e 可选生成latex pdf
 </pre>
 </div>
 </div>
-<div id="outline-container-orga77d07e" class="outline-4">
-<h4 id="orga77d07e"><span class="section-number-4">3.1.2</span> 标题</h4>
+<div id="outline-container-orgbbd9946" class="outline-4">
+<h4 id="orgbbd9946"><span class="section-number-4">3.1.2</span> 标题</h4>
 <div class="outline-text-4" id="text-3-1-2">
 <pre class="example">
 TAB 切换标题
@@ -404,8 +447,8 @@ m-enter 插入一个同级标题
 </pre>
 </div>
 </div>
-<div id="outline-container-org5b7a432" class="outline-4">
-<h4 id="org5b7a432"><span class="section-number-4">3.1.3</span> 块标签</h4>
+<div id="outline-container-orgbd76352" class="outline-4">
+<h4 id="orgbd76352"><span class="section-number-4">3.1.3</span> 块标签</h4>
 <div class="outline-text-4" id="text-3-1-3">
 <pre class="example">
 &lt;s TAB 快速插入一个 源代码块标签
@@ -426,8 +469,8 @@ I    #+include: line
 </pre>
 </div>
 </div>
-<div id="outline-container-org44e407a" class="outline-4">
-<h4 id="org44e407a"><span class="section-number-4">3.1.4</span> 排版段落格式</h4>
+<div id="outline-container-org71dd954" class="outline-4">
+<h4 id="org71dd954"><span class="section-number-4">3.1.4</span> 排版段落格式</h4>
 <div class="outline-text-4" id="text-3-1-4">
 <ul class="org-ul">
 <li>单纯文字编辑 空一行即可</li>
@@ -440,7 +483,7 @@ I    #+include: line
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2018-04-19 周四 15:30</p>
+<p class="date">Created: 2018-04-19 周四 17:38</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

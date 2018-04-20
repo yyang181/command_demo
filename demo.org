@@ -30,38 +30,63 @@ c-c 当前文档格式 编译菜单
 c-x 文档保存 新建等管理
 c-h 帮助
 #+END_SRC
-** 帮助
-#+BEGIN_SRC 
-   c-h 主命令
-   c-h a 查找关键词对应的函数
-   c-h f 函数
-   c-h v 变量
-   c-h k 快捷键
-#+END_SRC
-** Spacemacs 配置文件 添加package cuda-mode
-添加该段代码到.spacemacs.el文件中的合适位置
-#+BEGIN_SRC 
-(defun dotspacemacs/layers ()
-"Configuration Layers declaration."
-(setq-default
-;; ...
-;; List of additional packages that will be installed wihout being
-;; wrapped in a layer. If you need some configuration for these
-;; packages then consider to create a layer, you can also put the
-;; configuration in `dotspacemacs/config'.
-dotspacemacs-additional-packages '(cuda-mode)
-;; ...
-))
+*** 帮助
+ #+BEGIN_SRC 
+    c-h 主命令
+    c-h a 查找关键词对应的函数
+    c-h f 函数
+    c-h v 变量
+    c-h k 快捷键
+ #+END_SRC
+** Spacemacs
+*** Spacemacs 配置文件 添加package cuda-mode
+ 添加该段代码到.spacemacs.el文件中的合适位置
+ #+BEGIN_SRC 
+ ;; add packages 
+ ;;
+ (defun dotspacemacs/layers ()
+   "Configuration Layers declaration."
+   (setq-default
+    ;; ...
+    ;; List of additional packages that will be installed wihout being
+    ;; wrapped in a layer. If you need some configuration for these
+    ;; packages then consider to create a layer, you can also put the
+    ;; configuration in `dotspacemacs/config'.
+    ;; add packages
+    dotspacemacs-additional-packages '(
+                                       cuda-mode
+                                       company
+                                       )
+    ;; ...
+    ))
 
-(defun dotspacemacs/config ()
-"Configuration function.
-This function is called at the very end of Spacemacs initialization after
-layers configuration."
-;; ...
-(use-package cuda-mode
-:defer t)
-;; ...
-) 
+ (defun dotspacemacs/config ()
+   "Configuration function.
+ This function is called at the very end of Spacemacs initialization after
+ layers configuration."
+   ;; add packages
+   dotspacemacs-additional-packages '(
+                                      cuda-mode
+                                      company
+                                      )
+   ;; 
+   )
+ #+END_SRC
+*** Spacemacs 配置文件 初始化init.el文件 使所有buffer默认打开company模式
+ #+BEGIN_SRC
+ ;; Enable global company mode
+ (require 'company)
+ (add-hook 'after-init-hook 'global-company-mode)
+ (setq company-idle-delay 0.1)
+ (setq company-minimum-prefix-length 1)
+ (setq company-backends '((company-capf company-files company-elisp company-inf-ruby company-anaconda company-go company-irony company-clang company-cmake company-css company-yasnippet) (company-dabbrev company-dabbrev-code)))
+ #+END_SRC
+** Company 自动补全包 命令集
+#+BEGIN_SRC 
+M-n M-p select
+Enter: to complete 
+C-s, C-r and C-o: Search through the completions with 
+M-(digit) to quickly complete with one of the first 10 candidates.
 #+END_SRC
 * Latex 编辑命令
 ** 中文环境包
@@ -76,7 +101,7 @@ layers configuration."
     具体内容
     \end{CJK}
 #+END_SRC
-* org mode 
+* Org mode 
 ** Useful Command
 *** 编译 
 #+BEGIN_SRC 
