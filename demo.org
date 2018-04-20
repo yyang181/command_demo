@@ -109,7 +109,7 @@ P u 大写P表示push命令
 需要两步：
 1. unsigned 需要在.spaces中初始化才能startup载入
 2. 需要设置默认的变量git-auto-commiting
- 
+3. gac-automatically-push-p 当变量不为0时，还可以自动push！！！！ 
 
 下载下来package之后， 需要运行 M-m ! 打开shell窗口配置github
 
