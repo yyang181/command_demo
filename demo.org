@@ -116,6 +116,8 @@ git config --global user.email yyang181@github.com
 - magit: s打开magit status界面
 - magit: P u 一键push到github
 - 前提条件是配置了git config --global
+- 大量文件跟更改可以直接用git desktop
+- 单文件修改调试可以用此文中的快捷键方法
 ** 神器：global-set-key自定义绑定 键位 到命令
 *** 方法一 修改init.el文件
 
