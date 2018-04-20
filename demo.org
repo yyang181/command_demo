@@ -96,6 +96,13 @@ M-m v 选中当前光标所在的单词，继续按v则扩大选区 V则缩小�
 #+BEGIN_SRC 
 C-x g 已通过global-set-key自定义绑定 键位 到命令magit-status
 #+END_SRC
+在新打开的magit窗口中（通过magit-status命令）
+#+BEGIN_SRC 
+s 小写s表示git add命令
+c 表示commit命令
+但以上两个步骤已经通过git-auto-commit自动commit过了
+P u 大写P表示push命令
+#+END_SRC
 ** Git-auto-commit 每次保存文件自动commit到github
 下载下来package之后， 需要运行 M-m ! 打开shell窗口配置github
 
