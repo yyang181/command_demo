@@ -120,7 +120,10 @@ git config --global user.email yyang181@github.com
 - 单文件修改调试可以用此文中的快捷键方法
 ** 神器：global-set-key自定义绑定 键位 到命令
 *** 方法一 修改init.el文件
-
+#+BEGIN_SRC 
+;; global-set-key
+(global-set-key (kbd "C-x g") 'magit-status)
+#+END_SRC
 *** 方法二 可能会出现单次设置单次使用
  #+BEGIN_SRC 
  M-x global-set-key 
