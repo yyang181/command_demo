@@ -123,7 +123,11 @@ P u 大写P表示push命令
 #+BEGIN_SRC 
 C-x p 打开gac模式，使得保存文件之后自动commit push
 #+END_SRC
-
+*** 按键配置代码 init.el文件
+#+BEGIN_SRC 
+;; global-set-key
+(global-set-key (kbd "C-x p") 'git-auto-commit-mode)
+#+END_SRC
 ** Git 综述
 结合两个package完美一键push到github
 - git-auto-commit: 保存当前文件时自动commit
