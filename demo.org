@@ -106,17 +106,24 @@ c 表示commit命令
 P u 大写P表示push命令
 #+END_SRC
 ** Git-auto-commit 每次保存文件自动commit到github 需要在.spaces中初始化才能startup载入
-需要两步：
-1. unsigned 需要在.spaces中初始化才能startup载入
-2. 需要设置默认的变量git-auto-commiting
-3. gac-automatically-push-p 当变量不为0时，还可以自动push！！！！ 
+*** 配置步骤
+ 需要两步：
+ 1. unsigned 需要在.spaces中初始化才能startup载入 add package 
+ 2. gac-automatically-push-p 当变量不为0时，还可以自动push！！！！ 在package里面customize这个变量即可
+ 3. 绑定按键 C-x p 自动commit+push
+ 4. 下载下来package之后， 需要运行 M-m ! 打开shell窗口配置github
+ 5. 显示信息: minor mode窗口会有gac标志
+ #+BEGIN_SRC 
+ git config --global user.email yyang181@github.com
+ #+END_SRC
+*** 使用方法
+当且仅当 处理单个文件的编译时，想要多次一键测试结果 可以开启 gac-mode,也即git-auto-commit-mode
 
-下载下来package之后， 需要运行 M-m ! 打开shell窗口配置github
-
-显示信息: minor mode窗口会有gac标志
+快捷键
 #+BEGIN_SRC 
-git config --global user.email yyang181@github.com
+C-x p 打开gac模式，使得保存文件之后自动commit push
 #+END_SRC
+
 ** Git 综述
 结合两个package完美一键push到github
 - git-auto-commit: 保存当前文件时自动commit
@@ -217,4 +224,4 @@ nerd commenting
 
 evil-leader
 sd
-123
+
