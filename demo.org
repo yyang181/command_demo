@@ -148,7 +148,11 @@ unsigned 需要在.spaces中初始化才能startup载入
 C-u number M-; 注释从当前行开始的 number 行
 #+END_SRC
 ** Flycheck
-
+*** 配置方法
+#+BEGIN_SRC 
+To enable Flycheck add the following to your init file:
+   (add-hook 'after-init-hook #'global-flycheck-mode)
+#+END_SRC
 ** Git 综述
 结合两个package完美一键push到github
 - git-auto-commit: 保存当前文件时自动commit
