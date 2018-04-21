@@ -129,7 +129,13 @@ C-x p 打开gac模式，使得保存文件之后自动commit push
 (global-set-key (kbd "C-x p") 'git-auto-commit-mode)
 #+END_SRC
 ** Evil-nerd-commenter Package 
+*** 配置步骤
+unsigned 需要在.spaces中初始化才能startup载入
 
+设置按键
+#+BEGIN_SRC 
+(evilnc-default-hotkeys) 使用默认按键
+#+END_SRC
 ** Git 综述
 结合两个package完美一键push到github
 - git-auto-commit: 保存当前文件时自动commit
