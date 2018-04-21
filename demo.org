@@ -132,6 +132,13 @@ C-x p 打开gac模式，使得保存文件之后自动commit push
 *** 配置步骤
 unsigned 需要在.spaces中初始化才能startup载入
 
+需要在init.el中配置默认按键
+#+BEGIN_SRC 
+;; set up default hotkeys for evilnc
+;;
+;; evil-nerd-commenter
+(evilnc-default-hotkeys)
+#+END_SRC
 设置按键
 #+BEGIN_SRC 
 (evilnc-default-hotkeys) 使用默认按键
@@ -227,11 +234,6 @@ From https://github.com/kelvinh/kelvinh.github.com
 (setq op/personal-google-analytics-id "your_google_analytics_id")
 #+END_SRC
 * 待完成插件
-nerd commenting
+# nerd commenting
 
 evil-leader
-
-
-
-
-
