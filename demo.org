@@ -147,6 +147,8 @@ unsigned 需要在.spaces中初始化才能startup载入
 #+BEGIN_SRC 
 C-u number M-; 注释从当前行开始的 number 行
 #+END_SRC
+** Flycheck
+
 ** Git 综述
 结合两个package完美一键push到github
 - git-auto-commit: 保存当前文件时自动commit
