@@ -264,6 +264,8 @@ From https://github.com/kelvinh/kelvinh.github.com
 #+BEGIN_SRC 
 %run file.py
 #+END_SRC
+* Python 语言
+
 * 待完成插件
 # nerd commenting
 
