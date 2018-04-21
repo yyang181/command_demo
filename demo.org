@@ -214,18 +214,7 @@ From https://github.com/kelvinh/kelvinh.github.com
 ;;; the configuration below are optional
 (setq op/personal-google-analytics-id "your_google_analytics_id")
 #+END_SRC
-
-
-
-123
-23
-sd
-sd
-sdggd
-sd
 * 待完成插件
 nerd commenting
 
 evil-leader
-sd
-
