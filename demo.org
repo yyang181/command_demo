@@ -265,7 +265,10 @@ From https://github.com/kelvinh/kelvinh.github.com
 %run file.py
 #+END_SRC
 * Python 语言
-
+** 帮助命令
+#+BEGIN_SRC 
+help() 查询括号里面的包、函数
+#+END_SRC
 * 待完成插件
 # nerd commenting
 
