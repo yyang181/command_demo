@@ -40,6 +40,30 @@ c-h 帮助
     c-h v 变量
     c-h k 快捷键
  #+END_SRC
+** 一些解决方案
+***  多buffer管理： 
+先分屏 后打开buffer
+***  快捷跳转行数
+#+BEGIN_SRC 
+M-g g 跳转到第几行  需要设置显示行数功能
+#+END_SRC
+*** 设置在左侧显示行数功能
+**** 绑定按键及配置文件
+ #+BEGIN_SRC 
+ spacemacs build in function
+ C-x t 绑定按键到M-x linum-mode
+ #+END_SRC
+ 绑定按键的配置文件 修改init.el文件
+ #+BEGIN_SRC 
+ ;; global-set-key
+ ;;
+ ;; set linum-mode
+ (global-set-key (kbd "C-x t") 'linum-mode)
+ #+END_SRC
+****  特别注意需要linum-relative package的支持
+在.spaces中初始化才能startup载入
+**** 可以直接搜索变量 C-h v 然后配置变量
+好处是，可以通过UI界面来配置初始化变量
 ** Spacemacs
 *** Spacemacs 配置文件 添加package cuda-mode
  添加该段代码到.spacemacs.el文件中的合适位置
@@ -149,9 +173,16 @@ C-u number M-; 注释从当前行开始的 number 行
 #+END_SRC
 ** Flycheck
 *** 配置方法
-#+BEGIN_SRC 
+package unsigned 需要在.spacemacs中配置
+
 To enable Flycheck add the following to your init file:
+#+BEGIN_SRC 
    (add-hook 'after-init-hook #'global-flycheck-mode)
+#+END_SRC
+需要设置变量的值来激活
+#+BEGIN_SRC 
+C-h v type flycheck-check-syntax-automatically
+把这个变量的值修改即可
 #+END_SRC
 ** Git 综述
 结合两个package完美一键push到github
