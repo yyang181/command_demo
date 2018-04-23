@@ -53,7 +53,8 @@ M-m #number 跳转到第几个窗口
 以上几个快捷键就够用了
 *** 任意文件同一个窗口打开
 #+BEGIN_SRC 
-C-x C-f 打开文件的命令，然后用~zhijie
+C-x C-f 打开文件的命令，
+type ~/ 然后回车 直接打开根目录
 #+END_SRC
 ***  快捷跳转行数
 #+BEGIN_SRC 
