@@ -64,6 +64,13 @@ M-g g 跳转到第几行  需要设置显示行数功能
 在.spaces中初始化才能startup载入
 **** 可以直接搜索变量 C-h v 然后配置变量
 好处是，可以通过UI界面来配置初始化变量
+*** 复制粘贴及矩形区域选择解决方案
+**** 利用expand region的快捷键 
+     #+BEGIN_SRC 
+     M-m v 标记并可以调整区域
+     #+END_SRC
+**** 利用C-x C-x 瞬间交换光标的位置与开头或者结尾
+完美！解决！
 ** Spacemacs
 *** Spacemacs 配置文件 添加package cuda-mode
  添加该段代码到.spacemacs.el文件中的合适位置
@@ -254,6 +261,17 @@ c-c c-e 可选生成latex pdf
  - 可以用- 来表示要点提示的项目符号
  - 可以用上述块标签来表示源代码等
   *** Org-page 创建个人主页
+** Org mode配置latex环境及常用宏包
+中文宏包配置
+#+BEGIN_SRC 
+#+LATEX_HEADER: \usepackage[colorlinks=true,linkcolor=red]{hyperref}
+#+END_SRC
+其它可选命令小结
+#+BEGIN_EXPORT latex
+#+LATEX_HEADER: \usepackage[colorlinks=true,linkcolor=red]{hyperref}
+#+LATEX_CLASS: org-article
+#+TITLE: Org to \LaTeX
+#+END_EXPORT
 ** Org-page package创建个人主页
 From https://github.com/kelvinh/kelvinh.github.com
 *** .emacs 文件源代码 手动添加package 注意：目前好像不能用
@@ -307,6 +325,13 @@ From https://github.com/kelvinh/kelvinh.github.com
 help() 查询括号里面的包、函数
 #+END_SRC
 * 待完成插件
-# nerd commenting
-
 evil-leader
+- 然后用其实现markdown的所有功能（非常轻松）
+- 可以用其方便的实现命令行功能（其实是emacs的功能）,使用linux的指令。
+- 再之后可以尝试org-mode的gtd功能
+- 再之后可以尝试下org-mode的导出功能,导出html之类的不值得提，org-mode可以导出和导出思维导图。
+- 可以尝试一下org-mode的多文件查找，以及快速捕捉系统。
+- 再之后可以尝试下org-mode的对代码块的强大处理
+- 可以直接在代码块里执行c/c++/python等等语言，输出代码执行的结果，而无须切换回来
+- 可以尝试了解下org-mode的与其它组件的配合。以及可以了解下emacs和evil。另外也可以了解下配合git实现版本管理。
+- 最后，如果你对编程有些了解，那么所有你不满意的地方，都可以自己改，而不是向作者抱怨能否再下一版本实现某某功能。
