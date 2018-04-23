@@ -228,6 +228,7 @@ C-h v type flycheck-check-syntax-automatically
 **** 重点谈一下ein包
 ***** ein unsigned需要在.spacemacs文件中添加package 用来调用jupyter notebook虚拟环境
 ***** 
+
 *** 安装两个package
 **** elpy unsigned需要在.spacemacs文件中添加package 用来支持Python mode
 **** pyvenv unsigned需要在.spacemacs文件中添加package 用来调用jupyter notebook虚拟环境
