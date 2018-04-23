@@ -392,6 +392,21 @@ From https://github.com/kelvinh/kelvinh.github.com
 #+BEGIN_SRC 
 help() 查询括号里面的包、函数
 #+END_SRC
+* Spring 2018
+** EE 147
+** EE 243
+*** hw2
+**** Matlab程序资料备份
+***** 第三问
+****** 拉普拉斯变换
+ https://www.mathworks.com/matlabcentral/answers/53726-how-to-implement-the-laplacian-of-gaussian-edge-detector-using-the-prewitt-operator
+****** 边缘检测官网文件汇总
+ https://www.mathworks.com/discovery/edge-detection.html
+***** 第四问
+****** Shi-Tomasi corner detector
+可以用Python 的opencv包
+ https://docs.opencv.org/3.0-beta/doc/py_tutorials/py_feature2d/py_shi_tomasi/py_shi_tomasi.html
+** EE 297
 * 待完成插件
 evil-leader
 - 然后用其实现markdown的所有功能（非常轻松）
@@ -403,4 +418,3 @@ evil-leader
 - 可以直接在代码块里执行c/c++/python等等语言，输出代码执行的结果，而无须切换回来
 - 可以尝试了解下org-mode的与其它组件的配合。以及可以了解下emacs和evil。另外也可以了解下配合git实现版本管理。
 - 最后，如果你对编程有些了解，那么所有你不满意的地方，都可以自己改，而不是向作者抱怨能否再下一版本实现某某功能。
-`
