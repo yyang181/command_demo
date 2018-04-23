@@ -238,6 +238,7 @@ ein:jupyter-default-notebook-directory and set it to the path where you are keep
 **** elpy unsigned需要在.spacemacs文件中添加package 用来支持Python mode
 **** pyvenv unsigned需要在.spacemacs文件中添加package 用来调用jupyter notebook虚拟环境
 **** pyvenv package已经被证实不好用，用ein官方包代替
+*** org mode 导出为html文件测试行
 * Latex 编辑命令
 ** 导出pdf
 需要先编译
