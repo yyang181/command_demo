@@ -1,3 +1,3 @@
 # command_demo
 demo.org
-https://github.com/yyang181/command_demo/demo.html
+https://yyang181.github.io/command_demo/demo.html
