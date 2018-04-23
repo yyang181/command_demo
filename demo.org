@@ -56,7 +56,7 @@ M-m #number 跳转到第几个窗口
 C-x C-f 打开文件的命令，
 type ~/然后回车 直接打开根目录
 #+END_SRC
-***  快捷跳转行数
+*** 快捷跳转行数
 #+BEGIN_SRC 
 M-g g 跳转到第几行  需要设置显示行数功能
 #+END_SRC
@@ -84,6 +84,13 @@ M-g g 跳转到第几行  需要设置显示行数功能
      #+END_SRC
 **** 利用C-x C-x 瞬间交换光标的位置与开头或者结尾
 完美！解决！
+*** 笔记，保存及预览设置
+**** 目前最优方案
+导出为html文件
+
+在github上面用readme预览
+**** 注意事项
+需要刷新网页来更新对html的更改
 ** Spacemacs
 *** Spacemacs 配置文件 添加package cuda-mode
  添加该段代码到.spacemacs.el文件中的合适位置
