@@ -1,4 +1,3 @@
-#+LATEX_HEADER:\uspackage{xeCJK}
 * Emaces Usful Command
 ** Command
 *** 常用命令
@@ -213,6 +212,12 @@ C-h v type flycheck-check-syntax-automatically
  type 需要绑定的命令 并按enter确认
  #+END_SRC
 * Latex 编辑命令
+** 导出pdf
+需要先编译
+#+BEGIN_SRC 
+C-c C-c 编译latex文件
+之后打开pdf即可
+#+END_SRC
 ** 中文环境包
 #+BEGIN_SRC 
    % 中文支持包
@@ -262,6 +267,68 @@ c-c c-e 可选生成latex pdf
  - 可以用- 来表示要点提示的项目符号
  - 可以用上述块标签来表示源代码等
   *** Org-page 创建个人主页
+** Org 一键导出latex之后转pdf的方法
+*** 目前暂时没有比较好的中文解决方案
+*** 英文处理直接编译然后用pdftex输出所需要的pdf 中文只能暂时用html格式将就一下了
+*** 配置.spacemacs文件来添加中文支持包
+#+BEGIN_SRC 
+ ;;windows setenv PATH
+  (setenv "PATH" "C:/ProgramData/Oracle/Java/javapath;%SystemRoot%/system32;%SystemRoot%;%SystemRoot%/System32/Wbem;%SYSTEMROOT%/System32/WindowsPowerShell/v1.0/;C:/Program Files (x86)/ATI Technologies/ATI.ACE/Core-Static;e:/Program Files/Git/cmd;e:/Program Files/Git/mingw64/bin;e:/Program Files/Git/usr/bin;C:/Program Files/Git/cmd;C:/Program Files (x86)/AMD/ATI.ACE/Core-Static;d:/CTEX/UserData/miktex/bin;d:/CTEX/MiKTeX/miktex/bin;d:/CTEX/CTeX/ctex/bin;d:/CTEX/CTeX/cct/bin;d:/CTEX/CTeX/ty/bin;d:/CTEX/Ghostscript/gs9.05/bin;d:/CTEX/GSview/gsview;d:/CTEX/WinEdt")
+
+  ;; 中文字体的设置，同时解决中英文字体宽度不一致的问题（org-mode的表格可以中英文对齐）。
+  ;; 而且解决了中文字体导致emacs卡的现象。
+  (dolist (charset '(kana han cjk-misc bopomofo))
+    (set-fontset-font (frame-parameter nil 'font) charset
+                      (font-spec :family "微软雅黑" :size 16)))
+  ;;重新定义pdfviewer，我设定为了SumatraPDF。
+  (setq TeX-command-default "XeLaTeX")
+  (setq TeX-save-query  nil )
+  (setq TeX-show-compilation t)
+  (setq TeX-view-program-list '(("SumatraPDF" "SumatraPDF %o")))
+  (setq TeX-view-program-selection '((output-pdf "SumatraPDF")))
+   (add-hook 'LaTeX-mode-hook (lambda()
+                               (add-to-list 'TeX-command-list '("XeLaTeX" "%`xelatex%(mode)%' %t" TeX-run-TeX nil t))
+                               (setq TeX-global-PDF-mode t TeX-engine 'xelatex)
+                                ))
+
+(require 'ox-latex)
+(add-to-list 'org-latex-classes
+             '("org-article"
+               "
+\\documentclass{ctexart}
+\\usepackage[colorlinks,linkcolor=black,anchorcolor=black,citecolor=black,CJKbookmarks=True]{hyperref}
+\\usepackage{graphicx}
+\\usepackage{xcolor}
+\\usepackage{xeCJK}
+\\usepackage{fixltx2e}
+\\usepackage{longtable}
+\\usepackage{float}        
+\\usepackage{tikz}         
+\\usepackage{wrapfig}      
+\\usepackage{latexsym,amssymb,amsmath}
+\\usepackage{textcomp}
+\\usepackage{listings}     
+\\usepackage{marvosym}     
+\\usepackage{textcomp}     
+\\usepackage{latexsym}     
+\\usepackage{natbib}       
+\\usepackage{geometry}     
+\\usepackage{epstopdf}
+\\usepackage{epsfig}
+\\usepackage{times}
+\\geometry{a4paper,centering,scale=0.8}
+\\CTEXsetup[format={\\Large\\bfseries}]{section}
+\\usepackage{tocbibind}
+[NO-DEFAULT-PACKAGES]      
+[PACKAGES]                 
+[EXTRA]"
+  ("\\section{%s}" . "\\section*{%s}")
+  ("\\subsection{%s}" . "\\subsection*{%s}")
+  ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+  ("\\paragraph{%s}" . "\\paragraph*{%s}")
+  ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+#+END_SRC
+
 ** Org mode配置latex环境及常用宏包
 中文宏包配置
 #+BEGIN_SRC 
@@ -336,3 +403,4 @@ evil-leader
 - 可以直接在代码块里执行c/c++/python等等语言，输出代码执行的结果，而无须切换回来
 - 可以尝试了解下org-mode的与其它组件的配合。以及可以了解下emacs和evil。另外也可以了解下配合git实现版本管理。
 - 最后，如果你对编程有些了解，那么所有你不满意的地方，都可以自己改，而不是向作者抱怨能否再下一版本实现某某功能。
+`
