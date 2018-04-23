@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2018-04-21 周六 15:56 -->
+<!-- 2018-04-23 周一 00:06 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
@@ -232,111 +232,121 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgf4b92b8">1. Emaces Usful Command</a>
+<li><a href="#orgfe741e4">1. Emaces Usful Command</a>
 <ul>
-<li><a href="#orge648512">1.1. Command</a>
+<li><a href="#org25cdc61">1.1. Command</a>
 <ul>
-<li><a href="#org697502c">1.1.1. 常用命令</a></li>
-<li><a href="#orga33f593">1.1.2. 命令主菜单</a></li>
-<li><a href="#org2e31a25">1.1.3. 帮助</a></li>
+<li><a href="#org0e958b0">1.1.1. 常用命令</a></li>
+<li><a href="#orgc1db408">1.1.2. 命令主菜单</a></li>
+<li><a href="#orge6d3259">1.1.3. 帮助</a></li>
 </ul>
 </li>
-<li><a href="#orgd8f64f7">1.2. 一些解决方案</a>
+<li><a href="#org042825d">1.2. 一些解决方案</a>
 <ul>
-<li><a href="#org06c2988">1.2.1. 多buffer管理：</a></li>
-<li><a href="#org1300991">1.2.2. 快捷跳转行数</a></li>
-<li><a href="#org52990bd">1.2.3. 设置在左侧显示行数功能</a></li>
+<li><a href="#org8d93d1f">1.2.1. 多buffer管理：</a></li>
+<li><a href="#org14364f5">1.2.2. 快捷跳转行数</a></li>
+<li><a href="#org9b9b680">1.2.3. 设置在左侧显示行数功能</a></li>
+<li><a href="#orgbca1d06">1.2.4. 复制粘贴及矩形区域选择解决方案</a></li>
 </ul>
 </li>
-<li><a href="#orgc612533">1.3. Spacemacs</a>
+<li><a href="#orge93fd01">1.3. Spacemacs</a>
 <ul>
-<li><a href="#org4bc9761">1.3.1. Spacemacs 配置文件 添加package cuda-mode</a></li>
-<li><a href="#orgf7e1140">1.3.2. Spacemacs 配置文件 初始化init.el文件 使所有buffer默认打开company模式</a></li>
+<li><a href="#orgb081e38">1.3.1. Spacemacs 配置文件 添加package cuda-mode</a></li>
+<li><a href="#org38f3fc2">1.3.2. Spacemacs 配置文件 初始化init.el文件 使所有buffer默认打开company模式</a></li>
 </ul>
 </li>
-<li><a href="#org7fd4f8b">1.4. Company 自动补全包 命令集</a></li>
-<li><a href="#org619313d">1.5. Expand-region 快捷键文本选中 package</a></li>
-<li><a href="#orgc48a347">1.6. Magit package自动上传本地文档到github</a></li>
-<li><a href="#org5959e6f">1.7. Git-auto-commit 每次保存文件自动commit到github 需要在.spaces中初始化才能startup载入</a>
+<li><a href="#org67b9065">1.4. Company 自动补全包 命令集</a></li>
+<li><a href="#org8d740dd">1.5. Expand-region 快捷键文本选中 package</a></li>
+<li><a href="#org8bc6bdb">1.6. Magit package自动上传本地文档到github</a></li>
+<li><a href="#orgc20c63f">1.7. Git-auto-commit 每次保存文件自动commit到github 需要在.spaces中初始化才能startup载入</a>
 <ul>
-<li><a href="#org3c31867">1.7.1. 配置步骤</a></li>
-<li><a href="#org5db7d18">1.7.2. 使用方法</a></li>
-<li><a href="#org0165927">1.7.3. 按键配置代码 init.el文件</a></li>
+<li><a href="#org773b0fb">1.7.1. 配置步骤</a></li>
+<li><a href="#orgc8e6cc6">1.7.2. 使用方法</a></li>
+<li><a href="#org9f009a7">1.7.3. 按键配置代码 init.el文件</a></li>
 </ul>
 </li>
-<li><a href="#orgf9a6ce1">1.8. Evil-nerd-commenter Package</a>
+<li><a href="#org038c0f7">1.8. Evil-nerd-commenter Package</a>
 <ul>
-<li><a href="#org85e86f9">1.8.1. 配置步骤</a></li>
-<li><a href="#org7dc48f4">1.8.2. 使用方法</a></li>
+<li><a href="#org5d83ad6">1.8.1. 配置步骤</a></li>
+<li><a href="#org0c2ec20">1.8.2. 使用方法</a></li>
 </ul>
 </li>
-<li><a href="#org17938e7">1.9. Flycheck</a>
+<li><a href="#org5379eec">1.9. Flycheck</a>
 <ul>
-<li><a href="#org85b3c23">1.9.1. 配置方法</a></li>
+<li><a href="#orgafd9559">1.9.1. 配置方法</a></li>
 </ul>
 </li>
-<li><a href="#orged447c6">1.10. Git 综述</a></li>
-<li><a href="#org2f41d58">1.11. 神器：global-set-key自定义绑定 键位 到命令</a>
+<li><a href="#org8eef920">1.10. Git 综述</a></li>
+<li><a href="#orgae964d7">1.11. 神器：global-set-key自定义绑定 键位 到命令</a>
 <ul>
-<li><a href="#orgabae2ae">1.11.1. 方法一 修改init.el文件</a></li>
-<li><a href="#org2f7c0c4">1.11.2. 方法二 可能会出现单次设置单次使用</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#orgfa41a2a">2. Latex 编辑命令</a>
-<ul>
-<li><a href="#org2a4f610">2.1. 中文环境包</a></li>
-</ul>
-</li>
-<li><a href="#org0e13b2c">3. Org mode</a>
-<ul>
-<li><a href="#org9209ca7">3.1. Useful Command</a>
-<ul>
-<li><a href="#org805b79a">3.1.1. 编译</a></li>
-<li><a href="#orga5af496">3.1.2. 标题</a></li>
-<li><a href="#orgf48866f">3.1.3. 块标签</a></li>
-<li><a href="#orge6b58d5">3.1.4. 排版段落格式</a></li>
-</ul>
-</li>
-<li><a href="#orgab6a671">3.2. Org-page package创建个人主页</a>
-<ul>
-<li><a href="#orge9e0b60">3.2.1. .emacs 文件源代码 手动添加package 注意：目前好像不能用</a></li>
+<li><a href="#org2876bdd">1.11.1. 方法一 修改init.el文件</a></li>
+<li><a href="#org54428c7">1.11.2. 方法二 可能会出现单次设置单次使用</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org8b9e09e">4. Jupyter notebook</a>
+<li><a href="#orge93741d">2. Latex 编辑命令</a>
 <ul>
-<li><a href="#org655583f">4.1. 常用命令</a></li>
-<li><a href="#orga3063f2">4.2. 文件导入</a>
+<li><a href="#org91c31f8">2.1. 导出pdf</a></li>
+<li><a href="#orgcc26d05">2.2. 中文环境包</a></li>
+</ul>
+</li>
+<li><a href="#orga3c59cc">3. Org mode</a>
 <ul>
-<li><a href="#org6023e2e">4.2.1. 如何将本地的.py文件load到jupyter的一个cell里面</a></li>
-<li><a href="#orgb450843">4.2.2. 如何将网络中的.py文件load到jupyter的一个cell里面</a></li>
-<li><a href="#orgb6d5004">4.2.3. 利用cell运行.py文件</a></li>
+<li><a href="#orgda77ee2">3.1. Useful Command</a>
+<ul>
+<li><a href="#org3503bca">3.1.1. 编译</a></li>
+<li><a href="#org5b6d727">3.1.2. 标题</a></li>
+<li><a href="#org3dbd29e">3.1.3. 块标签</a></li>
+<li><a href="#org1937282">3.1.4. 排版段落格式</a></li>
+</ul>
+</li>
+<li><a href="#org7687280">3.2. Org 一键导出latex之后转pdf的方法</a>
+<ul>
+<li><a href="#orga1bf6cc">3.2.1. 目前暂时没有比较好的中文解决方案</a></li>
+<li><a href="#orgbc15c58">3.2.2. 英文处理直接编译然后用pdftex输出所需要的pdf 中文只能暂时用html格式将就一下了</a></li>
+<li><a href="#orgae26839">3.2.3. 配置.spacemacs文件来添加中文支持包</a></li>
+</ul>
+</li>
+<li><a href="#org4fb1f6b">3.3. Org mode配置latex环境及常用宏包</a></li>
+<li><a href="#orgdb68d06">3.4. Org-page package创建个人主页</a>
+<ul>
+<li><a href="#orgcb13dc0">3.4.1. .emacs 文件源代码 手动添加package 注意：目前好像不能用</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org661421c">5. Python 语言</a>
+<li><a href="#org814ae39">4. Jupyter notebook</a>
 <ul>
-<li><a href="#orgcecb0df">5.1. 帮助命令</a></li>
+<li><a href="#org67b24e0">4.1. 常用命令</a></li>
+<li><a href="#org30a0e91">4.2. 文件导入</a>
+<ul>
+<li><a href="#org6b60ed4">4.2.1. 如何将本地的.py文件load到jupyter的一个cell里面</a></li>
+<li><a href="#org4e08c40">4.2.2. 如何将网络中的.py文件load到jupyter的一个cell里面</a></li>
+<li><a href="#org5d29e23">4.2.3. 利用cell运行.py文件</a></li>
 </ul>
 </li>
-<li><a href="#orga5d2ada">6. 待完成插件</a></li>
+</ul>
+</li>
+<li><a href="#orga5b789d">5. Python 语言</a>
+<ul>
+<li><a href="#org6cb359c">5.1. 帮助命令</a></li>
+</ul>
+</li>
+<li><a href="#orgcdca300">6. 待完成插件</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf4b92b8" class="outline-2">
-<h2 id="orgf4b92b8"><span class="section-number-2">1</span> Emaces Usful Command</h2>
+<div id="outline-container-orgfe741e4" class="outline-2">
+<h2 id="orgfe741e4"><span class="section-number-2">1</span> Emaces Usful Command</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orge648512" class="outline-3">
-<h3 id="orge648512"><span class="section-number-3">1.1</span> Command</h3>
+<div id="outline-container-org25cdc61" class="outline-3">
+<h3 id="org25cdc61"><span class="section-number-3">1.1</span> Command</h3>
 <div class="outline-text-3" id="text-1-1">
 </div>
-<div id="outline-container-org697502c" class="outline-4">
-<h4 id="org697502c"><span class="section-number-4">1.1.1</span> 常用命令</h4>
+<div id="outline-container-org0e958b0" class="outline-4">
+<h4 id="org0e958b0"><span class="section-number-4">1.1.1</span> 常用命令</h4>
 <div class="outline-text-4" id="text-1-1-1">
 <pre class="example">
 cmd --insecure 模式打开emacs才能有网络连接
@@ -363,8 +373,8 @@ M-m 0-9 提供于windows-numbering包 作用：当有多个buffer同时打开时
 </pre>
 </div>
 </div>
-<div id="outline-container-orga33f593" class="outline-4">
-<h4 id="orga33f593"><span class="section-number-4">1.1.2</span> 命令主菜单</h4>
+<div id="outline-container-orgc1db408" class="outline-4">
+<h4 id="orgc1db408"><span class="section-number-4">1.1.2</span> 命令主菜单</h4>
 <div class="outline-text-4" id="text-1-1-2">
 <pre class="example">
 M-m spacemacs buffer管理
@@ -375,8 +385,8 @@ c-h 帮助
 </pre>
 </div>
 </div>
-<div id="outline-container-org2e31a25" class="outline-4">
-<h4 id="org2e31a25"><span class="section-number-4">1.1.3</span> 帮助</h4>
+<div id="outline-container-orge6d3259" class="outline-4">
+<h4 id="orge6d3259"><span class="section-number-4">1.1.3</span> 帮助</h4>
 <div class="outline-text-4" id="text-1-1-3">
 <pre class="example">
 c-h 主命令
@@ -388,32 +398,32 @@ c-h k 快捷键
 </div>
 </div>
 </div>
-<div id="outline-container-orgd8f64f7" class="outline-3">
-<h3 id="orgd8f64f7"><span class="section-number-3">1.2</span> 一些解决方案</h3>
+<div id="outline-container-org042825d" class="outline-3">
+<h3 id="org042825d"><span class="section-number-3">1.2</span> 一些解决方案</h3>
 <div class="outline-text-3" id="text-1-2">
 </div>
-<div id="outline-container-org06c2988" class="outline-4">
-<h4 id="org06c2988"><span class="section-number-4">1.2.1</span> 多buffer管理：</h4>
+<div id="outline-container-org8d93d1f" class="outline-4">
+<h4 id="org8d93d1f"><span class="section-number-4">1.2.1</span> 多buffer管理：</h4>
 <div class="outline-text-4" id="text-1-2-1">
 <p>
 先分屏 后打开buffer
 </p>
 </div>
 </div>
-<div id="outline-container-org1300991" class="outline-4">
-<h4 id="org1300991"><span class="section-number-4">1.2.2</span> 快捷跳转行数</h4>
+<div id="outline-container-org14364f5" class="outline-4">
+<h4 id="org14364f5"><span class="section-number-4">1.2.2</span> 快捷跳转行数</h4>
 <div class="outline-text-4" id="text-1-2-2">
 <pre class="example">
 M-g g 跳转到第几行  需要设置显示行数功能
 </pre>
 </div>
 </div>
-<div id="outline-container-org52990bd" class="outline-4">
-<h4 id="org52990bd"><span class="section-number-4">1.2.3</span> 设置在左侧显示行数功能</h4>
+<div id="outline-container-org9b9b680" class="outline-4">
+<h4 id="org9b9b680"><span class="section-number-4">1.2.3</span> 设置在左侧显示行数功能</h4>
 <div class="outline-text-4" id="text-1-2-3">
 </div>
 <ol class="org-ol">
-<li><a id="orgab372e3"></a>绑定按键及配置文件<br />
+<li><a id="org137434f"></a>绑定按键及配置文件<br />
 <div class="outline-text-5" id="text-1-2-3-1">
 <pre class="example">
 spacemacs build in function
@@ -430,14 +440,14 @@ C-x t 绑定按键到M-x linum-mode
 </pre>
 </div>
 </li>
-<li><a id="org5653424"></a>特别注意需要linum-relative package的支持<br />
+<li><a id="orgfb2bbd0"></a>特别注意需要linum-relative package的支持<br />
 <div class="outline-text-5" id="text-1-2-3-2">
 <p>
 在.spaces中初始化才能startup载入
 </p>
 </div>
 </li>
-<li><a id="org7f1fd8d"></a>可以直接搜索变量 C-h v 然后配置变量<br />
+<li><a id="org64fdc8a"></a>可以直接搜索变量 C-h v 然后配置变量<br />
 <div class="outline-text-5" id="text-1-2-3-3">
 <p>
 好处是，可以通过UI界面来配置初始化变量
@@ -446,13 +456,34 @@ C-x t 绑定按键到M-x linum-mode
 </li>
 </ol>
 </div>
+<div id="outline-container-orgbca1d06" class="outline-4">
+<h4 id="orgbca1d06"><span class="section-number-4">1.2.4</span> 复制粘贴及矩形区域选择解决方案</h4>
+<div class="outline-text-4" id="text-1-2-4">
 </div>
-<div id="outline-container-orgc612533" class="outline-3">
-<h3 id="orgc612533"><span class="section-number-3">1.3</span> Spacemacs</h3>
+<ol class="org-ol">
+<li><a id="org0a23df6"></a>利用expand region的快捷键<br />
+<div class="outline-text-5" id="text-1-2-4-1">
+<pre class="example">
+M-m v 标记并可以调整区域
+</pre>
+</div>
+</li>
+<li><a id="org58bf1ac"></a>利用C-x C-x 瞬间交换光标的位置与开头或者结尾<br />
+<div class="outline-text-5" id="text-1-2-4-2">
+<p>
+完美！解决！
+</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orge93fd01" class="outline-3">
+<h3 id="orge93fd01"><span class="section-number-3">1.3</span> Spacemacs</h3>
 <div class="outline-text-3" id="text-1-3">
 </div>
-<div id="outline-container-org4bc9761" class="outline-4">
-<h4 id="org4bc9761"><span class="section-number-4">1.3.1</span> Spacemacs 配置文件 添加package cuda-mode</h4>
+<div id="outline-container-orgb081e38" class="outline-4">
+<h4 id="orgb081e38"><span class="section-number-4">1.3.1</span> Spacemacs 配置文件 添加package cuda-mode</h4>
 <div class="outline-text-4" id="text-1-3-1">
 <p>
 添加该段代码到.spacemacs.el文件中的合适位置
@@ -490,8 +521,8 @@ layers configuration."
 </pre>
 </div>
 </div>
-<div id="outline-container-orgf7e1140" class="outline-4">
-<h4 id="orgf7e1140"><span class="section-number-4">1.3.2</span> Spacemacs 配置文件 初始化init.el文件 使所有buffer默认打开company模式</h4>
+<div id="outline-container-org38f3fc2" class="outline-4">
+<h4 id="org38f3fc2"><span class="section-number-4">1.3.2</span> Spacemacs 配置文件 初始化init.el文件 使所有buffer默认打开company模式</h4>
 <div class="outline-text-4" id="text-1-3-2">
 <pre class="example">
 ;; Enable global company mode
@@ -504,8 +535,8 @@ layers configuration."
 </div>
 </div>
 </div>
-<div id="outline-container-org7fd4f8b" class="outline-3">
-<h3 id="org7fd4f8b"><span class="section-number-3">1.4</span> Company 自动补全包 命令集</h3>
+<div id="outline-container-org67b9065" class="outline-3">
+<h3 id="org67b9065"><span class="section-number-3">1.4</span> Company 自动补全包 命令集</h3>
 <div class="outline-text-3" id="text-1-4">
 <pre class="example">
 M-n M-p select
@@ -515,16 +546,16 @@ M-(digit) to quickly complete with one of the first 10 candidates.
 </pre>
 </div>
 </div>
-<div id="outline-container-org619313d" class="outline-3">
-<h3 id="org619313d"><span class="section-number-3">1.5</span> Expand-region 快捷键文本选中 package</h3>
+<div id="outline-container-org8d740dd" class="outline-3">
+<h3 id="org8d740dd"><span class="section-number-3">1.5</span> Expand-region 快捷键文本选中 package</h3>
 <div class="outline-text-3" id="text-1-5">
 <pre class="example">
 M-m v 选中当前光标所在的单词，继续按v则扩大选区 V则缩小选区 具体命令见下方说明
 </pre>
 </div>
 </div>
-<div id="outline-container-orgc48a347" class="outline-3">
-<h3 id="orgc48a347"><span class="section-number-3">1.6</span> Magit package自动上传本地文档到github</h3>
+<div id="outline-container-org8bc6bdb" class="outline-3">
+<h3 id="org8bc6bdb"><span class="section-number-3">1.6</span> Magit package自动上传本地文档到github</h3>
 <div class="outline-text-3" id="text-1-6">
 <pre class="example">
 C-x g 已通过global-set-key自定义绑定 键位 到命令magit-status
@@ -540,12 +571,12 @@ P u 大写P表示push命令
 </pre>
 </div>
 </div>
-<div id="outline-container-org5959e6f" class="outline-3">
-<h3 id="org5959e6f"><span class="section-number-3">1.7</span> Git-auto-commit 每次保存文件自动commit到github 需要在.spaces中初始化才能startup载入</h3>
+<div id="outline-container-orgc20c63f" class="outline-3">
+<h3 id="orgc20c63f"><span class="section-number-3">1.7</span> Git-auto-commit 每次保存文件自动commit到github 需要在.spaces中初始化才能startup载入</h3>
 <div class="outline-text-3" id="text-1-7">
 </div>
-<div id="outline-container-org3c31867" class="outline-4">
-<h4 id="org3c31867"><span class="section-number-4">1.7.1</span> 配置步骤</h4>
+<div id="outline-container-org773b0fb" class="outline-4">
+<h4 id="org773b0fb"><span class="section-number-4">1.7.1</span> 配置步骤</h4>
 <div class="outline-text-4" id="text-1-7-1">
 <p>
 需要两步：
@@ -562,8 +593,8 @@ git config --global user.email yyang181@github.com
 </pre>
 </div>
 </div>
-<div id="outline-container-org5db7d18" class="outline-4">
-<h4 id="org5db7d18"><span class="section-number-4">1.7.2</span> 使用方法</h4>
+<div id="outline-container-orgc8e6cc6" class="outline-4">
+<h4 id="orgc8e6cc6"><span class="section-number-4">1.7.2</span> 使用方法</h4>
 <div class="outline-text-4" id="text-1-7-2">
 <p>
 当且仅当 处理单个文件的编译时，想要多次一键测试结果 可以开启 gac-mode,也即git-auto-commit-mode
@@ -577,8 +608,8 @@ C-x p 打开gac模式，使得保存文件之后自动commit push
 </pre>
 </div>
 </div>
-<div id="outline-container-org0165927" class="outline-4">
-<h4 id="org0165927"><span class="section-number-4">1.7.3</span> 按键配置代码 init.el文件</h4>
+<div id="outline-container-org9f009a7" class="outline-4">
+<h4 id="org9f009a7"><span class="section-number-4">1.7.3</span> 按键配置代码 init.el文件</h4>
 <div class="outline-text-4" id="text-1-7-3">
 <pre class="example">
 ;; global-set-key
@@ -587,12 +618,12 @@ C-x p 打开gac模式，使得保存文件之后自动commit push
 </div>
 </div>
 </div>
-<div id="outline-container-orgf9a6ce1" class="outline-3">
-<h3 id="orgf9a6ce1"><span class="section-number-3">1.8</span> Evil-nerd-commenter Package</h3>
+<div id="outline-container-org038c0f7" class="outline-3">
+<h3 id="org038c0f7"><span class="section-number-3">1.8</span> Evil-nerd-commenter Package</h3>
 <div class="outline-text-3" id="text-1-8">
 </div>
-<div id="outline-container-org85e86f9" class="outline-4">
-<h4 id="org85e86f9"><span class="section-number-4">1.8.1</span> 配置步骤</h4>
+<div id="outline-container-org5d83ad6" class="outline-4">
+<h4 id="org5d83ad6"><span class="section-number-4">1.8.1</span> 配置步骤</h4>
 <div class="outline-text-4" id="text-1-8-1">
 <p>
 unsigned 需要在.spaces中初始化才能startup载入
@@ -615,8 +646,8 @@ unsigned 需要在.spaces中初始化才能startup载入
 </pre>
 </div>
 </div>
-<div id="outline-container-org7dc48f4" class="outline-4">
-<h4 id="org7dc48f4"><span class="section-number-4">1.8.2</span> 使用方法</h4>
+<div id="outline-container-org0c2ec20" class="outline-4">
+<h4 id="org0c2ec20"><span class="section-number-4">1.8.2</span> 使用方法</h4>
 <div class="outline-text-4" id="text-1-8-2">
 <pre class="example">
 C-u number M-; 注释从当前行开始的 number 行
@@ -624,12 +655,12 @@ C-u number M-; 注释从当前行开始的 number 行
 </div>
 </div>
 </div>
-<div id="outline-container-org17938e7" class="outline-3">
-<h3 id="org17938e7"><span class="section-number-3">1.9</span> Flycheck</h3>
+<div id="outline-container-org5379eec" class="outline-3">
+<h3 id="org5379eec"><span class="section-number-3">1.9</span> Flycheck</h3>
 <div class="outline-text-3" id="text-1-9">
 </div>
-<div id="outline-container-org85b3c23" class="outline-4">
-<h4 id="org85b3c23"><span class="section-number-4">1.9.1</span> 配置方法</h4>
+<div id="outline-container-orgafd9559" class="outline-4">
+<h4 id="orgafd9559"><span class="section-number-4">1.9.1</span> 配置方法</h4>
 <div class="outline-text-4" id="text-1-9-1">
 <p>
 package unsigned 需要在.spacemacs中配置
@@ -651,8 +682,8 @@ C-h v type flycheck-check-syntax-automatically
 </div>
 </div>
 </div>
-<div id="outline-container-orged447c6" class="outline-3">
-<h3 id="orged447c6"><span class="section-number-3">1.10</span> Git 综述</h3>
+<div id="outline-container-org8eef920" class="outline-3">
+<h3 id="org8eef920"><span class="section-number-3">1.10</span> Git 综述</h3>
 <div class="outline-text-3" id="text-1-10">
 <p>
 结合两个package完美一键push到github
@@ -667,12 +698,12 @@ C-h v type flycheck-check-syntax-automatically
 </ul>
 </div>
 </div>
-<div id="outline-container-org2f41d58" class="outline-3">
-<h3 id="org2f41d58"><span class="section-number-3">1.11</span> 神器：global-set-key自定义绑定 键位 到命令</h3>
+<div id="outline-container-orgae964d7" class="outline-3">
+<h3 id="orgae964d7"><span class="section-number-3">1.11</span> 神器：global-set-key自定义绑定 键位 到命令</h3>
 <div class="outline-text-3" id="text-1-11">
 </div>
-<div id="outline-container-orgabae2ae" class="outline-4">
-<h4 id="orgabae2ae"><span class="section-number-4">1.11.1</span> 方法一 修改init.el文件</h4>
+<div id="outline-container-org2876bdd" class="outline-4">
+<h4 id="org2876bdd"><span class="section-number-4">1.11.1</span> 方法一 修改init.el文件</h4>
 <div class="outline-text-4" id="text-1-11-1">
 <pre class="example">
 ;; global-set-key
@@ -680,8 +711,8 @@ C-h v type flycheck-check-syntax-automatically
 </pre>
 </div>
 </div>
-<div id="outline-container-org2f7c0c4" class="outline-4">
-<h4 id="org2f7c0c4"><span class="section-number-4">1.11.2</span> 方法二 可能会出现单次设置单次使用</h4>
+<div id="outline-container-org54428c7" class="outline-4">
+<h4 id="org54428c7"><span class="section-number-4">1.11.2</span> 方法二 可能会出现单次设置单次使用</h4>
 <div class="outline-text-4" id="text-1-11-2">
 <pre class="example">
 M-x global-set-key 
@@ -692,13 +723,25 @@ type 需要绑定的命令 并按enter确认
 </div>
 </div>
 </div>
-<div id="outline-container-orgfa41a2a" class="outline-2">
-<h2 id="orgfa41a2a"><span class="section-number-2">2</span> Latex 编辑命令</h2>
+<div id="outline-container-orge93741d" class="outline-2">
+<h2 id="orge93741d"><span class="section-number-2">2</span> Latex 编辑命令</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org2a4f610" class="outline-3">
-<h3 id="org2a4f610"><span class="section-number-3">2.1</span> 中文环境包</h3>
+<div id="outline-container-org91c31f8" class="outline-3">
+<h3 id="org91c31f8"><span class="section-number-3">2.1</span> 导出pdf</h3>
 <div class="outline-text-3" id="text-2-1">
+<p>
+需要先编译
+</p>
+<pre class="example">
+C-c C-c 编译latex文件
+之后打开pdf即可
+</pre>
+</div>
+</div>
+<div id="outline-container-orgcc26d05" class="outline-3">
+<h3 id="orgcc26d05"><span class="section-number-3">2.2</span> 中文环境包</h3>
+<div class="outline-text-3" id="text-2-2">
 <pre class="example">
 % 中文支持包
 \usepackage{ctex}
@@ -713,16 +756,16 @@ type 需要绑定的命令 并按enter确认
 </div>
 </div>
 </div>
-<div id="outline-container-org0e13b2c" class="outline-2">
-<h2 id="org0e13b2c"><span class="section-number-2">3</span> Org mode</h2>
+<div id="outline-container-orga3c59cc" class="outline-2">
+<h2 id="orga3c59cc"><span class="section-number-2">3</span> Org mode</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org9209ca7" class="outline-3">
-<h3 id="org9209ca7"><span class="section-number-3">3.1</span> Useful Command</h3>
+<div id="outline-container-orgda77ee2" class="outline-3">
+<h3 id="orgda77ee2"><span class="section-number-3">3.1</span> Useful Command</h3>
 <div class="outline-text-3" id="text-3-1">
 </div>
-<div id="outline-container-org805b79a" class="outline-4">
-<h4 id="org805b79a"><span class="section-number-4">3.1.1</span> 编译</h4>
+<div id="outline-container-org3503bca" class="outline-4">
+<h4 id="org3503bca"><span class="section-number-4">3.1.1</span> 编译</h4>
 <div class="outline-text-4" id="text-3-1-1">
 <pre class="example">
 c-c c-e 编译生成html网站格式
@@ -730,8 +773,8 @@ c-c c-e 可选生成latex pdf
 </pre>
 </div>
 </div>
-<div id="outline-container-orga5af496" class="outline-4">
-<h4 id="orga5af496"><span class="section-number-4">3.1.2</span> 标题</h4>
+<div id="outline-container-org5b6d727" class="outline-4">
+<h4 id="org5b6d727"><span class="section-number-4">3.1.2</span> 标题</h4>
 <div class="outline-text-4" id="text-3-1-2">
 <pre class="example">
 TAB 切换标题
@@ -741,8 +784,8 @@ m-enter 插入一个同级标题
 </pre>
 </div>
 </div>
-<div id="outline-container-orgf48866f" class="outline-4">
-<h4 id="orgf48866f"><span class="section-number-4">3.1.3</span> 块标签</h4>
+<div id="outline-container-org3dbd29e" class="outline-4">
+<h4 id="org3dbd29e"><span class="section-number-4">3.1.3</span> 块标签</h4>
 <div class="outline-text-4" id="text-3-1-3">
 <pre class="example">
 &lt;s TAB 快速插入一个 源代码块标签
@@ -763,8 +806,8 @@ I    #+include: line
 </pre>
 </div>
 </div>
-<div id="outline-container-orge6b58d5" class="outline-4">
-<h4 id="orge6b58d5"><span class="section-number-4">3.1.4</span> 排版段落格式</h4>
+<div id="outline-container-org1937282" class="outline-4">
+<h4 id="org1937282"><span class="section-number-4">3.1.4</span> 排版段落格式</h4>
 <div class="outline-text-4" id="text-3-1-4">
 <ul class="org-ul">
 <li>单纯文字编辑 空一行即可</li>
@@ -775,16 +818,104 @@ I    #+include: line
 </div>
 </div>
 </div>
-<div id="outline-container-orgab6a671" class="outline-3">
-<h3 id="orgab6a671"><span class="section-number-3">3.2</span> Org-page package创建个人主页</h3>
+<div id="outline-container-org7687280" class="outline-3">
+<h3 id="org7687280"><span class="section-number-3">3.2</span> Org 一键导出latex之后转pdf的方法</h3>
 <div class="outline-text-3" id="text-3-2">
+</div>
+<div id="outline-container-orga1bf6cc" class="outline-4">
+<h4 id="orga1bf6cc"><span class="section-number-4">3.2.1</span> 目前暂时没有比较好的中文解决方案</h4>
+</div>
+<div id="outline-container-orgbc15c58" class="outline-4">
+<h4 id="orgbc15c58"><span class="section-number-4">3.2.2</span> 英文处理直接编译然后用pdftex输出所需要的pdf 中文只能暂时用html格式将就一下了</h4>
+</div>
+<div id="outline-container-orgae26839" class="outline-4">
+<h4 id="orgae26839"><span class="section-number-4">3.2.3</span> 配置.spacemacs文件来添加中文支持包</h4>
+<div class="outline-text-4" id="text-3-2-3">
+<pre class="example">
+ ;;windows setenv PATH
+  (setenv "PATH" "C:/ProgramData/Oracle/Java/javapath;%SystemRoot%/system32;%SystemRoot%;%SystemRoot%/System32/Wbem;%SYSTEMROOT%/System32/WindowsPowerShell/v1.0/;C:/Program Files (x86)/ATI Technologies/ATI.ACE/Core-Static;e:/Program Files/Git/cmd;e:/Program Files/Git/mingw64/bin;e:/Program Files/Git/usr/bin;C:/Program Files/Git/cmd;C:/Program Files (x86)/AMD/ATI.ACE/Core-Static;d:/CTEX/UserData/miktex/bin;d:/CTEX/MiKTeX/miktex/bin;d:/CTEX/CTeX/ctex/bin;d:/CTEX/CTeX/cct/bin;d:/CTEX/CTeX/ty/bin;d:/CTEX/Ghostscript/gs9.05/bin;d:/CTEX/GSview/gsview;d:/CTEX/WinEdt")
+
+  ;; 中文字体的设置，同时解决中英文字体宽度不一致的问题（org-mode的表格可以中英文对齐）。
+  ;; 而且解决了中文字体导致emacs卡的现象。
+  (dolist (charset '(kana han cjk-misc bopomofo))
+    (set-fontset-font (frame-parameter nil 'font) charset
+                      (font-spec :family "微软雅黑" :size 16)))
+  ;;重新定义pdfviewer，我设定为了SumatraPDF。
+  (setq TeX-command-default "XeLaTeX")
+  (setq TeX-save-query  nil )
+  (setq TeX-show-compilation t)
+  (setq TeX-view-program-list '(("SumatraPDF" "SumatraPDF %o")))
+  (setq TeX-view-program-selection '((output-pdf "SumatraPDF")))
+   (add-hook 'LaTeX-mode-hook (lambda()
+                               (add-to-list 'TeX-command-list '("XeLaTeX" "%`xelatex%(mode)%' %t" TeX-run-TeX nil t))
+                               (setq TeX-global-PDF-mode t TeX-engine 'xelatex)
+                                ))
+
+(require 'ox-latex)
+(add-to-list 'org-latex-classes
+             '("org-article"
+               "
+\\documentclass{ctexart}
+\\usepackage[colorlinks,linkcolor=black,anchorcolor=black,citecolor=black,CJKbookmarks=True]{hyperref}
+\\usepackage{graphicx}
+\\usepackage{xcolor}
+\\usepackage{xeCJK}
+\\usepackage{fixltx2e}
+\\usepackage{longtable}
+\\usepackage{float}        
+\\usepackage{tikz}         
+\\usepackage{wrapfig}      
+\\usepackage{latexsym,amssymb,amsmath}
+\\usepackage{textcomp}
+\\usepackage{listings}     
+\\usepackage{marvosym}     
+\\usepackage{textcomp}     
+\\usepackage{latexsym}     
+\\usepackage{natbib}       
+\\usepackage{geometry}     
+\\usepackage{epstopdf}
+\\usepackage{epsfig}
+\\usepackage{times}
+\\geometry{a4paper,centering,scale=0.8}
+\\CTEXsetup[format={\\Large\\bfseries}]{section}
+\\usepackage{tocbibind}
+[NO-DEFAULT-PACKAGES]      
+[PACKAGES]                 
+[EXTRA]"
+  ("\\section{%s}" . "\\section*{%s}")
+  ("\\subsection{%s}" . "\\subsection*{%s}")
+  ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+  ("\\paragraph{%s}" . "\\paragraph*{%s}")
+  ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4fb1f6b" class="outline-3">
+<h3 id="org4fb1f6b"><span class="section-number-3">3.3</span> Org mode配置latex环境及常用宏包</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+中文宏包配置
+</p>
+<pre class="example">
+#+LATEX_HEADER: \usepackage[colorlinks=true,linkcolor=red]{hyperref}
+</pre>
+<p>
+其它可选命令小结
+</p>
+</div>
+</div>
+<div id="outline-container-orgdb68d06" class="outline-3">
+<h3 id="orgdb68d06"><span class="section-number-3">3.4</span> Org-page package创建个人主页</h3>
+<div class="outline-text-3" id="text-3-4">
 <p>
 From <a href="https://github.com/kelvinh/kelvinh.github.com">https://github.com/kelvinh/kelvinh.github.com</a>
 </p>
 </div>
-<div id="outline-container-orge9e0b60" class="outline-4">
-<h4 id="orge9e0b60"><span class="section-number-4">3.2.1</span> .emacs 文件源代码 手动添加package 注意：目前好像不能用</h4>
-<div class="outline-text-4" id="text-3-2-1">
+<div id="outline-container-orgcb13dc0" class="outline-4">
+<h4 id="orgcb13dc0"><span class="section-number-4">3.4.1</span> .emacs 文件源代码 手动添加package 注意：目前好像不能用</h4>
+<div class="outline-text-4" id="text-3-4-1">
 <pre class="example">
 ;;; the following is only needed if you install org-page manually
 (add-to-list 'load-path "path/to/org-page")
@@ -802,12 +933,12 @@ From <a href="https://github.com/kelvinh/kelvinh.github.com">https://github.com/
 </div>
 </div>
 </div>
-<div id="outline-container-org8b9e09e" class="outline-2">
-<h2 id="org8b9e09e"><span class="section-number-2">4</span> Jupyter notebook</h2>
+<div id="outline-container-org814ae39" class="outline-2">
+<h2 id="org814ae39"><span class="section-number-2">4</span> Jupyter notebook</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org655583f" class="outline-3">
-<h3 id="org655583f"><span class="section-number-3">4.1</span> 常用命令</h3>
+<div id="outline-container-org67b24e0" class="outline-3">
+<h3 id="org67b24e0"><span class="section-number-3">4.1</span> 常用命令</h3>
 <div class="outline-text-3" id="text-4-1">
 <pre class="example">
 执行当前cell，并自动跳到下一个cell：Shift Enter
@@ -827,28 +958,28 @@ From <a href="https://github.com/kelvinh/kelvinh.github.com">https://github.com/
 </pre>
 </div>
 </div>
-<div id="outline-container-orga3063f2" class="outline-3">
-<h3 id="orga3063f2"><span class="section-number-3">4.2</span> 文件导入</h3>
+<div id="outline-container-org30a0e91" class="outline-3">
+<h3 id="org30a0e91"><span class="section-number-3">4.2</span> 文件导入</h3>
 <div class="outline-text-3" id="text-4-2">
 </div>
-<div id="outline-container-org6023e2e" class="outline-4">
-<h4 id="org6023e2e"><span class="section-number-4">4.2.1</span> 如何将本地的.py文件load到jupyter的一个cell里面</h4>
+<div id="outline-container-org6b60ed4" class="outline-4">
+<h4 id="org6b60ed4"><span class="section-number-4">4.2.1</span> 如何将本地的.py文件load到jupyter的一个cell里面</h4>
 <div class="outline-text-4" id="text-4-2-1">
 <pre class="example">
 %load test.py #test.py是当前路径下的一个python文件
 </pre>
 </div>
 </div>
-<div id="outline-container-orgb450843" class="outline-4">
-<h4 id="orgb450843"><span class="section-number-4">4.2.2</span> 如何将网络中的.py文件load到jupyter的一个cell里面</h4>
+<div id="outline-container-org4e08c40" class="outline-4">
+<h4 id="org4e08c40"><span class="section-number-4">4.2.2</span> 如何将网络中的.py文件load到jupyter的一个cell里面</h4>
 <div class="outline-text-4" id="text-4-2-2">
 <pre class="example">
  在cell中输入%load http://.....，然后运行该cell，就会将load后面所对应地址的代码load到当前的cell中；
 </pre>
 </div>
 </div>
-<div id="outline-container-orgb6d5004" class="outline-4">
-<h4 id="orgb6d5004"><span class="section-number-4">4.2.3</span> 利用cell运行.py文件</h4>
+<div id="outline-container-org5d29e23" class="outline-4">
+<h4 id="org5d29e23"><span class="section-number-4">4.2.3</span> 利用cell运行.py文件</h4>
 <div class="outline-text-4" id="text-4-2-3">
 <pre class="example">
 %run file.py
@@ -857,12 +988,12 @@ From <a href="https://github.com/kelvinh/kelvinh.github.com">https://github.com/
 </div>
 </div>
 </div>
-<div id="outline-container-org661421c" class="outline-2">
-<h2 id="org661421c"><span class="section-number-2">5</span> Python 语言</h2>
+<div id="outline-container-orga5b789d" class="outline-2">
+<h2 id="orga5b789d"><span class="section-number-2">5</span> Python 语言</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-orgcecb0df" class="outline-3">
-<h3 id="orgcecb0df"><span class="section-number-3">5.1</span> 帮助命令</h3>
+<div id="outline-container-org6cb359c" class="outline-3">
+<h3 id="org6cb359c"><span class="section-number-3">5.1</span> 帮助命令</h3>
 <div class="outline-text-3" id="text-5-1">
 <pre class="example">
 help() 查询括号里面的包、函数
@@ -870,17 +1001,31 @@ help() 查询括号里面的包、函数
 </div>
 </div>
 </div>
-<div id="outline-container-orga5d2ada" class="outline-2">
-<h2 id="orga5d2ada"><span class="section-number-2">6</span> 待完成插件</h2>
+<div id="outline-container-orgcdca300" class="outline-2">
+<h2 id="orgcdca300"><span class="section-number-2">6</span> 待完成插件</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 evil-leader
+</p>
+<ul class="org-ul">
+<li>然后用其实现markdown的所有功能（非常轻松）</li>
+<li>可以用其方便的实现命令行功能（其实是emacs的功能）,使用linux的指令。</li>
+<li>再之后可以尝试org-mode的gtd功能</li>
+<li>再之后可以尝试下org-mode的导出功能,导出html之类的不值得提，org-mode可以导出和导出思维导图。</li>
+<li>可以尝试一下org-mode的多文件查找，以及快速捕捉系统。</li>
+<li>再之后可以尝试下org-mode的对代码块的强大处理</li>
+<li>可以直接在代码块里执行c/c++/python等等语言，输出代码执行的结果，而无须切换回来</li>
+<li>可以尝试了解下org-mode的与其它组件的配合。以及可以了解下emacs和evil。另外也可以了解下配合git实现版本管理。</li>
+<li>最后，如果你对编程有些了解，那么所有你不满意的地方，都可以自己改，而不是向作者抱怨能否再下一版本实现某某功能。</li>
+</ul>
+<p>
+`
 </p>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2018-04-21 周六 15:56</p>
+<p class="date">Created: 2018-04-23 周一 00:06</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

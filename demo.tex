@@ -1,4 +1,4 @@
-% Created 2018-04-19 周四 12:41
+% Created 2018-04-22 周日 23:40
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -28,9 +28,11 @@
 \tableofcontents
 
 \section{Emaces Usful Command}
-\label{sec:orgdddd02a}
+\label{sec:orgf9dc366}
 \subsection{Command}
-\label{sec:org58a34ee}
+\label{sec:org66c83a4}
+\subsubsection{常用命令}
+\label{sec:org7310022}
 \begin{verbatim}
 cmd --insecure 模式打开emacs才能有网络连接
 cmd --insecure 用Texlive GUI command-line打开emacs之后默认用texlive编译.tex
@@ -51,9 +53,20 @@ M-m 打开spacemacs主菜单
 M-m TAB一键循环切换buffer
 c-e M-b 先切换到行尾 然后按句子单位回退
 M-e M-a 换行 到指定位置 最好用的命令
+M-; 注释掉当前行
+M-m 0-9 提供于windows-numbering包 作用：当有多个buffer同时打开时，一键切换当前选中buffer
 \end{verbatim}
-\subsection{帮助}
-\label{sec:org0d824e6}
+\subsubsection{命令主菜单}
+\label{sec:org46e8a50}
+\begin{verbatim}
+M-m spacemacs buffer管理
+M-x helm-command
+c-c 当前文档格式 编译菜单
+c-x 文档保存 新建等管理
+c-h 帮助
+\end{verbatim}
+\subsubsection{帮助}
+\label{sec:org2d8f419}
 \begin{verbatim}
 c-h 主命令
 c-h a 查找关键词对应的函数
@@ -61,10 +74,218 @@ c-h f 函数
 c-h v 变量
 c-h k 快捷键
 \end{verbatim}
+\subsection{一些解决方案}
+\label{sec:org6497394}
+\subsubsection{多buffer管理：}
+\label{sec:org41d4c6e}
+先分屏 后打开buffer
+\subsubsection{快捷跳转行数}
+\label{sec:orgd5bfdfe}
+\begin{verbatim}
+M-g g 跳转到第几行  需要设置显示行数功能
+\end{verbatim}
+\subsubsection{设置在左侧显示行数功能}
+\label{sec:org92d0b6b}
+\begin{enumerate}
+\item 绑定按键及配置文件
+\label{sec:org767cee0}
+\begin{verbatim}
+spacemacs build in function
+C-x t 绑定按键到M-x linum-mode
+\end{verbatim}
+绑定按键的配置文件 修改init.el文件
+\begin{verbatim}
+;; global-set-key
+;;
+;; set linum-mode
+(global-set-key (kbd "C-x t") 'linum-mode)
+\end{verbatim}
+\item 特别注意需要linum-relative package的支持
+\label{sec:orgf0219d5}
+在.spaces中初始化才能startup载入
+\item 可以直接搜索变量 C-h v 然后配置变量
+\label{sec:org67cefcc}
+好处是，可以通过UI界面来配置初始化变量
+\end{enumerate}
+\subsubsection{复制粘贴及矩形区域选择解决方案}
+\label{sec:orgdee75c2}
+\begin{enumerate}
+\item 利用expand region的快捷键
+\label{sec:org751d06d}
+\begin{verbatim}
+M-m v 标记并可以调整区域
+\end{verbatim}
+\item 利用C-x C-x 瞬间交换光标的位置与开头或者结尾
+\label{sec:orgbeddc1d}
+完美！解决！
+\end{enumerate}
+\subsection{Spacemacs}
+\label{sec:org308782f}
+\subsubsection{Spacemacs 配置文件 添加package cuda-mode}
+\label{sec:orgad9b340}
+添加该段代码到.spacemacs.el文件中的合适位置
+\begin{verbatim}
+;; add packages 
+;;
+(defun dotspacemacs/layers ()
+  "Configuration Layers declaration."
+  (setq-default
+   ;; ...
+   ;; List of additional packages that will be installed wihout being
+   ;; wrapped in a layer. If you need some configuration for these
+   ;; packages then consider to create a layer, you can also put the
+   ;; configuration in `dotspacemacs/config'.
+   ;; add packages
+   dotspacemacs-additional-packages '(
+                                      cuda-mode
+                                      company
+                                      )
+   ;; ...
+   ))
+
+(defun dotspacemacs/config ()
+  "Configuration function.
+This function is called at the very end of Spacemacs initialization after
+layers configuration."
+  ;; add packages
+  dotspacemacs-additional-packages '(
+                                     cuda-mode
+                                     company
+                                     )
+  ;; 
+  )
+\end{verbatim}
+\subsubsection{Spacemacs 配置文件 初始化init.el文件 使所有buffer默认打开company模式}
+\label{sec:orgdff41c3}
+\begin{verbatim}
+;; Enable global company mode
+(require 'company)
+(add-hook 'after-init-hook 'global-company-mode)
+(setq company-idle-delay 0.1)
+(setq company-minimum-prefix-length 1)
+(setq company-backends '((company-capf company-files company-elisp company-inf-ruby company-anaconda company-go company-irony company-clang company-cmake company-css company-yasnippet) (company-dabbrev company-dabbrev-code)))
+\end{verbatim}
+\subsection{Company 自动补全包 命令集}
+\label{sec:orgc1c8e24}
+\begin{verbatim}
+M-n M-p select
+Enter: to complete 
+C-s, C-r and C-o: Search through the completions with 
+M-(digit) to quickly complete with one of the first 10 candidates.
+\end{verbatim}
+\subsection{Expand-region 快捷键文本选中 package}
+\label{sec:org139cec7}
+\begin{verbatim}
+M-m v 选中当前光标所在的单词，继续按v则扩大选区 V则缩小选区 具体命令见下方说明
+\end{verbatim}
+\subsection{Magit package自动上传本地文档到github}
+\label{sec:org7f9c040}
+\begin{verbatim}
+C-x g 已通过global-set-key自定义绑定 键位 到命令magit-status
+\end{verbatim}
+在新打开的magit窗口中（通过magit-status命令）
+\begin{verbatim}
+s 小写s表示git add命令
+c 表示commit命令
+但以上两个步骤已经通过git-auto-commit自动commit过了
+P u 大写P表示push命令
+\end{verbatim}
+\subsection{Git-auto-commit 每次保存文件自动commit到github 需要在.spaces中初始化才能startup载入}
+\label{sec:orgfecd71a}
+\subsubsection{配置步骤}
+\label{sec:org7a68def}
+需要两步：
+\begin{enumerate}
+\item unsigned 需要在.spaces中初始化才能startup载入 add package
+\item gac-automatically-push-p 当变量不为0时，还可以自动push！！！！ 在package里面customize这个变量即可
+\item 绑定按键 C-x p 自动commit+push
+\item 下载下来package之后， 需要运行 M-m ! 打开shell窗口配置github
+\item 显示信息: minor mode窗口会有gac标志
+\end{enumerate}
+\begin{verbatim}
+git config --global user.email yyang181@github.com
+\end{verbatim}
+\subsubsection{使用方法}
+\label{sec:org796a858}
+当且仅当 处理单个文件的编译时，想要多次一键测试结果 可以开启 gac-mode,也即git-auto-commit-mode
+
+快捷键
+\begin{verbatim}
+C-x p 打开gac模式，使得保存文件之后自动commit push
+\end{verbatim}
+\subsubsection{按键配置代码 init.el文件}
+\label{sec:orgb332327}
+\begin{verbatim}
+;; global-set-key
+(global-set-key (kbd "C-x p") 'git-auto-commit-mode)
+\end{verbatim}
+\subsection{Evil-nerd-commenter Package}
+\label{sec:orgd578406}
+\subsubsection{配置步骤}
+\label{sec:org244e717}
+unsigned 需要在.spaces中初始化才能startup载入
+
+需要在init.el中配置默认按键
+\begin{verbatim}
+;; set up default hotkeys for evilnc
+;;
+;; evil-nerd-commenter
+(evilnc-default-hotkeys)
+\end{verbatim}
+设置按键
+\begin{verbatim}
+(evilnc-default-hotkeys) 使用默认按键
+\end{verbatim}
+\subsubsection{使用方法}
+\label{sec:org103e932}
+\begin{verbatim}
+C-u number M-; 注释从当前行开始的 number 行
+\end{verbatim}
+\subsection{Flycheck}
+\label{sec:orga45ff81}
+\subsubsection{配置方法}
+\label{sec:org36bb828}
+package unsigned 需要在.spacemacs中配置
+
+To enable Flycheck add the following to your init file:
+\begin{verbatim}
+(add-hook 'after-init-hook #'global-flycheck-mode)
+\end{verbatim}
+需要设置变量的值来激活
+\begin{verbatim}
+C-h v type flycheck-check-syntax-automatically
+把这个变量的值修改即可
+\end{verbatim}
+\subsection{Git 综述}
+\label{sec:org677a0e1}
+结合两个package完美一键push到github
+\begin{itemize}
+\item git-auto-commit: 保存当前文件时自动commit
+\item magit: s打开magit status界面
+\item magit: P u 一键push到github
+\item 前提条件是配置了git config --global
+\item 大量文件跟更改可以直接用git desktop
+\item 单文件修改调试可以用此文中的快捷键方法
+\end{itemize}
+\subsection{神器：global-set-key自定义绑定 键位 到命令}
+\label{sec:org1a78588}
+\subsubsection{方法一 修改init.el文件}
+\label{sec:orge2519d1}
+\begin{verbatim}
+;; global-set-key
+(global-set-key (kbd "C-x g") 'magit-status)
+\end{verbatim}
+\subsubsection{方法二 可能会出现单次设置单次使用}
+\label{sec:org6be1651}
+\begin{verbatim}
+M-x global-set-key 
+type 需要绑定的键位 并按enter确认
+type 需要绑定的命令 并按enter确认
+\end{verbatim}
 \section{Latex 编辑命令}
-\label{sec:orgf2a7e1f}
+\label{sec:orgaee9715}
 \subsection{中文环境包}
-\label{sec:orgd34735a}
+\label{sec:orgfd67b16}
 \begin{verbatim}
 % 中文支持包
 \usepackage{ctex}
@@ -76,15 +297,27 @@ c-h k 快捷键
  具体内容
  \end{CJK}
 \end{verbatim}
-\section{org mode}
-\label{sec:orgd1d7b30}
+\section{Org mode}
+\label{sec:org8a3b66f}
 \subsection{Useful Command}
-\label{sec:org1a8ba1a}
+\label{sec:org4bca0dc}
+\subsubsection{编译}
+\label{sec:orga1a4d2d}
+\begin{verbatim}
+c-c c-e 编译生成html网站格式
+c-c c-e 可选生成latex pdf
+\end{verbatim}
+\subsubsection{标题}
+\label{sec:org3a59570}
 \begin{verbatim}
 TAB 切换标题
 s-TAB 切换标题
 m-left/right 升降级标题
 m-enter 插入一个同级标题
+\end{verbatim}
+\subsubsection{块标签}
+\label{sec:org0e10d9e}
+\begin{verbatim}
 <s TAB 快速插入一个 源代码块标签
 <e TAB 快速插入一个 example块标签
 s    #+begin_src ... #+end_src   
@@ -101,9 +334,98 @@ A    #+ascii:
 i    #+index: line   
 I    #+include: line 
 \end{verbatim}
+\subsubsection{排版段落格式}
+\label{sec:orgfb991fa}
 \begin{itemize}
 \item 单纯文字编辑 空一行即可
 \item 可以用- 来表示要点提示的项目符号
 \item 可以用上述块标签来表示源代码等
+\textbf{*} Org-page 创建个人主页
+\end{itemize}
+\subsection{Org mode配置latex环境及常用宏包}
+\label{sec:org0d0f622}
+中文宏包配置
+\begin{verbatim}
+#+LATEX_HEADER: \usepackage[colorlinks=true,linkcolor=red]{hyperref}
+\end{verbatim}
+其它可选命令小结
+#+LATEX_HEADER: \usepackage[colorlinks=true,linkcolor=red]{hyperref}
+#+LATEX_CLASS: org-article
+#+TITLE: Org to \LaTeX
+\subsection{Org-page package创建个人主页}
+\label{sec:orge0b357c}
+From \url{https://github.com/kelvinh/kelvinh.github.com}
+\subsubsection{.emacs 文件源代码 手动添加package 注意：目前好像不能用}
+\label{sec:org1a21e00}
+\begin{verbatim}
+;;; the following is only needed if you install org-page manually
+(add-to-list 'load-path "path/to/org-page")
+(require 'org-page)
+(setq op/repository-directory "path/to/your/org/repository")
+(setq op/site-domain "http://your.personal.site.com/")
+;;; for commenting, you can choose either disqus, duoshuo or hashover
+(setq op/personal-disqus-shortname "your_disqus_shortname")
+(setq op/personal-duoshuo-shortname "your_duoshuo_shortname")
+(setq op/hashover-comments t)
+;;; the configuration below are optional
+(setq op/personal-google-analytics-id "your_google_analytics_id")
+\end{verbatim}
+\section{Jupyter notebook}
+\label{sec:org54dc93b}
+\subsection{常用命令}
+\label{sec:org20196fa}
+\begin{verbatim}
+执行当前cell，并自动跳到下一个cell：Shift Enter
+执行当前cell，执行后不自动调转到下一个cell：Ctrl-Enter
+是当前的cell进入编辑模式：Enter
+退出当前cell的编辑模式：Esc
+删除当前的cell：双D
+为当前的cell加入line number：单L
+将当前的cell转化为具有一级标题的maskdown：单1
+将当前的cell转化为具有二级标题的maskdown：单2
+将当前的cell转化为具有三级标题的maskdown：单3
+为一行或者多行添加/取消注释：Crtl /
+撤销对某个cell的删除：z
+浏览器的各个Tab之间切换：Crtl PgUp和Crtl PgDn
+快速跳转到首个cell：Crtl Home
+快速跳转到最后一个cell：Crtl End
+\end{verbatim}
+\subsection{文件导入}
+\label{sec:org4580a48}
+\subsubsection{如何将本地的.py文件load到jupyter的一个cell里面}
+\label{sec:org04c4e5e}
+\begin{verbatim}
+%load test.py #test.py是当前路径下的一个python文件
+\end{verbatim}
+\subsubsection{如何将网络中的.py文件load到jupyter的一个cell里面}
+\label{sec:orgf932565}
+\begin{verbatim}
+ 在cell中输入%load http://.....，然后运行该cell，就会将load后面所对应地址的代码load到当前的cell中；
+\end{verbatim}
+\subsubsection{利用cell运行.py文件}
+\label{sec:org13f1b55}
+\begin{verbatim}
+%run file.py
+\end{verbatim}
+\section{Python 语言}
+\label{sec:org36eb3a6}
+\subsection{帮助命令}
+\label{sec:org055ef64}
+\begin{verbatim}
+help() 查询括号里面的包、函数
+\end{verbatim}
+\section{待完成插件}
+\label{sec:org6baf975}
+evil-leader
+\begin{itemize}
+\item 然后用其实现markdown的所有功能（非常轻松）
+\item 可以用其方便的实现命令行功能（其实是emacs的功能）,使用linux的指令。
+\item 再之后可以尝试org-mode的gtd功能
+\item 再之后可以尝试下org-mode的导出功能,导出html之类的不值得提，org-mode可以导出和导出思维导图。
+\item 可以尝试一下org-mode的多文件查找，以及快速捕捉系统。
+\item 再之后可以尝试下org-mode的对代码块的强大处理
+\item 可以直接在代码块里执行c/c++/python等等语言，输出代码执行的结果，而无须切换回来
+\item 可以尝试了解下org-mode的与其它组件的配合。以及可以了解下emacs和evil。另外也可以了解下配合git实现版本管理。
+\item 最后，如果你对编程有些了解，那么所有你不满意的地方，都可以自己改，而不是向作者抱怨能否再下一版本实现某某功能。
 \end{itemize}
 \end{document}
