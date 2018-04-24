@@ -90,7 +90,7 @@ M-g g 跳转到第几行  需要设置显示行数功能
 
 在github上面用readme预览
 **** 注意事项
-需要刷新网页来更新对html的更改
+需要刷新
 ** Spacemacs
 *** Spacemacs 配置文件 添加package cuda-mode
  添加该段代码到.spacemacs.el文件中的合适位置
@@ -232,6 +232,7 @@ C-h v type flycheck-check-syntax-automatically
  type 需要绑定的命令 并按enter确认
  #+END_SRC
 ** Python 语言支持及jupyter notebook引用
+*** 打开jupyter notebook的url http://localhost:8892/tree
 *** 安装两个package
 **** 重点谈一下ein包
 ***** ein unsigned需要在.spacemacs文件中添加package 用来调用jupyter notebook虚拟环境
