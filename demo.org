@@ -1,5 +1,5 @@
 #+TYP_TODO: 紧急(1!) 学习(2!) 事件(3!) 零碎(4!) |
-#+SEQ_TODO: PENDING(p!) TODO(t!) | DONE(d!) ABORT(a@/!)
+#+SEQ_TODO: PENDING(p!) TODO(t!) | DONE(d!) ABORT(a@/!) IDEA(i!)
 * Emaces Usful Command
 ** Command
 *** 常用命令
@@ -871,3 +871,6 @@ evil-leader
 - State "TODO"       from "事件"       [2018-04-24 周二 11:02]
 ** 零碎 零碎的事情
 - State "事件"       from              [2018-04-24 周二 11:06]
+*** IDEA 在EE243的project可以参考3D RECONSTRUCTION
+- State "IDEA"       from "TODO"       [2018-04-24 周二 11:10]
+- State "TODO"       from "零碎"       [2018-04-24 周二 11:08]
