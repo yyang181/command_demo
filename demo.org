@@ -1,4 +1,4 @@
-#+TYP_TODO: 紧急(a!) 学习(b!) 事件(c!) |
+#+TYP_TODO: 紧急(1!) 学习(2!) 事件(3!) 零碎(4! |
 #+SEQ_TODO: PENDING(p!) TODO(t!) | DONE(d!) ABORT(a@/!)
 * Emaces Usful Command
 ** Command
@@ -858,4 +858,5 @@ evil-leader
 *** TODO 关于emacs Python 支持 以及jupyter notebook支持 matlab支持
 - State "TODO"       from "学习"       [2018-04-24 周二 10:55]
 *** TODO 学习Python语言 Tesoroflow
+*** TODO 学习emacs orgmode中的思维导图gtd
 *** TODO 
