@@ -559,6 +559,15 @@ C-S enter 产生一个同级子树 to do标题
 @ ：切换到该状态时要求输入文字说明
 如果同时设定@和！，使用“@/!”
 #+END_SRC
+*** 对所有org文档配置默认
+#+BEGIN_SRC 
+(setq org-todo-keywords
+    '((sequence "REPORT(r)" "BUG(b)" "KNOWNCAUSE(k)" "|" "FIXED(f)")
+      (sequence "TODO(T!)" "|" "DONE(D@)3" "CANCELED(C@/!)")
+     ))    
+#+END_SRC
+*** 设置任务优先级
+为任务设定优先级是通过 快捷键 S-UP/DOWN
 *** 步骤
 - 在头文件添加配置,见自定义TODO标签格式
 - 将光标放在这些内容上，输入 C-c C-c 可以直接生效
