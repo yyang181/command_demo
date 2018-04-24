@@ -492,6 +492,12 @@ C-S-RET 在当前标题树后插入同级TODO标题
 C-c * 把光标所在行转成标题
 C-c - 把光标所在行转成列表
 #+END_SRC
+**** 命令解析
+#+BEGIN_SRC 
+C- 带有Ctrl的表示对子树进行操作
+M- 带有alt的表示对标题进行操作
+-S- 带有shift的表示TODO类型
+#+END_SRC
 *** 块标签
 #+BEGIN_SRC 
  <s TAB 快速插入一个 源代码块标签
@@ -860,3 +866,7 @@ evil-leader
 *** TODO 学习Python语言 Tesoroflow
 *** TODO 学习emacs orgmode中的思维导图gtd
 *** TODO 
+** 事件 需要处理的事情
+*** TODO 完成州内学费申请
+- State "TODO"       from "事件"       [2018-04-24 周二 11:02]
+** 零碎 零碎的事情
