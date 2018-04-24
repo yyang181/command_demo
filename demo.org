@@ -455,12 +455,41 @@ c-c c-e 编译生成html网站格式
 c-c c-e 可选生成latex pdf
 #+END_SRC
 *** 标题
+**** 命令汇总
  #+BEGIN_SRC 
  TAB 切换标题
  s-TAB 切换标题
  m-left/right 升降级标题
  m-enter 插入一个同级标题
+M-LEFT/RIGHT
+升级/降级当前标题，不允许有子标题的存在
+M-S-LEFT/RIGHT
+升级/降级标题树，即标题树内的各级标题相应升/降级
+M-UP/DOWN
+在同级标题间上/下移标题树，不能跨级别移动
+M-RET
+在当前标题后插入同级标题符号（即换行符和星号）
+C-RET
+在当前标题树后插入同级标题符号
+M-S-RET
+在当前标题后插入同级TODO标题
+C-S-RET
+在当前标题树后插入同级TODO标题
+C-c *
+把光标所在行转成标题
+C-c -
+把光标所在行转成列表
  #+END_SRC
+**** 常用命令
+#+BEGIN_SRC 
+M-S-LEFT/RIGHT 升级/降级标题树，即标题树内的各级标题相应升/降级
+M-RET 在当前标题后插入同级标题符号（即换行符和星号）
+C-RET 在当前标题树后插入同级标题符号
+M-S-RET 在当前标题后插入同级TODO标题
+C-S-RET 在当前标题树后插入同级TODO标题
+C-c * 把光标所在行转成标题
+C-c - 把光标所在行转成列表
+#+END_SRC
 *** 块标签
 #+BEGIN_SRC 
  <s TAB 快速插入一个 源代码块标签
@@ -529,6 +558,26 @@ M-S enter 产生一个同级 to do 标题
 则在需要的地方可以通过 
 \ref{table1}
 #+END_SRC
+** 表格的输入
+*** 插入表格
+#+CAPTION: 表格的标题
+| 1 | one |
+| 2 | two |
+| 3 | This is a long chunk of text |
+| 4 | four |
+*** 限制所在列的长度
+|   | <6>    |
+| 1 | one    |
+| 2 | two    |
+| 3 | This=> |
+| 4 | four   |
+*** 美化表格
+|   | <6>    |
+|---+--------|
+| 1 | one    |
+| 2 | two    |
+| 3 | This=> |
+| 4 | four   |
 ** Org 一键导出latex之后转pdf的方法
 *** 目前暂时没有比较好的中文解决方案
 *** 英文处理直接编译然后用pdftex输出所需要的pdf 中文只能暂时用html格式将就一下了
