@@ -261,6 +261,52 @@ ein:jupyter-default-notebook-directory and set it to the path where you are keep
 **** elpy unsigned需要在.spacemacs文件中添加package 用来支持Python mode
 **** pyvenv unsigned需要在.spacemacs文件中添加package 用来调用jupyter notebook虚拟环境
 **** pyvenv package已经被证实不好用，用ein官方包代替
+** 重要：配置private layer:yyang181
+*** 只修改两个文件init.el 和.spacemacs
+*** 设置users layer .spacemacs
+#+BEGIN_SRC 
+(setq-default dotspacemacs-configuration-layers
+  '(
+    ;; other layers
+    ;; rms layer added at the end of the list
+    yyang181
+  ))
+#+END_SRC
+*** .spacemacs文件
+**** 设置users layer .spacemacs
+#+BEGIN_SRC 
+(setq-default dotspacemacs-configuration-layers
+  '(
+    ;; other layers
+    ;; rms layer added at the end of the list
+    yyang181
+  ))
+#+END_SRC
+**** 配置layers variables
+***** 方法一
+例子
+#+BEGIN_SRC 
+(defun dotspacemacs/layers ()
+  ;; List of configuration layers to load.
+  (setq-default dotspacemacs-configuration-layers
+    '(auto-completion
+      (git :variables
+           git-magit-status-fullscreen t
+           git-variable-example nil)
+      smex)))
+#+END_SRC
+代码解释
+#+BEGIN_SRC 
+auto-completion 是layer名称
+git 是package名称
+:variables 表示配置variables
+git-magit-status-fullscreen 等是变量名 及变量value
+#+END_SRC
+***** 方法二
+#+BEGIN_SRC 
+dotspacemacs/user-init 在这个函数中配置variables
+#+END_SRC
+
 * Latex 编辑命令
 ** 导出pdf
 需要先编译
