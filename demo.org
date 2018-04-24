@@ -91,6 +91,14 @@ M-g g 跳转到第几行  需要设置显示行数功能
 在github上面用readme预览
 **** 注意事项
 需要刷新
+*** 在org mode里面插入图片，并且可以选择直接在本文文档中查看图片
+#+BEGIN_SRC 
+首先，把图片文件放入当前路径中
+接着用file:decom.png 格式在org中插入图片
+#+CAPTION: 电话拨打过快过多 设置图片格式
+#+ATTR_HTML: :width 100%  设置图片宽带，为当前浏览器的100% 此例中
+最后可以用M-x iimage-mode 选择打开minor mode 来查看所插入的图片
+#+END_SRC
 ** Spacemacs
 *** Spacemacs 配置文件 添加package cuda-mode
  添加该段代码到.spacemacs.el文件中的合适位置
