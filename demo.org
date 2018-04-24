@@ -306,7 +306,24 @@ git-magit-status-fullscreen 等是变量名 及变量value
 #+BEGIN_SRC 
 dotspacemacs/user-init 在这个函数中配置variables
 #+END_SRC
-
+**** 禁止package在其他layer的使用
+***** 代码
+#+BEGIN_SRC 
+(defun dotspacemacs/layers ()
+  ;; List of configuration layers to load.
+  (setq-default dotspacemacs-configuration-layers
+    '(org git
+      (auto-completion :disabled-for org git))))
+#+END_SRC
+***** 解释
+只用看最后一行
+#+BEGIN_SRC 
+'(org git
+      (auto-completion :disabled-for org git)))) 表示在org和git这两个layer中禁用了auto-complete
+#+END_SRC
+**** 允许package在其他layer的使用
+***** :enabled-for 其他同上
+**** 
 * Latex 编辑命令
 ** 导出pdf
 需要先编译
