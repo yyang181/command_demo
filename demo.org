@@ -895,6 +895,18 @@ From https://github.com/kelvinh/kelvinh.github.com
 #+BEGIN_SRC 
 help() 查询括号里面的包、函数
 #+END_SRC
+* Matlab语言
+** for循环处理画图语句
+#+BEGIN_SRC matlab
+figure;
+for i = 1:size
+    for j = 1:size
+        M = DCT_4by4(i,:)' * DCT_4by4(j,:);
+        subplot(size,size,((i-1)*size) + j), imshow(M);
+    end
+end
+suptitle('DCT 4-by-4 basis images');
+#+END_SRC
 * Spring 2018
 ** EE 147
 ** EE 243
