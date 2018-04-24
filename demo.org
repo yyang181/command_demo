@@ -896,6 +896,13 @@ From https://github.com/kelvinh/kelvinh.github.com
 help() 查询括号里面的包、函数
 #+END_SRC
 * Matlab语言
+** 知识补充 cell的使用
+*** 将矩阵保存到cell里面，从而用一个for循环索引cell的编号来画图
+*** 代码 
+#+BEGIN_SRC matlab
+cell(n) 创建一个n-by-n的空cell
+cell{1,2} 索引cell中的第一行第二个矩阵元素
+#+END_SRC
 ** for循环处理画图语句
 #+BEGIN_SRC matlab
 figure;
