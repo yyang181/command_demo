@@ -393,7 +393,8 @@ c-c c-e 可选生成latex pdf
 ** Org mode 处理代码块
 *** 例子
 #+begin_src emacs-lisp
-  (+ 1 2 3 4)
+  (+ 1 2 3 4 5)
+
 #+end_src
 ** Org-page package创建个人主页
 From https://github.com/kelvinh/kelvinh.github.com
