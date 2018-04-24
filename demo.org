@@ -440,7 +440,9 @@ help() 查询括号里面的包、函数
 *** hw2
 **** Matlab程序资料备份
 ***** 第二问
-
+****** docomposion 的一个例子及链接
+ [[file:decom.png]]
+https://www.mathworks.com/help/wavelet/ug/two-dimensional-wavelet-packet-analysis.html
 ***** 第三问
 ****** 拉普拉斯变换
  https://www.mathworks.com/matlabcentral/answers/53726-how-to-implement-the-laplacian-of-gaussian-edge-detector-using-the-prewitt-operator
