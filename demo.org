@@ -1,3 +1,5 @@
+#+TYP_TODO: 工作(w!) 学习(s!) 休闲(l!) |
+#+SEQ_TODO: PENDING(p!) TODO(t!) | DONE(d!) ABORT(a@/!)
 * Emaces Usful Command
 ** Command
 *** 常用命令
@@ -840,4 +842,4 @@ evil-leader
 - 可以直接在代码块里执行c/c++/python等等语言，输出代码执行的结果，而无须切换回来
 - 可以尝试了解下org-mode的与其它组件的配合。以及可以了解下emacs和evil。另外也可以了解下配合git实现版本管理。
 - 最后，如果你对编程有些了解，那么所有你不满意的地方，都可以自己改，而不是向作者抱怨能否再下一版本实现某某功能。
-* 
+* TODO 待办事项
