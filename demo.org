@@ -323,7 +323,21 @@ dotspacemacs/user-init 在这个函数中配置variables
 #+END_SRC
 **** 允许package在其他layer的使用
 ***** :enabled-for 其他同上
-**** 
+**** 允许或者禁用layer的package
+#+BEGIN_SRC 
+(defun dotspacemacs/layers ()
+  ;; List of configuration layers to load.
+  (setq-default dotspacemacs-configuration-layers
+    '(auto-completion
+      (spacemacs-ui-visual :packages (not neotree fancy-battery))))
+#+END_SRC
+#+BEGIN_SRC 
+(defun dotspacemacs/layers ()
+  ;; List of configuration layers to load.
+  (setq-default dotspacemacs-configuration-layers
+    '(auto-completion
+      (spacemacs-ui-visual :packages (not neotree fancy-battery))))
+#+END_SRC
 * Latex 编辑命令
 ** 导出pdf
 需要先编译
