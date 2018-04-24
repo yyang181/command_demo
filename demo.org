@@ -399,6 +399,57 @@ org-startup-indented 设置该变量令所有文件都打开org-intend-mode
 #+BEGIN_SRC
 在BEGIN_SRC 后面加上语言名字例如python
 #+END_SRC
+*** 配置init.el文件
+#+BEGIN_SRC 
+(require 'ob-python)
+(require 'ob-clojure)
+(require 'ob-perl)
+(require 'ob-dot)
+(require 'ob-R)
+(require 'ob-gnuplot)
+(require 'ob-lisp)
+(require 'ob-org)
+(require 'ob-screen)
+(require 'ob-calc)
+(require 'ob-js)
+(require 'ob-latex)
+(require 'ob-plantuml)
+(require 'ob-sh)
+(require 'ob-ditaa)
+(require 'ob-awk)
+(require 'ob-octave)
+(require 'ob-sed)
+(require 'ob-sql)
+(require 'ob-sqlite)
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '( (perl . t)
+    (dot . t)
+    (R . t)
+    (gnuplot . t)
+    (clojure . t)
+;;    (graphviz . t)
+    (lisp . t)
+;;    (stan . t)
+    (org . t)
+    (screen . t)
+    (calc . t)
+    (js . t)
+    (latex . t)
+    (plantuml . t)
+    (ruby . t)
+    (sh . t)
+    (python . t)
+    (emacs-lisp . t)
+    (ditaa . t)
+    (awk . t)
+    (octave . t)
+    (sed . t)
+    (sql . t)
+    (sqlite . t)
+    ))
+#+END_SRC
 *** 命令快捷键
 #+BEGIN_SRC 
 C-c 编译主菜单
