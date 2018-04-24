@@ -391,6 +391,15 @@ c-c c-e 可选生成latex pdf
 #+TITLE: Org to \LaTeX
 #+END_EXPORT
 ** Org mode 处理代码块
+*** 设置语言环境
+#+BEGIN_SRC
+在BEGIN_SRC 后面加上语言名字例如python
+#+END_SRC
+*** 命令快捷键
+#+BEGIN_SRC 
+C-c 编译主菜单
+C-c ' 分号 新建一个buffer来写语言，如果保存则回写当前buffer
+#+END_SRC
 *** 例子
 #+begin_src emacs-lisp
   (+ 1 2 3 4 5)
