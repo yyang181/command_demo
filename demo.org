@@ -233,6 +233,13 @@ C-h v type flycheck-check-syntax-automatically
  #+END_SRC
 ** Python 语言支持及jupyter notebook引用
 *** 打开jupyter notebook的url http://localhost:8892/tree
+*** 重要知识
+因为最初安装的时候只在anaconda里面装了jupyter，所以Windows的cmd并不能直接运行Jupyter
+
+cmd能直接运行python的原因是吧python的路径添加到了环境path
+
+所以同理，我们吧anaconda安装目录中包含有.exe执行文件 jupyter.exe所在的路径加入环境path即可在
+Windows的cmd中直接输入jupyter notebook 打开浏览器中相关内容了
 *** 安装两个package
 **** 重点谈一下ein包
 ***** ein unsigned需要在.spacemacs文件中添加package 用来调用jupyter notebook虚拟环境
@@ -432,6 +439,8 @@ help() 查询括号里面的包、函数
 ** EE 243
 *** hw2
 **** Matlab程序资料备份
+***** 第二问
+
 ***** 第三问
 ****** 拉普拉斯变换
  https://www.mathworks.com/matlabcentral/answers/53726-how-to-implement-the-laplacian-of-gaussian-edge-detector-using-the-prewitt-operator
