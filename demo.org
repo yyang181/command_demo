@@ -545,11 +545,13 @@ S-UP/DOWN/LEFT/RIGHT
 #+BEGIN_SRC 
 M-S enter 产生一个同级 to do 标题
 #+END_SRC
+*** 自定义TODO标签的格式
+#+BEGIN_SRC 
+#+TYP_TODO: 工作(w!) 学习(s!) 休闲(l!) |
+#+SEQ_TODO: PENDING(p!) TODO(t!) | DONE(d!) ABORT(a@/!)
+#+END_SRC
 ** 超链接文件或者图片
 *** 命令
-#+BEGIN_SRC 
-
-#+END_SRC
 ** 表格和图片增加标签和说明，并交叉引用
 *** 命令
 #+BEGIN_SRC 
