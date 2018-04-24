@@ -316,7 +316,11 @@ c-c c-e 可选生成latex pdf
  - 单纯文字编辑 空一行即可
  - 可以用- 来表示要点提示的项目符号
  - 可以用上述块标签来表示源代码等
-  *** Org-page 创建个人主页
+*** 设置默认在org mode下面使用缩进格式
+#+BEGIN_SRC 
+M-x org-intend-mode 打开缩进模式即可
+org-startup-indented 设置该变量令所有文件都打开org-intend-mode
+#+END_SRC
 ** Org 一键导出latex之后转pdf的方法
 *** 目前暂时没有比较好的中文解决方案
 *** 英文处理直接编译然后用pdftex输出所需要的pdf 中文只能暂时用html格式将就一下了
