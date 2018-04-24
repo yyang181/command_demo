@@ -871,6 +871,8 @@ evil-leader
 ** 事件 需要处理的事情
 *** TODO 完成州内学费申请
 - State "TODO"       from "事件"       [2018-04-24 周二 11:02]
+*** TODO 完成Kim grad student form 截止日期 6.15
+https://mail.google.com/mail/u/1/#inbox/162f9d4479616148
 ** 零碎 零碎的事情
 - State "事件"       from              [2018-04-24 周二 11:06]
 *** IDEA 在EE243的project可以参考3D RECONSTRUCTION
