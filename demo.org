@@ -338,6 +338,85 @@ dotspacemacs/user-init 在这个函数中配置variables
     '(auto-completion
       (spacemacs-ui-visual :packages (not neotree fancy-battery))))
 #+END_SRC
+**** Global line numbers
+#+BEGIN_SRC 
+(setq-default dotspacemacs-line-numbers t)
+#+END_SRC
+** Configuration Layers
+*** 可以检查其他人的layer里面的文件来学习使用方法
+*** 结构
+#+BEGIN_SRC 
+[layer_name]
+  |__ [local]
+  | |__ [package 1]
+  | |     ...
+  | |__ [package n]
+  |-- layers.el
+  |__ packages.el
+  |__ funcs.el
+  |__ config.el
+  |__ keybindings.el
+
+[] = directory
+#+END_SRC
+*** layer中各种文件的作用
+#+BEGIN_SRC 
+layers.el
+The place to declare additional layers
+packages.el
+The list of packages and their configuration functions (init, post-init, etc…)
+funcs.el
+All functions defined in the layer (used in package configuration for instance)
+config.el
+Layer configuration (defines the layer variables default values and setup some config variables)
+keybindings.el
+General key bindings no tied to a specific package configuration
+#+END_SRC
+#+BEGIN_SRC 
+Packages can be:
+ELPA packages installed from an ELPA compliant repository
+local packages in a layer’s local folder
+installed from an online source using quelpa.
+#+END_SRC
+*** 配置packages
+**** 声明packages
+***** 官方文件的方法
+#+BEGIN_SRC 
+ (setq <layer>-packages '(package1 package2 ...)
+#+END_SRC
+***** 本地packages文件的方法
+#+BEGIN_SRC 
+(defconst yyang181-packages
+  '()
+  "The list of Lisp packages required by the yyang181 layer.
+#+END_SRC
+**** 初始化packages
+***** 官方说明
+#+BEGIN_SRC 
+(defun <layer>/init-xxx () ...body )
+#+END_SRC
+***** 配置例子
+#+BEGIN_SRC 
+(use-package color-moccur
+  :commands (isearch-moccur isearch-all)
+  :bind (("M-s O" . moccur)
+         :map isearch-mode-map
+         ("M-o" . isearch-moccur)
+         ("M-O" . isearch-moccur-all))
+  :init
+  (setq isearch-lazy-highlight t)
+  :config
+  (use-package moccur-edit))
+
+  :init
+  (add-hook 'prog-mode-hook #'ace-jump-mode)
+  (add-hook 'text-mode-hook #'ace-jump-mode))
+
+  :custom
+  (comint-buffer-maximum-size 20000 "Increase comint buffer size.")
+  (comint-prompt-read-only t "Make the prompt read only."))
+#+END_SRC
+
 * Latex 编辑命令
 ** 导出pdf
 需要先编译
