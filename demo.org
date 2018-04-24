@@ -416,7 +416,18 @@ installed from an online source using quelpa.
   (comint-buffer-maximum-size 20000 "Increase comint buffer size.")
   (comint-prompt-read-only t "Make the prompt read only."))
 #+END_SRC
-
+***** 尽可能放到:config里面 不要放到：init里面，为了加快启动速度
+***** 自动安装到系统
+#+BEGIN_SRC 
+:ensure t
+#+END_SRC
+***** 自动删除旧版更新命令
+#+BEGIN_SRC 
+  :config
+  (setq auto-package-update-delete-old-versions t)
+  (setq auto-package-update-hide-results t)
+  (auto-package-update-maybe)
+#+END_SRC
 * Latex 编辑命令
 ** 导出pdf
 需要先编译
