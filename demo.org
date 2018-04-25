@@ -955,7 +955,8 @@ https://www.mathworks.com/help/images/ref/edge.html
 ***** 第三问所用到的资料
 ****** 3.a edge函数
 https://www.mathworks.com/help/images/ref/edge.html
-****** 
+****** 3.b Detect lines in grayscale image using Hough Transform
+https://www.mathworks.com/matlabcentral/fileexchange/9226-detect-lines-in-grayscale-image-using-hough-transform
 ***** 第四问
 ****** Shi-Tomasi corner detector
 可以用Python 的opencv包
