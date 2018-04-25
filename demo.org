@@ -973,7 +973,15 @@ http://blog.sina.com.cn/s/blog_6ef39eb80100qxwb.html
 ******* getCorners.m文件 用detectMinEigenFeatures函数实现
 https://www.mathworks.com/help/vision/ref/detectmineigenfeatures.html
 ******* 4.a 文件按照assignment里面的要求写即可
-****** 4.b 
+****** 4.b featurematching.m文件
+******* 需要完成getCorners.m在4.a中
+******* 需要完成getFeatures.m文件
+******** getFeatures.m的用处
+extract the Histogram of Gradient
+(HoG) features
+******** 实现HoG features
+
+
 ** EE 297
 * 待完成插件
 evil-leader
