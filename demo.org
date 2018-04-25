@@ -980,7 +980,9 @@ https://www.mathworks.com/help/vision/ref/detectmineigenfeatures.html
 extract the Histogram of Gradient
 (HoG) features
 ******** 实现HoG features
-
+********* extractHOGFeatures build-in function 仅供参考理解 老师不允许用
+https://www.mathworks.com/help/vision/ref/extracthogfeatures.html?s_tid=doc_ta
+********* 
 
 ** EE 297
 * 待完成插件
