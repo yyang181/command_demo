@@ -916,7 +916,6 @@ for i = 1:row*col
 end
 suptitle('DCT 4-by-4 basis images');
 #+END_SRC
-
 * Spring 2018
 ** EE 147
 ** EE 243
