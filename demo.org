@@ -939,6 +939,7 @@ file:images/wavelet.png
 1. S矩阵的第一行是N级近似系数
 2. 第二行到倒数第二行，是detailed 系数矩阵 排列顺序是H V D
 3. 最后一行是原始的图像
+4. C矩阵存储的元素依次为：第二级 128^2*4+256^2*3=262144个
 ***** 第三问
 ****** 拉普拉斯变换
  https://www.mathworks.com/matlabcentral/answers/53726-how-to-implement-the-laplacian-of-gaussian-edge-detector-using-the-prewitt-operator
