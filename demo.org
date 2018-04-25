@@ -508,7 +508,7 @@ installed from an online source using quelpa.
   (auto-package-update-maybe)
 #+END_SRC
 * Latex 编辑命令
-** 导出pdf
+4** 导出pdf
 需要先编译
 #+BEGIN_SRC 
 C-c C-c 编译latex文件
@@ -529,6 +529,22 @@ C-c C-c 编译latex文件
 ** latex编辑公式
 *** 常用公式写法
 https://www.cnblogs.com/Sinte-Beuve/p/6160905.html
+*** 插入公式
+#+BEGIN_SRC latex 
+$ $ 之间写公式 直接在文中加入
+\begin{equation} 需要对公式进行编号
+\end{equation}  需要对公式进行编号
+#+END_SRC
+*** 多个公式组
+#+BEGIN_SRC latex
+\begin{align*}
+2x^5+2(y-3)(z-1) & =x^3+3(x^5-3y+3z-2)\\
+&=2x+5x^5-6y*4+5z-3\\
+&=5x^5+3y^2+z
+\end{align*}
+%可以看到，在align中像表格一样用&来区分每一列 用\\来区分每一行，注意到在align中并不需要使用将
+%公式转化为数学模式的符号$或者\[\]，因为它已经默认在数学模式下编辑
+#+END_SRC
 * Org mode 
 ** Useful Command
 *** 编译 
