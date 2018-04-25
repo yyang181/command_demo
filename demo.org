@@ -529,6 +529,7 @@ C-c C-c 编译latex文件
 ** latex编辑公式
 *** 常用公式写法
 https://www.cnblogs.com/Sinte-Beuve/p/6160905.html
+https://blog.csdn.net/u011826404/article/details/70215074
 *** 插入公式
 #+BEGIN_SRC latex 
 $ $ 之间写公式 直接在文中加入
