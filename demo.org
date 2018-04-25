@@ -527,12 +527,14 @@ C-c C-c 编译latex文件
     \end{CJK}
 #+END_SRC
 ** latex编辑公式
-*** 常用公式写法
+*** 博客资源：如何写公式
 **** 符号
 https://blog.csdn.net/fansongy/article/details/45368915
-**** 
+**** 环境设置
 https://www.cnblogs.com/Sinte-Beuve/p/6160905.html
 https://blog.csdn.net/u011826404/article/details/70215074
+**** 在sharelatex中测试代码
+https://cn.sharelatex.com/project/5ae1028219ebac1fe344cc04
 *** 插入公式
 #+BEGIN_SRC latex 
 $ $ 之间写公式 直接在文中加入
