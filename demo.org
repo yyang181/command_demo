@@ -968,6 +968,10 @@ http://blog.sina.com.cn/s/blog_6ef39eb80100qxwb.html
 可以用Python 的opencv包
  https://docs.opencv.org/3.0-beta/doc/py_tutorials/py_feature2d/py_shi_tomasi/py_shi_tomasi.html
 ****** 
+***** 第四问实现方法
+****** 4.a detectMinEigenFeatures
+******* https://www.mathworks.com/help/vision/ref/detectmineigenfeatures.html
+****** 4.b 
 ** EE 297
 * 待完成插件
 evil-leader
