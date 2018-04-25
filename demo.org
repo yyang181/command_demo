@@ -572,6 +572,10 @@ https://blog.csdn.net/u011826404/article/details/70215074
 \{1+2\}
 {1+2}
 #+END_SRC
+**** 空格 
+#+BEGIN_SRC latex
+\;
+#+END_SRC
 **** 矩阵
 #+BEGIN_SRC latex
 $$\begin{matrix}…\end{matrix}$$，使用&分隔同行元素，\\换行
