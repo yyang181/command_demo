@@ -560,7 +560,22 @@ https://blog.csdn.net/xxzhangx/article/details/52778539
 #+BEGIN_SRC latex
 $$\sum_{i=1}^{n} a_i=0$$
 #+END_SRC
-**** 
+**** 公式中加上文本 \mbox{txt}
+#+BEGIN_SRC latex
+$$\mbox{对任意的$x>0$}, \mbox{有 }f(x)>0. $$
+#+END_SRC
+**** 标号 运算符
+https://blog.csdn.net/u011826404/article/details/70215074
+**** 括号
+小括号 中括号直接用 大括号需要转译
+#+BEGIN_SRC latex
+\{1+2\}
+{1+2}
+#+END_SRC
+**** 矩阵
+#+BEGIN_SRC latex
+$$\begin{matrix}…\end{matrix}$$，使用&分隔同行元素，\\换行
+#+END_SRC
 *** 其他还有一些数学环境里的「要」和「不要
 #+BEGIN_SRC latex
 用 $ ... $ 而不用 \( ... \)；
