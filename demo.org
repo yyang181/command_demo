@@ -905,12 +905,14 @@ cell{1,2} 索引cell中的第一行第二个矩阵元素
 #+END_SRC
 ** for循环处理画图语句
 #+BEGIN_SRC matlab
+row=3;
+col=3;
+
+M=cell(row*col);
 figure;
-for i = 1:size
-    for j = 1:size
-        M = DCT_4by4(i,:)' * DCT_4by4(j,:);
-        subplot(size,size,((i-1)*size) + j), imshow(M);
-    end
+for i = 1:row*col
+        M{1,i} = I;
+        subplot(row,col,i),imshow(M{1,i}),title(['\fontsize{16} Wiener filter with n=' num2str(i)']);
 end
 suptitle('DCT 4-by-4 basis images');
 #+END_SRC
