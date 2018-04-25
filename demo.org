@@ -554,7 +554,13 @@ $ $ 之间写公式 直接在文中加入
 %公式转化为数学模式的符号$或者\[\]，因为它已经默认在数学模式下编辑
 #+END_SRC
 *** 公式符号
-
+**** 常用西文符号
+https://blog.csdn.net/xxzhangx/article/details/52778539
+**** 上标和下标
+#+BEGIN_SRC latex
+$$\sum_{i=1}^{n} a_i=0$$
+#+END_SRC
+**** 
 *** 其他还有一些数学环境里的「要」和「不要
 #+BEGIN_SRC latex
 用 $ ... $ 而不用 \( ... \)；
