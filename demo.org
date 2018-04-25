@@ -546,6 +546,13 @@ $ $ 之间写公式 直接在文中加入
 %可以看到，在align中像表格一样用&来区分每一列 用\\来区分每一行，注意到在align中并不需要使用将
 %公式转化为数学模式的符号$或者\[\]，因为它已经默认在数学模式下编辑
 #+END_SRC
+*** 其他还有一些数学环境里的「要」和「不要
+#+BEGIN_SRC latex
+用 $ ... $ 而不用 \( ... \)；
+用 align 环境而不用 eqnarray 环境；
+用 matrix, bmatrix, pmatrix, vmatrix, Vmatrix 等环境而不用 array 环境去实现矩阵；
+用 \bigl, \bigr 等命令来处理定界符，而尽可能避免 \left 和 \right。
+#+END_SRC
 * Org mode 
 ** Useful Command
 *** 编译 
