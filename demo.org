@@ -535,14 +535,15 @@ https://www.cnblogs.com/Sinte-Beuve/p/6160905.html
 https://blog.csdn.net/u011826404/article/details/70215074
 **** 在sharelatex中测试代码
 https://cn.sharelatex.com/project/5ae1028219ebac1fe344cc04
-*** 插入公式
+*** 公式环境
+**** 插入公式
 #+BEGIN_SRC latex 
 $ $ 之间写公式 直接在文中加入
 \[ \] 另起一行写公式
 \begin{equation} 需要对公式进行编号
 \end{equation}  需要对公式进行编号
 #+END_SRC
-*** 多个公式组
+**** 多个公式组
 #+BEGIN_SRC latex
 \begin{align*}
 2x^5+2(y-3)(z-1) & =x^3+3(x^5-3y+3z-2)\\
@@ -552,6 +553,8 @@ $ $ 之间写公式 直接在文中加入
 %可以看到，在align中像表格一样用&来区分每一列 用\\来区分每一行，注意到在align中并不需要使用将
 %公式转化为数学模式的符号$或者\[\]，因为它已经默认在数学模式下编辑
 #+END_SRC
+*** 公式符号
+
 *** 其他还有一些数学环境里的「要」和「不要
 #+BEGIN_SRC latex
 用 $ ... $ 而不用 \( ... \)；
