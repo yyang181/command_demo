@@ -953,7 +953,9 @@ https://www.mathworks.com/help/wavelet/ref/waverec2.html?s_tid=doc_ta
 ****** edge函数
 https://www.mathworks.com/help/images/ref/edge.html
 ***** 第三问所用到的资料
+****** 3.a edge函数
 https://www.mathworks.com/help/images/ref/edge.html
+****** 
 ***** 第四问
 ****** Shi-Tomasi corner detector
 可以用Python 的opencv包
