@@ -964,9 +964,10 @@ https://blog.csdn.net/ycj9090900/article/details/52944708
 ******* 现成的自定义hough函数代码
 http://blog.sina.com.cn/s/blog_6ef39eb80100qxwb.html
 ***** 第四问
-****** Shi-Tomasi corner detector
+****** Shi-Tomasi corner detector 什么是这个检测器
 可以用Python 的opencv包
  https://docs.opencv.org/3.0-beta/doc/py_tutorials/py_feature2d/py_shi_tomasi/py_shi_tomasi.html
+****** 
 ** EE 297
 * 待完成插件
 evil-leader
