@@ -945,6 +945,8 @@ file:images/wavelet.png
  https://www.mathworks.com/matlabcentral/answers/53726-how-to-implement-the-laplacian-of-gaussian-edge-detector-using-the-prewitt-operator
 ****** 边缘检测官网文件汇总
  https://www.mathworks.com/discovery/edge-detection.html
+****** edge函数
+https://www.mathworks.com/help/images/ref/edge.html
 ***** 第四问
 ****** Shi-Tomasi corner detector
 可以用Python 的opencv包
