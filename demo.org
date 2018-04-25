@@ -970,7 +970,9 @@ http://blog.sina.com.cn/s/blog_6ef39eb80100qxwb.html
 ****** 
 ***** 第四问实现方法
 ****** 4.a detectMinEigenFeatures
+******* getCorners.m文件 用detectMinEigenFeatures函数实现
 https://www.mathworks.com/help/vision/ref/detectmineigenfeatures.html
+******* 4.a 文件按照assignment里面的要求写即可
 ****** 4.b 
 ** EE 297
 * 待完成插件
