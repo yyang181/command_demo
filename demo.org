@@ -1015,6 +1015,7 @@ evil-leader
 - State "学习"       from "TODO"       [2018-04-24 周二 10:53]
 *** TODO 关于emacs Python 支持 以及jupyter notebook支持 matlab支持
 - State "TODO"       from "学习"       [2018-04-24 周二 10:55]
+*** TODO 学习英语
 *** TODO 学习Python语言 Tesoroflow
 *** TODO 学习emacs orgmode中的思维导图gtd 
 *** TODO 学习子龙山人知乎视频中关于package自定义，加速emacs启动等相关内容
