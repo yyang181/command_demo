@@ -940,12 +940,19 @@ file:images/wavelet.png
 2. 第二行到倒数第二行，是detailed 系数矩阵 排列顺序是H V D
 3. 最后一行是原始的图像
 4. C矩阵存储的元素依次为：第二级 128^2*4+256^2*3=262144个
+***** 第二问用到的函数
+****** wavdec2
+https://www.mathworks.com/help/wavelet/ref/wavedec2.html
+****** waverec2
+https://www.mathworks.com/help/wavelet/ref/waverec2.html?s_tid=doc_ta
 ***** 第三问
 ****** 拉普拉斯变换
  https://www.mathworks.com/matlabcentral/answers/53726-how-to-implement-the-laplacian-of-gaussian-edge-detector-using-the-prewitt-operator
 ****** 边缘检测官网文件汇总
  https://www.mathworks.com/discovery/edge-detection.html
 ****** edge函数
+https://www.mathworks.com/help/images/ref/edge.html
+***** 第三问所用到的资料
 https://www.mathworks.com/help/images/ref/edge.html
 ***** 第四问
 ****** Shi-Tomasi corner detector
