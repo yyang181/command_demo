@@ -526,6 +526,9 @@ C-c C-c 编译latex文件
     具体内容
     \end{CJK}
 #+END_SRC
+** latex编辑公式
+*** 常用公式写法
+https://www.cnblogs.com/Sinte-Beuve/p/6160905.html
 * Org mode 
 ** Useful Command
 *** 编译 
