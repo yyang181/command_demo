@@ -923,7 +923,7 @@ suptitle('DCT 4-by-4 basis images');
 **** Matlab程序资料备份
 ***** 第二问
 ****** docomposion 的一个例子及链接
-file:decom.png
+file:images/decom.png
 
 https://www.mathworks.com/help/wavelet/ug/two-dimensional-wavelet-packet-analysis.html
 ****** reconstruction using function waverec2
@@ -933,6 +933,12 @@ https://www.mathworks.com/help/wavelet/ref/wrcoef2.html
 ****** 两个重构函数的区别在于：
 ******* wrcoef2能够处理细节
 ******* waverec2只能多维度处理
+****** 近似系数函数的解释
+file:images/wavelet.png
+
+1. S矩阵的第一行是N级近似系数
+2. 第二行到倒数第二行，是detailed 系数矩阵 排列顺序是H V D
+3. 最后一行是原始的图像
 ***** 第三问
 ****** 拉普拉斯变换
  https://www.mathworks.com/matlabcentral/answers/53726-how-to-implement-the-laplacian-of-gaussian-edge-detector-using-the-prewitt-operator
