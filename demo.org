@@ -4,27 +4,27 @@
 ** Command
 *** 常用命令
  #+BEGIN_SRC 
-  cmd --insecure 模式打开emacs才能有网络连接
-  cmd --insecure 用Texlive GUI command-line打开emacs之后默认用texlive编译.tex
-  c-x c-s 保存当前文件
-  m-x list-package 列出所有package
-  c-x o 切换窗口
-  m-> 文档底部
-  m-< 文档开头
-  c-v 上滚屏
-  m-v 下滚屏
-  c-x c-b 列出所有缓冲区/没什么用 直接用打开文件就行了
-  c-x h 全选
-  c-space 标记
-  c-@     标记
-  c-/ 撤销命令
-  c-_ 撤销命令
-  M-m 打开spacemacs主菜单
-  M-m TAB一键循环切换buffer
-  c-e M-b 先切换到行尾 然后按句子单位回退
-  M-e M-a 换行 到指定位置 最好用的命令
-  M-; 注释掉当前行
-  M-m 0-9 提供于windows-numbering包 作用：当有多个buffer同时打开时，一键切换当前选中buffer
+ cmd --insecure 模式打开emacs才能有网络连接
+ cmd --insecure 用Texlive GUI command-line打开emacs之后默认用texlive编译.tex
+ c-x c-s 保存当前文件
+ m-x list-package 列出所有package
+ c-x o 切换窗口
+ m-> 文档底部
+ m-< 文档开头
+ c-v 上滚屏
+ m-v 下滚屏
+ c-x c-b 列出所有缓冲区/没什么用 直接用打开文件就行了
+ c-x h 全选
+ c-space 标记
+ c-@     标记
+ c-/ 撤销命令
+ c-_ 撤销命令
+ M-m 打开spacemacs主菜单
+ M-m TAB一键循环切换buffer
+ c-e M-b 先切换到行尾 然后按句子单位回退
+ M-e M-a 换行 到指定位置 最好用的命令
+ M-; 注释掉当前行
+ M-m 0-9 提供于windows-numbering包 作用：当有多个buffer同时打开时，一键切换当前选中buffer
  #+END_SRC
 *** 命令主菜单
 #+BEGIN_SRC 
@@ -36,11 +36,11 @@ c-h 帮助
 #+END_SRC
 *** 帮助
  #+BEGIN_SRC 
-    c-h 主命令
-    c-h a 查找关键词对应的函数
-    c-h f 函数
-    c-h v 变量
-    c-h k 快捷键
+ c-h 主命令
+ c-h a 查找关键词对应的函数
+ c-h f 函数
+ c-h v 变量
+ c-h k 快捷键
  #+END_SRC
 ** 一些解决方案
 ***  多buffer管理： 
@@ -97,8 +97,8 @@ M-g g 跳转到第几行  需要设置显示行数功能
 #+BEGIN_SRC 
 首先，把图片文件放入当前路径中
 接着用file:decom.png 格式在org中插入图片
-#+CAPTION: 电话拨打过快过多 设置图片格式
-#+ATTR_HTML: :width 100%  设置图片宽带，为当前浏览器的100% 此例中
+,#+CAPTION: 电话拨打过快过多 设置图片格式
+,#+ATTR_HTML: :width 100%  设置图片宽带，为当前浏览器的100% 此例中
 最后可以用M-x iimage-mode 选择打开minor mode 来查看所插入的图片
 #+END_SRC
 ** Spacemacs
@@ -136,7 +136,7 @@ M-g g 跳转到第几行  需要设置显示行数功能
    )
  #+END_SRC
 *** Spacemacs 配置文件 初始化init.el文件 使所有buffer默认打开company模式
- #+BEGIN_SRC
+ #+BEGIN_SRC 
  ;; Enable global company mode
  (require 'company)
  (add-hook 'after-init-hook 'global-company-mode)
@@ -214,7 +214,7 @@ package unsigned 需要在.spacemacs中配置
 
 To enable Flycheck add the following to your init file:
 #+BEGIN_SRC 
-   (add-hook 'after-init-hook #'global-flycheck-mode)
+(add-hook 'after-init-hook #'global-flycheck-mode)
 #+END_SRC
 需要设置变量的值来激活
 #+BEGIN_SRC 
@@ -461,7 +461,7 @@ installed from an online source using quelpa.
 **** 声明packages
 ***** 官方文件的方法
 #+BEGIN_SRC 
- (setq <layer>-packages '(package1 package2 ...)
+(setq <layer>-packages '(package1 package2 ...)
 #+END_SRC
 ***** 本地packages文件的方法
 #+BEGIN_SRC 
@@ -502,10 +502,10 @@ installed from an online source using quelpa.
 #+END_SRC
 ***** 自动删除旧版更新命令
 #+BEGIN_SRC 
-  :config
-  (setq auto-package-update-delete-old-versions t)
-  (setq auto-package-update-hide-results t)
-  (auto-package-update-maybe)
+:config
+(setq auto-package-update-delete-old-versions t)
+(setq auto-package-update-hide-results t)
+(auto-package-update-maybe)
 #+END_SRC
 * Latex 编辑命令
 4** 导出pdf
@@ -516,15 +516,15 @@ C-c C-c 编译latex文件
 #+END_SRC
 ** 中文环境包
 #+BEGIN_SRC 
-   % 中文支持包
-   \usepackage{ctex}
-   \usepackage{CJK}
+% 中文支持包
+\usepackage{ctex}
+\usepackage{CJK}
 
-    % 调用环境变量 
-    \begin{CJK}{UTF8}{song}
-    some content here.
-    具体内容
-    \end{CJK}
+ % 调用环境变量 
+ \begin{CJK}{UTF8}{song}
+ some content here.
+ 具体内容
+ \end{CJK}
 #+END_SRC
 ** latex编辑公式
 *** 博客资源：如何写公式
@@ -537,14 +537,17 @@ https://blog.csdn.net/u011826404/article/details/70215074
 https://cngg584.sharelatex.com/project/5ae1028219ebac1fe344cc04
 *** 公式环境
 **** 插入公式
-#+BEGIN_SRC latex 
+#+RESULTS:
+#+BEGIN_EXPORT latex
 $ $ 之间写公式 直接在文中加入
 \[ \] 另起一行写公式
 \begin{equation} 需要对公式进行编号
 \end{equation}  需要对公式进行编号
-#+END_SRC
+#+END_EXPORT
+
 **** 多个公式组
-#+BEGIN_SRC latex
+#+RESULTS:
+#+BEGIN_EXPORT latex
 \begin{align*}
 2x^5+2(y-3)(z-1) & =x^3+3(x^5-3y+3z-2)\\
 &=2x+5x^5-6y*4+5z-3\\
@@ -552,26 +555,33 @@ $ $ 之间写公式 直接在文中加入
 \end{align*}
 %可以看到，在align中像表格一样用&来区分每一列 用\\来区分每一行，注意到在align中并不需要使用将
 %公式转化为数学模式的符号$或者\[\]，因为它已经默认在数学模式下编辑
-#+END_SRC
+#+END_EXPORT
+
 *** 公式符号
 **** 常用西文符号
 https://blog.csdn.net/xxzhangx/article/details/52778539
 **** 上标和下标
-#+BEGIN_SRC latex
+#+RESULTS:
+#+BEGIN_EXPORT latex
 $$\sum_{i=1}^{n} a_i=0$$
-#+END_SRC
+#+END_EXPORT
+
 **** 公式中加上文本 \mbox{txt}
-#+BEGIN_SRC latex
+#+RESULTS:
+#+BEGIN_EXPORT latex
 $$\mbox{对任意的$x>0$}, \mbox{有 }f(x)>0. $$
-#+END_SRC
+#+END_EXPORT
+
 **** 标号 运算符
 https://blog.csdn.net/u011826404/article/details/70215074
 **** 括号
 小括号 中括号直接用 大括号需要转译
-#+BEGIN_SRC latex
+#+RESULTS:
+#+BEGIN_EXPORT latex
 \{1+2\}
 {1+2}
-#+END_SRC
+#+END_EXPORT
+
 **** 空格 
 #+BEGIN_SRC latex
 \;
