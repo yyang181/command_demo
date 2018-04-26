@@ -1224,7 +1224,7 @@ https://www.mathworks.com/help/vision/ref/extracthogfeatures.html?s_tid=doc_ta
 ** EE 297
 * 终极写作模板 latex完美版
 ** 源代码
-详情见github保存文件
+详情见github中的相关文件
 * 待完成插件
 evil-leader
 - 然后用其实现/markdown的所有功能（非常轻松）
