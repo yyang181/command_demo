@@ -679,7 +679,10 @@ images//1.png
 #+BEGIN_SRC latex
 \footnotemark[num] 添加脚注
 \footnotetext[num]{text} 标注出脚注内容，必须放在正文里面
+\thanks{text} 直接脚注
 #+END_SRC
+** latex 交叉引用 \label \ref
+*** 
 * Org mode 
 ** Useful Command
 *** 编译 
