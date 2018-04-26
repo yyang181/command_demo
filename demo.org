@@ -568,20 +568,19 @@ $$\sum_{i=1}^{n} a_i=0$$
 
 **** 公式中加上文本 \mbox{txt}
 #+RESULTS:
-#+BEGIN_EXPORT latex
+#+BEGIN_SRC latex
 $$\mbox{对任意的$x>0$}, \mbox{有 }f(x)>0. $$
-#+END_EXPORT
+#+END_SRC
 
 **** 标号 运算符
 https://blog.csdn.net/u011826404/article/details/70215074
 **** 括号
 小括号 中括号直接用 大括号需要转译
 #+RESULTS:
-#+BEGIN_EXPORT latex
+#+BEGIN_SRC latex
 \{1+2\}
 {1+2}
-#+END_EXPORT
-
+#+END_SRC
 **** 空格 
 #+BEGIN_SRC latex
 \;
@@ -997,11 +996,11 @@ C-S enter 产生一个同级子树 to do标题
 #+LATEX_HEADER: \usepackage[colorlinks=true,linkcolor=red]{hyperref}
 #+END_SRC
 其它可选命令小结
-#+BEGIN_EXPORT latex
+#+BEGIN_Src 
 #+LATEX_HEADER: \usepackage[colorlinks=true,linkcolor=red]{hyperref}
 #+LATEX_CLASS: org-article
 #+TITLE: Org to \LaTeX
-#+END_EXPORT
+#+END_src
 ** Org mode 处理代码块
 *** 设置语言环境
 #+BEGIN_SRC
