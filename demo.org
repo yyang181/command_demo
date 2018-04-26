@@ -604,10 +604,12 @@ images//1.png
 #+BEGIN_SRC latex
 $\backslash$
 #+END_SRC
-***** 斜杠符号仅用于latex语言中的路径分隔
+***** 斜杠符号 用于latex语言中的路径分隔 以及作为数学中的除号
+****** 路径分隔
 #+BEGIN_SRC latex
 images//1.png
 #+END_SRC
+****** 除号
 ***** 单引号 双引号的表示 很特殊
 #+BEGIN_SRC latex
 `需要输入的内容' 前单引号为tab上方的按键 后单引号为enter左边的按键
