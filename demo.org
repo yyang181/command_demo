@@ -595,7 +595,7 @@ $\backslash$
 #+END_src
 
 ***** 两个反斜杠为换行
-#+BEGIN_SRC latex
+#+BEGIN_SRC 
 双引号是特殊符号， 两个tab上面的符号为前双引，两个单引号为后双引
 #+END_SRC
 ***** 文件夹//表示打开该文件夹
