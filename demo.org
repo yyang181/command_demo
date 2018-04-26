@@ -1518,14 +1518,6 @@ The result is shown as \hyperref[result3.png]{Fig.\ref{result3.png}}.\\
 Because all accessed
 locations fall into the same burst section, only one DRAM request
 will be made and the access is fully coalesced.
-  %% \begin{figure}
-	%%   \begin{center}
-	%% 	  \includegraphics[width=0.32\linewidth]{images//result3.png}
-	%% 	  \caption{Global memory eiificiency}
-	%% 	  \label{Fig:3}
-	%%   \end{center}
-	%%   \vspace{-0.5em}
-  %% \end{figure}
 
   \scalefig{result3.png}{0.5}{Global memory eiificiency}
 
