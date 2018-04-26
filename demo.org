@@ -1256,6 +1256,7 @@ evil-leader
 *** TODO 学习子龙山人知乎视频中关于package自定义，加速emacs启动等相关内容
 *** TODO 学习使用latex编辑公式 也即math mode
 *** TODO 学习使用思维导图模式来处理Ability的demo
+*** TODO 解决掉demo.org转换html文件时速度极慢的问题
 ** 事件 需要处理的事情
 *** TODO 完成州内学费申请
 - State "TODO"       from "事件"       [2018-04-24 周二 11:02]
