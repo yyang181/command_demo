@@ -700,6 +700,11 @@ Listing~\ref{homework_example}}
 \printindex
 \autoref{label}
 #+END_SRC
+***** 最常用的插入超链接的命令
+#+BEGIN_SRC latex
+\hyperref[result1.png]{Fig.\ref{result1.png}}
+#+END_SRC
+其中，[]里面的是label {}里面的是隐式链接
 *** nips图片格式
 #+BEGIN_SRC latex
 \begin{figure}[h]
