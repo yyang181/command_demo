@@ -1375,32 +1375,6 @@ https://www.mathworks.com/help/vision/ref/extracthogfeatures.html?s_tid=doc_ta
    \enterProblemHeader{\homeworkProblemName}\exitProblemHeader{\homeworkProblemName}%
    \marginpar{\fbox{\homeworkSectionName}}%
 
-   % We put the blank space above in order to make sure this
-   % \marginpar gets correctly placed.
-   }%
-
-%%% I think \captionwidth (commented out below) can go away
-%%%
-%% Edits the caption width
-%\newcommand{\captionwidth}[1]{%
-%  \dimen0=\columnwidth   \advance\dimen0 by-#1\relax
-%  \divide\dimen0 by2
-%  \advance\leftskip by\dimen0
-%  \advance\rightskip by\dimen0
-%}
-
-% Includes a figure
-% The first parameter is the label, which is also the name of the figure
-%   with or without the extension (e.g., .eps, .fig, .png, .gif, etc.)
-%   IF NO EXTENSION IS GIVEN, LaTeX will look for the most appropriate one.
-%   This means that if a DVI (or PS) is being produced, it will look for
-%   an eps. If a PDF is being produced, it will look for nearly anything
-%   else (gif, jpg, png, et cetera). Because of this, when I generate figures
-%   I typically generate an eps and a png to allow me the most flexibility
-%   when rendering my document.
-% The second parameter is the width of the figure normalized to column width
-%   (e.g. 0.5 for half a column, 0.75 for 75% of the column)
-% The third parameter is the caption.
 \newcommand{\scalefig}[3]{
   \begin{figure}[ht!]
     % Requires \usepackage{graphicx}
@@ -1473,15 +1447,6 @@ The resource usage\\
   Using nvcc –ptxas-options=``-v'' to report the resource usage of my
   implementation. The result is shown as \hyperref[result1.png]{Fig.\ref{result1.png}}. It shows that 26 registers, 2048 butes smem, 360 bytes cmem were used.
 
-  %% \begin{figure}
-	%%   \begin{center}
-	%% 	  \includegraphics[width=0.32\linewidth]{images//result1.png}
-	%% 	  \caption{The resource usage}
-	%% 	  \label{Fig:1}
-	%%   \end{center}
-	%%   \vspace{-0.5em}
-  %% \end{figure}
-
   \scalefig{result1.png}{0.5}{The resource usage}
 
 \end{homeworkSection}
@@ -1493,14 +1458,6 @@ Using nvprof --metrics branch\_efficiency
  to report the branch divergence
  behavior of my implementation. The result is shown as \hyperref[result2.png]{Fig.\ref{result2.png}}.\\
 It shows that the branch efficiency is 100\%, which means there is no branch divergence.
-   %% \begin{figure}
-	 %%  \begin{center}
-	 %%    \includegraphics[width=0.32\linewidth]{images//result2.png}
-	 %%    \caption{The branch divergence behavior}
-	 %%    \label{Fig:2}
-	 %%  \end{center}
-	 %%  \vspace{-0.5em}
-   %% \end{figure}
 
    \scalefig{result2.png}{0.5}{The branch divergence behavior}
 
