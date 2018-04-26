@@ -534,7 +534,7 @@ https://blog.csdn.net/fansongy/article/details/45368915
 https://www.cnblogs.com/Sinte-Beuve/p/6160905.html
 https://blog.csdn.net/u011826404/article/details/70215074
 **** 在sharelatex中测试代码
-https://cn.sharelatex.com/project/5ae1028219ebac1fe344cc04
+https://cngg584.sharelatex.com/project/5ae1028219ebac1fe344cc04
 *** 公式环境
 **** 插入公式
 #+BEGIN_SRC latex 
@@ -586,6 +586,47 @@ $$\begin{matrix}…\end{matrix}$$，使用&分隔同行元素，\\换行
 用 align 环境而不用 eqnarray 环境；
 用 matrix, bmatrix, pmatrix, vmatrix, Vmatrix 等环境而不用 array 环境去实现矩阵；
 用 \bigl, \bigr 等命令来处理定界符，而尽可能避免 \left 和 \right。
+#+END_SRC
+** latex 插入图片
+*** 一般需要包含的宏包
+#+BEGIN_SRC latex
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{subfigure}
+#+END_SRC
+*** nips图片格式
+#+BEGIN_SRC latex
+\begin{figure}[h]
+  \centering
+  \fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
+  \caption{Sample figure caption.}
+\end{figure}
+#+END_SRC
+*** 博客图片格式
+#+BEGIN_SRC latex
+\begin{figure}
+	\begin{center}
+		\includegraphics[width=0.32\linewidth]{lena.eps}
+		\caption{An image of Lena.}
+		\label{Fig:1}
+	\end{center}
+	\vspace{-0.5em}
+\end{figure}
+#+END_SRC
+*** 多个图片排列 tabular
+#+BEGIN_SRC latex
+\begin{figure}
+	\centering
+	\begin{tabular}{ccc}
+		\includegraphics[width=0.32\linewidth]{lena.eps}  & 
+		\includegraphics[width=0.32\linewidth]{lena.eps}  & 
+		\includegraphics[width=0.32\linewidth]{lena.eps} \\ 
+		(a) & (b) & (c)\\
+	\end{tabular}
+	\caption{Three images of Lena. }
+	\label{Fig:4}
+	\vspace{-0.5em}
+\end{figure}
 #+END_SRC
 * Org mode 
 ** Useful Command
@@ -981,6 +1022,8 @@ suptitle('DCT 4-by-4 basis images');
 ** EE 147
 *** Lab answers
 https://www.coursehero.com/file/18388740/lab-2-report/
+*** 淘宝course hero
+http://www.coursehelper.cn/
 ** EE 243
 *** hw2
 **** Matlab程序资料备份
