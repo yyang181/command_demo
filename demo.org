@@ -568,8 +568,7 @@ $$\mbox{对任意的$x>0$}, \mbox{有 }f(x)>0. $$
 https://blog.csdn.net/u011826404/article/details/70215074
 **** 括号
 小括号 中括号直接用 大括号需要转译
-#+RESULTS:
-#+BEGIN_SRC latex
+#+BEGIN_SRC 
 \{1+2\}
 {1+2}
 #+END_SRC
