@@ -623,6 +623,9 @@ images//1.png
 用 \bigl, \bigr 等命令来处理定界符，而尽可能避免 \left 和 \right。
 #+END_SRC
 ** latex 插入图片
+*** 一定要注意！！！！！！
+**** \begin{figure}同一个环境中只能放一个！！！！
+**** 要想同时使用多个图片，只能用tabular
 *** 图片路径设置格式
 #+BEGIN_SRC latex
 \includegraphics{images//1.png}
