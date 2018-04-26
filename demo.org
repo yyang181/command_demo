@@ -632,6 +632,11 @@ $$\begin{matrix}…\end{matrix}$$，使用&分隔同行元素，\\换行
 	\vspace{-0.5em}
 \end{figure}
 #+END_SRC
+** latex 新建页
+#+BEGIN_SRC latex
+\clearpage 优先用这个
+\newpage
+#+END_SRC
 * Org mode 
 ** Useful Command
 *** 编译 
