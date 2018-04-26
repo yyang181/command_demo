@@ -640,6 +640,8 @@ images//1.png
 **** 步骤分析
 - 先在头文件区域建立newcommand模型来处理图片
 - 在文件区域通过文件名引用图片，并且自动编号
+- 特别注意，引用的时候的label是文件名！而不是标题名
+- 引用命令 \ref{}
 **** newcommand源码
 #+BEGIN_SRC latex
 \newcommand{\scalefig}[3]{
