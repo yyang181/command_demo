@@ -1267,6 +1267,7 @@ evil-leader
 *** TODO 学习使用latex编辑公式 也即math mode
 *** TODO 学习使用思维导图模式来处理Ability的demo
 *** TODO 解决掉demo.org转换html文件时速度极慢的问题
+*** TODO 关于emacs中的解决不了的问题，可以咨询Chen Bin在github
 ** 事件 需要处理的事情
 *** TODO 完成州内学费申请
 - State "TODO"       from "事件"       [2018-04-24 周二 11:02]
@@ -1277,3 +1278,5 @@ https://mail.google.com/mail/u/1/#inbox/162f9d4479616148
 *** IDEA 在EE243的project可以参考3D RECONSTRUCTION
 - State "IDEA"       from "TODO"       [2018-04-24 周二 11:10]
 - State "TODO"       from "零碎"       [2018-04-24 周二 11:08]
+*** TODO 在EE243的project可以参考语义分析
+- State "TODO"       from "紧急"       [2018-04-26 周四 10:13]
