@@ -580,6 +580,39 @@ https://blog.csdn.net/u011826404/article/details/70215074
 #+BEGIN_SRC latex
 $$\begin{matrix}…\end{matrix}$$，使用&分隔同行元素，\\换行
 #+END_SRC
+**** 特殊符号的写法
+***** 下面这些是保留字符，有特殊用处
+# $ % ^ & _ { } ~ \
+***** 转译字符为反斜杠 \
+***** 反斜杠比较特殊 \
+#+BEGIN_SRC latex
+$\backslash$
+#+END_SRC
+***** 两个反斜杠为换行
+#+BEGIN_SRC latex
+双引号是特殊符号， 两个tab上面的符号为前双引，两个单引号为后双引
+#+END_SRC
+***** 文件夹//表示打开该文件夹
+#+BEGIN_SRC latex
+images//1.png
+#+END_SRC
+**** 特殊符号的写法汇总整理
+***** 最重要的符号是反斜杠\
+****** 单个反斜杠\表示转译
+****** 两个反斜杠\\表示换行
+****** 要在文本中输入反斜杠\ 需要引用公式中的符号$\backslash$
+#+BEGIN_SRC latex
+$\backslash$
+#+END_SRC
+***** 斜杠符号仅用于latex语言中的路径分隔
+#+BEGIN_SRC latex
+images//1.png
+#+END_SRC
+***** 单引号 双引号的表示 很特殊
+#+BEGIN_SRC latex
+`需要输入的内容' 前单引号为tab上方的按键 后单引号为enter左边的按键
+``需要输入的内容双引号'' 双引号为单引号情形的两个即可 
+#+END_SRC
 *** 其他还有一些数学环境里的「要」和「不要
 #+BEGIN_SRC latex
 用 $ ... $ 而不用 \( ... \)；
