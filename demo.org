@@ -979,6 +979,8 @@ suptitle('DCT 4-by-4 basis images');
 #+END_SRC
 * Spring 2018
 ** EE 147
+*** Lab answers
+https://www.coursehero.com/file/18388740/lab-2-report/
 ** EE 243
 *** hw2
 **** Matlab程序资料备份
