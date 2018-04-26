@@ -682,7 +682,12 @@ images//1.png
 \thanks{text} 直接脚注
 #+END_SRC
 ** latex 交叉引用 \label \ref
-*** 
+*** 用法解释
+图片的Figure.1这类编号是自动生成的，并且随着图片数量的变化而变化。
+
+为了能够随时使用特定图片，可以给该图片一个label，这个label也是自动编号的。
+
+使用的时候直接\ref这个label即可的到图片的编号。
 * Org mode 
 ** Useful Command
 *** 编译 
