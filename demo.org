@@ -588,6 +588,10 @@ $$\begin{matrix}…\end{matrix}$$，使用&分隔同行元素，\\换行
 用 \bigl, \bigr 等命令来处理定界符，而尽可能避免 \left 和 \right。
 #+END_SRC
 ** latex 插入图片
+*** 图片路径设置格式
+#+BEGIN_SRC latex
+\includegraphics{images//1.png}
+#+END_SRC
 *** 一般需要包含的宏包
 #+BEGIN_SRC latex
 \usepackage{epsfig}
