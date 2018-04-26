@@ -537,14 +537,14 @@ https://blog.csdn.net/u011826404/article/details/70215074
 https://cngg584.sharelatex.com/project/5ae1028219ebac1fe344cc04
 *** 公式环境
 **** 插入公式
-#+BEGIN_SRC latex
+#+BEGIN_SRC 
 $ $ 之间写公式 直接在文中加入
 \[ \] 另起一行写公式
 \begin{equation} 需要对公式进行编号
 \end{equation}  需要对公式进行编号
 #+END_SRC
 **** 多个公式组
-#+BEGIN_SRC latex
+#+BEGIN_SRC 
 \begin{align*}
 2x^5+2(y-3)(z-1) & =x^3+3(x^5-3y+3z-2)\\
 &=2x+5x^5-6y*4+5z-3\\
@@ -557,17 +557,13 @@ $ $ 之间写公式 直接在文中加入
 **** 常用西文符号
 https://blog.csdn.net/xxzhangx/article/details/52778539
 **** 上标和下标
-#+RESULTS:
-#+BEGIN_SRC latex
+#+BEGIN_SRC 
 $$\sum_{i=1}^{n} a_i=0$$
 #+END_SRC
-
 **** 公式中加上文本 \mbox{txt}
-#+RESULTS:
-#+BEGIN_SRC latex
+#+BEGIN_SRC 
 $$\mbox{对任意的$x>0$}, \mbox{有 }f(x)>0. $$
 #+END_SRC
-
 **** 标号 运算符
 https://blog.csdn.net/u011826404/article/details/70215074
 **** 括号
@@ -593,6 +589,12 @@ $$\begin{matrix}…\end{matrix}$$，使用&分隔同行元素，\\换行
 #+BEGIN_SRC latex
 $\backslash$
 #+END_SRC
+
+#+RESULTS:
+#+BEGIN_EXPORT latex
+$\backslash$
+#+END_EXPORT
+
 ***** 两个反斜杠为换行
 #+BEGIN_SRC latex
 双引号是特殊符号， 两个tab上面的符号为前双引，两个单引号为后双引
