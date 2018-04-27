@@ -1254,7 +1254,8 @@ It is fine to align your course project with your research, but it is important 
 **** 初选题目
 ***** 3D 重构
 ****** SIFT
-****** SFM
+****** SFM Structure from Motion 
+****** PCL
 ** EE 297
 * 终极写作模板 latex完美版
 ** 源代码
