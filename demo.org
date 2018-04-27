@@ -1102,6 +1102,7 @@ From https://github.com/kelvinh/kelvinh.github.com
 **** 直接用C-c C-e f o即可输出.mm思维导图文件
 **** 下载软件freemind
 **** 安装Java环境
+https://blog.csdn.net/afei__/article/details/51464783
 *** 使用步骤
 * Jupyter notebook
 ** 常用命令
