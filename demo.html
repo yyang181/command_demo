@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2018-04-27 周五 00:24 -->
+<!-- 2018-04-27 周五 13:15 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
@@ -254,275 +254,297 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org0fd676c">1. Emaces Usful Command</a>
+<li><a href="#org49f8dda">1. Emaces Usful Command</a>
 <ul>
-<li><a href="#org56e7e84">1.1. Command</a>
+<li><a href="#orgf79d644">1.1. Command</a>
 <ul>
-<li><a href="#orga35c667">1.1.1. 常用命令</a></li>
-<li><a href="#orgd02286e">1.1.2. 命令主菜单</a></li>
-<li><a href="#org56e22ac">1.1.3. 帮助</a></li>
+<li><a href="#org6b7330d">1.1.1. 常用命令</a></li>
+<li><a href="#orgb9549e6">1.1.2. 命令主菜单</a></li>
+<li><a href="#orgc2c7013">1.1.3. 帮助</a></li>
 </ul>
 </li>
-<li><a href="#org257509f">1.2. 一些解决方案</a>
+<li><a href="#org1626c39">1.2. 一些解决方案</a>
 <ul>
-<li><a href="#org5a30260">1.2.1. 多buffer管理：</a></li>
-<li><a href="#org7feb423">1.2.2. 任意文件同一个窗口打开</a></li>
-<li><a href="#org4b467ab">1.2.3. 快捷跳转行数</a></li>
-<li><a href="#orgedc3f9f">1.2.4. 设置在左侧显示行数功能</a></li>
-<li><a href="#org93c91e3">1.2.5. 复制粘贴及矩形区域选择解决方案</a></li>
-<li><a href="#org62273e1">1.2.6. 笔记，保存及预览设置</a></li>
-<li><a href="#orgeb4dd24">1.2.7. 在org mode里面插入图片，并且可以选择直接在本文文档中查看图片</a></li>
+<li><a href="#org0533685">1.2.1. 多buffer管理：</a></li>
+<li><a href="#orga5d9fdf">1.2.2. 任意文件同一个窗口打开</a></li>
+<li><a href="#org56a577a">1.2.3. 快捷跳转行数</a></li>
+<li><a href="#orgfd827a1">1.2.4. 设置在左侧显示行数功能</a></li>
+<li><a href="#orga38540e">1.2.5. 复制粘贴及矩形区域选择解决方案</a></li>
+<li><a href="#orge6fd4de">1.2.6. 笔记，保存及预览设置</a></li>
+<li><a href="#org5e1d0e1">1.2.7. 在org mode里面插入图片，并且可以选择直接在本文文档中查看图片</a></li>
 </ul>
 </li>
-<li><a href="#org68b874b">1.3. Spacemacs</a>
+<li><a href="#org297aa6d">1.3. Spacemacs</a>
 <ul>
-<li><a href="#org6feefe9">1.3.1. Spacemacs 配置文件 添加package cuda-mode</a></li>
-<li><a href="#orgc19d565">1.3.2. Spacemacs 配置文件 初始化init.el文件 使所有buffer默认打开company模式</a></li>
+<li><a href="#orgebb4115">1.3.1. Spacemacs 配置文件 添加package cuda-mode</a></li>
+<li><a href="#org38867ad">1.3.2. Spacemacs 配置文件 初始化init.el文件 使所有buffer默认打开company模式</a></li>
 </ul>
 </li>
-<li><a href="#org0b8f912">1.4. Company 自动补全包 命令集</a></li>
-<li><a href="#orgd69476e">1.5. Expand-region 快捷键文本选中 package</a></li>
-<li><a href="#orgddbd685">1.6. Magit package自动上传本地文档到github</a></li>
-<li><a href="#orgd8a92da">1.7. Git-auto-commit 每次保存文件自动commit到github 需要在.spaces中初始化才能startup载入</a>
+<li><a href="#org55a80da">1.4. Company 自动补全包 命令集</a></li>
+<li><a href="#org9c1ff0f">1.5. Expand-region 快捷键文本选中 package</a></li>
+<li><a href="#org77a9fb2">1.6. Magit package自动上传本地文档到github</a></li>
+<li><a href="#orgcc90c5b">1.7. Git-auto-commit 每次保存文件自动commit到github 需要在.spaces中初始化才能startup载入</a>
 <ul>
-<li><a href="#org90110f0">1.7.1. 配置步骤</a></li>
-<li><a href="#orge53b549">1.7.2. 使用方法</a></li>
-<li><a href="#org1451533">1.7.3. 按键配置代码 init.el文件</a></li>
+<li><a href="#org9d83c3b">1.7.1. 配置步骤</a></li>
+<li><a href="#orgcb035af">1.7.2. 使用方法</a></li>
+<li><a href="#org1295e00">1.7.3. 按键配置代码 init.el文件</a></li>
 </ul>
 </li>
-<li><a href="#org3ac0e55">1.8. Evil-nerd-commenter Package</a>
+<li><a href="#org778f42e">1.8. Evil-nerd-commenter Package</a>
 <ul>
-<li><a href="#org8b15b3d">1.8.1. 配置步骤</a></li>
-<li><a href="#orgd21dc77">1.8.2. 使用方法</a></li>
+<li><a href="#orgca7edd1">1.8.1. 配置步骤</a></li>
+<li><a href="#org18035b0">1.8.2. 使用方法</a></li>
 </ul>
 </li>
-<li><a href="#orga9a1790">1.9. Flycheck</a>
+<li><a href="#org6fb72be">1.9. Flycheck</a>
 <ul>
-<li><a href="#orga6879d3">1.9.1. 配置方法</a></li>
+<li><a href="#org9215363">1.9.1. 配置方法</a></li>
 </ul>
 </li>
-<li><a href="#orga218f96">1.10. Git 综述</a></li>
-<li><a href="#org3722e38">1.11. 神器：global-set-key自定义绑定 键位 到命令</a>
+<li><a href="#org0de08db">1.10. Git 综述</a></li>
+<li><a href="#org7c8d532">1.11. 神器：global-set-key自定义绑定 键位 到命令</a>
 <ul>
-<li><a href="#org256bb2a">1.11.1. 方法一 修改init.el文件</a></li>
-<li><a href="#orgfd598e8">1.11.2. 方法二 可能会出现单次设置单次使用</a></li>
+<li><a href="#org004c746">1.11.1. 方法一 修改init.el文件</a></li>
+<li><a href="#orgb2a1bf1">1.11.2. 方法二 可能会出现单次设置单次使用</a></li>
 </ul>
 </li>
-<li><a href="#org416f723">1.12. Python 语言支持及jupyter notebook引用</a>
+<li><a href="#org010ee9a">1.12. Python 语言支持及jupyter notebook引用</a>
 <ul>
-<li><a href="#org6edc8cc">1.12.1. ein:中jupyter notebook命令集</a></li>
-<li><a href="#org28a192a">1.12.2. 打开jupyter notebook的url http://localhost:8892/tree</a></li>
-<li><a href="#org9fd7f04">1.12.3. 重要知识</a></li>
-<li><a href="#org44f5359">1.12.4. 安装两个package</a></li>
-<li><a href="#org6e675bf">1.12.5. 安装两个package</a></li>
+<li><a href="#org816ef35">1.12.1. ein:中jupyter notebook命令集</a></li>
+<li><a href="#orgea1b73c">1.12.2. 打开jupyter notebook的url http://localhost:8892/tree</a></li>
+<li><a href="#orga09b0ad">1.12.3. 重要知识</a></li>
+<li><a href="#org2c4b235">1.12.4. 安装两个package</a></li>
+<li><a href="#org2556c8a">1.12.5. 安装两个package</a></li>
 </ul>
 </li>
-<li><a href="#org8fcb889">1.13. 重要：配置private layer:yyang181</a>
+<li><a href="#org670ecb1">1.13. 重要：配置private layer:yyang181</a>
 <ul>
-<li><a href="#org2dde8f5">1.13.1. 优先使用.spacemacs文件，如果没有，使用init.el文件生成.spacemacs</a></li>
-<li><a href="#org60ab3a3">1.13.2. 只修改两个文件init.el 和.spacemacs</a></li>
-<li><a href="#orgca90576">1.13.3. 设置users layer .spacemacs</a></li>
-<li><a href="#org0113925">1.13.4. .spacemacs文件</a></li>
+<li><a href="#org30a934d">1.13.1. 优先使用.spacemacs文件，如果没有，使用init.el文件生成.spacemacs</a></li>
+<li><a href="#orgdf1157c">1.13.2. 只修改两个文件init.el 和.spacemacs</a></li>
+<li><a href="#org9276b5f">1.13.3. 设置users layer .spacemacs</a></li>
+<li><a href="#org3d439b1">1.13.4. .spacemacs文件</a></li>
 </ul>
 </li>
-<li><a href="#org775a877">1.14. Configuration Layers</a>
+<li><a href="#org1ee8017">1.14. Configuration Layers</a>
 <ul>
-<li><a href="#org09dc951">1.14.1. 可以检查其他人的layer里面的文件来学习使用方法</a></li>
-<li><a href="#org93b9f19">1.14.2. 结构</a></li>
-<li><a href="#org63500a5">1.14.3. layer中各种文件的作用</a></li>
-<li><a href="#orgcbbf434">1.14.4. 配置packages</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#org224eaa9">2. Latex 编辑命令</a>
-<ul>
-<li><a href="#org876821f">2.1. 中文环境包</a></li>
-<li><a href="#org067215b">2.2. latex编辑公式</a>
-<ul>
-<li><a href="#orgbfc3359">2.2.1. 博客资源：如何写公式</a></li>
-<li><a href="#org4830d46">2.2.2. 公式环境</a></li>
-<li><a href="#org7167eba">2.2.3. 公式符号</a></li>
-<li><a href="#org4546420">2.2.4. 其他还有一些数学环境里的「要」和「不要</a></li>
-</ul>
-</li>
-<li><a href="#orgc579bde">2.3. latex 插入图片</a>
-<ul>
-<li><a href="#orga4d3e95">2.3.1. 一定要注意！！！！！！谁他妈说的，草，不确定</a></li>
-<li><a href="#org29bbb62">2.3.2. 图片路径设置格式</a></li>
-<li><a href="#org97e6394">2.3.3. 一般需要包含的宏包</a></li>
-<li><a href="#orgfb3a4cd">2.3.4. 神器：图片处理，超链接处理</a></li>
-<li><a href="#org2af11dd">2.3.5. nips图片格式</a></li>
-<li><a href="#orgbce7529">2.3.6. 博客图片格式</a></li>
-<li><a href="#org6f61508">2.3.7. 多个图片排列 tabular</a></li>
-</ul>
-</li>
-<li><a href="#orge585f71">2.4. latex 新建页</a></li>
-<li><a href="#org4bb55cd">2.5. latex 脚注</a></li>
-<li><a href="#org8e424b7">2.6. latex 交叉引用 \label \ref</a>
-<ul>
-<li><a href="#org9d3f8e9">2.6.1. 用法解释</a></li>
+<li><a href="#org937e607">1.14.1. 可以检查其他人的layer里面的文件来学习使用方法</a></li>
+<li><a href="#orgbb715ec">1.14.2. 结构</a></li>
+<li><a href="#orge2d23d7">1.14.3. layer中各种文件的作用</a></li>
+<li><a href="#orga05e785">1.14.4. 配置packages</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org3963b1f">3. Org mode</a>
+<li><a href="#org8805f39">2. Latex 编辑命令</a>
 <ul>
-<li><a href="#orgdbf8cd3">3.1. Useful Command</a>
+<li><a href="#orgcd625ad">2.1. 中文环境包</a></li>
+<li><a href="#org7fc402e">2.2. latex编辑公式</a>
 <ul>
-<li><a href="#org6bb073d">3.1.1. 编译</a></li>
-<li><a href="#orgfc6228b">3.1.2. 标题</a></li>
-<li><a href="#orgba7abd1">3.1.3. 块标签</a></li>
-<li><a href="#orge28f302">3.1.4. 排版段落格式</a></li>
-<li><a href="#org183047d">3.1.5. 设置默认在org mode下面使用缩进格式</a></li>
+<li><a href="#orgbc8af5b">2.2.1. 博客资源：如何写公式</a></li>
+<li><a href="#org8f8bb44">2.2.2. 公式环境</a></li>
+<li><a href="#org7f62088">2.2.3. 公式符号</a></li>
+<li><a href="#org9b25a76">2.2.4. 其他还有一些数学环境里的「要」和「不要</a></li>
 </ul>
 </li>
-<li><a href="#org9bfe332">3.2. 产生时间戳</a></li>
-<li><a href="#orgface636">3.3. 待办事项功能</a>
+<li><a href="#orgeafbef1">2.3. latex 插入图片</a>
 <ul>
-<li><a href="#org661870e">3.3.1. 命令：</a></li>
-<li><a href="#org09f21cb">3.3.2. 自定义TODO标签的格式</a></li>
-<li><a href="#orgd4a1882">3.3.3. 自定义标签括号里面附加选项</a></li>
-<li><a href="#orge561f60">3.3.4. 对所有org文档配置默认</a></li>
-<li><a href="#org95011f6">3.3.5. 设置任务优先级</a></li>
-<li><a href="#orge8f9353">3.3.6. 步骤</a></li>
+<li><a href="#orgd252030">2.3.1. 一定要注意！！！！！！谁他妈说的，草，不确定</a></li>
+<li><a href="#orge803ade">2.3.2. 图片路径设置格式</a></li>
+<li><a href="#org97ce8f6">2.3.3. 一般需要包含的宏包</a></li>
+<li><a href="#org79fc469">2.3.4. 神器：图片处理，超链接处理</a></li>
+<li><a href="#orgb645d8d">2.3.5. nips图片格式</a></li>
+<li><a href="#org0e632f5">2.3.6. 博客图片格式</a></li>
+<li><a href="#org4cefd0e">2.3.7. 多个图片排列 tabular</a></li>
 </ul>
 </li>
-<li><a href="#orgdafc7f7">3.4. 超链接文件或者图片</a>
+<li><a href="#orge2431bc">2.4. latex 新建页</a></li>
+<li><a href="#org957ee83">2.5. latex 脚注</a></li>
+<li><a href="#orgeccd1b9">2.6. latex 交叉引用 \label \ref</a>
 <ul>
-<li><a href="#orgaf77631">3.4.1. 命令</a></li>
-</ul>
-</li>
-<li><a href="#orga8c8f91">3.5. 表格和图片增加标签和说明，并交叉引用</a>
-<ul>
-<li><a href="#orgaaf7536">3.5.1. 命令</a></li>
-</ul>
-</li>
-<li><a href="#org471288d">3.6. 表格的输入</a>
-<ul>
-<li><a href="#orge371609">3.6.1. 插入表格</a></li>
-<li><a href="#org25504e0">3.6.2. 限制所在列的长度</a></li>
-<li><a href="#org3b8f733">3.6.3. 美化表格</a></li>
-</ul>
-</li>
-<li><a href="#org25ab0e9">3.7. Org 一键导出latex之后转pdf的方法</a>
-<ul>
-<li><a href="#orge42a969">3.7.1. 目前暂时没有比较好的中文解决方案</a></li>
-<li><a href="#org53d7d0b">3.7.2. 英文处理直接编译然后用pdftex输出所需要的pdf 中文只能暂时用html格式将就一下了</a></li>
-<li><a href="#org7213828">3.7.3. 配置.spacemacs文件来添加中文支持包</a></li>
-</ul>
-</li>
-<li><a href="#org2a36e34">3.8. Org mode配置latex环境及常用宏包</a></li>
-<li><a href="#orgab77efa">3.9. Org mode 处理代码块</a>
-<ul>
-<li><a href="#org26905a8">3.9.1. 设置语言环境</a></li>
-<li><a href="#org06d55ae">3.9.2. 配置init.el文件</a></li>
-<li><a href="#orgbeee268">3.9.3. 命令快捷键</a></li>
-<li><a href="#orgfd9af0d">3.9.4. 例子</a></li>
-<li><a href="#org2a6e784">3.9.5. 测试matlab代码块</a></li>
-<li><a href="#org887192b">3.9.6. 注意事项</a></li>
-</ul>
-</li>
-<li><a href="#org5c8ad79">3.10. Org-page package创建个人主页</a>
-<ul>
-<li><a href="#org43e80df">3.10.1. .emacs 文件源代码 手动添加package 注意：目前好像不能用</a></li>
-</ul>
-</li>
-<li><a href="#org7bf1168">3.11. orgmode中使用思维导图</a>
-<ul>
-<li><a href="#org971f29d">3.11.1. 软件安装</a></li>
-<li><a href="#org2992e3f">3.11.2. 使用步骤</a></li>
+<li><a href="#org0f79811">2.6.1. 用法解释</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org3bde0d6">4. Jupyter notebook</a>
+<li><a href="#org39d6471">3. Org mode</a>
 <ul>
-<li><a href="#org7dc979e">4.1. 常用命令</a></li>
-<li><a href="#orgc54c4c2">4.2. 文件导入</a>
+<li><a href="#org388de70">3.1. Useful Command</a>
 <ul>
-<li><a href="#org278cf11">4.2.1. 如何将本地的.py文件load到jupyter的一个cell里面</a></li>
-<li><a href="#org1e30f29">4.2.2. 如何将网络中的.py文件load到jupyter的一个cell里面</a></li>
-<li><a href="#org3aeb7bd">4.2.3. 利用cell运行.py文件</a></li>
+<li><a href="#orgac37189">3.1.1. 编译</a></li>
+<li><a href="#org2d300a9">3.1.2. 标题</a></li>
+<li><a href="#org836e0a8">3.1.3. 块标签</a></li>
+<li><a href="#org36c421f">3.1.4. 排版段落格式</a></li>
+<li><a href="#orgbda2291">3.1.5. 设置默认在org mode下面使用缩进格式</a></li>
+</ul>
+</li>
+<li><a href="#org135555b">3.2. 产生时间戳</a></li>
+<li><a href="#org0966200">3.3. 待办事项功能</a>
+<ul>
+<li><a href="#org5b39972">3.3.1. 命令：</a></li>
+<li><a href="#org1e8e662">3.3.2. 自定义TODO标签的格式</a></li>
+<li><a href="#orge8ad366">3.3.3. 自定义标签括号里面附加选项</a></li>
+<li><a href="#org7a2fc21">3.3.4. 对所有org文档配置默认</a></li>
+<li><a href="#org8a3198f">3.3.5. 设置任务优先级</a></li>
+<li><a href="#org8680dc1">3.3.6. 步骤</a></li>
+</ul>
+</li>
+<li><a href="#orgbccc6b3">3.4. 超链接文件或者图片</a>
+<ul>
+<li><a href="#orgcf00c0e">3.4.1. 命令</a></li>
+</ul>
+</li>
+<li><a href="#orgef30bcc">3.5. 表格和图片增加标签和说明，并交叉引用</a>
+<ul>
+<li><a href="#org7ff9f54">3.5.1. 命令</a></li>
+</ul>
+</li>
+<li><a href="#org5658d7b">3.6. 表格的输入</a>
+<ul>
+<li><a href="#org710745f">3.6.1. 插入表格</a></li>
+<li><a href="#orga6863ed">3.6.2. 限制所在列的长度</a></li>
+<li><a href="#org55ff380">3.6.3. 美化表格</a></li>
+</ul>
+</li>
+<li><a href="#org8bc55cc">3.7. Org 一键导出latex之后转pdf的方法</a>
+<ul>
+<li><a href="#org75b1a35">3.7.1. 目前暂时没有比较好的中文解决方案</a></li>
+<li><a href="#orgbf8fca7">3.7.2. 英文处理直接编译然后用pdftex输出所需要的pdf 中文只能暂时用html格式将就一下了</a></li>
+<li><a href="#org3545cc1">3.7.3. 配置.spacemacs文件来添加中文支持包</a></li>
+</ul>
+</li>
+<li><a href="#org7a40f91">3.8. Org mode配置latex环境及常用宏包</a></li>
+<li><a href="#org0ef3bf1">3.9. Org mode 处理代码块</a>
+<ul>
+<li><a href="#org0be5614">3.9.1. 设置语言环境</a></li>
+<li><a href="#org47e016e">3.9.2. 配置init.el文件</a></li>
+<li><a href="#org9051ce3">3.9.3. 命令快捷键</a></li>
+<li><a href="#orga67c4ea">3.9.4. 例子</a></li>
+<li><a href="#org8937075">3.9.5. 测试matlab代码块</a></li>
+<li><a href="#org5b2a65f">3.9.6. 注意事项</a></li>
+</ul>
+</li>
+<li><a href="#org3e8e92c">3.10. Org-page package创建个人主页</a>
+<ul>
+<li><a href="#org2883854">3.10.1. .emacs 文件源代码 手动添加package 注意：目前好像不能用</a></li>
+</ul>
+</li>
+<li><a href="#org39adf43">3.11. orgmode中使用思维导图</a>
+<ul>
+<li><a href="#org03189c7">3.11.1. 软件安装</a></li>
+<li><a href="#orgf1dbc72">3.11.2. 使用步骤</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org6a7c61b">5. Python 语言</a>
+<li><a href="#orgc37829e">4. Jupyter notebook</a>
 <ul>
-<li><a href="#org1e3e437">5.1. 帮助命令</a></li>
+<li><a href="#orge8df05d">4.1. 常用命令</a></li>
+<li><a href="#orgfd2cb56">4.2. 文件导入</a>
+<ul>
+<li><a href="#org89cd62f">4.2.1. 如何将本地的.py文件load到jupyter的一个cell里面</a></li>
+<li><a href="#orgbb840eb">4.2.2. 如何将网络中的.py文件load到jupyter的一个cell里面</a></li>
+<li><a href="#orgf79ee8b">4.2.3. 利用cell运行.py文件</a></li>
 </ul>
 </li>
-<li><a href="#org3a6f12d">6. Matlab语言</a>
-<ul>
-<li><a href="#org347d559">6.1. 知识补充 cell的使用</a>
-<ul>
-<li><a href="#org178b6eb">6.1.1. 将矩阵保存到cell里面，从而用一个for循环索引cell的编号来画图</a></li>
-<li><a href="#orgc74c467">6.1.2. 代码</a></li>
 </ul>
 </li>
-<li><a href="#org4d4c664">6.2. for循环处理画图语句</a></li>
+<li><a href="#orgacd2032">5. Python 语言</a>
+<ul>
+<li><a href="#org3c96aa4">5.1. 帮助命令</a></li>
 </ul>
 </li>
-<li><a href="#orga7399c8">7. Spring 2018</a>
+<li><a href="#orgd15862a">6. Matlab语言</a>
 <ul>
-<li><a href="#org29de3bf">7.1. EE 147</a>
+<li><a href="#org94c9893">6.1. 知识补充 cell的使用</a>
 <ul>
-<li><a href="#org8dc9bc8">7.1.1. Lab answers</a></li>
-<li><a href="#org58e7cd8">7.1.2. 淘宝course hero</a></li>
+<li><a href="#orga44a813">6.1.1. 将矩阵保存到cell里面，从而用一个for循环索引cell的编号来画图</a></li>
+<li><a href="#org3041d07">6.1.2. 代码</a></li>
 </ul>
 </li>
-<li><a href="#org1050f22">7.2. EE 243</a>
-<ul>
-<li><a href="#org3f77e42">7.2.1. hw2</a></li>
-<li><a href="#org48ed659">7.2.2. Project proposal</a></li>
+<li><a href="#org0d01c45">6.2. for循环处理画图语句</a></li>
 </ul>
 </li>
-<li><a href="#org712d05f">7.3. EE 297</a></li>
+<li><a href="#org05a168b">7. Spring 2018</a>
+<ul>
+<li><a href="#org787a10b">7.1. EE 147</a>
+<ul>
+<li><a href="#org64b427d">7.1.1. Lab answers</a></li>
+<li><a href="#orgdbf8e11">7.1.2. 淘宝course hero</a></li>
 </ul>
 </li>
-<li><a href="#org519367c">8. 终极写作模板 latex完美版</a>
+<li><a href="#org60621ec">7.2. EE 243</a>
 <ul>
-<li><a href="#org78dfe03">8.1. 源代码</a></li>
+<li><a href="#org2d8db33">7.2.1. hw2</a></li>
+<li><a href="#org4ca47df">7.2.2. Project proposal</a></li>
 </ul>
 </li>
-<li><a href="#orgc0a6ac8">9. 待完成插件</a></li>
-<li><a href="#org03fa631">10. <span class="todo TODO">TODO</span> 待办事项</a>
-<ul>
-<li><a href="#org9ca72ee">10.1. <span class="todo __">紧急</span> 紧急类型</a>
-<ul>
-<li><a href="#org7f29a6a">10.1.1. <span class="todo TODO">TODO</span> 完成EE243 project proposal</a></li>
-<li><a href="#org8036ccf">10.1.2. <span class="todo TODO">TODO</span> 完成EE147 LAB2并提交</a></li>
-<li><a href="#org3434e60">10.1.3. <span class="todo TODO">TODO</span> 完成EE243 HW2 完成并提交</a></li>
-<li><a href="#orge860186">10.1.4. <span class="todo TODO">TODO</span> 复习EE147</a></li>
-<li><a href="#org70beb57">10.1.5. <span class="todo TODO">TODO</span> 完成EE297 project proposal</a></li>
-<li><a href="#orga734579">10.1.6. <span class="todo TODO">TODO</span> 顶层能力</a></li>
+<li><a href="#org055db8d">7.3. EE 297</a></li>
 </ul>
 </li>
-<li><a href="#org9196a35">10.2. <span class="todo __">学习</span> 学习知识，技能 长期任务</a>
+<li><a href="#org24867c1">8. 能力</a>
 <ul>
-<li><a href="#orge3985a3">10.2.1. <span class="todo TODO">TODO</span> 关于emacs Python 支持 以及jupyter notebook支持 matlab支持</a></li>
-<li><a href="#orgf704bc5">10.2.2. <span class="todo TODO">TODO</span> 学习英语</a></li>
-<li><a href="#org0778702">10.2.3. <span class="todo TODO">TODO</span> 学习Python语言 Tesoroflow</a></li>
-<li><a href="#org31f1458">10.2.4. <span class="todo TODO">TODO</span> 学习emacs orgmode中的思维导图gtd</a></li>
-<li><a href="#org47fef07">10.2.5. <span class="todo TODO">TODO</span> 学习子龙山人知乎视频中关于package自定义，加速emacs启动等相关内容</a></li>
-<li><a href="#orgcd1a341">10.2.6. <span class="todo TODO">TODO</span> 学习使用latex编辑公式 也即math mode</a></li>
-<li><a href="#org69c808b">10.2.7. <span class="todo TODO">TODO</span> 学习使用思维导图模式来处理Ability的demo</a></li>
-<li><a href="#org94d2573">10.2.8. <span class="todo TODO">TODO</span> 解决掉demo.org转换html文件时速度极慢的问题</a></li>
-<li><a href="#orgb78d8f4">10.2.9. <span class="todo TODO">TODO</span> 关于emacs中的解决不了的问题，可以咨询Chen Bin在github</a></li>
-<li><a href="#org5bc666f">10.2.10. <span class="todo TODO">TODO</span> 最有效的学习layer配置自定义</a></li>
+<li><a href="#org2fd9e25">8.1. 顶层设计</a>
+<ul>
+<li><a href="#org265ca8b">8.1.1. 做事</a></li>
+<li><a href="#org17bf895">8.1.2. 能力</a></li>
+<li><a href="#orgb4f2c16">8.1.3. 状态保持</a></li>
+<li><a href="#orge097149">8.1.4. 神级分析能力：</a></li>
 </ul>
 </li>
-<li><a href="#orgf3c5d01">10.3. <span class="todo __">事件</span> 需要处理的事情</a>
-<ul>
-<li><a href="#org4a09f3d">10.3.1. <span class="todo TODO">TODO</span> 完成州内学费申请</a></li>
-<li><a href="#orgb5a2cf4">10.3.2. <span class="todo TODO">TODO</span> 完成Kim grad student form 截止日期 6.15</a></li>
+<li><a href="#org06a5ee0">8.2. 分析能力</a></li>
+<li><a href="#org3b4a5f6">8.3. 处理问题</a></li>
+<li><a href="#orge0d48d7">8.4. 状态保持</a></li>
+<li><a href="#org998b9ff">8.5. 时间规划：</a></li>
+<li><a href="#org3b530f4">8.6. <span class="todo __">学习</span> 效率</a></li>
+<li><a href="#org356dd20">8.7. <span class="todo __">学习</span> 专注</a></li>
+<li><a href="#org50c6086">8.8. <span class="todo __">学习</span> 类型</a></li>
+<li><a href="#org683e63e">8.9. 作业-文本表述能力</a></li>
+<li><a href="#org8d91154">8.10. 英语听力</a></li>
+<li><a href="#org9add66a">8.11. 乒乓球</a></li>
 </ul>
 </li>
-<li><a href="#orgbb2ce92">10.4. <span class="todo __">零碎</span> 零碎的事情</a>
+<li><a href="#orgf81f0be">9. 终极写作模板 latex完美版</a>
 <ul>
-<li><a href="#org699a02c">10.4.1. <span class="done IDEA">IDEA</span> 在EE243的project可以参考3D RECONSTRUCTION</a></li>
-<li><a href="#orgeb19f42">10.4.2. <span class="todo TODO">TODO</span> 在EE243的project可以参考语义分析</a></li>
+<li><a href="#org5d73d17">9.1. 源代码</a></li>
+</ul>
+</li>
+<li><a href="#org0c55ba1">10. 待完成插件</a></li>
+<li><a href="#orgb964185">11. <span class="todo TODO">TODO</span> 待办事项</a>
+<ul>
+<li><a href="#org1be30f7">11.1. <span class="todo __">紧急</span> 紧急类型</a>
+<ul>
+<li><a href="#orgd5aaf49">11.1.1. <span class="todo TODO">TODO</span> 完成EE243 project proposal</a></li>
+<li><a href="#orgaa3c26d">11.1.2. <span class="todo TODO">TODO</span> 完成EE147 LAB2并提交</a></li>
+<li><a href="#org5e1a640">11.1.3. <span class="todo TODO">TODO</span> 完成EE243 HW2 完成并提交</a></li>
+<li><a href="#org6767705">11.1.4. <span class="todo TODO">TODO</span> 复习EE147</a></li>
+<li><a href="#org5cb5628">11.1.5. <span class="todo TODO">TODO</span> 完成EE297 project proposal</a></li>
+<li><a href="#org2bdb58a">11.1.6. <span class="todo TODO">TODO</span> 顶层能力</a></li>
+</ul>
+</li>
+<li><a href="#orgcc49d4e">11.2. <span class="todo __">学习</span> 学习知识，技能 长期任务</a>
+<ul>
+<li><a href="#org38f3640">11.2.1. <span class="todo TODO">TODO</span> 关于emacs Python 支持 以及jupyter notebook支持 matlab支持</a></li>
+<li><a href="#orge233535">11.2.2. <span class="todo TODO">TODO</span> 学习英语</a></li>
+<li><a href="#org2953f88">11.2.3. <span class="todo TODO">TODO</span> 学习Python语言 Tesoroflow</a></li>
+<li><a href="#org3b1f598">11.2.4. <span class="todo TODO">TODO</span> 学习emacs orgmode中的思维导图gtd</a></li>
+<li><a href="#org6b249ce">11.2.5. <span class="todo TODO">TODO</span> 学习子龙山人知乎视频中关于package自定义，加速emacs启动等相关内容</a></li>
+<li><a href="#org5c77650">11.2.6. <span class="todo TODO">TODO</span> 学习使用latex编辑公式 也即math mode</a></li>
+<li><a href="#org1160d7a">11.2.7. <span class="todo TODO">TODO</span> 学习使用思维导图模式来处理Ability的demo</a></li>
+<li><a href="#orgb17ac62">11.2.8. <span class="todo TODO">TODO</span> 解决掉demo.org转换html文件时速度极慢的问题</a></li>
+<li><a href="#orgf72196f">11.2.9. <span class="todo TODO">TODO</span> 关于emacs中的解决不了的问题，可以咨询Chen Bin在github</a></li>
+<li><a href="#orge3d9346">11.2.10. <span class="todo TODO">TODO</span> 最有效的学习layer配置自定义</a></li>
+</ul>
+</li>
+<li><a href="#orgbfa759e">11.3. <span class="todo __">事件</span> 需要处理的事情</a>
+<ul>
+<li><a href="#orgeff9c3f">11.3.1. <span class="todo TODO">TODO</span> 完成州内学费申请</a></li>
+<li><a href="#org7e7eecf">11.3.2. <span class="todo TODO">TODO</span> 完成Kim grad student form 截止日期 6.15</a></li>
+</ul>
+</li>
+<li><a href="#orgf938193">11.4. <span class="todo __">零碎</span> 零碎的事情</a>
+<ul>
+<li><a href="#orgcd3e349">11.4.1. <span class="done IDEA">IDEA</span> 在EE243的project可以参考3D RECONSTRUCTION</a></li>
+<li><a href="#org35f1448">11.4.2. <span class="todo TODO">TODO</span> 在EE243的project可以参考语义分析</a></li>
 </ul>
 </li>
 </ul>
@@ -530,16 +552,16 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-org0fd676c" class="outline-2">
-<h2 id="org0fd676c"><span class="section-number-2">1</span> Emaces Usful Command</h2>
+<div id="outline-container-org49f8dda" class="outline-2">
+<h2 id="org49f8dda"><span class="section-number-2">1</span> Emaces Usful Command</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org56e7e84" class="outline-3">
-<h3 id="org56e7e84"><span class="section-number-3">1.1</span> Command</h3>
+<div id="outline-container-orgf79d644" class="outline-3">
+<h3 id="orgf79d644"><span class="section-number-3">1.1</span> Command</h3>
 <div class="outline-text-3" id="text-1-1">
 </div>
-<div id="outline-container-orga35c667" class="outline-4">
-<h4 id="orga35c667"><span class="section-number-4">1.1.1</span> 常用命令</h4>
+<div id="outline-container-org6b7330d" class="outline-4">
+<h4 id="org6b7330d"><span class="section-number-4">1.1.1</span> 常用命令</h4>
 <div class="outline-text-4" id="text-1-1-1">
 <pre class="example">
 cmd --insecure 模式打开emacs才能有网络连接
@@ -566,8 +588,8 @@ M-m 0-9 提供于windows-numbering包 作用：当有多个buffer同时打开时
 </pre>
 </div>
 </div>
-<div id="outline-container-orgd02286e" class="outline-4">
-<h4 id="orgd02286e"><span class="section-number-4">1.1.2</span> 命令主菜单</h4>
+<div id="outline-container-orgb9549e6" class="outline-4">
+<h4 id="orgb9549e6"><span class="section-number-4">1.1.2</span> 命令主菜单</h4>
 <div class="outline-text-4" id="text-1-1-2">
 <pre class="example">
 M-m spacemacs buffer管理
@@ -578,8 +600,8 @@ c-h 帮助
 </pre>
 </div>
 </div>
-<div id="outline-container-org56e22ac" class="outline-4">
-<h4 id="org56e22ac"><span class="section-number-4">1.1.3</span> 帮助</h4>
+<div id="outline-container-orgc2c7013" class="outline-4">
+<h4 id="orgc2c7013"><span class="section-number-4">1.1.3</span> 帮助</h4>
 <div class="outline-text-4" id="text-1-1-3">
 <pre class="example">
 c-h 主命令
@@ -591,12 +613,12 @@ c-h k 快捷键
 </div>
 </div>
 </div>
-<div id="outline-container-org257509f" class="outline-3">
-<h3 id="org257509f"><span class="section-number-3">1.2</span> 一些解决方案</h3>
+<div id="outline-container-org1626c39" class="outline-3">
+<h3 id="org1626c39"><span class="section-number-3">1.2</span> 一些解决方案</h3>
 <div class="outline-text-3" id="text-1-2">
 </div>
-<div id="outline-container-org5a30260" class="outline-4">
-<h4 id="org5a30260"><span class="section-number-4">1.2.1</span> 多buffer管理：</h4>
+<div id="outline-container-org0533685" class="outline-4">
+<h4 id="org0533685"><span class="section-number-4">1.2.1</span> 多buffer管理：</h4>
 <div class="outline-text-4" id="text-1-2-1">
 <p>
 先分屏 后打开buffer
@@ -613,8 +635,8 @@ M-m #number 跳转到第几个窗口
 </p>
 </div>
 </div>
-<div id="outline-container-org7feb423" class="outline-4">
-<h4 id="org7feb423"><span class="section-number-4">1.2.2</span> 任意文件同一个窗口打开</h4>
+<div id="outline-container-orga5d9fdf" class="outline-4">
+<h4 id="orga5d9fdf"><span class="section-number-4">1.2.2</span> 任意文件同一个窗口打开</h4>
 <div class="outline-text-4" id="text-1-2-2">
 <pre class="example">
 C-x C-f 打开文件的命令，
@@ -622,20 +644,20 @@ type ~/然后回车 直接打开根目录
 </pre>
 </div>
 </div>
-<div id="outline-container-org4b467ab" class="outline-4">
-<h4 id="org4b467ab"><span class="section-number-4">1.2.3</span> 快捷跳转行数</h4>
+<div id="outline-container-org56a577a" class="outline-4">
+<h4 id="org56a577a"><span class="section-number-4">1.2.3</span> 快捷跳转行数</h4>
 <div class="outline-text-4" id="text-1-2-3">
 <pre class="example">
 M-g g 跳转到第几行  需要设置显示行数功能
 </pre>
 </div>
 </div>
-<div id="outline-container-orgedc3f9f" class="outline-4">
-<h4 id="orgedc3f9f"><span class="section-number-4">1.2.4</span> 设置在左侧显示行数功能</h4>
+<div id="outline-container-orgfd827a1" class="outline-4">
+<h4 id="orgfd827a1"><span class="section-number-4">1.2.4</span> 设置在左侧显示行数功能</h4>
 <div class="outline-text-4" id="text-1-2-4">
 </div>
 <ol class="org-ol">
-<li><a id="org2bdf6cc"></a>绑定按键及配置文件<br />
+<li><a id="org57648ec"></a>绑定按键及配置文件<br />
 <div class="outline-text-5" id="text-1-2-4-1">
 <pre class="example">
 spacemacs build in function
@@ -652,14 +674,14 @@ C-x t 绑定按键到M-x linum-mode
 </pre>
 </div>
 </li>
-<li><a id="org6c32750"></a>特别注意需要linum-relative package的支持<br />
+<li><a id="org1223f71"></a>特别注意需要linum-relative package的支持<br />
 <div class="outline-text-5" id="text-1-2-4-2">
 <p>
 在.spaces中初始化才能startup载入
 </p>
 </div>
 </li>
-<li><a id="org72c7b03"></a>可以直接搜索变量 C-h v 然后配置变量<br />
+<li><a id="org1e97067"></a>可以直接搜索变量 C-h v 然后配置变量<br />
 <div class="outline-text-5" id="text-1-2-4-3">
 <p>
 好处是，可以通过UI界面来配置初始化变量
@@ -668,19 +690,19 @@ C-x t 绑定按键到M-x linum-mode
 </li>
 </ol>
 </div>
-<div id="outline-container-org93c91e3" class="outline-4">
-<h4 id="org93c91e3"><span class="section-number-4">1.2.5</span> 复制粘贴及矩形区域选择解决方案</h4>
+<div id="outline-container-orga38540e" class="outline-4">
+<h4 id="orga38540e"><span class="section-number-4">1.2.5</span> 复制粘贴及矩形区域选择解决方案</h4>
 <div class="outline-text-4" id="text-1-2-5">
 </div>
 <ol class="org-ol">
-<li><a id="org8c2e2b0"></a>利用expand region的快捷键<br />
+<li><a id="org1abd8f3"></a>利用expand region的快捷键<br />
 <div class="outline-text-5" id="text-1-2-5-1">
 <pre class="example">
 M-m v 标记并可以调整区域
 </pre>
 </div>
 </li>
-<li><a id="org8ae406c"></a>利用C-x C-x 瞬间交换光标的位置与开头或者结尾<br />
+<li><a id="org150b9bd"></a>利用C-x C-x 瞬间交换光标的位置与开头或者结尾<br />
 <div class="outline-text-5" id="text-1-2-5-2">
 <p>
 完美！解决！
@@ -689,12 +711,12 @@ M-m v 标记并可以调整区域
 </li>
 </ol>
 </div>
-<div id="outline-container-org62273e1" class="outline-4">
-<h4 id="org62273e1"><span class="section-number-4">1.2.6</span> 笔记，保存及预览设置</h4>
+<div id="outline-container-orge6fd4de" class="outline-4">
+<h4 id="orge6fd4de"><span class="section-number-4">1.2.6</span> 笔记，保存及预览设置</h4>
 <div class="outline-text-4" id="text-1-2-6">
 </div>
 <ol class="org-ol">
-<li><a id="org6d76b90"></a>目前最优方案<br />
+<li><a id="org76de7c9"></a>目前最优方案<br />
 <div class="outline-text-5" id="text-1-2-6-1">
 <p>
 导出为html文件
@@ -705,7 +727,7 @@ M-m v 标记并可以调整区域
 </p>
 </div>
 </li>
-<li><a id="orga1c72ac"></a>注意事项<br />
+<li><a id="orgfc52d10"></a>注意事项<br />
 <div class="outline-text-5" id="text-1-2-6-2">
 <p>
 需要刷新
@@ -714,8 +736,8 @@ M-m v 标记并可以调整区域
 </li>
 </ol>
 </div>
-<div id="outline-container-orgeb4dd24" class="outline-4">
-<h4 id="orgeb4dd24"><span class="section-number-4">1.2.7</span> 在org mode里面插入图片，并且可以选择直接在本文文档中查看图片</h4>
+<div id="outline-container-org5e1d0e1" class="outline-4">
+<h4 id="org5e1d0e1"><span class="section-number-4">1.2.7</span> 在org mode里面插入图片，并且可以选择直接在本文文档中查看图片</h4>
 <div class="outline-text-4" id="text-1-2-7">
 <pre class="example">
 首先，把图片文件放入当前路径中
@@ -727,12 +749,12 @@ M-m v 标记并可以调整区域
 </div>
 </div>
 </div>
-<div id="outline-container-org68b874b" class="outline-3">
-<h3 id="org68b874b"><span class="section-number-3">1.3</span> Spacemacs</h3>
+<div id="outline-container-org297aa6d" class="outline-3">
+<h3 id="org297aa6d"><span class="section-number-3">1.3</span> Spacemacs</h3>
 <div class="outline-text-3" id="text-1-3">
 </div>
-<div id="outline-container-org6feefe9" class="outline-4">
-<h4 id="org6feefe9"><span class="section-number-4">1.3.1</span> Spacemacs 配置文件 添加package cuda-mode</h4>
+<div id="outline-container-orgebb4115" class="outline-4">
+<h4 id="orgebb4115"><span class="section-number-4">1.3.1</span> Spacemacs 配置文件 添加package cuda-mode</h4>
 <div class="outline-text-4" id="text-1-3-1">
 <p>
 添加该段代码到.spacemacs.el文件中的合适位置
@@ -770,8 +792,8 @@ layers configuration."
 </pre>
 </div>
 </div>
-<div id="outline-container-orgc19d565" class="outline-4">
-<h4 id="orgc19d565"><span class="section-number-4">1.3.2</span> Spacemacs 配置文件 初始化init.el文件 使所有buffer默认打开company模式</h4>
+<div id="outline-container-org38867ad" class="outline-4">
+<h4 id="org38867ad"><span class="section-number-4">1.3.2</span> Spacemacs 配置文件 初始化init.el文件 使所有buffer默认打开company模式</h4>
 <div class="outline-text-4" id="text-1-3-2">
 <pre class="example">
 ;; Enable global company mode
@@ -784,8 +806,8 @@ layers configuration."
 </div>
 </div>
 </div>
-<div id="outline-container-org0b8f912" class="outline-3">
-<h3 id="org0b8f912"><span class="section-number-3">1.4</span> Company 自动补全包 命令集</h3>
+<div id="outline-container-org55a80da" class="outline-3">
+<h3 id="org55a80da"><span class="section-number-3">1.4</span> Company 自动补全包 命令集</h3>
 <div class="outline-text-3" id="text-1-4">
 <pre class="example">
 M-n M-p select
@@ -795,16 +817,16 @@ M-(digit) to quickly complete with one of the first 10 candidates.
 </pre>
 </div>
 </div>
-<div id="outline-container-orgd69476e" class="outline-3">
-<h3 id="orgd69476e"><span class="section-number-3">1.5</span> Expand-region 快捷键文本选中 package</h3>
+<div id="outline-container-org9c1ff0f" class="outline-3">
+<h3 id="org9c1ff0f"><span class="section-number-3">1.5</span> Expand-region 快捷键文本选中 package</h3>
 <div class="outline-text-3" id="text-1-5">
 <pre class="example">
 M-m v 选中当前光标所在的单词，继续按v则扩大选区 V则缩小选区 具体命令见下方说明
 </pre>
 </div>
 </div>
-<div id="outline-container-orgddbd685" class="outline-3">
-<h3 id="orgddbd685"><span class="section-number-3">1.6</span> Magit package自动上传本地文档到github</h3>
+<div id="outline-container-org77a9fb2" class="outline-3">
+<h3 id="org77a9fb2"><span class="section-number-3">1.6</span> Magit package自动上传本地文档到github</h3>
 <div class="outline-text-3" id="text-1-6">
 <pre class="example">
 C-x g 已通过global-set-key自定义绑定 键位 到命令magit-status
@@ -820,12 +842,12 @@ P u 大写P表示push命令
 </pre>
 </div>
 </div>
-<div id="outline-container-orgd8a92da" class="outline-3">
-<h3 id="orgd8a92da"><span class="section-number-3">1.7</span> Git-auto-commit 每次保存文件自动commit到github 需要在.spaces中初始化才能startup载入</h3>
+<div id="outline-container-orgcc90c5b" class="outline-3">
+<h3 id="orgcc90c5b"><span class="section-number-3">1.7</span> Git-auto-commit 每次保存文件自动commit到github 需要在.spaces中初始化才能startup载入</h3>
 <div class="outline-text-3" id="text-1-7">
 </div>
-<div id="outline-container-org90110f0" class="outline-4">
-<h4 id="org90110f0"><span class="section-number-4">1.7.1</span> 配置步骤</h4>
+<div id="outline-container-org9d83c3b" class="outline-4">
+<h4 id="org9d83c3b"><span class="section-number-4">1.7.1</span> 配置步骤</h4>
 <div class="outline-text-4" id="text-1-7-1">
 <p>
 需要两步：
@@ -842,8 +864,8 @@ git config --global user.email yyang181@github.com
 </pre>
 </div>
 </div>
-<div id="outline-container-orge53b549" class="outline-4">
-<h4 id="orge53b549"><span class="section-number-4">1.7.2</span> 使用方法</h4>
+<div id="outline-container-orgcb035af" class="outline-4">
+<h4 id="orgcb035af"><span class="section-number-4">1.7.2</span> 使用方法</h4>
 <div class="outline-text-4" id="text-1-7-2">
 <p>
 当且仅当 处理单个文件的编译时，想要多次一键测试结果 可以开启 gac-mode,也即git-auto-commit-mode
@@ -857,8 +879,8 @@ C-x p 打开gac模式，使得保存文件之后自动commit push
 </pre>
 </div>
 </div>
-<div id="outline-container-org1451533" class="outline-4">
-<h4 id="org1451533"><span class="section-number-4">1.7.3</span> 按键配置代码 init.el文件</h4>
+<div id="outline-container-org1295e00" class="outline-4">
+<h4 id="org1295e00"><span class="section-number-4">1.7.3</span> 按键配置代码 init.el文件</h4>
 <div class="outline-text-4" id="text-1-7-3">
 <pre class="example">
 ;; global-set-key
@@ -867,12 +889,12 @@ C-x p 打开gac模式，使得保存文件之后自动commit push
 </div>
 </div>
 </div>
-<div id="outline-container-org3ac0e55" class="outline-3">
-<h3 id="org3ac0e55"><span class="section-number-3">1.8</span> Evil-nerd-commenter Package</h3>
+<div id="outline-container-org778f42e" class="outline-3">
+<h3 id="org778f42e"><span class="section-number-3">1.8</span> Evil-nerd-commenter Package</h3>
 <div class="outline-text-3" id="text-1-8">
 </div>
-<div id="outline-container-org8b15b3d" class="outline-4">
-<h4 id="org8b15b3d"><span class="section-number-4">1.8.1</span> 配置步骤</h4>
+<div id="outline-container-orgca7edd1" class="outline-4">
+<h4 id="orgca7edd1"><span class="section-number-4">1.8.1</span> 配置步骤</h4>
 <div class="outline-text-4" id="text-1-8-1">
 <p>
 unsigned 需要在.spaces中初始化才能startup载入
@@ -895,8 +917,8 @@ unsigned 需要在.spaces中初始化才能startup载入
 </pre>
 </div>
 </div>
-<div id="outline-container-orgd21dc77" class="outline-4">
-<h4 id="orgd21dc77"><span class="section-number-4">1.8.2</span> 使用方法</h4>
+<div id="outline-container-org18035b0" class="outline-4">
+<h4 id="org18035b0"><span class="section-number-4">1.8.2</span> 使用方法</h4>
 <div class="outline-text-4" id="text-1-8-2">
 <pre class="example">
 C-u number M-; 注释从当前行开始的 number 行
@@ -904,12 +926,12 @@ C-u number M-; 注释从当前行开始的 number 行
 </div>
 </div>
 </div>
-<div id="outline-container-orga9a1790" class="outline-3">
-<h3 id="orga9a1790"><span class="section-number-3">1.9</span> Flycheck</h3>
+<div id="outline-container-org6fb72be" class="outline-3">
+<h3 id="org6fb72be"><span class="section-number-3">1.9</span> Flycheck</h3>
 <div class="outline-text-3" id="text-1-9">
 </div>
-<div id="outline-container-orga6879d3" class="outline-4">
-<h4 id="orga6879d3"><span class="section-number-4">1.9.1</span> 配置方法</h4>
+<div id="outline-container-org9215363" class="outline-4">
+<h4 id="org9215363"><span class="section-number-4">1.9.1</span> 配置方法</h4>
 <div class="outline-text-4" id="text-1-9-1">
 <p>
 package unsigned 需要在.spacemacs中配置
@@ -931,8 +953,8 @@ C-h v type flycheck-check-syntax-automatically
 </div>
 </div>
 </div>
-<div id="outline-container-orga218f96" class="outline-3">
-<h3 id="orga218f96"><span class="section-number-3">1.10</span> Git 综述</h3>
+<div id="outline-container-org0de08db" class="outline-3">
+<h3 id="org0de08db"><span class="section-number-3">1.10</span> Git 综述</h3>
 <div class="outline-text-3" id="text-1-10">
 <p>
 结合两个package完美一键push到github
@@ -947,12 +969,12 @@ C-h v type flycheck-check-syntax-automatically
 </ul>
 </div>
 </div>
-<div id="outline-container-org3722e38" class="outline-3">
-<h3 id="org3722e38"><span class="section-number-3">1.11</span> 神器：global-set-key自定义绑定 键位 到命令</h3>
+<div id="outline-container-org7c8d532" class="outline-3">
+<h3 id="org7c8d532"><span class="section-number-3">1.11</span> 神器：global-set-key自定义绑定 键位 到命令</h3>
 <div class="outline-text-3" id="text-1-11">
 </div>
-<div id="outline-container-org256bb2a" class="outline-4">
-<h4 id="org256bb2a"><span class="section-number-4">1.11.1</span> 方法一 修改init.el文件</h4>
+<div id="outline-container-org004c746" class="outline-4">
+<h4 id="org004c746"><span class="section-number-4">1.11.1</span> 方法一 修改init.el文件</h4>
 <div class="outline-text-4" id="text-1-11-1">
 <pre class="example">
 ;; global-set-key
@@ -960,8 +982,8 @@ C-h v type flycheck-check-syntax-automatically
 </pre>
 </div>
 </div>
-<div id="outline-container-orgfd598e8" class="outline-4">
-<h4 id="orgfd598e8"><span class="section-number-4">1.11.2</span> 方法二 可能会出现单次设置单次使用</h4>
+<div id="outline-container-orgb2a1bf1" class="outline-4">
+<h4 id="orgb2a1bf1"><span class="section-number-4">1.11.2</span> 方法二 可能会出现单次设置单次使用</h4>
 <div class="outline-text-4" id="text-1-11-2">
 <pre class="example">
 M-x global-set-key 
@@ -971,12 +993,12 @@ type 需要绑定的命令 并按enter确认
 </div>
 </div>
 </div>
-<div id="outline-container-org416f723" class="outline-3">
-<h3 id="org416f723"><span class="section-number-3">1.12</span> Python 语言支持及jupyter notebook引用</h3>
+<div id="outline-container-org010ee9a" class="outline-3">
+<h3 id="org010ee9a"><span class="section-number-3">1.12</span> Python 语言支持及jupyter notebook引用</h3>
 <div class="outline-text-3" id="text-1-12">
 </div>
-<div id="outline-container-org6edc8cc" class="outline-4">
-<h4 id="org6edc8cc"><span class="section-number-4">1.12.1</span> ein:中jupyter notebook命令集</h4>
+<div id="outline-container-org816ef35" class="outline-4">
+<h4 id="org816ef35"><span class="section-number-4">1.12.1</span> ein:中jupyter notebook命令集</h4>
 <div class="outline-text-4" id="text-1-12-1">
 <pre class="example">
 key             binding
@@ -1056,11 +1078,11 @@ C-c M-}         ein:notebook-worksheet-move-next
 </pre>
 </div>
 </div>
-<div id="outline-container-org28a192a" class="outline-4">
-<h4 id="org28a192a"><span class="section-number-4">1.12.2</span> 打开jupyter notebook的url <a href="http://localhost:8892/tree">http://localhost:8892/tree</a></h4>
+<div id="outline-container-orgea1b73c" class="outline-4">
+<h4 id="orgea1b73c"><span class="section-number-4">1.12.2</span> 打开jupyter notebook的url <a href="http://localhost:8892/tree">http://localhost:8892/tree</a></h4>
 </div>
-<div id="outline-container-org9fd7f04" class="outline-4">
-<h4 id="org9fd7f04"><span class="section-number-4">1.12.3</span> 重要知识</h4>
+<div id="outline-container-orga09b0ad" class="outline-4">
+<h4 id="orga09b0ad"><span class="section-number-4">1.12.3</span> 重要知识</h4>
 <div class="outline-text-4" id="text-1-12-3">
 <p>
 因为最初安装的时候只在anaconda里面装了jupyter，所以Windows的cmd并不能直接运行Jupyter
@@ -1076,15 +1098,15 @@ Windows的cmd中直接输入jupyter notebook 打开浏览器中相关内容了
 </p>
 </div>
 </div>
-<div id="outline-container-org44f5359" class="outline-4">
-<h4 id="org44f5359"><span class="section-number-4">1.12.4</span> 安装两个package</h4>
+<div id="outline-container-org2c4b235" class="outline-4">
+<h4 id="org2c4b235"><span class="section-number-4">1.12.4</span> 安装两个package</h4>
 <div class="outline-text-4" id="text-1-12-4">
 </div>
 <ol class="org-ol">
-<li><a id="org3bfeeb6"></a>重点谈一下ein包<br />
+<li><a id="org8bef58f"></a>重点谈一下ein包<br />
 <ol class="org-ol">
-<li><a id="orge90de1e"></a>ein unsigned需要在.spacemacs文件中添加package 用来调用jupyter notebook虚拟环境<br /></li>
-<li><a id="org75bad31"></a>配置两个变量 ein:jupyter-default-server-command ein:jupyter-default-notebook-directory<br />
+<li><a id="orgb71705a"></a>ein unsigned需要在.spacemacs文件中添加package 用来调用jupyter notebook虚拟环境<br /></li>
+<li><a id="org06a6a3f"></a>配置两个变量 ein:jupyter-default-server-command ein:jupyter-default-notebook-directory<br />
 <div class="outline-text-6" id="text-1-12-4-1-2">
 <pre class="example">
 ein:jupyter-default-server-command and set the value to the path you determined above.
@@ -1092,34 +1114,34 @@ ein:jupyter-default-notebook-directory and set it to the path where you are keep
 </pre>
 </div>
 </li>
-<li><a id="orge9c0476"></a><br /></li>
+<li><a id="org7a868b9"></a><br /></li>
 </ol>
 </li>
 </ol>
 </div>
-<div id="outline-container-org6e675bf" class="outline-4">
-<h4 id="org6e675bf"><span class="section-number-4">1.12.5</span> 安装两个package</h4>
+<div id="outline-container-org2556c8a" class="outline-4">
+<h4 id="org2556c8a"><span class="section-number-4">1.12.5</span> 安装两个package</h4>
 <div class="outline-text-4" id="text-1-12-5">
 </div>
 <ol class="org-ol">
-<li><a id="org9830ccf"></a>elpy unsigned需要在.spacemacs文件中添加package 用来支持Python mode<br /></li>
-<li><a id="org7b35e89"></a>pyvenv unsigned需要在.spacemacs文件中添加package 用来调用jupyter notebook虚拟环境<br /></li>
-<li><a id="orgc1bfc15"></a>pyvenv package已经被证实不好用，用ein官方包代替<br /></li>
+<li><a id="org9eaeb51"></a>elpy unsigned需要在.spacemacs文件中添加package 用来支持Python mode<br /></li>
+<li><a id="orge9f0107"></a>pyvenv unsigned需要在.spacemacs文件中添加package 用来调用jupyter notebook虚拟环境<br /></li>
+<li><a id="org1e3938f"></a>pyvenv package已经被证实不好用，用ein官方包代替<br /></li>
 </ol>
 </div>
 </div>
-<div id="outline-container-org8fcb889" class="outline-3">
-<h3 id="org8fcb889"><span class="section-number-3">1.13</span> 重要：配置private layer:yyang181</h3>
+<div id="outline-container-org670ecb1" class="outline-3">
+<h3 id="org670ecb1"><span class="section-number-3">1.13</span> 重要：配置private layer:yyang181</h3>
 <div class="outline-text-3" id="text-1-13">
 </div>
-<div id="outline-container-org2dde8f5" class="outline-4">
-<h4 id="org2dde8f5"><span class="section-number-4">1.13.1</span> 优先使用.spacemacs文件，如果没有，使用init.el文件生成.spacemacs</h4>
+<div id="outline-container-org30a934d" class="outline-4">
+<h4 id="org30a934d"><span class="section-number-4">1.13.1</span> 优先使用.spacemacs文件，如果没有，使用init.el文件生成.spacemacs</h4>
 </div>
-<div id="outline-container-org60ab3a3" class="outline-4">
-<h4 id="org60ab3a3"><span class="section-number-4">1.13.2</span> 只修改两个文件init.el 和.spacemacs</h4>
+<div id="outline-container-orgdf1157c" class="outline-4">
+<h4 id="orgdf1157c"><span class="section-number-4">1.13.2</span> 只修改两个文件init.el 和.spacemacs</h4>
 </div>
-<div id="outline-container-orgca90576" class="outline-4">
-<h4 id="orgca90576"><span class="section-number-4">1.13.3</span> 设置users layer .spacemacs</h4>
+<div id="outline-container-org9276b5f" class="outline-4">
+<h4 id="org9276b5f"><span class="section-number-4">1.13.3</span> 设置users layer .spacemacs</h4>
 <div class="outline-text-4" id="text-1-13-3">
 <pre class="example">
 (setq-default dotspacemacs-configuration-layers
@@ -1131,12 +1153,12 @@ ein:jupyter-default-notebook-directory and set it to the path where you are keep
 </pre>
 </div>
 </div>
-<div id="outline-container-org0113925" class="outline-4">
-<h4 id="org0113925"><span class="section-number-4">1.13.4</span> .spacemacs文件</h4>
+<div id="outline-container-org3d439b1" class="outline-4">
+<h4 id="org3d439b1"><span class="section-number-4">1.13.4</span> .spacemacs文件</h4>
 <div class="outline-text-4" id="text-1-13-4">
 </div>
 <ol class="org-ol">
-<li><a id="org4ef3956"></a>设置users layer .spacemacs<br />
+<li><a id="orgbb12350"></a>设置users layer .spacemacs<br />
 <div class="outline-text-5" id="text-1-13-4-1">
 <pre class="example">
 (setq-default dotspacemacs-configuration-layers
@@ -1148,9 +1170,9 @@ ein:jupyter-default-notebook-directory and set it to the path where you are keep
 </pre>
 </div>
 </li>
-<li><a id="org387a26e"></a>配置layers variables<br />
+<li><a id="orgd79df55"></a>配置layers variables<br />
 <ol class="org-ol">
-<li><a id="org016d2e2"></a>方法一<br />
+<li><a id="org191addc"></a>方法一<br />
 <div class="outline-text-6" id="text-1-13-4-2-1">
 <p>
 例子
@@ -1176,7 +1198,7 @@ git-magit-status-fullscreen 等是变量名 及变量value
 </pre>
 </div>
 </li>
-<li><a id="org664dae4"></a>方法二<br />
+<li><a id="org60137b6"></a>方法二<br />
 <div class="outline-text-6" id="text-1-13-4-2-2">
 <pre class="example">
 dotspacemacs/user-init 在这个函数中配置variables
@@ -1185,9 +1207,9 @@ dotspacemacs/user-init 在这个函数中配置variables
 </li>
 </ol>
 </li>
-<li><a id="org2064ea7"></a>禁止package在其他layer的使用<br />
+<li><a id="orgbad3c55"></a>禁止package在其他layer的使用<br />
 <ol class="org-ol">
-<li><a id="org400ef44"></a>代码<br />
+<li><a id="org733a4e9"></a>代码<br />
 <div class="outline-text-6" id="text-1-13-4-3-1">
 <pre class="example">
 (defun dotspacemacs/layers ()
@@ -1198,7 +1220,7 @@ dotspacemacs/user-init 在这个函数中配置variables
 </pre>
 </div>
 </li>
-<li><a id="org4214cb4"></a>解释<br />
+<li><a id="org87694ae"></a>解释<br />
 <div class="outline-text-6" id="text-1-13-4-3-2">
 <p>
 只用看最后一行
@@ -1211,12 +1233,12 @@ dotspacemacs/user-init 在这个函数中配置variables
 </li>
 </ol>
 </li>
-<li><a id="org5915d8f"></a>允许package在其他layer的使用<br />
+<li><a id="org857130a"></a>允许package在其他layer的使用<br />
 <ol class="org-ol">
-<li><a id="orge1d94f9"></a>:enabled-for 其他同上<br /></li>
+<li><a id="orga415c22"></a>:enabled-for 其他同上<br /></li>
 </ol>
 </li>
-<li><a id="org3ec9b79"></a>允许或者禁用layer的package<br />
+<li><a id="orgf04297f"></a>允许或者禁用layer的package<br />
 <div class="outline-text-5" id="text-1-13-4-5">
 <pre class="example">
 (defun dotspacemacs/layers ()
@@ -1234,7 +1256,7 @@ dotspacemacs/user-init 在这个函数中配置variables
 </pre>
 </div>
 </li>
-<li><a id="org89baaae"></a>Global line numbers<br />
+<li><a id="org3bf7390"></a>Global line numbers<br />
 <div class="outline-text-5" id="text-1-13-4-6">
 <pre class="example">
 (setq-default dotspacemacs-line-numbers t)
@@ -1244,15 +1266,15 @@ dotspacemacs/user-init 在这个函数中配置variables
 </ol>
 </div>
 </div>
-<div id="outline-container-org775a877" class="outline-3">
-<h3 id="org775a877"><span class="section-number-3">1.14</span> Configuration Layers</h3>
+<div id="outline-container-org1ee8017" class="outline-3">
+<h3 id="org1ee8017"><span class="section-number-3">1.14</span> Configuration Layers</h3>
 <div class="outline-text-3" id="text-1-14">
 </div>
-<div id="outline-container-org09dc951" class="outline-4">
-<h4 id="org09dc951"><span class="section-number-4">1.14.1</span> 可以检查其他人的layer里面的文件来学习使用方法</h4>
+<div id="outline-container-org937e607" class="outline-4">
+<h4 id="org937e607"><span class="section-number-4">1.14.1</span> 可以检查其他人的layer里面的文件来学习使用方法</h4>
 </div>
-<div id="outline-container-org93b9f19" class="outline-4">
-<h4 id="org93b9f19"><span class="section-number-4">1.14.2</span> 结构</h4>
+<div id="outline-container-orgbb715ec" class="outline-4">
+<h4 id="orgbb715ec"><span class="section-number-4">1.14.2</span> 结构</h4>
 <div class="outline-text-4" id="text-1-14-2">
 <pre class="example">
 [layer_name]
@@ -1270,8 +1292,8 @@ dotspacemacs/user-init 在这个函数中配置variables
 </pre>
 </div>
 </div>
-<div id="outline-container-org63500a5" class="outline-4">
-<h4 id="org63500a5"><span class="section-number-4">1.14.3</span> layer中各种文件的作用</h4>
+<div id="outline-container-orge2d23d7" class="outline-4">
+<h4 id="orge2d23d7"><span class="section-number-4">1.14.3</span> layer中各种文件的作用</h4>
 <div class="outline-text-4" id="text-1-14-3">
 <pre class="example">
 layers.el
@@ -1293,21 +1315,21 @@ installed from an online source using quelpa.
 </pre>
 </div>
 </div>
-<div id="outline-container-orgcbbf434" class="outline-4">
-<h4 id="orgcbbf434"><span class="section-number-4">1.14.4</span> 配置packages</h4>
+<div id="outline-container-orga05e785" class="outline-4">
+<h4 id="orga05e785"><span class="section-number-4">1.14.4</span> 配置packages</h4>
 <div class="outline-text-4" id="text-1-14-4">
 </div>
 <ol class="org-ol">
-<li><a id="org20cfc77"></a>声明packages<br />
+<li><a id="org020eb62"></a>声明packages<br />
 <ol class="org-ol">
-<li><a id="org8476380"></a>官方文件的方法<br />
+<li><a id="org587ea63"></a>官方文件的方法<br />
 <div class="outline-text-6" id="text-1-14-4-1-1">
 <pre class="example">
 (setq &lt;layer&gt;-packages '(package1 package2 ...)
 </pre>
 </div>
 </li>
-<li><a id="org1f1f5e7"></a>本地packages文件的方法<br />
+<li><a id="org46dc051"></a>本地packages文件的方法<br />
 <div class="outline-text-6" id="text-1-14-4-1-2">
 <pre class="example">
 (defconst yyang181-packages
@@ -1318,16 +1340,16 @@ installed from an online source using quelpa.
 </li>
 </ol>
 </li>
-<li><a id="org1671600"></a>初始化packages<br />
+<li><a id="org2987dcb"></a>初始化packages<br />
 <ol class="org-ol">
-<li><a id="org3fb8cdd"></a>官方说明<br />
+<li><a id="orge495545"></a>官方说明<br />
 <div class="outline-text-6" id="text-1-14-4-2-1">
 <pre class="example">
 (defun &lt;layer&gt;/init-xxx () ...body )
 </pre>
 </div>
 </li>
-<li><a id="orgd8d5034"></a>配置例子<br />
+<li><a id="orga34f206"></a>配置例子<br />
 <div class="outline-text-6" id="text-1-14-4-2-2">
 <pre class="example">
 (use-package color-moccur
@@ -1351,15 +1373,15 @@ installed from an online source using quelpa.
 </pre>
 </div>
 </li>
-<li><a id="org3fa1d8a"></a>尽可能放到:config里面 不要放到：init里面，为了加快启动速度<br /></li>
-<li><a id="org3ca8292"></a>自动安装到系统<br />
+<li><a id="org659b174"></a>尽可能放到:config里面 不要放到：init里面，为了加快启动速度<br /></li>
+<li><a id="org148aefa"></a>自动安装到系统<br />
 <div class="outline-text-6" id="text-1-14-4-2-4">
 <pre class="example">
 :ensure t
 </pre>
 </div>
 </li>
-<li><a id="orgc2d3b3c"></a>自动删除旧版更新命令<br />
+<li><a id="org3193ec0"></a>自动删除旧版更新命令<br />
 <div class="outline-text-6" id="text-1-14-4-2-5">
 <pre class="example">
 :config
@@ -1375,8 +1397,8 @@ installed from an online source using quelpa.
 </div>
 </div>
 </div>
-<div id="outline-container-org224eaa9" class="outline-2">
-<h2 id="org224eaa9"><span class="section-number-2">2</span> Latex 编辑命令</h2>
+<div id="outline-container-org8805f39" class="outline-2">
+<h2 id="org8805f39"><span class="section-number-2">2</span> Latex 编辑命令</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 4** 导出pdf
@@ -1387,8 +1409,8 @@ C-c C-c 编译latex文件
 之后打开pdf即可
 </pre>
 </div>
-<div id="outline-container-org876821f" class="outline-3">
-<h3 id="org876821f"><span class="section-number-3">2.1</span> 中文环境包</h3>
+<div id="outline-container-orgcd625ad" class="outline-3">
+<h3 id="orgcd625ad"><span class="section-number-3">2.1</span> 中文环境包</h3>
 <div class="outline-text-3" id="text-2-1">
 <pre class="example">
 % 中文支持包
@@ -1403,23 +1425,23 @@ C-c C-c 编译latex文件
 </pre>
 </div>
 </div>
-<div id="outline-container-org067215b" class="outline-3">
-<h3 id="org067215b"><span class="section-number-3">2.2</span> latex编辑公式</h3>
+<div id="outline-container-org7fc402e" class="outline-3">
+<h3 id="org7fc402e"><span class="section-number-3">2.2</span> latex编辑公式</h3>
 <div class="outline-text-3" id="text-2-2">
 </div>
-<div id="outline-container-orgbfc3359" class="outline-4">
-<h4 id="orgbfc3359"><span class="section-number-4">2.2.1</span> 博客资源：如何写公式</h4>
+<div id="outline-container-orgbc8af5b" class="outline-4">
+<h4 id="orgbc8af5b"><span class="section-number-4">2.2.1</span> 博客资源：如何写公式</h4>
 <div class="outline-text-4" id="text-2-2-1">
 </div>
 <ol class="org-ol">
-<li><a id="orgadd9796"></a>符号<br />
+<li><a id="org18d2e96"></a>符号<br />
 <div class="outline-text-5" id="text-2-2-1-1">
 <p>
 <a href="https://blog.csdn.net/fansongy/article/details/45368915">https://blog.csdn.net/fansongy/article/details/45368915</a>
 </p>
 </div>
 </li>
-<li><a id="org175fc7d"></a>环境设置<br />
+<li><a id="orgb025e44"></a>环境设置<br />
 <div class="outline-text-5" id="text-2-2-1-2">
 <p>
 <a href="https://www.cnblogs.com/Sinte-Beuve/p/6160905.html">https://www.cnblogs.com/Sinte-Beuve/p/6160905.html</a>
@@ -1427,7 +1449,7 @@ C-c C-c 编译latex文件
 </p>
 </div>
 </li>
-<li><a id="orgd943fd1"></a>在sharelatex中测试代码<br />
+<li><a id="org2630a36"></a>在sharelatex中测试代码<br />
 <div class="outline-text-5" id="text-2-2-1-3">
 <p>
 <a href="https://cngg584.sharelatex.com/project/5ae1028219ebac1fe344cc04">https://cngg584.sharelatex.com/project/5ae1028219ebac1fe344cc04</a>
@@ -1436,12 +1458,12 @@ C-c C-c 编译latex文件
 </li>
 </ol>
 </div>
-<div id="outline-container-org4830d46" class="outline-4">
-<h4 id="org4830d46"><span class="section-number-4">2.2.2</span> 公式环境</h4>
+<div id="outline-container-org8f8bb44" class="outline-4">
+<h4 id="org8f8bb44"><span class="section-number-4">2.2.2</span> 公式环境</h4>
 <div class="outline-text-4" id="text-2-2-2">
 </div>
 <ol class="org-ol">
-<li><a id="orgd5e3ab4"></a>插入公式<br />
+<li><a id="org039b81a"></a>插入公式<br />
 <div class="outline-text-5" id="text-2-2-2-1">
 <pre class="example">
 $ $ 之间写公式 直接在文中加入
@@ -1451,7 +1473,7 @@ $ $ 之间写公式 直接在文中加入
 </pre>
 </div>
 </li>
-<li><a id="orge080683"></a>多个公式组<br />
+<li><a id="org7d46c8e"></a>多个公式组<br />
 <div class="outline-text-5" id="text-2-2-2-2">
 <pre class="example">
 \begin{align*}
@@ -1466,40 +1488,40 @@ $ $ 之间写公式 直接在文中加入
 </li>
 </ol>
 </div>
-<div id="outline-container-org7167eba" class="outline-4">
-<h4 id="org7167eba"><span class="section-number-4">2.2.3</span> 公式符号</h4>
+<div id="outline-container-org7f62088" class="outline-4">
+<h4 id="org7f62088"><span class="section-number-4">2.2.3</span> 公式符号</h4>
 <div class="outline-text-4" id="text-2-2-3">
 </div>
 <ol class="org-ol">
-<li><a id="org70660f1"></a>常用西文符号<br />
+<li><a id="orgf14ac5b"></a>常用西文符号<br />
 <div class="outline-text-5" id="text-2-2-3-1">
 <p>
 <a href="https://blog.csdn.net/xxzhangx/article/details/52778539">https://blog.csdn.net/xxzhangx/article/details/52778539</a>
 </p>
 </div>
 </li>
-<li><a id="org2173bf9"></a>上标和下标<br />
+<li><a id="org81aeb69"></a>上标和下标<br />
 <div class="outline-text-5" id="text-2-2-3-2">
 <pre class="example">
 $$\sum_{i=1}^{n} a_i=0$$
 </pre>
 </div>
 </li>
-<li><a id="orgd7c1399"></a>公式中加上文本 \mbox{txt}<br />
+<li><a id="org107fecd"></a>公式中加上文本 \mbox{txt}<br />
 <div class="outline-text-5" id="text-2-2-3-3">
 <pre class="example">
 $$\mbox{对任意的$x&gt;0$}, \mbox{有 }f(x)&gt;0. $$
 </pre>
 </div>
 </li>
-<li><a id="orge0781c2"></a>标号 运算符<br />
+<li><a id="orgdeaa6c8"></a>标号 运算符<br />
 <div class="outline-text-5" id="text-2-2-3-4">
 <p>
 <a href="https://blog.csdn.net/u011826404/article/details/70215074">https://blog.csdn.net/u011826404/article/details/70215074</a>
 </p>
 </div>
 </li>
-<li><a id="orga3cb46f"></a>括号<br />
+<li><a id="orge732985"></a>括号<br />
 <div class="outline-text-5" id="text-2-2-3-5">
 <p>
 小括号 中括号直接用 大括号需要转译
@@ -1510,28 +1532,28 @@ $$\mbox{对任意的$x&gt;0$}, \mbox{有 }f(x)&gt;0. $$
 </pre>
 </div>
 </li>
-<li><a id="org40d4035"></a>空格<br />
+<li><a id="org70a8aea"></a>空格<br />
 <div class="outline-text-5" id="text-2-2-3-6">
 <pre class="example">
 \;
 </pre>
 </div>
 </li>
-<li><a id="org350306e"></a>矩阵<br />
+<li><a id="orgfa08d2a"></a>矩阵<br />
 <div class="outline-text-5" id="text-2-2-3-7">
 <pre class="example">
 $$\begin{matrix}…\end{matrix}$$，使用&amp;分隔同行元素，\\换行
 </pre>
 </div>
 </li>
-<li><a id="orgcd99f2a"></a>特殊符号的写法<br />
+<li><a id="orge1dcf69"></a>特殊符号的写法<br />
 <ol class="org-ol">
-<li><a id="orgdbc210f"></a>下面这些是保留字符，有特殊用处<br />
+<li><a id="orgfdc9bff"></a>下面这些是保留字符，有特殊用处<br />
 <div class="outline-text-6" id="text-2-2-3-8-1">
 </div>
 </li>
-<li><a id="orgba87a1e"></a>转译字符为反斜杠 \<br /></li>
-<li><a id="orgf46987b"></a>反斜杠比较特殊 \<br />
+<li><a id="org83a1b1e"></a>转译字符为反斜杠 \<br /></li>
+<li><a id="org85ba190"></a>反斜杠比较特殊 \<br />
 <div class="outline-text-6" id="text-2-2-3-8-3">
 <pre class="example">
 $\backslash$
@@ -1539,14 +1561,14 @@ $\backslash$
 </div>
 </li>
 
-<li><a id="orgec4781c"></a>两个反斜杠为换行<br />
+<li><a id="org8302010"></a>两个反斜杠为换行<br />
 <div class="outline-text-6" id="text-2-2-3-8-4">
 <pre class="example">
 双引号是特殊符号， 两个tab上面的符号为前双引，两个单引号为后双引
 </pre>
 </div>
 </li>
-<li><a id="org3945744"></a>文件夹//表示打开该文件夹<br />
+<li><a id="orgfac2a40"></a>文件夹//表示打开该文件夹<br />
 <div class="outline-text-6" id="text-2-2-3-8-5">
 <pre class="example">
 images//1.png
@@ -1555,13 +1577,13 @@ images//1.png
 </li>
 </ol>
 </li>
-<li><a id="orgdb2ecf5"></a>特殊符号的写法汇总整理<br />
+<li><a id="org2d27039"></a>特殊符号的写法汇总整理<br />
 <ol class="org-ol">
-<li><a id="org9e600aa"></a>最重要的符号是反斜杠\<br />
+<li><a id="org47bb8e4"></a>最重要的符号是反斜杠\<br />
 <ol class="org-ol">
-<li><a id="org0e16c26"></a>单个反斜杠\表示转译<br /></li>
-<li><a id="org75e7fa8"></a>两个反斜杠\\表示换行<br /></li>
-<li><a id="org815b7ce"></a>要在文本中输入反斜杠\ 需要引用公式中的符号\(\backslash\)<br />
+<li><a id="org4a1f88b"></a>单个反斜杠\表示转译<br /></li>
+<li><a id="orgff336bd"></a>两个反斜杠\\表示换行<br /></li>
+<li><a id="orgbe08cf8"></a>要在文本中输入反斜杠\ 需要引用公式中的符号\(\backslash\)<br />
 <div class="outline-text-7" id="text-2-2-3-9-1-3">
 <pre class="example">
 $\backslash$
@@ -1570,19 +1592,19 @@ $\backslash$
 </li>
 </ol>
 </li>
-<li><a id="org3298c5a"></a>斜杠符号 用于latex语言中的路径分隔 以及作为数学中的除号<br />
+<li><a id="orgfbb94cb"></a>斜杠符号 用于latex语言中的路径分隔 以及作为数学中的除号<br />
 <ol class="org-ol">
-<li><a id="org7f82f44"></a>路径分隔<br />
+<li><a id="orgb999884"></a>路径分隔<br />
 <div class="outline-text-7" id="text-2-2-3-9-2-1">
 <pre class="example">
 images//1.png
 </pre>
 </div>
 </li>
-<li><a id="orgaebd30b"></a>除号<br /></li>
+<li><a id="org266b1bf"></a>除号<br /></li>
 </ol>
 </li>
-<li><a id="orgaee394e"></a>单引号 双引号的表示 很特殊<br />
+<li><a id="org0ca6fa4"></a>单引号 双引号的表示 很特殊<br />
 <div class="outline-text-6" id="text-2-2-3-9-3">
 <pre class="example">
 `需要输入的内容' 前单引号为tab上方的按键 后单引号为enter左边的按键
@@ -1594,8 +1616,8 @@ images//1.png
 </li>
 </ol>
 </div>
-<div id="outline-container-org4546420" class="outline-4">
-<h4 id="org4546420"><span class="section-number-4">2.2.4</span> 其他还有一些数学环境里的「要」和「不要</h4>
+<div id="outline-container-org9b25a76" class="outline-4">
+<h4 id="org9b25a76"><span class="section-number-4">2.2.4</span> 其他还有一些数学环境里的「要」和「不要</h4>
 <div class="outline-text-4" id="text-2-2-4">
 <pre class="example">
 用 $ ... $ 而不用 \( ... \)；
@@ -1606,29 +1628,29 @@ images//1.png
 </div>
 </div>
 </div>
-<div id="outline-container-orgc579bde" class="outline-3">
-<h3 id="orgc579bde"><span class="section-number-3">2.3</span> latex 插入图片</h3>
+<div id="outline-container-orgeafbef1" class="outline-3">
+<h3 id="orgeafbef1"><span class="section-number-3">2.3</span> latex 插入图片</h3>
 <div class="outline-text-3" id="text-2-3">
 </div>
-<div id="outline-container-orga4d3e95" class="outline-4">
-<h4 id="orga4d3e95"><span class="section-number-4">2.3.1</span> 一定要注意！！！！！！谁他妈说的，草，不确定</h4>
+<div id="outline-container-orgd252030" class="outline-4">
+<h4 id="orgd252030"><span class="section-number-4">2.3.1</span> 一定要注意！！！！！！谁他妈说的，草，不确定</h4>
 <div class="outline-text-4" id="text-2-3-1">
 </div>
 <ol class="org-ol">
-<li><a id="orgd3ea100"></a>\begin{figure}同一个环境中只能放一个！！！！<br /></li>
-<li><a id="org6a33c57"></a>要想同时使用多个图片，只能用tabular<br /></li>
+<li><a id="orgd4b7ec5"></a>\begin{figure}同一个环境中只能放一个！！！！<br /></li>
+<li><a id="orgd87447b"></a>要想同时使用多个图片，只能用tabular<br /></li>
 </ol>
 </div>
-<div id="outline-container-org29bbb62" class="outline-4">
-<h4 id="org29bbb62"><span class="section-number-4">2.3.2</span> 图片路径设置格式</h4>
+<div id="outline-container-orge803ade" class="outline-4">
+<h4 id="orge803ade"><span class="section-number-4">2.3.2</span> 图片路径设置格式</h4>
 <div class="outline-text-4" id="text-2-3-2">
 <pre class="example">
 \includegraphics{images//1.png}
 </pre>
 </div>
 </div>
-<div id="outline-container-org97e6394" class="outline-4">
-<h4 id="org97e6394"><span class="section-number-4">2.3.3</span> 一般需要包含的宏包</h4>
+<div id="outline-container-org97ce8f6" class="outline-4">
+<h4 id="org97ce8f6"><span class="section-number-4">2.3.3</span> 一般需要包含的宏包</h4>
 <div class="outline-text-4" id="text-2-3-3">
 <pre class="example">
 \usepackage{epsfig}
@@ -1637,14 +1659,14 @@ images//1.png
 </pre>
 </div>
 </div>
-<div id="outline-container-orgfb3a4cd" class="outline-4">
-<h4 id="orgfb3a4cd"><span class="section-number-4">2.3.4</span> 神器：图片处理，超链接处理</h4>
+<div id="outline-container-org79fc469" class="outline-4">
+<h4 id="org79fc469"><span class="section-number-4">2.3.4</span> 神器：图片处理，超链接处理</h4>
 <div class="outline-text-4" id="text-2-3-4">
 </div>
 <ol class="org-ol">
-<li><a id="org0742b3b"></a>自动编号图片源码<br />
+<li><a id="orgd29ac52"></a>自动编号图片源码<br />
 <ol class="org-ol">
-<li><a id="orgfe23cd2"></a>步骤分析<br />
+<li><a id="org0ad3d91"></a>步骤分析<br />
 <div class="outline-text-6" id="text-2-3-4-1-1">
 <ul class="org-ul">
 <li>先在头文件区域建立newcommand模型来处理图片</li>
@@ -1654,7 +1676,7 @@ images//1.png
 </ul>
 </div>
 </li>
-<li><a id="org5b30115"></a>newcommand源码<br />
+<li><a id="org8abac09"></a>newcommand源码<br />
 <div class="outline-text-6" id="text-2-3-4-1-2">
 <pre class="example">
 \newcommand{\scalefig}[3]{
@@ -1671,7 +1693,7 @@ images//1.png
 </pre>
 </div>
 </li>
-<li><a id="org19ae609"></a>newcommand源码解释<br />
+<li><a id="orgc426874"></a>newcommand源码解释<br />
 <div class="outline-text-6" id="text-2-3-4-1-3">
 <ul class="org-ul">
 <li>输入三个参数 文件路径 图片宽度 标题</li>
@@ -1680,7 +1702,7 @@ images//1.png
 </ul>
 </div>
 </li>
-<li><a id="org4d3ad49"></a>正文中图片源码<br />
+<li><a id="orgc59522e"></a>正文中图片源码<br />
 <div class="outline-text-6" id="text-2-3-4-1-4">
 <pre class="example">
 \scalefig{homework_example_fig}{0.5}{Figure Generated By
@@ -1690,9 +1712,9 @@ Listing~\ref{homework_example}}
 </li>
 </ol>
 </li>
-<li><a id="orgac320c3"></a>图片超链接设置<br />
+<li><a id="org5dbe78f"></a>图片超链接设置<br />
 <ol class="org-ol">
-<li><a id="org6216adc"></a>需要配置usepackage包<br />
+<li><a id="org37224d3"></a>需要配置usepackage包<br />
 <div class="outline-text-6" id="text-2-3-4-2-1">
 <pre class="example">
 \usepackage[dvipdfm,  %pdflatex,pdftex这里决定运行文件的方式不同
@@ -1709,7 +1731,7 @@ Listing~\ref{homework_example}}
 </pre>
 </div>
 </li>
-<li><a id="org4938188"></a>在正文中插入超链接的命令<br />
+<li><a id="org9fcd69c"></a>在正文中插入超链接的命令<br />
 <div class="outline-text-6" id="text-2-3-4-2-2">
 <pre class="example">
 \href{URL}{text}
@@ -1731,7 +1753,7 @@ Listing~\ref{homework_example}}
 </pre>
 </div>
 </li>
-<li><a id="org7bd78ba"></a>最常用的插入超链接的命令<br />
+<li><a id="orgffb5f6c"></a>最常用的插入超链接的命令<br />
 <div class="outline-text-6" id="text-2-3-4-2-3">
 <pre class="example">
 \hyperref[result1.png]{Fig.\ref{result1.png}}
@@ -1745,8 +1767,8 @@ Listing~\ref{homework_example}}
 </li>
 </ol>
 </div>
-<div id="outline-container-org2af11dd" class="outline-4">
-<h4 id="org2af11dd"><span class="section-number-4">2.3.5</span> nips图片格式</h4>
+<div id="outline-container-orgb645d8d" class="outline-4">
+<h4 id="orgb645d8d"><span class="section-number-4">2.3.5</span> nips图片格式</h4>
 <div class="outline-text-4" id="text-2-3-5">
 <pre class="example">
 \begin{figure}[h]
@@ -1757,8 +1779,8 @@ Listing~\ref{homework_example}}
 </pre>
 </div>
 </div>
-<div id="outline-container-orgbce7529" class="outline-4">
-<h4 id="orgbce7529"><span class="section-number-4">2.3.6</span> 博客图片格式</h4>
+<div id="outline-container-org0e632f5" class="outline-4">
+<h4 id="org0e632f5"><span class="section-number-4">2.3.6</span> 博客图片格式</h4>
 <div class="outline-text-4" id="text-2-3-6">
 <pre class="example">
 \begin{figure}
@@ -1772,8 +1794,8 @@ Listing~\ref{homework_example}}
 </pre>
 </div>
 </div>
-<div id="outline-container-org6f61508" class="outline-4">
-<h4 id="org6f61508"><span class="section-number-4">2.3.7</span> 多个图片排列 tabular</h4>
+<div id="outline-container-org4cefd0e" class="outline-4">
+<h4 id="org4cefd0e"><span class="section-number-4">2.3.7</span> 多个图片排列 tabular</h4>
 <div class="outline-text-4" id="text-2-3-7">
 <pre class="example">
 \begin{figure}
@@ -1792,8 +1814,8 @@ Listing~\ref{homework_example}}
 </div>
 </div>
 </div>
-<div id="outline-container-orge585f71" class="outline-3">
-<h3 id="orge585f71"><span class="section-number-3">2.4</span> latex 新建页</h3>
+<div id="outline-container-orge2431bc" class="outline-3">
+<h3 id="orge2431bc"><span class="section-number-3">2.4</span> latex 新建页</h3>
 <div class="outline-text-3" id="text-2-4">
 <pre class="example">
 \clearpage 优先用这个
@@ -1801,8 +1823,8 @@ Listing~\ref{homework_example}}
 </pre>
 </div>
 </div>
-<div id="outline-container-org4bb55cd" class="outline-3">
-<h3 id="org4bb55cd"><span class="section-number-3">2.5</span> latex 脚注</h3>
+<div id="outline-container-org957ee83" class="outline-3">
+<h3 id="org957ee83"><span class="section-number-3">2.5</span> latex 脚注</h3>
 <div class="outline-text-3" id="text-2-5">
 <pre class="example">
 \footnotemark[num] 添加脚注
@@ -1811,12 +1833,12 @@ Listing~\ref{homework_example}}
 </pre>
 </div>
 </div>
-<div id="outline-container-org8e424b7" class="outline-3">
-<h3 id="org8e424b7"><span class="section-number-3">2.6</span> latex 交叉引用 \label \ref</h3>
+<div id="outline-container-orgeccd1b9" class="outline-3">
+<h3 id="orgeccd1b9"><span class="section-number-3">2.6</span> latex 交叉引用 \label \ref</h3>
 <div class="outline-text-3" id="text-2-6">
 </div>
-<div id="outline-container-org9d3f8e9" class="outline-4">
-<h4 id="org9d3f8e9"><span class="section-number-4">2.6.1</span> 用法解释</h4>
+<div id="outline-container-org0f79811" class="outline-4">
+<h4 id="org0f79811"><span class="section-number-4">2.6.1</span> 用法解释</h4>
 <div class="outline-text-4" id="text-2-6-1">
 <p>
 图片的Figure.1这类编号是自动生成的，并且随着图片数量的变化而变化。
@@ -1833,16 +1855,16 @@ Listing~\ref{homework_example}}
 </div>
 </div>
 </div>
-<div id="outline-container-org3963b1f" class="outline-2">
-<h2 id="org3963b1f"><span class="section-number-2">3</span> Org mode</h2>
+<div id="outline-container-org39d6471" class="outline-2">
+<h2 id="org39d6471"><span class="section-number-2">3</span> Org mode</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orgdbf8cd3" class="outline-3">
-<h3 id="orgdbf8cd3"><span class="section-number-3">3.1</span> Useful Command</h3>
+<div id="outline-container-org388de70" class="outline-3">
+<h3 id="org388de70"><span class="section-number-3">3.1</span> Useful Command</h3>
 <div class="outline-text-3" id="text-3-1">
 </div>
-<div id="outline-container-org6bb073d" class="outline-4">
-<h4 id="org6bb073d"><span class="section-number-4">3.1.1</span> 编译</h4>
+<div id="outline-container-orgac37189" class="outline-4">
+<h4 id="orgac37189"><span class="section-number-4">3.1.1</span> 编译</h4>
 <div class="outline-text-4" id="text-3-1-1">
 <pre class="example">
 c-c c-e 编译生成html网站格式
@@ -1850,12 +1872,12 @@ c-c c-e 可选生成latex pdf
 </pre>
 </div>
 </div>
-<div id="outline-container-orgfc6228b" class="outline-4">
-<h4 id="orgfc6228b"><span class="section-number-4">3.1.2</span> 标题</h4>
+<div id="outline-container-org2d300a9" class="outline-4">
+<h4 id="org2d300a9"><span class="section-number-4">3.1.2</span> 标题</h4>
 <div class="outline-text-4" id="text-3-1-2">
 </div>
 <ol class="org-ol">
-<li><a id="org5da7276"></a>命令汇总<br />
+<li><a id="org33057dd"></a>命令汇总<br />
 <div class="outline-text-5" id="text-3-1-2-1">
 <pre class="example">
  TAB 切换标题
@@ -1883,7 +1905,7 @@ C-c -
 </pre>
 </div>
 </li>
-<li><a id="org7745582"></a>常用命令<br />
+<li><a id="org0c6101a"></a>常用命令<br />
 <div class="outline-text-5" id="text-3-1-2-2">
 <pre class="example">
 M-S-LEFT/RIGHT 升级/降级标题树，即标题树内的各级标题相应升/降级
@@ -1896,7 +1918,7 @@ C-c - 把光标所在行转成列表
 </pre>
 </div>
 </li>
-<li><a id="org82e9d99"></a>命令解析<br />
+<li><a id="org31cae5c"></a>命令解析<br />
 <div class="outline-text-5" id="text-3-1-2-3">
 <pre class="example">
 C- 带有Ctrl的表示对子树进行操作
@@ -1907,8 +1929,8 @@ M- 带有alt的表示对标题进行操作
 </li>
 </ol>
 </div>
-<div id="outline-container-orgba7abd1" class="outline-4">
-<h4 id="orgba7abd1"><span class="section-number-4">3.1.3</span> 块标签</h4>
+<div id="outline-container-org836e0a8" class="outline-4">
+<h4 id="org836e0a8"><span class="section-number-4">3.1.3</span> 块标签</h4>
 <div class="outline-text-4" id="text-3-1-3">
 <pre class="example">
 &lt;s TAB 快速插入一个 源代码块标签
@@ -1929,8 +1951,8 @@ I    #+include: line
 </pre>
 </div>
 </div>
-<div id="outline-container-orge28f302" class="outline-4">
-<h4 id="orge28f302"><span class="section-number-4">3.1.4</span> 排版段落格式</h4>
+<div id="outline-container-org36c421f" class="outline-4">
+<h4 id="org36c421f"><span class="section-number-4">3.1.4</span> 排版段落格式</h4>
 <div class="outline-text-4" id="text-3-1-4">
 <ul class="org-ul">
 <li>单纯文字编辑 空一行即可</li>
@@ -1939,8 +1961,8 @@ I    #+include: line
 </ul>
 </div>
 </div>
-<div id="outline-container-org183047d" class="outline-4">
-<h4 id="org183047d"><span class="section-number-4">3.1.5</span> 设置默认在org mode下面使用缩进格式</h4>
+<div id="outline-container-orgbda2291" class="outline-4">
+<h4 id="orgbda2291"><span class="section-number-4">3.1.5</span> 设置默认在org mode下面使用缩进格式</h4>
 <div class="outline-text-4" id="text-3-1-5">
 <pre class="example">
 M-x org-intend-mode 打开缩进模式即可
@@ -1949,8 +1971,8 @@ org-startup-indented 设置该变量令所有文件都打开org-intend-mode
 </div>
 </div>
 </div>
-<div id="outline-container-org9bfe332" class="outline-3">
-<h3 id="org9bfe332"><span class="section-number-3">3.2</span> 产生时间戳</h3>
+<div id="outline-container-org135555b" class="outline-3">
+<h3 id="org135555b"><span class="section-number-3">3.2</span> 产生时间戳</h3>
 <div class="outline-text-3" id="text-3-2">
 <pre class="example">
 快捷命令
@@ -1976,12 +1998,12 @@ S-UP/DOWN/LEFT/RIGHT
 </pre>
 </div>
 </div>
-<div id="outline-container-orgface636" class="outline-3">
-<h3 id="orgface636"><span class="section-number-3">3.3</span> 待办事项功能</h3>
+<div id="outline-container-org0966200" class="outline-3">
+<h3 id="org0966200"><span class="section-number-3">3.3</span> 待办事项功能</h3>
 <div class="outline-text-3" id="text-3-3">
 </div>
-<div id="outline-container-org661870e" class="outline-4">
-<h4 id="org661870e"><span class="section-number-4">3.3.1</span> 命令：</h4>
+<div id="outline-container-org5b39972" class="outline-4">
+<h4 id="org5b39972"><span class="section-number-4">3.3.1</span> 命令：</h4>
 <div class="outline-text-4" id="text-3-3-1">
 <pre class="example">
 M-S enter 产生一个同级 to do 标题
@@ -1989,8 +2011,8 @@ C-S enter 产生一个同级子树 to do标题
 </pre>
 </div>
 </div>
-<div id="outline-container-org09f21cb" class="outline-4">
-<h4 id="org09f21cb"><span class="section-number-4">3.3.2</span> 自定义TODO标签的格式</h4>
+<div id="outline-container-org1e8e662" class="outline-4">
+<h4 id="org1e8e662"><span class="section-number-4">3.3.2</span> 自定义TODO标签的格式</h4>
 <div class="outline-text-4" id="text-3-3-2">
 <pre class="example">
 #+TYP_TODO: 工作(w!) 学习(s!) 休闲(l!) |
@@ -1998,8 +2020,8 @@ C-S enter 产生一个同级子树 to do标题
 </pre>
 </div>
 </div>
-<div id="outline-container-orgd4a1882" class="outline-4">
-<h4 id="orgd4a1882"><span class="section-number-4">3.3.3</span> 自定义标签括号里面附加选项</h4>
+<div id="outline-container-orge8ad366" class="outline-4">
+<h4 id="orge8ad366"><span class="section-number-4">3.3.3</span> 自定义标签括号里面附加选项</h4>
 <div class="outline-text-4" id="text-3-3-3">
 <pre class="example">
 可以在（）中定义附加选项，包括： 
@@ -2010,8 +2032,8 @@ C-S enter 产生一个同级子树 to do标题
 </pre>
 </div>
 </div>
-<div id="outline-container-orge561f60" class="outline-4">
-<h4 id="orge561f60"><span class="section-number-4">3.3.4</span> 对所有org文档配置默认</h4>
+<div id="outline-container-org7a2fc21" class="outline-4">
+<h4 id="org7a2fc21"><span class="section-number-4">3.3.4</span> 对所有org文档配置默认</h4>
 <div class="outline-text-4" id="text-3-3-4">
 <pre class="example">
 (setq org-todo-keywords
@@ -2021,16 +2043,16 @@ C-S enter 产生一个同级子树 to do标题
 </pre>
 </div>
 </div>
-<div id="outline-container-org95011f6" class="outline-4">
-<h4 id="org95011f6"><span class="section-number-4">3.3.5</span> 设置任务优先级</h4>
+<div id="outline-container-org8a3198f" class="outline-4">
+<h4 id="org8a3198f"><span class="section-number-4">3.3.5</span> 设置任务优先级</h4>
 <div class="outline-text-4" id="text-3-3-5">
 <p>
 为任务设定优先级是通过 快捷键 S-UP/DOWN
 </p>
 </div>
 </div>
-<div id="outline-container-orge8f9353" class="outline-4">
-<h4 id="orge8f9353"><span class="section-number-4">3.3.6</span> 步骤</h4>
+<div id="outline-container-org8680dc1" class="outline-4">
+<h4 id="org8680dc1"><span class="section-number-4">3.3.6</span> 步骤</h4>
 <div class="outline-text-4" id="text-3-3-6">
 <ul class="org-ul">
 <li>在头文件添加配置,见自定义TODO标签格式</li>
@@ -2041,20 +2063,20 @@ C-S enter 产生一个同级子树 to do标题
 </div>
 </div>
 </div>
-<div id="outline-container-orgdafc7f7" class="outline-3">
-<h3 id="orgdafc7f7"><span class="section-number-3">3.4</span> 超链接文件或者图片</h3>
+<div id="outline-container-orgbccc6b3" class="outline-3">
+<h3 id="orgbccc6b3"><span class="section-number-3">3.4</span> 超链接文件或者图片</h3>
 <div class="outline-text-3" id="text-3-4">
 </div>
-<div id="outline-container-orgaf77631" class="outline-4">
-<h4 id="orgaf77631"><span class="section-number-4">3.4.1</span> 命令</h4>
+<div id="outline-container-orgcf00c0e" class="outline-4">
+<h4 id="orgcf00c0e"><span class="section-number-4">3.4.1</span> 命令</h4>
 </div>
 </div>
-<div id="outline-container-orga8c8f91" class="outline-3">
-<h3 id="orga8c8f91"><span class="section-number-3">3.5</span> 表格和图片增加标签和说明，并交叉引用</h3>
+<div id="outline-container-orgef30bcc" class="outline-3">
+<h3 id="orgef30bcc"><span class="section-number-3">3.5</span> 表格和图片增加标签和说明，并交叉引用</h3>
 <div class="outline-text-3" id="text-3-5">
 </div>
-<div id="outline-container-orgaaf7536" class="outline-4">
-<h4 id="orgaaf7536"><span class="section-number-4">3.5.1</span> 命令</h4>
+<div id="outline-container-org7ff9f54" class="outline-4">
+<h4 id="org7ff9f54"><span class="section-number-4">3.5.1</span> 命令</h4>
 <div class="outline-text-4" id="text-3-5-1">
 <pre class="example">
 对于表格和图片，可以在前面增加标题和标签的说明，以方便交叉引用。比如在表格的前面添加： 
@@ -2065,12 +2087,12 @@ C-S enter 产生一个同级子树 to do标题
 </div>
 </div>
 </div>
-<div id="outline-container-org471288d" class="outline-3">
-<h3 id="org471288d"><span class="section-number-3">3.6</span> 表格的输入</h3>
+<div id="outline-container-org5658d7b" class="outline-3">
+<h3 id="org5658d7b"><span class="section-number-3">3.6</span> 表格的输入</h3>
 <div class="outline-text-3" id="text-3-6">
 </div>
-<div id="outline-container-orge371609" class="outline-4">
-<h4 id="orge371609"><span class="section-number-4">3.6.1</span> 插入表格</h4>
+<div id="outline-container-org710745f" class="outline-4">
+<h4 id="org710745f"><span class="section-number-4">3.6.1</span> 插入表格</h4>
 <div class="outline-text-4" id="text-3-6-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 <caption class="t-above"><span class="table-number">Table 1:</span> 表格的标题</caption>
@@ -2104,8 +2126,8 @@ C-S enter 产生一个同级子树 to do标题
 </table>
 </div>
 </div>
-<div id="outline-container-org25504e0" class="outline-4">
-<h4 id="org25504e0"><span class="section-number-4">3.6.2</span> 限制所在列的长度</h4>
+<div id="outline-container-orga6863ed" class="outline-4">
+<h4 id="orga6863ed"><span class="section-number-4">3.6.2</span> 限制所在列的长度</h4>
 <div class="outline-text-4" id="text-3-6-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -2139,8 +2161,8 @@ C-S enter 产生一个同级子树 to do标题
 </table>
 </div>
 </div>
-<div id="outline-container-org3b8f733" class="outline-4">
-<h4 id="org3b8f733"><span class="section-number-4">3.6.3</span> 美化表格</h4>
+<div id="outline-container-org55ff380" class="outline-4">
+<h4 id="org55ff380"><span class="section-number-4">3.6.3</span> 美化表格</h4>
 <div class="outline-text-4" id="text-3-6-3">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -2175,18 +2197,18 @@ C-S enter 产生一个同级子树 to do标题
 </div>
 </div>
 </div>
-<div id="outline-container-org25ab0e9" class="outline-3">
-<h3 id="org25ab0e9"><span class="section-number-3">3.7</span> Org 一键导出latex之后转pdf的方法</h3>
+<div id="outline-container-org8bc55cc" class="outline-3">
+<h3 id="org8bc55cc"><span class="section-number-3">3.7</span> Org 一键导出latex之后转pdf的方法</h3>
 <div class="outline-text-3" id="text-3-7">
 </div>
-<div id="outline-container-orge42a969" class="outline-4">
-<h4 id="orge42a969"><span class="section-number-4">3.7.1</span> 目前暂时没有比较好的中文解决方案</h4>
+<div id="outline-container-org75b1a35" class="outline-4">
+<h4 id="org75b1a35"><span class="section-number-4">3.7.1</span> 目前暂时没有比较好的中文解决方案</h4>
 </div>
-<div id="outline-container-org53d7d0b" class="outline-4">
-<h4 id="org53d7d0b"><span class="section-number-4">3.7.2</span> 英文处理直接编译然后用pdftex输出所需要的pdf 中文只能暂时用html格式将就一下了</h4>
+<div id="outline-container-orgbf8fca7" class="outline-4">
+<h4 id="orgbf8fca7"><span class="section-number-4">3.7.2</span> 英文处理直接编译然后用pdftex输出所需要的pdf 中文只能暂时用html格式将就一下了</h4>
 </div>
-<div id="outline-container-org7213828" class="outline-4">
-<h4 id="org7213828"><span class="section-number-4">3.7.3</span> 配置.spacemacs文件来添加中文支持包</h4>
+<div id="outline-container-org3545cc1" class="outline-4">
+<h4 id="org3545cc1"><span class="section-number-4">3.7.3</span> 配置.spacemacs文件来添加中文支持包</h4>
 <div class="outline-text-4" id="text-3-7-3">
 <pre class="example">
  ;;windows setenv PATH
@@ -2249,8 +2271,8 @@ C-S enter 产生一个同级子树 to do标题
 </div>
 </div>
 
-<div id="outline-container-org2a36e34" class="outline-3">
-<h3 id="org2a36e34"><span class="section-number-3">3.8</span> Org mode配置latex环境及常用宏包</h3>
+<div id="outline-container-org7a40f91" class="outline-3">
+<h3 id="org7a40f91"><span class="section-number-3">3.8</span> Org mode配置latex环境及常用宏包</h3>
 <div class="outline-text-3" id="text-3-8">
 <p>
 中文宏包配置
@@ -2268,20 +2290,20 @@ C-S enter 产生一个同级子树 to do标题
 </pre>
 </div>
 </div>
-<div id="outline-container-orgab77efa" class="outline-3">
-<h3 id="orgab77efa"><span class="section-number-3">3.9</span> Org mode 处理代码块</h3>
+<div id="outline-container-org0ef3bf1" class="outline-3">
+<h3 id="org0ef3bf1"><span class="section-number-3">3.9</span> Org mode 处理代码块</h3>
 <div class="outline-text-3" id="text-3-9">
 </div>
-<div id="outline-container-org26905a8" class="outline-4">
-<h4 id="org26905a8"><span class="section-number-4">3.9.1</span> 设置语言环境</h4>
+<div id="outline-container-org0be5614" class="outline-4">
+<h4 id="org0be5614"><span class="section-number-4">3.9.1</span> 设置语言环境</h4>
 <div class="outline-text-4" id="text-3-9-1">
 <pre class="example">
 在BEGIN_SRC 后面加上语言名字例如python
 </pre>
 </div>
 </div>
-<div id="outline-container-org06d55ae" class="outline-4">
-<h4 id="org06d55ae"><span class="section-number-4">3.9.2</span> 配置init.el文件</h4>
+<div id="outline-container-org47e016e" class="outline-4">
+<h4 id="org47e016e"><span class="section-number-4">3.9.2</span> 配置init.el文件</h4>
 <div class="outline-text-4" id="text-3-9-2">
 <pre class="example">
 (require 'ob-python)
@@ -2335,8 +2357,8 @@ C-S enter 产生一个同级子树 to do标题
 </pre>
 </div>
 </div>
-<div id="outline-container-orgbeee268" class="outline-4">
-<h4 id="orgbeee268"><span class="section-number-4">3.9.3</span> 命令快捷键</h4>
+<div id="outline-container-org9051ce3" class="outline-4">
+<h4 id="org9051ce3"><span class="section-number-4">3.9.3</span> 命令快捷键</h4>
 <div class="outline-text-4" id="text-3-9-3">
 <pre class="example">
 C-c 编译主菜单
@@ -2345,8 +2367,8 @@ C-c C-c 编译当前代码块并输出结果
 </pre>
 </div>
 </div>
-<div id="outline-container-orgfd9af0d" class="outline-4">
-<h4 id="orgfd9af0d"><span class="section-number-4">3.9.4</span> 例子</h4>
+<div id="outline-container-orga67c4ea" class="outline-4">
+<h4 id="orga67c4ea"><span class="section-number-4">3.9.4</span> 例子</h4>
 <div class="outline-text-4" id="text-3-9-4">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #4f97d7;">(</span>+ <span style="color: #a45bad;">1</span> <span style="color: #a45bad;">2</span> <span style="color: #a45bad;">3</span> <span style="color: #a45bad;">4</span><span style="color: #4f97d7;">)</span>
@@ -2354,8 +2376,8 @@ C-c C-c 编译当前代码块并输出结果
 </div>
 </div>
 </div>
-<div id="outline-container-org2a6e784" class="outline-4">
-<h4 id="org2a6e784"><span class="section-number-4">3.9.5</span> 测试matlab代码块</h4>
+<div id="outline-container-org8937075" class="outline-4">
+<h4 id="org8937075"><span class="section-number-4">3.9.5</span> 测试matlab代码块</h4>
 <div class="outline-text-4" id="text-3-9-5">
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">100</span>+<span style="color: #a45bad;">200</span><span style="color: #4f97d7;">)</span>
@@ -2363,8 +2385,8 @@ C-c C-c 编译当前代码块并输出结果
 </div>
 </div>
 </div>
-<div id="outline-container-org887192b" class="outline-4">
-<h4 id="org887192b"><span class="section-number-4">3.9.6</span> 注意事项</h4>
+<div id="outline-container-org5b2a65f" class="outline-4">
+<h4 id="org5b2a65f"><span class="section-number-4">3.9.6</span> 注意事项</h4>
 <div class="outline-text-4" id="text-3-9-6">
 <p>
 详情见网页<a href="https://emacs.stackexchange.com/questions/28441/org-mode-9-unable-to-eval-code-blocks">https://emacs.stackexchange.com/questions/28441/org-mode-9-unable-to-eval-code-blocks</a>
@@ -2380,15 +2402,15 @@ C-c C-c 编译当前代码块并输出结果
 </div>
 </div>
 </div>
-<div id="outline-container-org5c8ad79" class="outline-3">
-<h3 id="org5c8ad79"><span class="section-number-3">3.10</span> Org-page package创建个人主页</h3>
+<div id="outline-container-org3e8e92c" class="outline-3">
+<h3 id="org3e8e92c"><span class="section-number-3">3.10</span> Org-page package创建个人主页</h3>
 <div class="outline-text-3" id="text-3-10">
 <p>
 From <a href="https://github.com/kelvinh/kelvinh.github.com">https://github.com/kelvinh/kelvinh.github.com</a>
 </p>
 </div>
-<div id="outline-container-org43e80df" class="outline-4">
-<h4 id="org43e80df"><span class="section-number-4">3.10.1</span> .emacs 文件源代码 手动添加package 注意：目前好像不能用</h4>
+<div id="outline-container-org2883854" class="outline-4">
+<h4 id="org2883854"><span class="section-number-4">3.10.1</span> .emacs 文件源代码 手动添加package 注意：目前好像不能用</h4>
 <div class="outline-text-4" id="text-3-10-1">
 <pre class="example">
 ;;; the following is only needed if you install org-page manually
@@ -2406,18 +2428,18 @@ From <a href="https://github.com/kelvinh/kelvinh.github.com">https://github.com/
 </div>
 </div>
 </div>
-<div id="outline-container-org7bf1168" class="outline-3">
-<h3 id="org7bf1168"><span class="section-number-3">3.11</span> orgmode中使用思维导图</h3>
+<div id="outline-container-org39adf43" class="outline-3">
+<h3 id="org39adf43"><span class="section-number-3">3.11</span> orgmode中使用思维导图</h3>
 <div class="outline-text-3" id="text-3-11">
 </div>
-<div id="outline-container-org971f29d" class="outline-4">
-<h4 id="org971f29d"><span class="section-number-4">3.11.1</span> 软件安装</h4>
+<div id="outline-container-org03189c7" class="outline-4">
+<h4 id="org03189c7"><span class="section-number-4">3.11.1</span> 软件安装</h4>
 <div class="outline-text-4" id="text-3-11-1">
 </div>
 <ol class="org-ol">
-<li><a id="orgc7ef2cc"></a>直接用C-c C-e f o即可输出.mm思维导图文件<br /></li>
-<li><a id="orge99abe5"></a>下载软件freemind<br /></li>
-<li><a id="orgcf68232"></a>安装Java环境<br />
+<li><a id="org4bc2d33"></a>直接用C-c C-e f o即可输出.mm思维导图文件<br /></li>
+<li><a id="orgbdc7442"></a>下载软件freemind<br /></li>
+<li><a id="orgcb8b64a"></a>安装Java环境<br />
 <div class="outline-text-5" id="text-3-11-1-3">
 <p>
 <a href="https://blog.csdn.net/afei__/article/details/51464783">https://blog.csdn.net/afei__/article/details/51464783</a>
@@ -2426,23 +2448,23 @@ From <a href="https://github.com/kelvinh/kelvinh.github.com">https://github.com/
 </li>
 </ol>
 </div>
-<div id="outline-container-org2992e3f" class="outline-4">
-<h4 id="org2992e3f"><span class="section-number-4">3.11.2</span> 使用步骤</h4>
+<div id="outline-container-orgf1dbc72" class="outline-4">
+<h4 id="orgf1dbc72"><span class="section-number-4">3.11.2</span> 使用步骤</h4>
 <div class="outline-text-4" id="text-3-11-2">
 </div>
 <ol class="org-ol">
-<li><a id="orgc490772"></a>用orgmode输出.mm思维导图文件C-c C-e<br /></li>
-<li><a id="orgcbb6c05"></a>用freemind软件打开.mm文件，并保存为.png即可<br /></li>
+<li><a id="org553c09c"></a>用orgmode输出.mm思维导图文件C-c C-e<br /></li>
+<li><a id="org3ea32b7"></a>用freemind软件打开.mm文件，并保存为.png即可<br /></li>
 </ol>
 </div>
 </div>
 </div>
-<div id="outline-container-org3bde0d6" class="outline-2">
-<h2 id="org3bde0d6"><span class="section-number-2">4</span> Jupyter notebook</h2>
+<div id="outline-container-orgc37829e" class="outline-2">
+<h2 id="orgc37829e"><span class="section-number-2">4</span> Jupyter notebook</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org7dc979e" class="outline-3">
-<h3 id="org7dc979e"><span class="section-number-3">4.1</span> 常用命令</h3>
+<div id="outline-container-orge8df05d" class="outline-3">
+<h3 id="orge8df05d"><span class="section-number-3">4.1</span> 常用命令</h3>
 <div class="outline-text-3" id="text-4-1">
 <pre class="example">
 执行当前cell，并自动跳到下一个cell：Shift Enter
@@ -2462,28 +2484,28 @@ From <a href="https://github.com/kelvinh/kelvinh.github.com">https://github.com/
 </pre>
 </div>
 </div>
-<div id="outline-container-orgc54c4c2" class="outline-3">
-<h3 id="orgc54c4c2"><span class="section-number-3">4.2</span> 文件导入</h3>
+<div id="outline-container-orgfd2cb56" class="outline-3">
+<h3 id="orgfd2cb56"><span class="section-number-3">4.2</span> 文件导入</h3>
 <div class="outline-text-3" id="text-4-2">
 </div>
-<div id="outline-container-org278cf11" class="outline-4">
-<h4 id="org278cf11"><span class="section-number-4">4.2.1</span> 如何将本地的.py文件load到jupyter的一个cell里面</h4>
+<div id="outline-container-org89cd62f" class="outline-4">
+<h4 id="org89cd62f"><span class="section-number-4">4.2.1</span> 如何将本地的.py文件load到jupyter的一个cell里面</h4>
 <div class="outline-text-4" id="text-4-2-1">
 <pre class="example">
 %load test.py #test.py是当前路径下的一个python文件
 </pre>
 </div>
 </div>
-<div id="outline-container-org1e30f29" class="outline-4">
-<h4 id="org1e30f29"><span class="section-number-4">4.2.2</span> 如何将网络中的.py文件load到jupyter的一个cell里面</h4>
+<div id="outline-container-orgbb840eb" class="outline-4">
+<h4 id="orgbb840eb"><span class="section-number-4">4.2.2</span> 如何将网络中的.py文件load到jupyter的一个cell里面</h4>
 <div class="outline-text-4" id="text-4-2-2">
 <pre class="example">
  在cell中输入%load http://.....，然后运行该cell，就会将load后面所对应地址的代码load到当前的cell中；
 </pre>
 </div>
 </div>
-<div id="outline-container-org3aeb7bd" class="outline-4">
-<h4 id="org3aeb7bd"><span class="section-number-4">4.2.3</span> 利用cell运行.py文件</h4>
+<div id="outline-container-orgf79ee8b" class="outline-4">
+<h4 id="orgf79ee8b"><span class="section-number-4">4.2.3</span> 利用cell运行.py文件</h4>
 <div class="outline-text-4" id="text-4-2-3">
 <pre class="example">
 %run file.py
@@ -2492,12 +2514,12 @@ From <a href="https://github.com/kelvinh/kelvinh.github.com">https://github.com/
 </div>
 </div>
 </div>
-<div id="outline-container-org6a7c61b" class="outline-2">
-<h2 id="org6a7c61b"><span class="section-number-2">5</span> Python 语言</h2>
+<div id="outline-container-orgacd2032" class="outline-2">
+<h2 id="orgacd2032"><span class="section-number-2">5</span> Python 语言</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-org1e3e437" class="outline-3">
-<h3 id="org1e3e437"><span class="section-number-3">5.1</span> 帮助命令</h3>
+<div id="outline-container-org3c96aa4" class="outline-3">
+<h3 id="org3c96aa4"><span class="section-number-3">5.1</span> 帮助命令</h3>
 <div class="outline-text-3" id="text-5-1">
 <pre class="example">
 help() 查询括号里面的包、函数
@@ -2505,19 +2527,19 @@ help() 查询括号里面的包、函数
 </div>
 </div>
 </div>
-<div id="outline-container-org3a6f12d" class="outline-2">
-<h2 id="org3a6f12d"><span class="section-number-2">6</span> Matlab语言</h2>
+<div id="outline-container-orgd15862a" class="outline-2">
+<h2 id="orgd15862a"><span class="section-number-2">6</span> Matlab语言</h2>
 <div class="outline-text-2" id="text-6">
 </div>
-<div id="outline-container-org347d559" class="outline-3">
-<h3 id="org347d559"><span class="section-number-3">6.1</span> 知识补充 cell的使用</h3>
+<div id="outline-container-org94c9893" class="outline-3">
+<h3 id="org94c9893"><span class="section-number-3">6.1</span> 知识补充 cell的使用</h3>
 <div class="outline-text-3" id="text-6-1">
 </div>
-<div id="outline-container-org178b6eb" class="outline-4">
-<h4 id="org178b6eb"><span class="section-number-4">6.1.1</span> 将矩阵保存到cell里面，从而用一个for循环索引cell的编号来画图</h4>
+<div id="outline-container-orga44a813" class="outline-4">
+<h4 id="orga44a813"><span class="section-number-4">6.1.1</span> 将矩阵保存到cell里面，从而用一个for循环索引cell的编号来画图</h4>
 </div>
-<div id="outline-container-orgc74c467" class="outline-4">
-<h4 id="orgc74c467"><span class="section-number-4">6.1.2</span> 代码</h4>
+<div id="outline-container-org3041d07" class="outline-4">
+<h4 id="org3041d07"><span class="section-number-4">6.1.2</span> 代码</h4>
 <div class="outline-text-4" id="text-6-1-2">
 <div class="org-src-container">
 <pre class="src src-matlab">cell(n) &#21019;&#24314;&#19968;&#20010;n<span style="color: #ce537a; font-weight: bold;">-</span>by<span style="color: #ce537a; font-weight: bold;">-</span>n&#30340;&#31354;cell
@@ -2527,8 +2549,8 @@ cell{1,2} &#32034;&#24341;cell&#20013;&#30340;&#31532;&#19968;&#34892;&#31532;&#
 </div>
 </div>
 </div>
-<div id="outline-container-org4d4c664" class="outline-3">
-<h3 id="org4d4c664"><span class="section-number-3">6.2</span> for循环处理画图语句</h3>
+<div id="outline-container-org0d01c45" class="outline-3">
+<h3 id="org0d01c45"><span class="section-number-3">6.2</span> for循环处理画图语句</h3>
 <div class="outline-text-3" id="text-6-2">
 <div class="org-src-container">
 <pre class="src src-matlab">row=3;
@@ -2546,24 +2568,24 @@ suptitle(<span style="color: #2d9574;">'DCT 4-by-4 basis images'</span>);
 </div>
 </div>
 </div>
-<div id="outline-container-orga7399c8" class="outline-2">
-<h2 id="orga7399c8"><span class="section-number-2">7</span> Spring 2018</h2>
+<div id="outline-container-org05a168b" class="outline-2">
+<h2 id="org05a168b"><span class="section-number-2">7</span> Spring 2018</h2>
 <div class="outline-text-2" id="text-7">
 </div>
-<div id="outline-container-org29de3bf" class="outline-3">
-<h3 id="org29de3bf"><span class="section-number-3">7.1</span> EE 147</h3>
+<div id="outline-container-org787a10b" class="outline-3">
+<h3 id="org787a10b"><span class="section-number-3">7.1</span> EE 147</h3>
 <div class="outline-text-3" id="text-7-1">
 </div>
-<div id="outline-container-org8dc9bc8" class="outline-4">
-<h4 id="org8dc9bc8"><span class="section-number-4">7.1.1</span> Lab answers</h4>
+<div id="outline-container-org64b427d" class="outline-4">
+<h4 id="org64b427d"><span class="section-number-4">7.1.1</span> Lab answers</h4>
 <div class="outline-text-4" id="text-7-1-1">
 <p>
 <a href="https://www.coursehero.com/file/18388740/lab-2-report/">https://www.coursehero.com/file/18388740/lab-2-report/</a>
 </p>
 </div>
 </div>
-<div id="outline-container-org58e7cd8" class="outline-4">
-<h4 id="org58e7cd8"><span class="section-number-4">7.1.2</span> 淘宝course hero</h4>
+<div id="outline-container-orgdbf8e11" class="outline-4">
+<h4 id="orgdbf8e11"><span class="section-number-4">7.1.2</span> 淘宝course hero</h4>
 <div class="outline-text-4" id="text-7-1-2">
 <p>
 <a href="http://www.coursehelper.cn/">http://www.coursehelper.cn/</a>
@@ -2571,20 +2593,20 @@ suptitle(<span style="color: #2d9574;">'DCT 4-by-4 basis images'</span>);
 </div>
 </div>
 </div>
-<div id="outline-container-org1050f22" class="outline-3">
-<h3 id="org1050f22"><span class="section-number-3">7.2</span> EE 243</h3>
+<div id="outline-container-org60621ec" class="outline-3">
+<h3 id="org60621ec"><span class="section-number-3">7.2</span> EE 243</h3>
 <div class="outline-text-3" id="text-7-2">
 </div>
-<div id="outline-container-org3f77e42" class="outline-4">
-<h4 id="org3f77e42"><span class="section-number-4">7.2.1</span> hw2</h4>
+<div id="outline-container-org2d8db33" class="outline-4">
+<h4 id="org2d8db33"><span class="section-number-4">7.2.1</span> hw2</h4>
 <div class="outline-text-4" id="text-7-2-1">
 </div>
 <ol class="org-ol">
-<li><a id="orge5b581c"></a>Matlab程序资料备份<br />
+<li><a id="org06da96b"></a>Matlab程序资料备份<br />
 <ol class="org-ol">
-<li><a id="org58a1733"></a>第二问<br />
+<li><a id="org8b5b7e1"></a>第二问<br />
 <ol class="org-ol">
-<li><a id="orga0b39d4"></a>docomposion 的一个例子及链接<br />
+<li><a id="org0cf519a"></a>docomposion 的一个例子及链接<br />
 <div class="outline-text-7" id="text-7-2-1-1-1-1">
 
 <div class="figure">
@@ -2597,27 +2619,27 @@ suptitle(<span style="color: #2d9574;">'DCT 4-by-4 basis images'</span>);
 </p>
 </div>
 </li>
-<li><a id="orgb1caf92"></a>reconstruction using function waverec2<br />
+<li><a id="org803d081"></a>reconstruction using function waverec2<br />
 <div class="outline-text-7" id="text-7-2-1-1-1-2">
 <p>
 <a href="https://www.mathworks.com/help/wavelet/ref/waverec2.html">https://www.mathworks.com/help/wavelet/ref/waverec2.html</a>
 </p>
 </div>
 </li>
-<li><a id="org9f247b0"></a>reconstruction using function wrcoef2!!!!!!<br />
+<li><a id="orgfb144aa"></a>reconstruction using function wrcoef2!!!!!!<br />
 <div class="outline-text-7" id="text-7-2-1-1-1-3">
 <p>
 <a href="https://www.mathworks.com/help/wavelet/ref/wrcoef2.html">https://www.mathworks.com/help/wavelet/ref/wrcoef2.html</a>
 </p>
 </div>
 </li>
-<li><a id="org74312cd"></a>两个重构函数的区别在于：<br />
+<li><a id="orgd0640da"></a>两个重构函数的区别在于：<br />
 <ol class="org-ol">
-<li><a id="orgf033f57"></a>wrcoef2能够处理细节<br /></li>
-<li><a id="org18c0dc1"></a>waverec2只能多维度处理<br /></li>
+<li><a id="orgf561447"></a>wrcoef2能够处理细节<br /></li>
+<li><a id="org560e862"></a>waverec2只能多维度处理<br /></li>
 </ol>
 </li>
-<li><a id="orgfb4679a"></a>近似系数函数的解释<br />
+<li><a id="org1811d9b"></a>近似系数函数的解释<br />
 <div class="outline-text-7" id="text-7-2-1-1-1-5">
 
 <div class="figure">
@@ -2635,16 +2657,16 @@ suptitle(<span style="color: #2d9574;">'DCT 4-by-4 basis images'</span>);
 </li>
 </ol>
 </li>
-<li><a id="org95cd4ee"></a>第二问用到的函数<br />
+<li><a id="org9283b2c"></a>第二问用到的函数<br />
 <ol class="org-ol">
-<li><a id="org09b7932"></a>wavdec2<br />
+<li><a id="orgd08beb7"></a>wavdec2<br />
 <div class="outline-text-7" id="text-7-2-1-1-2-1">
 <p>
 <a href="https://www.mathworks.com/help/wavelet/ref/wavedec2.html">https://www.mathworks.com/help/wavelet/ref/wavedec2.html</a>
 </p>
 </div>
 </li>
-<li><a id="org03f96a7"></a>waverec2<br />
+<li><a id="org8eedb6b"></a>waverec2<br />
 <div class="outline-text-7" id="text-7-2-1-1-2-2">
 <p>
 <a href="https://www.mathworks.com/help/wavelet/ref/waverec2.html?s_tid=doc_ta">https://www.mathworks.com/help/wavelet/ref/waverec2.html?s_tid=doc_ta</a>
@@ -2653,23 +2675,23 @@ suptitle(<span style="color: #2d9574;">'DCT 4-by-4 basis images'</span>);
 </li>
 </ol>
 </li>
-<li><a id="org43ee136"></a>第三问<br />
+<li><a id="org225799b"></a>第三问<br />
 <ol class="org-ol">
-<li><a id="org29069c2"></a>拉普拉斯变换<br />
+<li><a id="org7f206c2"></a>拉普拉斯变换<br />
 <div class="outline-text-7" id="text-7-2-1-1-3-1">
 <p>
 <a href="https://www.mathworks.com/matlabcentral/answers/53726-how-to-implement-the-laplacian-of-gaussian-edge-detector-using-the-prewitt-operator">https://www.mathworks.com/matlabcentral/answers/53726-how-to-implement-the-laplacian-of-gaussian-edge-detector-using-the-prewitt-operator</a>
 </p>
 </div>
 </li>
-<li><a id="orgb686eaa"></a>边缘检测官网文件汇总<br />
+<li><a id="orgbc781d2"></a>边缘检测官网文件汇总<br />
 <div class="outline-text-7" id="text-7-2-1-1-3-2">
 <p>
 <a href="https://www.mathworks.com/discovery/edge-detection.html">https://www.mathworks.com/discovery/edge-detection.html</a>
 </p>
 </div>
 </li>
-<li><a id="org74ead38"></a>edge函数<br />
+<li><a id="org493e376"></a>edge函数<br />
 <div class="outline-text-7" id="text-7-2-1-1-3-3">
 <p>
 <a href="https://www.mathworks.com/help/images/ref/edge.html">https://www.mathworks.com/help/images/ref/edge.html</a>
@@ -2678,33 +2700,33 @@ suptitle(<span style="color: #2d9574;">'DCT 4-by-4 basis images'</span>);
 </li>
 </ol>
 </li>
-<li><a id="orga1c6cfa"></a>第三问所用到的资料<br />
+<li><a id="org0efd911"></a>第三问所用到的资料<br />
 <ol class="org-ol">
-<li><a id="org1c1555d"></a>3.a edge函数<br />
+<li><a id="org1d2e5bf"></a>3.a edge函数<br />
 <div class="outline-text-7" id="text-7-2-1-1-4-1">
 <p>
 <a href="https://www.mathworks.com/help/images/ref/edge.html">https://www.mathworks.com/help/images/ref/edge.html</a>
 </p>
 </div>
 </li>
-<li><a id="orgbf7ad1c"></a>3.b Detect lines in grayscale image using Hough Transform 不能用<br />
+<li><a id="org0b725ec"></a>3.b Detect lines in grayscale image using Hough Transform 不能用<br />
 <div class="outline-text-7" id="text-7-2-1-1-4-2">
 <p>
 <a href="https://www.mathworks.com/matlabcentral/fileexchange/9226-detect-lines-in-grayscale-image-using-hough-transform">https://www.mathworks.com/matlabcentral/fileexchange/9226-detect-lines-in-grayscale-image-using-hough-transform</a>
 </p>
 </div>
 </li>
-<li><a id="org49536e4"></a>3.b build-in function hough<br /></li>
-<li><a id="org9f6d3c3"></a>3.b 自己写hough函数<br />
+<li><a id="org8899780"></a>3.b build-in function hough<br /></li>
+<li><a id="org052e4c7"></a>3.b 自己写hough函数<br />
 <ol class="org-ol">
-<li><a id="org380f70e"></a>一个简述hough transform原理的博客<br />
+<li><a id="org6860fa1"></a>一个简述hough transform原理的博客<br />
 <div class="outline-text-8" id="text-7-2-1-1-4-4-1">
 <p>
 <a href="https://blog.csdn.net/ycj9090900/article/details/52944708">https://blog.csdn.net/ycj9090900/article/details/52944708</a>
 </p>
 </div>
 </li>
-<li><a id="org465cf5b"></a>现成的自定义hough函数代码<br />
+<li><a id="orge77b012"></a>现成的自定义hough函数代码<br />
 <div class="outline-text-8" id="text-7-2-1-1-4-4-2">
 <p>
 <a href="http://blog.sina.com.cn/s/blog_6ef39eb80100qxwb.html">http://blog.sina.com.cn/s/blog_6ef39eb80100qxwb.html</a>
@@ -2715,9 +2737,9 @@ suptitle(<span style="color: #2d9574;">'DCT 4-by-4 basis images'</span>);
 </li>
 </ol>
 </li>
-<li><a id="orgd6e5bc8"></a>第四问<br />
+<li><a id="org692716a"></a>第四问<br />
 <ol class="org-ol">
-<li><a id="org49c7a3d"></a>Shi-Tomasi corner detector 什么是这个检测器<br />
+<li><a id="org92fda79"></a>Shi-Tomasi corner detector 什么是这个检测器<br />
 <div class="outline-text-7" id="text-7-2-1-1-5-1">
 <p>
 可以用Python 的opencv包
@@ -2725,31 +2747,31 @@ suptitle(<span style="color: #2d9574;">'DCT 4-by-4 basis images'</span>);
 </p>
 </div>
 </li>
-<li><a id="orgae1c855"></a><br /></li>
+<li><a id="org40b0452"></a><br /></li>
 </ol>
 </li>
-<li><a id="org55d3a0f"></a>第四问实现方法<br />
+<li><a id="org16391d3"></a>第四问实现方法<br />
 <ol class="org-ol">
-<li><a id="orgc024ef7"></a>4.a detectMinEigenFeatures<br />
+<li><a id="orgee19c01"></a>4.a detectMinEigenFeatures<br />
 <ol class="org-ol">
-<li><a id="org45ff1a3"></a>getCorners.m文件 用detectMinEigenFeatures函数实现<br />
+<li><a id="org6b6ad65"></a>getCorners.m文件 用detectMinEigenFeatures函数实现<br />
 <div class="outline-text-8" id="text-7-2-1-1-6-1-1">
 <p>
 <a href="https://www.mathworks.com/help/vision/ref/detectmineigenfeatures.html">https://www.mathworks.com/help/vision/ref/detectmineigenfeatures.html</a>
 </p>
 </div>
 </li>
-<li><a id="orgd74c2e3"></a>4.a 文件按照assignment里面的要求写即可<br /></li>
+<li><a id="orgfb4403c"></a>4.a 文件按照assignment里面的要求写即可<br /></li>
 </ol>
 </li>
-<li><a id="orgdc33982"></a>4.b featurematching.m文件<br />
+<li><a id="orgf4b9413"></a>4.b featurematching.m文件<br />
 <ol class="org-ol">
-<li><a id="org0d6e3ff"></a>4.b.1 getFeatures<br />
+<li><a id="org6e2ef40"></a>4.b.1 getFeatures<br />
 <ol class="org-ol">
-<li><a id="orgd5ce0bd"></a>需要完成getCorners.m在4.a中<br /></li>
-<li><a id="orgc921246"></a>需要完成getFeatures.m文件<br />
+<li><a id="orgdb758bb"></a>需要完成getCorners.m在4.a中<br /></li>
+<li><a id="orgbd98c96"></a>需要完成getFeatures.m文件<br />
 <ol class="org-ol">
-<li><a id="org1d4e58f"></a>getFeatures.m的用处<br />
+<li><a id="orgbab827f"></a>getFeatures.m的用处<br />
 <div class="outline-text-10" id="text-7-2-1-1-6-2-1-2-1">
 <p>
 extract the Histogram of Gradient
@@ -2757,24 +2779,24 @@ extract the Histogram of Gradient
 </p>
 </div>
 </li>
-<li><a id="org8672e74"></a>实现HoG features<br />
+<li><a id="orgab0710c"></a>实现HoG features<br />
 <ol class="org-ol">
-<li><a id="orge703906"></a>extractHOGFeatures build-in function 仅供参考理解 老师不允许用<br />
+<li><a id="org673a99c"></a>extractHOGFeatures build-in function 仅供参考理解 老师不允许用<br />
 <div class="outline-text-11" id="text-7-2-1-1-6-2-1-2-2-1">
 <p>
 <a href="https://www.mathworks.com/help/vision/ref/extracthogfeatures.html?s_tid=doc_ta">https://www.mathworks.com/help/vision/ref/extracthogfeatures.html?s_tid=doc_ta</a>
 </p>
 </div>
 </li>
-<li><a id="orgc222487"></a>自定义函数<br /></li>
+<li><a id="orgbabc184"></a>自定义函数<br /></li>
 </ol>
 </li>
 </ol>
 </li>
 </ol>
 </li>
-<li><a id="orgc977109"></a>4.b.2 getMatches.m<br /></li>
-<li><a id="org0f75418"></a>4.b.3 featurematching.m<br /></li>
+<li><a id="org10ee6eb"></a>4.b.2 getMatches.m<br /></li>
+<li><a id="orga345997"></a>4.b.3 featurematching.m<br /></li>
 </ol>
 </li>
 </ol>
@@ -2783,12 +2805,12 @@ extract the Histogram of Gradient
 </li>
 </ol>
 </div>
-<div id="outline-container-org48ed659" class="outline-4">
-<h4 id="org48ed659"><span class="section-number-4">7.2.2</span> Project proposal</h4>
+<div id="outline-container-org4ca47df" class="outline-4">
+<h4 id="org4ca47df"><span class="section-number-4">7.2.2</span> Project proposal</h4>
 <div class="outline-text-4" id="text-7-2-2">
 </div>
 <ol class="org-ol">
-<li><a id="org4d89a5b"></a>要求<br />
+<li><a id="org21bdd6e"></a>要求<br />
 <div class="outline-text-5" id="text-7-2-2-1">
 <pre class="example">
 Project Abstract
@@ -2805,16 +2827,16 @@ It is fine to align your course project with your research, but it is important 
 </pre>
 </div>
 </li>
-<li><a id="org3e7184e"></a>初选题目<br />
+<li><a id="org23af24e"></a>初选题目<br />
 <ol class="org-ol">
-<li><a id="orgd599a25"></a>3D 重构<br />
+<li><a id="org718b45e"></a>3D 重构<br />
 <ol class="org-ol">
-<li><a id="orgd1c455d"></a>SIFT<br /></li>
-<li><a id="org9c5f6d5"></a>SFM Structure from Motion<br /></li>
-<li><a id="orgd638045"></a>PCL<br /></li>
+<li><a id="orgc607446"></a>SIFT<br /></li>
+<li><a id="orgc03a51c"></a>SFM Structure from Motion<br /></li>
+<li><a id="org4f28ab7"></a>PCL<br /></li>
 </ol>
 </li>
-<li><a id="org4968a93"></a>构思<br />
+<li><a id="orga4c98a4"></a>构思<br />
 <div class="outline-text-6" id="text-7-2-2-2-2">
 <p>
 Python openSFM openMVG openCV point cloud 
@@ -2823,33 +2845,43 @@ Python openSFM openMVG openCV point cloud
 </li>
 </ol>
 </li>
-<li><a id="org19629a0"></a>思路整理<br />
+<li><a id="orgc46e50e"></a>思路整理<br />
 <ol class="org-ol">
-<li><a id="org79d4de4"></a>题目<br />
+<li><a id="orgc220c2a"></a>题目<br />
 <div class="outline-text-6" id="text-7-2-2-3-1">
 <p>
-Implement 3D reconstruction by using Structure from Mothon (SFM)
+Implement 3D reconstruction by using global Structure from Mothon (SFM)
 </p>
 </div>
 </li>
-<li><a id="orgbcf8ad7"></a>工具：<br />
+<li><a id="orgb05e73e"></a>工具：<br />
 <div class="outline-text-6" id="text-7-2-2-3-2">
 <p>
 openCV python
 </p>
 </div>
 </li>
-<li><a id="org89645ce"></a>paper:<br />
+<li><a id="org115a4c9"></a>paper:<br />
 <div class="outline-text-6" id="text-7-2-2-3-3">
+<p>
+N. Jiang, Z. Cui and P. Tan, "A Global Linear Method for Camera Pose Registration," 2013 IEEE International Conference on Computer Vision, Sydney, NSW, 2013, pp. 481-488.
+doi: 10.1109/ICCV.2013.66
+</p>
+
 <p>
 [2] Changchang Wu, "VisualSFM: A Visual Structure from Motion System",
           <a href="http://ccwu.me/vsfm/">http://ccwu.me/vsfm/</a>, 2011
 </p>
+
+<p>
+P. Moulon, P. Monasse and R. Marlet, "Global Fusion of Relative Motions for Robust, Accurate and Scalable Structure from Motion," 2013 IEEE International Conference on Computer Vision, Sydney, NSW, 2013, pp. 3248-3255.
+doi: 10.1109/ICCV.2013.403S. 
+</p>
 </div>
 </li>
-<li><a id="org2bd3c9c"></a>approach：<br />
+<li><a id="orgbd91b19"></a>approach：<br />
 <ol class="org-ol">
-<li><a id="org2162f98"></a>SIFT<br />
+<li><a id="org4759488"></a>SIFT<br />
 <div class="outline-text-7" id="text-7-2-2-3-4-1">
 <p>
 特征值提取 可以采用AKAZE最新版来处理
@@ -2860,36 +2892,54 @@ openCV python
 </p>
 </div>
 </li>
-<li><a id="orga316c70"></a>kd-tree<br />
+<li><a id="orgcf86a82"></a>kd-tree<br />
 <div class="outline-text-7" id="text-7-2-2-3-4-2">
 <p>
 特征点匹配 从而得到符合要求特征点个数的图片
 </p>
 </div>
 </li>
-<li><a id="orga15195c"></a>F-matrices epipolar constraint极线约束<br />
+<li><a id="orgf9c1fe1"></a>F-matrices epipolar constraint极线约束<br />
 <div class="outline-text-7" id="text-7-2-2-3-4-3">
 <p>
 Geometric constraints
 </p>
 </div>
 </li>
-<li><a id="orgda18dd1"></a>bundle adjustment 光束平差法<br />
+<li><a id="org05a1c0a"></a>bundle adjustment 光束平差法<br />
 <div class="outline-text-7" id="text-7-2-2-3-4-4">
 <p>
 采用一个非线性最小二乘的优化方法求解
 </p>
 </div>
 </li>
-<li><a id="orgedabae7"></a>RANSAC方法<br />
+<li><a id="org9e4fa2e"></a>RANSAC方法<br />
 <div class="outline-text-7" id="text-7-2-2-3-4-5">
 <p>
 降噪
 </p>
 </div>
 </li>
-<li><a id="org024149f"></a>CMVS<br />
+<li><a id="orgbac403b"></a>global<br />
 <div class="outline-text-7" id="text-7-2-2-3-4-6">
+<p>
+增量式：一张一张加图片
+</p>
+
+<p>
+全局式：只在最后一步BA
+</p>
+</div>
+</li>
+<li><a id="orgc0f6bc0"></a>camera pose<br />
+<div class="outline-text-7" id="text-7-2-2-3-4-7">
+<p>
+Monocular camera
+</p>
+</div>
+</li>
+<li><a id="org16413da"></a>CMVS<br />
+<div class="outline-text-7" id="text-7-2-2-3-4-8">
 <p>
 从稀疏点云SFM到密集点云CMVS
 </p>
@@ -2897,7 +2947,7 @@ Geometric constraints
 </li>
 </ol>
 </li>
-<li><a id="orgc455b12"></a>结果：<br />
+<li><a id="orgb4f04c2"></a>结果：<br />
 <div class="outline-text-6" id="text-7-2-2-3-5">
 <p>
 an external camera pose per image and a 3D point cloud (the structure)
@@ -2909,26 +2959,177 @@ an external camera pose per image and a 3D point cloud (the structure)
 </ol>
 </div>
 </div>
-<div id="outline-container-org712d05f" class="outline-3">
-<h3 id="org712d05f"><span class="section-number-3">7.3</span> EE 297</h3>
+<div id="outline-container-org055db8d" class="outline-3">
+<h3 id="org055db8d"><span class="section-number-3">7.3</span> EE 297</h3>
 </div>
 </div>
-<div id="outline-container-org519367c" class="outline-2">
-<h2 id="org519367c"><span class="section-number-2">8</span> 终极写作模板 latex完美版</h2>
+<div id="outline-container-org24867c1" class="outline-2">
+<h2 id="org24867c1"><span class="section-number-2">8</span> 能力</h2>
 <div class="outline-text-2" id="text-8">
+<ul class="org-ul">
+<li>信息x</li>
+<li>目标y</li>
+<li>分析处理：分类 体系化 核心化</li>
+</ul>
 </div>
-<div id="outline-container-org78dfe03" class="outline-3">
-<h3 id="org78dfe03"><span class="section-number-3">8.1</span> 源代码</h3>
+<div id="outline-container-org2fd9e25" class="outline-3">
+<h3 id="org2fd9e25"><span class="section-number-3">8.1</span> 顶层设计</h3>
 <div class="outline-text-3" id="text-8-1">
+</div>
+<div id="outline-container-org265ca8b" class="outline-4">
+<h4 id="org265ca8b"><span class="section-number-4">8.1.1</span> 做事</h4>
+<div class="outline-text-4" id="text-8-1-1">
+<p>
+优先级分级
+</p>
+</div>
+</div>
+<div id="outline-container-org17bf895" class="outline-4">
+<h4 id="org17bf895"><span class="section-number-4">8.1.2</span> 能力</h4>
+<div class="outline-text-4" id="text-8-1-2">
+<p>
+能力检索
+</p>
+</div>
+</div>
+<div id="outline-container-orgb4f2c16" class="outline-4">
+<h4 id="orgb4f2c16"><span class="section-number-4">8.1.3</span> 状态保持</h4>
+<div class="outline-text-4" id="text-8-1-3">
+<ul class="org-ul">
+<li>脑子 信仰 兴趣 绝望</li>
+<li>思维辅助：目标 提炼 细化</li>
+<li>状态辅助：认识新事物的本能 兴趣</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orge097149" class="outline-4">
+<h4 id="orge097149"><span class="section-number-4">8.1.4</span> 神级分析能力：</h4>
+<div class="outline-text-4" id="text-8-1-4">
+<ul class="org-ul">
+<li>模仿</li>
+<li>控制变量</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org06a5ee0" class="outline-3">
+<h3 id="org06a5ee0"><span class="section-number-3">8.2</span> 分析能力</h3>
+<div class="outline-text-3" id="text-8-2">
+<ul class="org-ul">
+<li>提炼</li>
+<li>细化</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org3b4a5f6" class="outline-3">
+<h3 id="org3b4a5f6"><span class="section-number-3">8.3</span> 处理问题</h3>
+<div class="outline-text-3" id="text-8-3">
+<ul class="org-ul">
+<li>Google 搜索获取知识 优先找实例</li>
+<li>参考知识库</li>
+<li>控制变量</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orge0d48d7" class="outline-3">
+<h3 id="orge0d48d7"><span class="section-number-3">8.4</span> 状态保持</h3>
+<div class="outline-text-3" id="text-8-4">
+<ul class="org-ul">
+<li>优先级分类</li>
+<li>能力分类检索</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org998b9ff" class="outline-3">
+<h3 id="org998b9ff"><span class="section-number-3">8.5</span> 时间规划：</h3>
+<div class="outline-text-3" id="text-8-5">
+<ul class="org-ul">
+<li>合理分配决定体量</li>
+<li>最大化产能</li>
+<li>上限：最优绝对学习时间</li>
+<li>精力分配 取舍 分轻重缓急</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org3b530f4" class="outline-3">
+<h3 id="org3b530f4"><span class="section-number-3">8.6</span> <span class="todo __">学习</span> 效率</h3>
+<div class="outline-text-3" id="text-8-6">
+<ul class="org-ul">
+<li>最高效的方法是：找实例，仿写，活用</li>
+<li>问题分类：理解类，实用类</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org356dd20" class="outline-3">
+<h3 id="org356dd20"><span class="section-number-3">8.7</span> <span class="todo __">学习</span> 专注</h3>
+<div class="outline-text-3" id="text-8-7">
+<ul class="org-ul">
+<li>绝望 足够痛苦 不惜一切代价压迫</li>
+<li>音乐兴趣   本身知识兴趣</li>
+<li>信仰永生</li>
+<li>兴趣 提升-持续投入</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org50c6086" class="outline-3">
+<h3 id="org50c6086"><span class="section-number-3">8.8</span> <span class="todo __">学习</span> 类型</h3>
+<div class="outline-text-3" id="text-8-8">
+<ul class="org-ul">
+<li>理解类：</li>
+<li>上课：特点  怎么用</li>
+<li>程序 实用 类：通过实例，程序来理解 视频或者实例</li>
+<li>做题，处理类：</li>
+<li>总结 知识归纳类：</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org683e63e" class="outline-3">
+<h3 id="org683e63e"><span class="section-number-3">8.9</span> 作业-文本表述能力</h3>
+<div class="outline-text-3" id="text-8-9">
+<ul class="org-ul">
+<li>简扼描述</li>
+<li>参考paper的表述逻辑</li>
+<li>养成academic integrity习惯</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org8d91154" class="outline-3">
+<h3 id="org8d91154"><span class="section-number-3">8.10</span> 英语听力</h3>
+<div class="outline-text-3" id="text-8-10">
+<ul class="org-ul">
+<li>专注语音信息</li>
+<li>实体化 音频为问题</li>
+<li>语义分析，着重提供的信息</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org9add66a" class="outline-3">
+<h3 id="org9add66a"><span class="section-number-3">8.11</span> 乒乓球</h3>
+<div class="outline-text-3" id="text-8-11">
+<ul class="org-ul">
+<li>专注：预测</li>
+<li>脚步：转体</li>
+<li>借力回推：不发力</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf81f0be" class="outline-2">
+<h2 id="orgf81f0be"><span class="section-number-2">9</span> 终极写作模板 latex完美版</h2>
+<div class="outline-text-2" id="text-9">
+</div>
+<div id="outline-container-org5d73d17" class="outline-3">
+<h3 id="org5d73d17"><span class="section-number-3">9.1</span> 源代码</h3>
+<div class="outline-text-3" id="text-9-1">
 <p>
 详情见github中的相关文件
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgc0a6ac8" class="outline-2">
-<h2 id="orgc0a6ac8"><span class="section-number-2">9</span> 待完成插件</h2>
-<div class="outline-text-2" id="text-9">
+<div id="outline-container-org0c55ba1" class="outline-2">
+<h2 id="org0c55ba1"><span class="section-number-2">10</span> 待完成插件</h2>
+<div class="outline-text-2" id="text-10">
 <p>
 evil-leader
 </p>
@@ -2945,125 +3146,125 @@ evil-leader
 </ul>
 </div>
 </div>
-<div id="outline-container-org03fa631" class="outline-2">
-<h2 id="org03fa631"><span class="section-number-2">10</span> <span class="todo TODO">TODO</span> 待办事项</h2>
-<div class="outline-text-2" id="text-10">
+<div id="outline-container-orgb964185" class="outline-2">
+<h2 id="orgb964185"><span class="section-number-2">11</span> <span class="todo TODO">TODO</span> 待办事项</h2>
+<div class="outline-text-2" id="text-11">
 </div>
-<div id="outline-container-org9ca72ee" class="outline-3">
-<h3 id="org9ca72ee"><span class="section-number-3">10.1</span> <span class="todo __">紧急</span> 紧急类型</h3>
-<div class="outline-text-3" id="text-10-1">
+<div id="outline-container-org1be30f7" class="outline-3">
+<h3 id="org1be30f7"><span class="section-number-3">11.1</span> <span class="todo __">紧急</span> 紧急类型</h3>
+<div class="outline-text-3" id="text-11-1">
 <ul class="org-ul">
 <li>State "紧急"       from "TODO"       <span class="timestamp-wrapper"><span class="timestamp">[2018-04-24 周二 10:49]</span></span></li>
 <li>State "TODO"       from "TODO"       <span class="timestamp-wrapper"><span class="timestamp">[2018-04-24 周二 10:44]</span></span></li>
 </ul>
 </div>
-<div id="outline-container-org7f29a6a" class="outline-4">
-<h4 id="org7f29a6a"><span class="section-number-4">10.1.1</span> <span class="todo TODO">TODO</span> 完成EE243 project proposal</h4>
+<div id="outline-container-orgd5aaf49" class="outline-4">
+<h4 id="orgd5aaf49"><span class="section-number-4">11.1.1</span> <span class="todo TODO">TODO</span> 完成EE243 project proposal</h4>
 </div>
-<div id="outline-container-org8036ccf" class="outline-4">
-<h4 id="org8036ccf"><span class="section-number-4">10.1.2</span> <span class="todo TODO">TODO</span> 完成EE147 LAB2并提交</h4>
+<div id="outline-container-orgaa3c26d" class="outline-4">
+<h4 id="orgaa3c26d"><span class="section-number-4">11.1.2</span> <span class="todo TODO">TODO</span> 完成EE147 LAB2并提交</h4>
 </div>
-<div id="outline-container-org3434e60" class="outline-4">
-<h4 id="org3434e60"><span class="section-number-4">10.1.3</span> <span class="todo TODO">TODO</span> 完成EE243 HW2 完成并提交</h4>
+<div id="outline-container-org5e1a640" class="outline-4">
+<h4 id="org5e1a640"><span class="section-number-4">11.1.3</span> <span class="todo TODO">TODO</span> 完成EE243 HW2 完成并提交</h4>
 </div>
-<div id="outline-container-orge860186" class="outline-4">
-<h4 id="orge860186"><span class="section-number-4">10.1.4</span> <span class="todo TODO">TODO</span> 复习EE147</h4>
+<div id="outline-container-org6767705" class="outline-4">
+<h4 id="org6767705"><span class="section-number-4">11.1.4</span> <span class="todo TODO">TODO</span> 复习EE147</h4>
 </div>
-<div id="outline-container-org70beb57" class="outline-4">
-<h4 id="org70beb57"><span class="section-number-4">10.1.5</span> <span class="todo TODO">TODO</span> 完成EE297 project proposal</h4>
+<div id="outline-container-org5cb5628" class="outline-4">
+<h4 id="org5cb5628"><span class="section-number-4">11.1.5</span> <span class="todo TODO">TODO</span> 完成EE297 project proposal</h4>
 </div>
-<div id="outline-container-orga734579" class="outline-4">
-<h4 id="orga734579"><span class="section-number-4">10.1.6</span> <span class="todo TODO">TODO</span> 顶层能力</h4>
+<div id="outline-container-org2bdb58a" class="outline-4">
+<h4 id="org2bdb58a"><span class="section-number-4">11.1.6</span> <span class="todo TODO">TODO</span> 顶层能力</h4>
 </div>
 </div>
-<div id="outline-container-org9196a35" class="outline-3">
-<h3 id="org9196a35"><span class="section-number-3">10.2</span> <span class="todo __">学习</span> 学习知识，技能 长期任务</h3>
-<div class="outline-text-3" id="text-10-2">
+<div id="outline-container-orgcc49d4e" class="outline-3">
+<h3 id="orgcc49d4e"><span class="section-number-3">11.2</span> <span class="todo __">学习</span> 学习知识，技能 长期任务</h3>
+<div class="outline-text-3" id="text-11-2">
 <ul class="org-ul">
 <li>State "学习"       from "TODO"       <span class="timestamp-wrapper"><span class="timestamp">[2018-04-24 周二 10:53]</span></span></li>
 </ul>
 </div>
-<div id="outline-container-orge3985a3" class="outline-4">
-<h4 id="orge3985a3"><span class="section-number-4">10.2.1</span> <span class="todo TODO">TODO</span> 关于emacs Python 支持 以及jupyter notebook支持 matlab支持</h4>
-<div class="outline-text-4" id="text-10-2-1">
+<div id="outline-container-org38f3640" class="outline-4">
+<h4 id="org38f3640"><span class="section-number-4">11.2.1</span> <span class="todo TODO">TODO</span> 关于emacs Python 支持 以及jupyter notebook支持 matlab支持</h4>
+<div class="outline-text-4" id="text-11-2-1">
 <ul class="org-ul">
 <li>State "TODO"       from "学习"       <span class="timestamp-wrapper"><span class="timestamp">[2018-04-24 周二 10:55]</span></span></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf704bc5" class="outline-4">
-<h4 id="orgf704bc5"><span class="section-number-4">10.2.2</span> <span class="todo TODO">TODO</span> 学习英语</h4>
+<div id="outline-container-orge233535" class="outline-4">
+<h4 id="orge233535"><span class="section-number-4">11.2.2</span> <span class="todo TODO">TODO</span> 学习英语</h4>
 </div>
-<div id="outline-container-org0778702" class="outline-4">
-<h4 id="org0778702"><span class="section-number-4">10.2.3</span> <span class="todo TODO">TODO</span> 学习Python语言 Tesoroflow</h4>
+<div id="outline-container-org2953f88" class="outline-4">
+<h4 id="org2953f88"><span class="section-number-4">11.2.3</span> <span class="todo TODO">TODO</span> 学习Python语言 Tesoroflow</h4>
 </div>
-<div id="outline-container-org31f1458" class="outline-4">
-<h4 id="org31f1458"><span class="section-number-4">10.2.4</span> <span class="todo TODO">TODO</span> 学习emacs orgmode中的思维导图gtd</h4>
+<div id="outline-container-org3b1f598" class="outline-4">
+<h4 id="org3b1f598"><span class="section-number-4">11.2.4</span> <span class="todo TODO">TODO</span> 学习emacs orgmode中的思维导图gtd</h4>
 </div>
-<div id="outline-container-org47fef07" class="outline-4">
-<h4 id="org47fef07"><span class="section-number-4">10.2.5</span> <span class="todo TODO">TODO</span> 学习子龙山人知乎视频中关于package自定义，加速emacs启动等相关内容</h4>
+<div id="outline-container-org6b249ce" class="outline-4">
+<h4 id="org6b249ce"><span class="section-number-4">11.2.5</span> <span class="todo TODO">TODO</span> 学习子龙山人知乎视频中关于package自定义，加速emacs启动等相关内容</h4>
 </div>
-<div id="outline-container-orgcd1a341" class="outline-4">
-<h4 id="orgcd1a341"><span class="section-number-4">10.2.6</span> <span class="todo TODO">TODO</span> 学习使用latex编辑公式 也即math mode</h4>
+<div id="outline-container-org5c77650" class="outline-4">
+<h4 id="org5c77650"><span class="section-number-4">11.2.6</span> <span class="todo TODO">TODO</span> 学习使用latex编辑公式 也即math mode</h4>
 </div>
-<div id="outline-container-org69c808b" class="outline-4">
-<h4 id="org69c808b"><span class="section-number-4">10.2.7</span> <span class="todo TODO">TODO</span> 学习使用思维导图模式来处理Ability的demo</h4>
+<div id="outline-container-org1160d7a" class="outline-4">
+<h4 id="org1160d7a"><span class="section-number-4">11.2.7</span> <span class="todo TODO">TODO</span> 学习使用思维导图模式来处理Ability的demo</h4>
 </div>
-<div id="outline-container-org94d2573" class="outline-4">
-<h4 id="org94d2573"><span class="section-number-4">10.2.8</span> <span class="todo TODO">TODO</span> 解决掉demo.org转换html文件时速度极慢的问题</h4>
+<div id="outline-container-orgb17ac62" class="outline-4">
+<h4 id="orgb17ac62"><span class="section-number-4">11.2.8</span> <span class="todo TODO">TODO</span> 解决掉demo.org转换html文件时速度极慢的问题</h4>
 </div>
-<div id="outline-container-orgb78d8f4" class="outline-4">
-<h4 id="orgb78d8f4"><span class="section-number-4">10.2.9</span> <span class="todo TODO">TODO</span> 关于emacs中的解决不了的问题，可以咨询Chen Bin在github</h4>
+<div id="outline-container-orgf72196f" class="outline-4">
+<h4 id="orgf72196f"><span class="section-number-4">11.2.9</span> <span class="todo TODO">TODO</span> 关于emacs中的解决不了的问题，可以咨询Chen Bin在github</h4>
 </div>
-<div id="outline-container-org5bc666f" class="outline-4">
-<h4 id="org5bc666f"><span class="section-number-4">10.2.10</span> <span class="todo TODO">TODO</span> 最有效的学习layer配置自定义</h4>
-<div class="outline-text-4" id="text-10-2-10">
+<div id="outline-container-orge3d9346" class="outline-4">
+<h4 id="orge3d9346"><span class="section-number-4">11.2.10</span> <span class="todo TODO">TODO</span> 最有效的学习layer配置自定义</h4>
+<div class="outline-text-4" id="text-11-2-10">
 <p>
 <a href="https://github.com/search?utf8=%E2%9C%93&amp;q=.spacemacs+layer&amp;type">https://github.com/search?utf8=✓&amp;q=.spacemacs+layer&amp;type</a>=
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgf3c5d01" class="outline-3">
-<h3 id="orgf3c5d01"><span class="section-number-3">10.3</span> <span class="todo __">事件</span> 需要处理的事情</h3>
-<div class="outline-text-3" id="text-10-3">
+<div id="outline-container-orgbfa759e" class="outline-3">
+<h3 id="orgbfa759e"><span class="section-number-3">11.3</span> <span class="todo __">事件</span> 需要处理的事情</h3>
+<div class="outline-text-3" id="text-11-3">
 </div>
-<div id="outline-container-org4a09f3d" class="outline-4">
-<h4 id="org4a09f3d"><span class="section-number-4">10.3.1</span> <span class="todo TODO">TODO</span> 完成州内学费申请</h4>
-<div class="outline-text-4" id="text-10-3-1">
+<div id="outline-container-orgeff9c3f" class="outline-4">
+<h4 id="orgeff9c3f"><span class="section-number-4">11.3.1</span> <span class="todo TODO">TODO</span> 完成州内学费申请</h4>
+<div class="outline-text-4" id="text-11-3-1">
 <ul class="org-ul">
 <li>State "TODO"       from "事件"       <span class="timestamp-wrapper"><span class="timestamp">[2018-04-24 周二 11:02]</span></span></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb5a2cf4" class="outline-4">
-<h4 id="orgb5a2cf4"><span class="section-number-4">10.3.2</span> <span class="todo TODO">TODO</span> 完成Kim grad student form 截止日期 6.15</h4>
-<div class="outline-text-4" id="text-10-3-2">
+<div id="outline-container-org7e7eecf" class="outline-4">
+<h4 id="org7e7eecf"><span class="section-number-4">11.3.2</span> <span class="todo TODO">TODO</span> 完成Kim grad student form 截止日期 6.15</h4>
+<div class="outline-text-4" id="text-11-3-2">
 <p>
 <a href="https://mail.google.com/mail/u/1/#inbox/162f9d4479616148">https://mail.google.com/mail/u/1/#inbox/162f9d4479616148</a>
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgbb2ce92" class="outline-3">
-<h3 id="orgbb2ce92"><span class="section-number-3">10.4</span> <span class="todo __">零碎</span> 零碎的事情</h3>
-<div class="outline-text-3" id="text-10-4">
+<div id="outline-container-orgf938193" class="outline-3">
+<h3 id="orgf938193"><span class="section-number-3">11.4</span> <span class="todo __">零碎</span> 零碎的事情</h3>
+<div class="outline-text-3" id="text-11-4">
 <ul class="org-ul">
 <li>State "事件"       from              <span class="timestamp-wrapper"><span class="timestamp">[2018-04-24 周二 11:06]</span></span></li>
 </ul>
 </div>
-<div id="outline-container-org699a02c" class="outline-4">
-<h4 id="org699a02c"><span class="section-number-4">10.4.1</span> <span class="done IDEA">IDEA</span> 在EE243的project可以参考3D RECONSTRUCTION</h4>
-<div class="outline-text-4" id="text-10-4-1">
+<div id="outline-container-orgcd3e349" class="outline-4">
+<h4 id="orgcd3e349"><span class="section-number-4">11.4.1</span> <span class="done IDEA">IDEA</span> 在EE243的project可以参考3D RECONSTRUCTION</h4>
+<div class="outline-text-4" id="text-11-4-1">
 <ul class="org-ul">
 <li>State "IDEA"       from "TODO"       <span class="timestamp-wrapper"><span class="timestamp">[2018-04-24 周二 11:10]</span></span></li>
 <li>State "TODO"       from "零碎"       <span class="timestamp-wrapper"><span class="timestamp">[2018-04-24 周二 11:08]</span></span></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgeb19f42" class="outline-4">
-<h4 id="orgeb19f42"><span class="section-number-4">10.4.2</span> <span class="todo TODO">TODO</span> 在EE243的project可以参考语义分析</h4>
-<div class="outline-text-4" id="text-10-4-2">
+<div id="outline-container-org35f1448" class="outline-4">
+<h4 id="org35f1448"><span class="section-number-4">11.4.2</span> <span class="todo TODO">TODO</span> 在EE243的project可以参考语义分析</h4>
+<div class="outline-text-4" id="text-11-4-2">
 <ul class="org-ul">
 <li>State "TODO"       from "紧急"       <span class="timestamp-wrapper"><span class="timestamp">[2018-04-26 周四 10:13]</span></span></li>
 </ul>
@@ -3073,7 +3274,7 @@ evil-leader
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="date">Created: 2018-04-27 周五 00:24</p>
+<p class="date">Created: 2018-04-27 周五 13:15</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
