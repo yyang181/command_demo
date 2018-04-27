@@ -1280,6 +1280,11 @@ Geometric constraints
 采用一个非线性最小二乘的优化方法求解
 ****** RANSAC方法
 降噪
+****** global
+增量式：一张一张加图片
+
+全局式：只在最后一步BA
+
 ****** CMVS
 从稀疏点云SFM到密集点云CMVS
 ***** 结果：
