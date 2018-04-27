@@ -1346,11 +1346,14 @@ an external camera pose per image and a 3D point cloud (the structure)
 - 简扼描述
 - 参考paper的表述逻辑
 - 养成academic integrity习惯
+** 英语听力
+- 专注语音信息
+- 实体化 音频为问题
+- 语义分析，着重提供的信息
 ** 乒乓球
 - 专注：预测
 - 脚步：转体
 - 借力回推：不发力
-
 * 终极写作模板 latex完美版
 ** 源代码
 详情见github中的相关文件
