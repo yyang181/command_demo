@@ -1290,7 +1290,8 @@ Geometric constraints
 增量式：一张一张加图片
 
 全局式：只在最后一步BA
-
+****** camera pose
+Monocular camera
 ****** CMVS
 从稀疏点云SFM到密集点云CMVS
 ***** 结果：
