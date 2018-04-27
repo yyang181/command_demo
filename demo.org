@@ -1260,6 +1260,8 @@ It is fine to align your course project with your research, but it is important 
 ***** 构思
 Python openSFM openMVG openCV point cloud 
 **** 思路整理
+***** 题目
+Implement Structure from Mothon(SFM) method to 3D reconstruction in python
 ***** 工具：
 openCV python
 ***** paper:      
