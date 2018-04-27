@@ -712,6 +712,10 @@ Listing~\ref{homework_example}}
 \hyperref[result1.png]{Fig.\ref{result1.png}}
 #+END_SRC
 其中，[]里面的是label {}里面的是隐式链接
+**** 网址超链接
+#+BEGIN_SRC 
+\href{https://github.com/yyang181/ee243/blob/master/nips_2017/nips_2017.tex}{github}
+#+END_SRC
 *** nips图片格式
 #+BEGIN_SRC 
 \begin{figure}[h]
