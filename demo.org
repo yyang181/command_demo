@@ -1243,6 +1243,7 @@ https://www.mathworks.com/help/vision/ref/extracthogfeatures.html?s_tid=doc_ta
 Project Abstract
 Posted on: Friday, April 13, 2018 11:38:53 PM PDT
 
+也即小五 9磅字体
 Please submit a short 1-para abstract of your course project by 11.59PM April 27. The abstract should include the following.
 1. Brief description of the problem you want to work on.
 2. A paper related to the problem that you would like to focus on. Usually, this will mean implementation of, at least, a part of the paper. However, it could also include theoretical analysis of an approach. Describe how you chose this paper.
@@ -1255,7 +1256,7 @@ It is fine to align your course project with your research, but it is important 
 ***** 3D 重构
 ****** SIFT
 ****** SFM Structure from Motion 
-****** PCL
+****** PCL 
 ** EE 297
 * 终极写作模板 latex完美版
 ** 源代码
