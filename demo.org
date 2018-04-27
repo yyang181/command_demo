@@ -764,6 +764,9 @@ Listing~\ref{homework_example}}
 为了能够随时使用特定图片，可以给该图片一个label，这个label也是自动编号的。
 
 使用的时候直接\ref这个label即可的到图片的编号。
+** latex 中新建environment
+*** 学习资料
+http://www.latexstudio.net/archives/11218
 * Org mode 
 ** Useful Command
 *** 编译 
