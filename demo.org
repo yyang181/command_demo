@@ -1391,7 +1391,9 @@ evil-leader
 *** TODO 解决掉demo.org转换html文件时速度极慢的问题
 *** TODO 关于emacs中的解决不了的问题，可以咨询Chen Bin在github
 *** TODO 最有效的学习layer配置自定义
+
 https://github.com/search?utf8=%E2%9C%93&q=.spacemacs+layer&type=
+*** TODO 学习latex中配置begin environment的方法，对于论文写作很有帮助
 ** 事件 需要处理的事情
 *** TODO 完成州内学费申请
 - State "TODO"       from "事件"       [2018-04-24 周二 11:02]
