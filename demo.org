@@ -341,6 +341,7 @@ ein:jupyter-default-notebook-directory and set it to the path where you are keep
 **** pyvenv unsigned需要在.spacemacs文件中添加package 用来调用jupyter notebook虚拟环境
 **** pyvenv package已经被证实不好用，用ein官方包代替
 ** 重要：配置private layer:yyang181
+*** 优先使用.spacemacs文件，如果没有，使用init.el文件生成.spacemacs
 *** 只修改两个文件init.el 和.spacemacs
 *** 设置users layer .spacemacs
 #+BEGIN_SRC 
