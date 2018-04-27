@@ -1260,14 +1260,28 @@ It is fine to align your course project with your research, but it is important 
 ***** 构思
 Python openSFM openMVG openCV point cloud 
 **** 思路整理
-工具：openCV python
-
-paper:      [2] Changchang Wu, "VisualSFM: A Visual Structure from Motion System", 
+***** 工具：
+openCV python
+***** paper:      
+[2] Changchang Wu, "VisualSFM: A Visual Structure from Motion System",
           http://ccwu.me/vsfm/, 2011
+***** approach： 
+****** SIFT 
+特征值提取 可以采用AKAZE最新版来处理
 
-approach：SIFT 
-
-结果：an external camera pose per image and a 3D point cloud (the structure)
+https://www.zhihu.com/search?type=content&q=sfm
+****** kd-tree
+特征点匹配 从而得到符合要求特征点个数的图片
+****** F-matrices epipolar constraint极线约束
+Geometric constraints
+****** bundle adjustment 光束平差法
+采用一个非线性最小二乘的优化方法求解
+****** RANSAC方法
+降噪
+****** CMVS
+从稀疏点云SFM到密集点云CMVS
+***** 结果：
+an external camera pose per image and a 3D point cloud (the structure)
 ** EE 297
 * 终极写作模板 latex完美版
 ** 源代码
