@@ -1104,6 +1104,8 @@ From https://github.com/kelvinh/kelvinh.github.com
 **** 安装Java环境
 https://blog.csdn.net/afei__/article/details/51464783
 *** 使用步骤
+**** 用orgmode输出.mm思维导图文件C-c C-e
+**** 用freemind软件打开.mm文件，并保存为.png即可
 * Jupyter notebook
 ** 常用命令
 #+BEGIN_SRC 
