@@ -1257,6 +1257,16 @@ It is fine to align your course project with your research, but it is important 
 ****** SIFT
 ****** SFM Structure from Motion 
 ****** PCL 
+***** 构思
+Python openSFM openMVG openCV point cloud 
+**** 思路整理
+工具：openCV openMVG python
+
+paper:
+
+approach：
+
+结果：an external camera pose per image and a 3D point cloud (the structure)
 ** EE 297
 * 终极写作模板 latex完美版
 ** 源代码
