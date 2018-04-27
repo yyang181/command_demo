@@ -1265,8 +1265,14 @@ Implement 3D reconstruction by using Structure from Mothon (SFM)
 ***** 工具：
 openCV python
 ***** paper:      
+N. Jiang, Z. Cui and P. Tan, "A Global Linear Method for Camera Pose Registration," 2013 IEEE International Conference on Computer Vision, Sydney, NSW, 2013, pp. 481-488.
+doi: 10.1109/ICCV.2013.66
+
 [2] Changchang Wu, "VisualSFM: A Visual Structure from Motion System",
           http://ccwu.me/vsfm/, 2011
+
+P. Moulon, P. Monasse and R. Marlet, "Global Fusion of Relative Motions for Robust, Accurate and Scalable Structure from Motion," 2013 IEEE International Conference on Computer Vision, Sydney, NSW, 2013, pp. 3248-3255.
+doi: 10.1109/ICCV.2013.403S. Agarwal, N. Snavely, I. Simon, S. Seitz, and R. Szeliski. Building rome in a day. In Proc. ICCV, 2009.
 ***** approach： 
 ****** SIFT 
 特征值提取 可以采用AKAZE最新版来处理
