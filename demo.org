@@ -1337,6 +1337,7 @@ extract the Histogram of Gradient
 ********** extractHOGFeatures build-in function 仅供参考理解 老师不允许用
 https://www.mathworks.com/help/vision/ref/extracthogfeatures.html?s_tid=doc_ta
 ********** 自定义函数
+https://www.cnblogs.com/tiandsp/archive/2013/05/24/3097503.html
 ******* 4.b.2 getMatches.m
 ******* 4.b.3 featurematching.m
 *** Project proposal
