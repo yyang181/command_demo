@@ -631,6 +631,24 @@ images//1.png
 换行 优先用\\换行符，因为空一行来换行的话会出现开头自动tab的问题
 空出一行 可以用 \vbox{}\\
 #+END_SRC
+** latex 设置字体大小
+*** 第一种方法
+#+BEGIN_SRC 
+\fontsize{字体尺寸}{行距}
+#+END_SRC
+*** 第二种方法 从小到大
+#+BEGIN_SRC 
+\tiny
+\scriptsize
+\footnotesize
+\small
+\normalsize 采用默认！
+\large
+\Large
+\LARGE
+\huge
+\Huge
+#+END_SRC
 ** latex 插入图片
 *** 一定要注意！！！！！！谁他妈说的，草，不确定
 **** \begin{figure}同一个环境中只能放一个！！！！
