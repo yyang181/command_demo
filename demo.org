@@ -713,6 +713,17 @@ Latex的加粗命令是\textbf{文字}
 \centerline{\huge{\textbf{Project Abstract}}}
 emph{\textbf{blablablabla}}
 #+END_SRC
+** latex设置段落格式
+*** 首行缩进
+#+BEGIN_SRC 
+\noindent 设置不缩进
+\indent 设置缩进
+#+END_SRC
+*** 空行
+#+BEGIN_SRC 
+\vbox{}
+\vspace{12pt}
+#+END_SRC
 ** latex 插入图片
 *** 一定要注意！！！！！！谁他妈说的，草，不确定
 **** \begin{figure}同一个环境中只能放一个！！！！
