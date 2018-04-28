@@ -721,8 +721,8 @@ emph{\textbf{blablablabla}}
 #+END_SRC
 *** 空行
 #+BEGIN_SRC 
-\vbox{}
-\vspace{12pt}
+\vbox{} 不要再最后加\\
+\vspace{12pt} 不要再最后加\\
 #+END_SRC
 ** latex 插入图片
 *** 一定要注意！！！！！！谁他妈说的，草，不确定
