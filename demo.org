@@ -692,6 +692,10 @@ slanted斜体： \textsl{文本}
 加粗命令： \textbf{文本}
 默认值： \textnormal{文本}
 下划线： \underline{文本}
+
+Latex的斜体命令是\emph{文字}
+Latex的下划线命令是\underline{文字}
+Latex的加粗命令是\textbf{文字}
 #+END_SRC
 **** 用法解释
 #+BEGIN_SRC 
@@ -703,8 +707,9 @@ slanted斜体： \textsl{文本}
 #+BEGIN_SRC 
 {\bfseries 这段我希望他能加黑啊} 
 #+END_SRC
-**** 多个格式混合使用
+**** 多个格式混合使用 先居中 在字号 在加粗
 #+BEGIN_SRC 
+\centerline{\huge{\textbf{Project Abstract}}}
 emph{\textbf{blablablabla}}
 #+END_SRC
 ** latex 插入图片
