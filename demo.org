@@ -631,13 +631,26 @@ images//1.png
 换行 优先用\\换行符，因为空一行来换行的话会出现开头自动tab的问题
 空出一行 可以用 \vbox{}\\
 #+END_SRC
-** latex 设置字体大小
-*** 第一种方法
+** latex 设置字体格式
+*** 设置字体大小
+**** 第一种方法
 #+BEGIN_SRC 
 \fontsize{字体尺寸}{行距}
 #+END_SRC
-*** 第二种方法 从小到大
+**** 第二种方法 从小到大
 #+BEGIN_SRC 
+Command     Nominal Point Size      Exact Point Size
+\tiny               5                       5
+\scriptsize         7                       7
+\footnotesize       8                       8
+\small              9                       9
+\normalsize        10                      10
+\large             12                      12
+\Large             14                   14.40
+\LARGE             18                   17.28
+\huge              20                   20.74
+\Huge              24                   24.88
+
 \tiny
 \scriptsize
 \footnotesize
@@ -648,6 +661,36 @@ images//1.png
 \LARGE
 \huge
 \Huge
+#+END_SRC
+*** 设置字体颜色
+#+BEGIN_SRC 
+\usepackage{xcolor}
+\textcolor{color}{words to be in color}
+\color{color}{}
+\colorbox[rgb]{r,g,b}{text}  %背景颜色
+#+END_SRC
+*** 设置字体居中
+#+BEGIN_SRC 
+\centerline{\large{Homework 1}}
+#+END_SRC
+*** 设置字体加粗 下划线等命令
+**** 命令汇总
+#+BEGIN_SRC 
+
+#+END_SRC
+**** 用法解释
+#+BEGIN_SRC 
+\begin{bfseries} 
+这段我希望他能加黑啊
+\end{bfseries}
+#+END_SRC
+或者
+#+BEGIN_SRC 
+{\bfseries 这段我希望他能加黑啊} 
+#+END_SRC
+**** 多个格式混合使用
+#+BEGIN_SRC 
+emph{\textbf{blablablabla}}
 #+END_SRC
 ** latex 插入图片
 *** 一定要注意！！！！！！谁他妈说的，草，不确定
