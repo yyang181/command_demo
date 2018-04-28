@@ -676,7 +676,22 @@ Command     Nominal Point Size      Exact Point Size
 *** 设置字体加粗 下划线等命令
 **** 命令汇总
 #+BEGIN_SRC 
+\usepackage{ulem}
 
+\uline{text}  下划线
+\uuline{text}  双下划线
+\uwave{text} 波浪线
+\sout{text} 删除线
+\xout{text} 斜删除线
+
+显示直立文本： \textup{文本}
+意大利斜体： \textit{文本}
+slanted斜体： \textsl{文本}
+显示小体大写文本： 　\textsc{文本}
+中等权重： \textmd{文本}
+加粗命令： \textbf{文本}
+默认值： \textnormal{文本}
+下划线： \underline{文本}
 #+END_SRC
 **** 用法解释
 #+BEGIN_SRC 
@@ -1464,6 +1479,7 @@ evil-leader
 
 https://github.com/search?utf8=%E2%9C%93&q=.spacemacs+layer&type=
 *** TODO 学习latex中配置begin environment的方法，对于论文写作很有帮助
+*** TODO 中文字体设置 https://www.jianshu.com/p/b1751078e28e
 ** 事件 需要处理的事情
 *** TODO 完成州内学费申请
 - State "TODO"       from "事件"       [2018-04-24 周二 11:02]
