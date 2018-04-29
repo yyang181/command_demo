@@ -628,6 +628,14 @@ images//1.png
      中间部分为需要括起来的内容
 \right]
 #+END_SRC
+***** 矩阵的写法
+#+BEGIN_SRC 
+\begin{matrix}
+   1 & 2 & 3 \\
+   4 & 5 & 6 \\
+   7 & 8 & 9
+  \end{matrix}
+#+END_SRC
 *** 其他还有一些数学环境里的「要」和「不要
 #+BEGIN_SRC 
 用 $ ... $ 而不用 \( ... \)；
