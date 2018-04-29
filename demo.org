@@ -651,6 +651,10 @@ images//1.png
 \leqslant
 \geqslant
 #+END_SRC
+***** 无穷大
+#+BEGIN_SRC 
+\infty
+#+END_SRC
 *** 其他还有一些数学环境里的「要」和「不要
 #+BEGIN_SRC 
 用 $ ... $ 而不用 \( ... \)；
