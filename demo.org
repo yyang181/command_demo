@@ -1261,7 +1261,7 @@ M=cell(row*col);
 figure;
 for i = 1:row*col
         M{1,i} = I;
-        subplot(row,col,i),imshow(M{1,i}),title(['\fontsize{16} Wiener filter with n=' num2str(i)']);
+        subplot(row,col,i),imshow(M{1,i}),title(['\fontsize{16} Wiener filter with n=' num2str(i)]);
 end
 suptitle('DCT 4-by-4 basis images');
 #+END_SRC
