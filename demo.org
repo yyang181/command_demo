@@ -645,6 +645,12 @@ images//1.png
 \cdots 水平方向省略号
 \vdots
 #+END_SRC
+***** 不等号
+#+BEGIN_SRC 
+\neq
+\leqslant
+\geqslant
+#+END_SRC
 *** 其他还有一些数学环境里的「要」和「不要
 #+BEGIN_SRC 
 用 $ ... $ 而不用 \( ... \)；
