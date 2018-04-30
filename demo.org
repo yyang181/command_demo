@@ -1512,10 +1512,10 @@ evil-leader
 ** 紧急 [#A] 紧急类型
 - State "紧急"       from "TODO"       [2018-04-24 周二 10:49]
 - State "TODO"       from "TODO"       [2018-04-24 周二 10:44]
-*** TODO 完成EE243 project proposal
-*** TODO 完成EE147 LAB2并提交
-*** TODO 完成EE243 HW2 完成并提交
-*** TODO 复习EE147
+*** TODO 完成EE243 Hw3
+*** TODO 完成EE147 Lab3并提交
+*** TODO 开始进行EE243的project
+*** TODO 复习EE147 期中考试
 *** TODO 完成EE297 project proposal
 *** TODO 顶层能力 
 ** 学习 学习知识，技能 长期任务
