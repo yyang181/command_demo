@@ -1284,6 +1284,7 @@ help() 查询括号里面的包、函数
 #+BEGIN_SRC matlab
 cell(n) 创建一个n-by-n的空cell
 cell{1,2} 索引cell中的第一行第二个矩阵元素
+lines=cell([1 n]);创建一个1行n列的cell
 #+END_SRC
 ** for循环处理画图语句
 #+BEGIN_SRC matlab
