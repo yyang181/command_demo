@@ -1469,6 +1469,7 @@ an external camera pose per image and a 3D point cloud (the structure)
 - 上限：最优绝对学习时间
 - 精力分配 取舍 分轻重缓急
 ** 学习效率 
+- 总结：理解透彻 模仿实例 控制变量debug
 - 最高效的方法是：找实例，仿写，活用
 - 问题分类：理解类，实用类
 ** 学习专注
