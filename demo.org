@@ -1517,6 +1517,9 @@ evil-leader
 *** TODO 完成EE147 Lab3并提交
 *** TODO 开始进行EE243的project
 *** TODO 复习EE147 期中考试
+- 期中考试样题
+- PPT 可能会考的题型
+- 课本前五章，不包括减法
 *** TODO 完成EE297 project proposal
 *** TODO 顶层能力 
 ** 学习 学习知识，技能 长期任务
