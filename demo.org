@@ -1447,7 +1447,8 @@ an external camera pose per image and a 3D point cloud (the structure)
 ***  能力
 能力检索
 ***  状态保持
-- 脑子 信仰 兴趣 绝望
+- 计划 时效
+- 绝望 信仰 脑子 兴趣
 - 思维辅助：目标 提炼 细化
 - 状态辅助：认识新事物的本能 兴趣
 *** 神级分析能力：
