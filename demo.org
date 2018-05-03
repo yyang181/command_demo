@@ -1445,6 +1445,12 @@ an external camera pose per image and a 3D point cloud (the structure)
 - 老师给的paper https://ieeexplore.ieee.org/document/868688/
 - 步骤分析参考 http://note.sonots.com/SciSoftware/NcutImageSegmentation.html#sd872c22  https://blog.csdn.net/gyarenas/article/details/51771814
 - 搜索语句：normalized cuts 或者ncut
+- 在matlab中运行cpp代码的顺序
+#+BEGIN_SRC 
+ b)  在命令行中输入 mex -setup 
+  根据指引选择。我用的是VS10 对就选择的是Microsoft Visual C++ 2010。(注：对于其他VS版本不保证能运行通过,因为没有亲测。)
+ c) 在命令行中输入  compileDir_simple
+#+END_SRC
 ** EE 297
 * 能力
 - 信息x 
