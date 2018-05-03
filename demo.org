@@ -1441,6 +1441,7 @@ an external camera pose per image and a 3D point cloud (the structure)
 ***** 参考资料
 - paper作者给的PPT介绍 http://www.cis.upenn.edu/~jshi/GraphTutorial/ 相关链接见步骤分析参考的第一个网址
 - 宾大 完整代码 http://www.cis.upenn.edu/~jshi/software/  http://www.timotheecour.com/software/ncut/ncut.html
+- matlab代码使用说明 博客 https://blog.csdn.net/huapenguag/article/details/51736677
 - 老师给的paper https://ieeexplore.ieee.org/document/868688/
 - 步骤分析参考 http://note.sonots.com/SciSoftware/NcutImageSegmentation.html#sd872c22  https://blog.csdn.net/gyarenas/article/details/51771814
 - 搜索语句：normalized cuts 或者ncut
