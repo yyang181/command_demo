@@ -1436,6 +1436,12 @@ Monocular camera
 从稀疏点云SFM到密集点云CMVS
 ***** 结果：
 an external camera pose per image and a 3D point cloud (the structure)
+*** hw3
+**** Problem 1 归一化切割和图像分割
+***** 参考资料
+- 宾大 完整代码 http://www.cis.upenn.edu/~jshi/software/
+- 老师给的paper https://ieeexplore.ieee.org/document/868688/
+- 搜索语句：normalized cuts 或者ncut
 ** EE 297
 * 能力
 - 信息x 
