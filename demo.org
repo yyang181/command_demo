@@ -1439,8 +1439,9 @@ an external camera pose per image and a 3D point cloud (the structure)
 *** hw3
 **** Problem 1 归一化切割和图像分割
 ***** 参考资料
-- 宾大 完整代码 http://www.cis.upenn.edu/~jshi/software/
+- 宾大 完整代码 http://www.cis.upenn.edu/~jshi/software/  http://www.timotheecour.com/software/ncut/ncut.html
 - 老师给的paper https://ieeexplore.ieee.org/document/868688/
+- 步骤分析参考 http://note.sonots.com/SciSoftware/NcutImageSegmentation.html#sd872c22  https://blog.csdn.net/gyarenas/article/details/51771814
 - 搜索语句：normalized cuts 或者ncut
 ** EE 297
 * 能力
