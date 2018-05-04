@@ -1565,8 +1565,8 @@ an external camera pose per image and a 3D point cloud (the structure)
 **** Problem 1 Ncut深度理解
 ***** 图论理解
 - 邻接矩阵 无向图 也就是相似性矩阵
-- degree of node di: i点到其他所有点的线的个数之和
-- volume of set: 该set中所有点i的度数之和 di
+- degree of node di: i点到其他所有点的线的个数之和 di = Sij j
+- volume of set: 该set中所有点i的度数之和 
 - cut： i-A j-!A Sij 之和
 - Ncut: Ncut(A,B)=cut(A,B)(1/vol(A)+1/vol(B))
 ***** 在Ncut领域的重新表述
