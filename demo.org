@@ -509,7 +509,7 @@ installed from an online source using quelpa.
 (auto-package-update-maybe)
 #+END_SRC
 * Latex 编辑命令
-4** 导出pdf
+** 导出pdf
 需要先编译
 #+BEGIN_SRC 
 C-c C-c 编译latex文件
@@ -899,6 +899,29 @@ Listing~\ref{homework_example}}
 ** latex 中新建environment
 *** 学习资料
 http://www.latexstudio.net/archives/11218
+** latex 中分栏
+*** 网址：https://blog.csdn.net/u013225150/article/details/51713299
+*** 双栏模式进入和退出
+#+BEGIN_SRC 
+\twocolumn 
+\onecolumn
+#+END_SRC
+*** 分栏的中间间距和竖线
+**** 中间间距
+#+BEGIN_SRC 
+\setlength\columnsep{5pt}
+#+END_SRC
+**** 分栏线默认宽度为0，即不可见，可以通过
+#+BEGIN_SRC 
+\setlength\columnseprule{0.4pt}
+#+END_SRC
+**** 多栏显示
+#+BEGIN_SRC 
+\usepackage{multicol}
+...
+\begin{multicols}{3}
+\end{multicols}
+#+END_SRC
 * Org mode 
 ** Useful Command
 *** 编译 
