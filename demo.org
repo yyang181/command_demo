@@ -950,6 +950,13 @@ int main()
 }    
 \end{lstlisting}} 
 #+END_SRC
+** latex 中页边距设置
+#+BEGIN_SRC 
+\usepackage{geometry}
+\geometry{a4paper,scale=0.8}
+上面命令设置了纸张为a4 纸，并且版心占页面长度的比例为80%；scale也可以改为ratio，表示版面边距占页面长度的比例。该宏包还可以设置页面的上下左右边距，例如
+\geometry{a4paper,left=2cm,right=2cm,top=1cm,bottom=1cm}
+#+END_SRC
 * Org mode 
 ** Useful Command
 *** 编译 
