@@ -1567,6 +1567,8 @@ an external camera pose per image and a 3D point cloud (the structure)
 - degree of node di: i点到其他所有点的线的个数之和
 - volume of set: 该set中所有点i的度数之和
 - cut： i-A j-!A Sij 之和
+- Ncut: Ncut(A,B)=cut(A,B)(1/vol(A)+1/vol(B))
+
 ** EE 297
 * 能力
 - 信息x 
