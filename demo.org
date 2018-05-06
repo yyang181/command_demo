@@ -1574,6 +1574,11 @@ an external camera pose per image and a 3D point cloud (the structure)
 - Ncut: Ncut(A,B)=cut(A,B)(1/vol(A)+1/vol(B))
 ***** 在Ncut领域的重新表述
 - 
+**** Problem 2 参考资料
+***** 源代码参考
+- https://blog.csdn.net/qq_23968185/article/details/70940197
+***** 原理解释：
+- https://blog.csdn.net/jinping_shi/article/details/59613054
 ** EE 297
 * 能力
 - 信息x 
