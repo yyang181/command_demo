@@ -1410,6 +1410,8 @@ for i = 1:row*col
 end
 suptitle('DCT 4-by-4 basis images');
 #+END_SRC
+** 类 class 函数变量名： 变量名.成员变量
+
 * Spring 2018
 ** EE 147
 *** Lab answers
@@ -1555,6 +1557,7 @@ an external camera pose per image and a 3D point cloud (the structure)
 - matlab代码使用说明 博客 https://blog.csdn.net/huapenguag/article/details/51736677
 - 老师给的paper https://ieeexplore.ieee.org/document/868688/
 - 步骤分析参考 http://note.sonots.com/SciSoftware/NcutImageSegmentation.html#sd872c22  https://blog.csdn.net/gyarenas/article/details/51771814
+- 重要论文 重庆大学硕士论文 http://www.docin.com/p-1007045025-f3.html
 - 搜索语句：normalized cuts 或者ncut
 - 在matlab中运行cpp代码的顺序
 #+BEGIN_SRC 
