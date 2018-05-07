@@ -1592,16 +1592,16 @@ https://www.baidu.com/s?ie=utf-8&f=3&rsv_bp=1&rsv_idx=2&tn=baiduhome_pg&wd=%E9%A
 **** Problem 3
 ***** Problem 3
 ****** 相关资料
-******* Detecting Cars Using Gaussian Mixture Models
+******* Motion-Based Multiple Object Tracking Matlab官方文档 可能是最适合的
+- https://ww2.mathworks.cn/help/vision/examples/motion-based-multiple-object-tracking.html
+- csdn博客解释官方文档
+- https://www.cnblogs.com/YangQiaoblog/p/5462453.html
+******* Detecting Cars Using Gaussian Mixture Models MATLAB官方文档 
 https://www.mathworks.com/help/vision/examples/detecting-cars-using-gaussian-mixture-models.html?searchHighlight=bbox&s_tid=doc_srchtitle
 ******* csdn 人脸检测
 https://blog.csdn.net/u013088062/article/details/50810988
 ******* 视频多目标跟踪
 http://www.ilovematlab.cn/thread-133433-1-1.html
-******* Motion-Based Multiple Object Tracking Matlab官方文档 可能是最适合的
-- https://ww2.mathworks.cn/help/vision/examples/motion-based-multiple-object-tracking.html
-- csdn博客解释官方文档
-- https://www.cnblogs.com/YangQiaoblog/p/5462453.html
 ** EE 297
 * 能力
 - 信息x 
