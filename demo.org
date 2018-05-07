@@ -1550,8 +1550,9 @@ Monocular camera
 ***** 结果：
 an external camera pose per image and a 3D point cloud (the structure)
 *** hw3
-**** Problem 1 归一化切割和图像分割
-***** 参考资料
+**** Problem 1
+***** Problem 1 归一化切割和图像分割
+****** 参考资料
 - paper作者给的PPT介绍 http://www.cis.upenn.edu/~jshi/GraphTutorial/ 相关链接见步骤分析参考的第一个网址
 - 宾大 完整代码 http://www.cis.upenn.edu/~jshi/software/  http://www.timotheecour.com/software/ncut/ncut.html
 - matlab代码使用说明 博客 https://blog.csdn.net/huapenguag/article/details/51736677
@@ -1565,28 +1566,32 @@ an external camera pose per image and a 3D point cloud (the structure)
   根据指引选择。我用的是VS10 对就选择的是Microsoft Visual C++ 2010。(注：对于其他VS版本不保证能运行通过,因为没有亲测。)
  c) 在命令行中输入  compileDir_simple
 #+END_SRC
-**** Problem 1 Ncut深度理解
-***** 图论理解
+***** Problem 1 Ncut深度理解
+****** 图论理解
 - 邻接矩阵 无向图 也就是相似性矩阵
 - degree of node di: i点到其他所有点的线的个数之和 di = Sij j
 - volume of set: 该set中所有点i的度数之和 
 - cut： i-A j-!A Sij 之和
 - Ncut: Ncut(A,B)=cut(A,B)(1/vol(A)+1/vol(B))
-***** 在Ncut领域的重新表述
+****** 在Ncut领域的重新表述
 - 
-**** Problem 2 参考资料
-***** 源代码参考
+**** Problem 2
+***** Problem 2 参考资料
+****** 源代码参考
 - https://blog.csdn.net/qq_23968185/article/details/70940197
-***** 原理解释：
+****** 原理解释：
 - https://blog.csdn.net/jinping_shi/article/details/59613054 csdn博客
 - https://www.cnblogs.com/zdz8207/p/DeepLearning-em-gosimix.html 斯坦福
-***** 百度搜索栏汇总
+****** 百度搜索栏汇总
 https://www.baidu.com/s?ie=utf-8&f=3&rsv_bp=1&rsv_idx=2&tn=baiduhome_pg&wd=%E9%AB%98%E6%96%AF%E6%B7%B7%E5%90%88%E6%A8%A1%E5%9E%8Bem%E7%AE%97%E6%B3%95&rsv_spt=1&oq=mog%2520em%25E7%25AE%2597%25E6%25B3%2595&rsv_pq=c18d93a000001531&rsv_t=dd98e0E7YL4TqAdeePexWbIhRJ3rbhRkHauX7wC24CZ%2FfzhQIIrDa%2Fjpwrbbrd6fKqbk&rqlang=cn&rsv_enter=1&inputT=7529&rsv_sug3=38&rsv_sug1=18&rsv_sug7=100&rsv_sug2=1&prefixsug=%25E9%25AB%2598%25E6%2596%25AF%25E6%25B7%25B7%25E5%2590%2588%25E6%25A8%25A1%25E5%259E%258B%2520em&rsp=0&rsv_sug4=7529
-**** Problem 2 EM算法核心理解
+***** Problem 2 EM算法核心理解
 - 首先初始化，假设N个点分别属于M个集合
 - 有集合的方程，可以计算每个点对应于某个集合的概率，取最大值更新ownership
 - 对所有点更新ownership，之后，可以重新统计集合中的数据的个数，更新权重、均值和标准差
 - 重复进行即可
+**** Problem 3
+***** Problem 3
+
 ** EE 297
 * 能力
 - 信息x 
