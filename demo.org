@@ -1592,12 +1592,11 @@ https://www.baidu.com/s?ie=utf-8&f=3&rsv_bp=1&rsv_idx=2&tn=baiduhome_pg&wd=%E9%A
 **** Problem 3
 ***** Problem 3
 ****** 相关资料
-******* 百度搜索框 Motion-Based Multiple Object Tracking Matlab 
-http://www.baidu.com/s?wd=Motion-Based%20Multiple%20Object%20Tracking&rsv_spt=1&rsv_iqid=0xa6c93a160000f7fc&issp=1&f=8&rsv_bp=1&rsv_idx=2&ie=utf-8&rqlang=cn&tn=baiduhome_pg&rsv_enter=1&oq=%25E5%258D%25A1%25E5%25B0%2594%25E6%259B%25BC%25E6%25BB%25A4%25E6%25B3%25A2%25E8%25B7%259F%25E8%25B8%25AAmatlab&rsv_t=389f5CFrc%2Bm1amSfJLFCame5i%2Ba9qUaYnCOCTAM8sdlHE5WfExm2nXdd9rdp35Umsc9O&inputT=305&rsv_pq=fe8ab29d0001360d&rsv_n=2&rsv_sug3=64&rsv_sug2=0&rsv_sug4=305
 ******* Motion-Based Multiple Object Tracking Matlab官方文档 可能是最适合的
 - https://ww2.mathworks.cn/help/vision/examples/motion-based-multiple-object-tracking.html
 - csdn博客解释官方文档
 - https://www.cnblogs.com/YangQiaoblog/p/5462453.html
+- https://blog.csdn.net/yuhq3/article/details/78585774
 ******* Detecting Cars Using Gaussian Mixture Models MATLAB官方文档 
 https://www.mathworks.com/help/vision/examples/detecting-cars-using-gaussian-mixture-models.html?searchHighlight=bbox&s_tid=doc_srchtitle
 ******* csdn 人脸检测
