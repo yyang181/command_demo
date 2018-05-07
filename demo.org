@@ -1598,8 +1598,10 @@ https://www.mathworks.com/help/vision/examples/detecting-cars-using-gaussian-mix
 https://blog.csdn.net/u013088062/article/details/50810988
 ******* 视频多目标跟踪
 http://www.ilovematlab.cn/thread-133433-1-1.html
-******* Motion-Based Multiple Object Tracking Matlab官方文档
-https://ww2.mathworks.cn/help/vision/examples/motion-based-multiple-object-tracking.html
+******* Motion-Based Multiple Object Tracking Matlab官方文档 可能是最适合的
+- https://ww2.mathworks.cn/help/vision/examples/motion-based-multiple-object-tracking.html
+- csdn博客解释官方文档
+- https://www.cnblogs.com/YangQiaoblog/p/5462453.html
 ** EE 297
 * 能力
 - 信息x 
