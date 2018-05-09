@@ -1726,5 +1726,5 @@ https://mail.google.com/mail/u/1/#inbox/162f9d4479616148
 *** IDEA 在EE243的project可以参考3D RECONSTRUCTION
 - State "IDEA"       from "TODO"       [2018-04-24 周二 11:10]
 - State "TODO"       from "零碎"       [2018-04-24 周二 11:08]
-*** TODO 在EE243的project可以参考语义分析
-- State "TODO"       from "紧急"       [2018-04-26 周四 10:13]
+*** IDEA EE243 HW3 problem 1 考虑迭代问题和K值聚类
+- State "IDEA"       from "TODO"       [2018-05-09 周三 11:04]
