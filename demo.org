@@ -508,6 +508,22 @@ installed from an online source using quelpa.
 (setq auto-package-update-hide-results t)
 (auto-package-update-maybe)
 #+END_SRC
+** 终极解决方案
+*** 优先在init.el文件中处理包
+*** 步骤：在init.el文件中导入package 并且配置即可
+*** 例子
+**** elpy package
+***** 网址链接
+https://elpy.readthedocs.io/en/latest/ide.html#interpreter-setup
+***** init.el文件中添加的源代码
+#+BEGIN_SRC 
+(require 'elpy)
+(setq python-shell-interpreter "jupyter"
+      python-shell-interpreter-args "console --simple-prompt"
+      python-shell-prompt-detect-failure-warning nil)
+(add-to-list 'python-shell-completion-native-disabled-interpreters
+             "jupyter")
+#+END_SRC
 * Latex 编辑命令
 ** 导出pdf
 需要先编译
