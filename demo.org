@@ -1713,6 +1713,13 @@ https://www.mathworks.com/help/vision/examples/detecting-cars-using-gaussian-mix
 https://blog.csdn.net/u013088062/article/details/50810988
 ******* 视频多目标跟踪
 http://www.ilovematlab.cn/thread-133433-1-1.html
+*** hw4
+**** Problem 1
+***** 官方资料
+****** tf.keras.applications.ResNet50
+https://www.tensorflow.org/api_docs/python/tf/keras/applications/ResNet50
+****** tf.keras.applications.ResNet50 源代码
+https://github.com/tensorflow/tensorflow/blob/r1.8/tensorflow/python/keras/_impl/keras/applications/resnet50.py
 ** EE 297
 * 能力
 - 信息x 
