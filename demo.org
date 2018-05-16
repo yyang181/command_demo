@@ -1716,7 +1716,7 @@ http://www.ilovematlab.cn/thread-133433-1-1.html
 *** hw4
 **** Problem 1
 ***** 软件配置
-****** 安装TensorFlow
+****** 在anaconda中安装TensorFlow
 https://www.tensorflow.org/install/install_windows
 ***** 官方资料
 ****** tf.keras.applications.ResNet50
