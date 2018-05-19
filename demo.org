@@ -1719,10 +1719,16 @@ http://www.ilovematlab.cn/thread-133433-1-1.html
 ****** 在anaconda中安装TensorFlow
 https://www.tensorflow.org/install/install_windows
 ***** 官方资料
+****** pdf里面的官方文件
+https://www.tensorflow.org/versions/r1.6/api_docs/python/tf/keras/applications/resnet50
 ****** tf.keras.applications.ResNet50
 https://www.tensorflow.org/api_docs/python/tf/keras/applications/ResNet50
 ****** tf.keras.applications.ResNet50 源代码
 https://github.com/tensorflow/tensorflow/blob/r1.8/tensorflow/python/keras/_impl/keras/applications/resnet50.py
+***** 实例参考VGG
+- CSDN博客 https://blog.csdn.net/Andrewseu/article/details/69943354
+- CSDN博客 https://blog.csdn.net/u013473520/article/details/50730620
+
 ** EE 297
 * 能力
 - 信息x 
