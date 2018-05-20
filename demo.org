@@ -1742,7 +1742,7 @@ https://github.com/tensorflow/tensorflow/blob/r1.8/tensorflow/python/keras/_impl
 ***  状态保持
 **** 能力检索
 - 状态调整 思维永生 x y fun 分类器 逻辑顺序
-- 状态调整：绝望 信仰 兴趣
+- 状态调整：绝望 信仰 兴趣 证明自己
 - 思维永生：计划 脑子 放松
 - 计划 时效
 - 绝望 信仰 脑子 兴趣
