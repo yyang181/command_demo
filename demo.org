@@ -1735,6 +1735,8 @@ https://github.com/tensorflow/tensorflow/blob/r1.8/tensorflow/python/keras/_impl
 https://blog.csdn.net/cxmscb/article/details/71023576
 ****** csdn博客
 https://blog.csdn.net/xukaiwen_2016/article/details/70880694
+****** csdn博客
+https://blog.csdn.net/qq_25762497/article/details/51052861
 ****** 百度搜索结果
 http://www.baidu.com/s?wd=tensorflow%20cnn&rsv_spt=1&rsv_iqid=0xd5e9fcd2000137d2&issp=1&f=8&rsv_bp=1&rsv_idx=2&ie=utf-8&rqlang=cn&tn=baiduhome_pg&rsv_enter=1&oq=tf.device&rsv_t=52c8pid3X0GzXUClPNeEwrqgA0o5QJ3qz1IODBYGzx1dzVlTM62yaDCNsUsNHw8ehN7m&inputT=3837&rsv_pq=df2100dd00013093&rsv_sug3=22&rsv_sug2=0&rsv_sug4=3837
 
