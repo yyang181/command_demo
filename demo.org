@@ -1731,6 +1731,11 @@ https://github.com/tensorflow/tensorflow/blob/r1.8/tensorflow/python/keras/_impl
 *** hw5
 **** Problem 1 cnn model
 ***** 参考资料
+****** Tensorflow tutorial官方文档
+******* MNIST数据集
+https://www.tensorflow.org/tutorials/layers
+******* cnn
+https://www.tensorflow.org/tutorials/deep_cnn
 ****** csdn博客
 https://blog.csdn.net/cxmscb/article/details/71023576
 ****** csdn博客
