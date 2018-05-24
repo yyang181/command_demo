@@ -1734,7 +1734,7 @@ https://github.com/tensorflow/tensorflow/blob/r1.8/tensorflow/python/keras/_impl
 ****** Tensorflow tutorial官方文档
 ******* MNIST数据集
 https://www.tensorflow.org/tutorials/layers
-******* cnn
+******* cnn 简直就是原版卧了个槽
 https://www.tensorflow.org/tutorials/deep_cnn
 ****** csdn博客
 https://blog.csdn.net/cxmscb/article/details/71023576
