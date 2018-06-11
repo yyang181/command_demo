@@ -546,6 +546,7 @@ C-c C-c 编译latex文件
 ** latex编辑公式
 *** 博客资源：如何写公式
 **** 符号
+https://blog.csdn.net/garfielder007/article/details/51646604
 https://blog.csdn.net/fansongy/article/details/45368915
 **** 环境设置
 https://www.cnblogs.com/Sinte-Beuve/p/6160905.html
@@ -582,6 +583,7 @@ $$\sum_{i=1}^{n} a_i=0$$
 $$\mbox{对任意的$x>0$}, \mbox{有 }f(x)>0. $$
 #+END_SRC
 **** 标号 运算符
+https://blog.csdn.net/garfielder007/article/details/51646604
 https://blog.csdn.net/u011826404/article/details/70215074
 **** 括号
 小括号 中括号直接用 大括号需要转译
@@ -1744,7 +1746,43 @@ https://blog.csdn.net/xukaiwen_2016/article/details/70880694
 https://blog.csdn.net/qq_25762497/article/details/51052861
 ****** 百度搜索结果
 http://www.baidu.com/s?wd=tensorflow%20cnn&rsv_spt=1&rsv_iqid=0xd5e9fcd2000137d2&issp=1&f=8&rsv_bp=1&rsv_idx=2&ie=utf-8&rqlang=cn&tn=baiduhome_pg&rsv_enter=1&oq=tf.device&rsv_t=52c8pid3X0GzXUClPNeEwrqgA0o5QJ3qz1IODBYGzx1dzVlTM62yaDCNsUsNHw8ehN7m&inputT=3837&rsv_pq=df2100dd00013093&rsv_sug3=22&rsv_sug2=0&rsv_sug4=3837
-
+*** hw6
+**** 参考资料
+***** 矩阵变换 重要知识 仿射变换与投影（透视）变换
+https://www.cnblogs.com/bnuvincent/p/6691189.html
+***** 本征矩阵只与外部参数的旋转 平移有关，基础矩阵与内部和外部参数有关。
+***** 八点法求解基础矩阵
+https://blog.csdn.net/kokerf/article/details/72630863?locationNum=2&fps=1
+*** SFM
+**** 大纲
+- 多幅图像获取内参矩阵
+- 多幅图像提取特征点SIFT
+- 特征点+内参矩阵获取本征矩阵
+- 特征点+本征矩阵获取相对矩阵
+- 相对矩阵 进行三角测距获取空间坐标
+**** 参考资料
+***** 很好的统筹讲解，包含CMVS csdn博客
+https://codepen.io/zhaojun/post/learn-sfm
+***** 坐标系转换 CSDN博客
+https://blog.csdn.net/chentravelling/article/details/53558096
+***** MATLAB实现相机标定
+https://blog.csdn.net/lql0716/article/details/71973318?locationNum=8&fps=1
+**** 相机标定
+坐标系转换
+https://www.cnblogs.com/Jessica-jie/p/6596450.html
+**** 畸变参数
+纠正过来即可
+**** 本征矩阵 极线约束
+前提：内参已知，相机的位置信息已有。
+极线约束：极线上的点有相应的约束关系，用来减少检索的工作量。而本征矩阵只与旋转与平移向量有关。
+https://www.cnblogs.com/clarenceliang/p/6704970.html
+http://www.360doc.com/content/14/0205/14/10724725_349963695.shtml
+**** 三角测量
+https://www.jianshu.com/p/96d3b832330e
+**** bundler adjustment 光束平差法
+用计算出的三维点坐标跟内参、外参矩阵参数重投影，计算与真实图像平面投影的差值。最小二乘求最小
+BA现在基本都是利用LM（Levenberg-Marquardt）算法并在此基础上利用BA模型的稀疏性质来进行计算的
+https://blog.csdn.net/OptSolution/article/details/64442962
 ** EE 297
 * 能力
 - 信息x 
