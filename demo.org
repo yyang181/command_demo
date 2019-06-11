@@ -1766,6 +1766,8 @@ srun --gres=gpu python test2.py
 rm -rf sgemm-tiled
 
 git pull origin master
+
+exit 退出bender系统
    #+end_src
 * Html语言
 ** 配置
