@@ -73,6 +73,7 @@ C-x p 保存文件自动commit到远端
  M-e M-a 换行 到指定位置 最好用的命令
  M-; 注释掉当前行
  M-m 0-9 提供于windows-numbering包 作用：当有多个buffer同时打开时，一键切换当前选中buffer
+ M-x eshell 打开命令行工具
  #+END_SRC
 *** 命令主菜单
 #+BEGIN_SRC 
