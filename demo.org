@@ -1149,6 +1149,8 @@ tabsize=4, %
 \geometry{a4paper,left=2cm,right=2cm,top=1cm,bottom=1cm}
 #+END_SRC
 * Org mode 
+** 快速入门
+
 ** Useful Command
 *** 编译 
 #+BEGIN_SRC 
@@ -1643,7 +1645,25 @@ end
 suptitle('DCT 4-by-4 basis images');
 #+END_SRC
 ** 类 class 函数变量名： 变量名.成员变量
+* C++语言
+** 平台搭建
+需要安装g++ gcc编译平台
+MinGw安装
+g++ 是调用c++编辑器的驱动
+gcc是调用c 编辑器的驱动
+安装成功标志：
+gcc -v 
+g++ -v
+** ubuntu及oracal虚拟机
+Get a virtual machine (VM) with Ubuntu 16.04 (Xenial): make your own, re-use one you have, or
+download a ready-made one from
+https://my.syncplicity.com/share/wvfndte4grz0jgl/Ubuntu_16.04_i386 (1.8 GB)
+2. Install the latest Oracle Virtual Box from http://virtualbox.org/
+3. Install VirtualBox Extension Pack from the same website (needed
 
+Oracle和ubuntu都可以从官网下载
+
+需要在cpu configuration 中开启硬件虚拟化
 * Spring 2018
 ** EE 147
 *** Lab answers
