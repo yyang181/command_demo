@@ -57,6 +57,7 @@ M-x eval-buffer
     #+end_src
 *** 选中、复制、粘贴、查找 
     #+begin_src 
+Ctrl+space (从当前光标处开始选中) 注意：需要在日期与键盘中把切换输入法的快捷键解绑
 Ctrl+w (剪切)
 Alt+w (复制) 
 Ctrl+y (粘贴) 
@@ -68,7 +69,21 @@ C-/ 取消之前的命令
 *** 光标操作
     #+begin_src 
 C-g g 跳转到第几行
-    
+c-x c-s 保存当前文件
+c-v 上滚屏
+m-v 下滚屏
+c-x c-b 列出所有缓冲区/没什么用 直接用打开文件就行了
+c-x h 全选
+c-space 标记
+c-/ 撤销命令
+c-x o 切换窗口（窗口排列时切换当前窗口）
+M-m TAB一键循环切换buffer
+c-e M-b 先切换到行尾 然后按句子单位回退
+M-e M-a 换行 到指定位置 最好用的命令
+M-; 注释掉当前行
+M-m 0-9 提供于windows-numbering包 作用：当有多个buffer同时打开时，一键切换当前选中buffer
+
+
     #+end_src
 *** 补全工具选择：
 ivy轻巧 极简主义
