@@ -17,7 +17,9 @@ github.com
 2. 删除原本的.spacemacs文件
 3. 将备份库里面的.spacemacs文件复制到路径中
     #+end_src
-
+*** 错误代码说明
+Source Code Pro是一种字体
+百度搜索安装即可
 ** 初始化配置
 *** 代码管理
 **** 启动逻辑
