@@ -20,7 +20,17 @@ github.com
 
 ** 初始化配置
 *** 代码管理
-
+**** 启动逻辑
+init.el 
+.spacemacs
+**** 注意事项
+启动初始化包在.emacs.d文件夹里面的init.el文件中
+之后需要有.spacemacs文件与.emacs.d文件在同一路径下
+以github 包含在.emacs.d文件夹内的.spacemacs文件为准
+并将其提出来放到文件夹外面
+不要用init.el生成的.spacemacs文件作为配置
+修改init.el来添加package的时候，需要手动增加.spacemacs中的pack
+其位置为：最底部quoto后面
 *** git必备包
 **** 安装git bash
 重要，这是在Windows中提供了一个cmd可用命令
