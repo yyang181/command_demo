@@ -23,12 +23,12 @@ C-x g 打开magit模式，可以用来查看状态
 ***** git-auto-commit 
 C-x p 保存文件自动commit到远端
 ***** 详细流程
+功能自从更新以后不好用，直接用github desktop完成所有操作
       #+begin_example
       1. C-x g
 2. C-x p
 3. 操作完成后保存文件即可
       #+end_example
-测试一下下
 
 
 * Emaces Usful Command
