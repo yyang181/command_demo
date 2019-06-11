@@ -1,5 +1,28 @@
 #+TYP_TODO: 紧急(1!) 学习(2!) 事件(3!) 零碎(4!) |
 #+SEQ_TODO: PENDING(p!) TODO(t!) | DONE(d!) ABORT(a@/!) IDEA(i!)
+* Top Layer
+** Install Emacs
+*** Up to date backup 
+github.com
+完备版本的备份需要.emacs.d and .spacemacs同时存在
+并且路径如下：
+#+BEGIN_SRC 
+.emacs.d c:/Users/Administrator/AppData/Roaming
+.spacemacs c:/Users/Administrator/AppData/Roaming
+#+END_SRC
+！注意，git自动上传命令缺少.spacemacs，需要手动上传
+** 初始化配置
+*** git必备包
+**** 安装git bash
+重要，这是在Windows中提供了一个cmd可用命令
+**** 安装github desktop
+**** 使用方法
+***** 涉及的package： magit/git-auto-commit
+***** magit
+C-x g 打开magit模式，
+
+
+
 * Emaces Usful Command
 ** Command
 *** 常用命令
@@ -1038,10 +1061,11 @@ c-c c-e 可选生成latex pdf
 *** 标题
 **** 命令汇总
  #+BEGIN_SRC 
- TAB 切换标题
- s-TAB 切换标题
+ TAB 切换标题（只针对当前选中主标题）
+ s-TAB 切换标题（对整个文本内容）
  m-left/right 升降级标题
  m-enter 插入一个同级标题
+RET 表示回车键
 M-LEFT/RIGHT
 升级/降级当前标题，不允许有子标题的存在
 M-S-LEFT/RIGHT
@@ -1081,6 +1105,8 @@ M- 带有alt的表示对标题进行操作
 #+BEGIN_SRC 
  <s TAB 快速插入一个 源代码块标签
  <e TAB 快速插入一个 example块标签
+org9.2版本已经取消掉了本功能 需要在init.el中require
+(require 'org-tempo)
  s    #+begin_src ... #+end_src   
  e    #+begin_example ... #+end_example  : 单行的例子以冒号开头  
  q    #+begin_quote ... #+end_quote      通常用于引用，与默认格式相比左右都会留出缩进  
