@@ -1155,6 +1155,8 @@ tabsize=4, %
 \geometry{a4paper,left=2cm,right=2cm,top=1cm,bottom=1cm}
 #+END_SRC
 * Org mode 
+** 配置
+需要安装web-mode详情见html语言中的配置。
 ** Useful Command
 *** 编译 
 #+BEGIN_SRC 
@@ -1668,6 +1670,30 @@ https://my.syncplicity.com/share/wvfndte4grz0jgl/Ubuntu_16.04_i386 (1.8 GB)
 Oracle和ubuntu都可以从官网下载
 
 需要在cpu configuration 中开启硬件虚拟化
+* Html语言
+** 配置
+需要web-mode package
+#+begin_src 
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.jsp\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+
+(defun my-web-mode-hook ()
+  "Hooks for Web mode."
+    (setq web-mode-markup-indent-offset 4)
+    (setq web-mode-css-indent-offset 4)
+    (setq web-mode-code-indent-offset 4)
+    (setq web-mode-indent-style 4)
+)
+(add-hook 'web-mode-hook  'my-web-mode-hook)
+#+end_src
 * Spring 2018
 ** EE 147
 *** Lab answers
