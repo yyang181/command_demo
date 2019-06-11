@@ -47,6 +47,14 @@ C-x p 保存文件自动commit到远端
 1. C-x p
 2. 操作完成后保存文件即可
       #+end_src
+** 必备操作集锦
+*** 不重启emacs直接生效配置方法
+    #+begin_src 
+C-x C-e 光标前面的运行一条语句。立即生效。
+M-x -region 选择一个 region , 
+M-x load-file ~/.emacs
+M-x eval-buffer
+    #+end_src
 
 * Emaces Usful Command
 ** Command
