@@ -17,6 +17,7 @@ github.com
 2. 删除原本的.spacemacs文件
 3. 将备份库里面的.spacemacs文件复制到路径中
     #+end_src
+
 ** 初始化配置
 *** git必备包
 **** 安装git bash
