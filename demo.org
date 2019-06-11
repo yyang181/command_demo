@@ -55,6 +55,13 @@ M-x -region 选择一个 region ,
 M-x load-file ~/.emacs
 M-x eval-buffer
     #+end_src
+*** 选中、复制、粘贴、查找 
+*** 补全工具选择：
+ivy轻巧 极简主义
+*** 中文字体支持，数字加字母乱码解决方案
+    #+begin_src 
+    (set-fontset-font "fontset-default" 'gb18030 '("Microsoft YaHei" . "unicode-bmp"))
+    #+end_src
 
 * Emaces Usful Command
 ** Command
