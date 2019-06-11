@@ -56,6 +56,15 @@ M-x load-file ~/.emacs
 M-x eval-buffer
     #+end_src
 *** 选中、复制、粘贴、查找 
+    #+begin_src 
+Ctrl+w (剪切)
+Alt+w (复制) 
+Ctrl+y (粘贴) 
+C-s 开始正向查找
+C-r 开始方向查找
+C-g 取消之前的按键（将会成为最常用的按键之一）
+C-/ 取消之前的命令
+    #+end_src
 *** 补全工具选择：
 ivy轻巧 极简主义
 *** 中文字体支持，数字加字母乱码解决方案
