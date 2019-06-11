@@ -11,6 +11,12 @@ github.com
 .spacemacs c:/Users/Administrator/AppData/Roaming
 #+END_SRC
 ！注意，git自动上传命令缺少.spacemacs，需要手动上传
+*** 安装注意事项：
+    #+begin_src 
+1. 先复制.emacs.d文件夹 然后启动emacs一次
+2. 删除原本的.spacemacs文件
+3. 将备份库里面的.spacemacs文件复制到路径中
+    #+end_src
 ** 初始化配置
 *** git必备包
 **** 安装git bash
@@ -23,7 +29,7 @@ C-x g 打开magit模式，可以用来查看状态
 ***** git-auto-commit 
 C-x p 保存文件自动commit到远端
 ***** 详细流程
-功能自从更新以后不好用，直接用github desktop完成所有操作
+功能自从更新以后不好用 打开git-auto-commit-mode之后用github desktop操作
       #+begin_src 
 1. C-x p
 2. 操作完成后保存文件即可
