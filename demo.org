@@ -650,6 +650,9 @@ https://elpy.readthedocs.io/en/latest/ide.html#interpreter-setup
 ** web浏览器 w3m
 *** 配置
 https://github.com/venmos/w3m-layer/blob/master/READMECN.org
+下载cygwin 用类Unix工具将w3m安装包转为win api文件
+安装w3m
+配置emacs并使用
 *** 快捷键
     #+begin_src 
 SPC a w o	打开链接
@@ -728,6 +731,30 @@ C-b	向上移动一页
 ;; W3M view url new session in background
 (setq w3m-view-this-url-new-session-in-background t)
     #+end_src
+** web浏览器eww Windows可用
+*** 配置
+emacs中自带有eww库，可以用M-x eww测试
+但是需要下载libxml2支持
+xmlsoft官网下载win32版本的库即可
+共需四个Dll 放到emacs/bin目录即可
+libxml2-2.dll  libiconv-2.dll  liblzma-5.dl  zlib1.dll
+将下载下来的整个文件夹添加到环境变量中即可
+*** 快捷键
+    #+begin_src 
+q	eww-quit	退出eww
+g	eww-reload	重载该页面
+w	eww-copy-page-url	拷贝当前URL到kill ring
+d	eww-download	下载光标所在的URL,下载的目录存在变量`eww-download-directory`中,默认为~/Downloads
+l	eww-back-url	回退上一个URL
+r	eww-forward-url	前进到下一个URL
+H	eww-list-histories	显示浏览历史
+b	eww-add-bookmark	加书签
+B	eww-list-bookmarks	显示书签列表
+&	eww-browse-with-external-browser	使用外部浏览器打开当前浏览的URL,外部浏览器由变量`shr-external-browser`决定
+v	eww-view-source	查看页面源代码
+C	eww-cookie-list	列示Cookie    
+    #+end_src
+原地址：https://blog.csdn.net/MathaDora/article/details/79468528 
 * Latex 编辑命令
 ** 平台搭建
 TeXLive + Emacs + AUCTex + SumatraPDF
@@ -1769,6 +1796,7 @@ git pull origin master
 
 exit 退出bender系统
    #+end_src
+** cygwin 类Unix的Windows端软件
 * Html语言
 ** 配置
 需要web-mode package
