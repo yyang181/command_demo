@@ -645,6 +645,9 @@ https://elpy.readthedocs.io/en/latest/ide.html#interpreter-setup
              "jupyter")
 #+END_SRC
 * Latex 编辑命令
+** 平台搭建
+TeXLive + Emacs + AUCTex + SumatraPDF
+通过清华镜像安装textlive
 ** 导出pdf
 需要先编译
 #+BEGIN_SRC 
