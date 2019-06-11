@@ -28,7 +28,7 @@ C-x p 保存文件自动commit到远端
 2. C-x p
 3. 操作完成后保存文件即可
       #+end_example
-
+测试
 
 
 * Emaces Usful Command
