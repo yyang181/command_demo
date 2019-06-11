@@ -82,8 +82,22 @@ c-e M-b 先切换到行尾 然后按句子单位回退
 M-e M-a 换行 到指定位置 最好用的命令 以区块为单位，切换首位
 M-; 注释掉当前行
 M-m 0-9 提供于windows-numbering包 作用：当有多个buffer同时打开时，一键切换当前选中buffer
-
-
+    #+end_src
+*** 命令主菜单
+    #+begin_src 
+M-m spacemacs buffer管理
+M-x helm-command
+c-c 当前文档格式 编译菜单
+c-x 文档保存 新建等管理
+c-h 帮助
+    #+end_src
+*** 帮助主菜单
+    #+begin_src 
+c-h 主命令
+c-h a 查找关键词对应的函数
+c-h f 函数
+c-h v 变量
+c-h k 快捷键    
     #+end_src
 *** 补全工具选择：
 ivy轻巧 极简主义
