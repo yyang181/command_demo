@@ -19,7 +19,10 @@ github.com
 **** 使用方法
 ***** 涉及的package： magit/git-auto-commit
 ***** magit
-C-x g 打开magit模式，
+C-x g 打开magit模式，可以用来查看状态
+***** git-auto-commit 
+C-x p 保存文件自动commit到远端
+***** 
 
 
 
