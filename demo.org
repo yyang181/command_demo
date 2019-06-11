@@ -19,6 +19,8 @@ github.com
     #+end_src
 
 ** 初始化配置
+*** 代码管理
+
 *** git必备包
 **** 安装git bash
 重要，这是在Windows中提供了一个cmd可用命令
