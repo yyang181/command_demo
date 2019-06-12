@@ -106,6 +106,8 @@ c-h k 快捷键
     #+end_src
 *** 多buffer管理：
     #+begin_src 
+C-x b helm-buffer-list更好用一点
+C-x C-b buffer-list
 C-x o 在窗口之间切换
 C-x 0 关闭当前窗口
 C-x 1 只显示当前窗口
@@ -113,13 +115,28 @@ C-x 2 纵向新建窗口
 C-x 3 横向新建窗口
 M-m #number 跳转到第几个窗口    
     #+end_src
-*** 根目录Roaming打开方式
-Type ~/ 回车
+*** 根目录Roaming打开方式及三种快速目录切换
+在路径中输入
+#+begin_src 
+Type ~/ 回车 进入Home路径/即Roaming
+Type / 回车 进入盘符根路径，即C:
+Type ./ 回车 进入默认路径，即在default-directory中设置的路径
+#+end_src
+*** 设置默认文件夹
+    #+begin_src 
+;; 设置默认文件夹
+(setq default-directory "c:/Users/Administrator/test/emacs")
+    #+end_src
 *** 补全工具选择：
 ivy轻巧 极简主义
 *** 中文字体支持，数字加字母乱码解决方案
     #+begin_src 
     (set-fontset-font "fontset-default" 'gb18030 '("Microsoft YaHei" . "unicode-bmp"))
+    #+end_src
+*** 删除文中多行空白行
+    #+begin_src 
+M-x flush-lines
+Flush lines containing match for regexp:^$    
     #+end_src
 
 * Emaces Usful Command
@@ -653,6 +670,12 @@ https://github.com/venmos/w3m-layer/blob/master/READMECN.org
 下载cygwin 用类Unix工具将w3m安装包转为win api文件
 安装w3m
 配置emacs并使用
+*** effective operation
+按照linux安装w3m的步骤，在cygwin中操作实现
+两个package需要安装，w3m和emacs-w3m
+*** 一定要配置w3m emacs-w3m两个package在cygwin中
+cygwin中安装完成之后，windows系统中自动包含了所需的package
+*** 需要配合cygwin一起使用！
 *** 快捷键
     #+begin_src 
 SPC a w o	打开链接
@@ -691,6 +714,43 @@ R	刷新
 C-f	向下移动一页
 C-b	向上移动一页    
     #+end_src
+*** 可用的快捷键-一定要注意大小写
+    #+begin_src 
+C-x-k ： 关闭当前标签页
+U ： 打开URL
+V ： 打开文件
+G ：在标签页打开一个网址
+S ： 用google进行搜索
+B ： 后退
+N： 前进
+H ： 主页
+RET ： 打开连接
+页面操作
+　　C-n   向下一行
+　　C-p   向上一行
+　　C-b   向后
+　　C-f   向前
+　　C-v   向下滚屏
+　　M-v   向上滚屏
+　　>       向右滚
+　　<       向左滚
+　　，      向左滚一格
+　　.        向右滚一格
+书签
+　　a: 添加到当前页到书签
+　　M-a : 添加该url到书签
+　　v: 显示书签
+　　E : 编辑书签
+　　C-k : 删除书签
+　　C-_: 撤销书签
+使用百度，google搜索
+　　这个就是到搜索框，会提示TEXT，敲完之后，enter进行搜索
+其他重要操作
+　　M : 用外部默认浏览器打开当前页
+　　ESC M : 用外部浏览器打开链接
+   C-c C-c: 搜索框输入text之后 转到
+　　C-c C-k ：停止载入
+    #+end_src
 *** github上面的推荐配置：
     #+begin_src 
 (defun dotspacemacs/user-config ()
@@ -714,6 +774,7 @@ C-b	向上移动一页
 (add-to-list 'exec-path "D:/w3m")
 ;; web浏览器w3m
 (require 'w3m)
+(require 'mime-w3m) 
 ;; 设置主页 
 (setq w3m-home-page "http://www.baidu.com") 
 ;; 设置显示图片
@@ -755,6 +816,90 @@ v	eww-view-source	查看页面源代码
 C	eww-cookie-list	列示Cookie    
     #+end_src
 原地址：https://blog.csdn.net/MathaDora/article/details/79468528 
+** cygwin linux系统模拟
+*** cygwin是什么
+提供从unix到windows的应用软件移植
+unix与linux的区别
+gbd makefile 
+*** 安装
+需要把c:/cygwin/bin添加到环境变量
+*** 基本操作
+    #+begin_src 
+DF 直接查看下本地驱动器
+cd /cygdriver/d 打开D盘     
+cd D: 打开D盘
+    #+end_src
+*** 技巧
+确认这几个包是否有,对于w3m库
+cvs
+autoconf
+libgc-dev
+libncurses5-dev
+*** package installation methods
+****  利用cygwin的setup安装包可以补充安装package
+ alias cyg-get="/cygdrive/d/path/to/cygwin/setup-x86_64.exe -q -P"
+ alias cyg-get="/cygdrive/c/Users/Administrator/downloads/programs/setup-x86_64"
+**** 之后可以用cyg-get + package 直接安装想要的package了
+例如
+cyt-get w3m
+*** package installation methods New version 
+**** 更换镜像路径为：
+ http://mirrors.163.com/cygwin/
+****  按照教程操作
+ https://blog.csdn.net/lee244868149/article/details/52830968
+**** 安装apt-cyg包的方法（用来安装库）
+     #+begin_src 
+wget https://raw.githubusercontent.com/transcode-open/apt-cyg/master/apt-cyg
+mv apt-cyg /bin/apt-cyg   then place it in a /bin folder on your path:
+chmod +x /bin/apt-cyg  and make it executable:
+
+Example use of apt-cyg:
+apt-cyg install nano
+     #+end_src
+*** 安装w3m emacs-w3m的技术细节
+**** 详尽说明网址
+ https://blog.csdn.net/lishuo_OS_DS/article/details/8069355#sec-1-2
+**** 解决autoconf 报错: autom4te版本匹配即可
+ autoconf-2.69 替换掉autoconf命令
+**** 解决make: cask: command not find问题
+安装cask包在cygwin中
+     #+begin_src 
+curl -fsSL https://raw.githubusercontent.com/cask/cask/master/go | python     
+     #+end_src
+**** ./configure -with-xwidget
+该命令是在emacs-w3m文件夹中执行的
+该文件夹中有configure文件
+
+** Smex 让输入命令变得飞快
+***  配置：
+**** To auto-start Smex every time you open Emacs add these lines to your .emacs file:
+     #+begin_src 
+(require 'smex) ; Not needed if you use package.el
+(smex-initialize) ; Can be omitted. This might cause a (minimal) delay
+; when Smex is auto-initialized on its first run.    
+     #+end_src
+**** Bind some keys:
+     #+begin_src 
+  (global-set-key (kbd "M-x") 'smex)
+  (global-set-key (kbd "M-X") 'smex-major-mode-commands)
+  ;; This is your old M-x.
+  (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+     #+end_src
+**** 使用方法
+     #+begin_src 
+C-s/C-r switches to the next/previous match. Enter executes the selected command.
+M-x smex
+M-X smex-major-mode-commands  runs Smex, limited to commands that are relevant to the active major mode.
+C-h f, while Smex is active, runs describe-function on the currently selected command.
+M-. jumps to the definition of the selected command.
+C-h w shows the key bindings for the selected command. (Via where-is.)
+smex-show-unbound-commands shows frequently used commands that have no key bindings
+smex-history-length to change the number of recent commands that Smex keeps track of.
+     #+end_src
+** web浏览器Xwidget & 附带安装pdf阅读器
+*** 解决not compiled问题
+https://emacs.stackexchange.com/questions/27293/your-emacs-does-not-come-with-xwidget-support-windows-10
+
 * Latex 编辑命令
 ** 平台搭建
 TeXLive + Emacs + AUCTex + SumatraPDF
