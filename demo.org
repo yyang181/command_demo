@@ -902,14 +902,36 @@ https://emacs.stackexchange.com/questions/27293/your-emacs-does-not-come-with-xw
 
 * Latex 编辑命令
 ** 平台搭建
-TeXLive + Emacs + AUCTex + SumatraPDF
-通过清华镜像安装textlive
+***  TeXLive + Emacs + AUCTex + SumatraPDF
+***  通过清华镜像安装textlive
+ 安装成功之后包含有：xpdf/pdfTex
+ 需要添加到环境变量，之后emacs才能在任何cmd中调用latex命令
+***  通过elpa emacs package管理工具安装AUXTex
+否则无法编译导出pdf文件
 ** 导出pdf
-需要先编译
-#+BEGIN_SRC 
-C-c C-c 编译latex文件
-之后打开pdf即可
-#+END_SRC
+*** 编译方法
+ 需要先编译
+ #+BEGIN_SRC 
+ C-c C-c 编译latex文件
+ 之后打开pdf即可
+ #+END_SRC
+*** 使用XeLaTex工具导出PDF
+****** 两个工具都可以
+   pdfTex
+   XeLaTex
+****** 中文支持 此方法只在XeLeTex导出模式起效
+******* 方法一 不推荐
+ 需要把头文件更换为ctexart
+ #+begin_src 
+ \documentclass{ctexart} 支持中文
+ \documentclass[11pt]{article} 默认
+ #+end_src
+******* 方法二 推荐
+只需要添加ctex库即可，必须使用XeLaTex导出
+ #+begin_src 
+\usepackage[UTF8]{ctex}
+ #+end_src
+****** 中文支持需要针对textlive层面操作
 ** 中文环境包
 #+BEGIN_SRC 
 % 中文支持包
