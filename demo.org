@@ -20,6 +20,73 @@ github.com
 *** 错误代码说明
 Source Code Pro是一种字体
 百度搜索安装即可
+** 版本控制
+*** 创建不受emacs官方git管理的文件夹
+**** 生成private dean layer
+M-x configuration-layer/create-layer命令，然后回答几个问题，创建dean的private layer.
+dean是layers的name,我用的是yyx
+需要编辑~/.spacemacs文件，添加dean layer (line 32 to add yyx layer)
+**** 文件目录
+dean目录会出现在.emacs.d/private/dean, 里面有一个package.el文件
+**** 逻辑 
+1. 新建layer
+2. 将创建的layer添加到emacs的载入配置中，即添加到.spacemacs中
+3. 修改package.el进行package管理
+**** el文件提供package的逻辑
+***** 提供可载入的feature
+ my-feature.el里面有代码如下
+ #+begin_src 
+ ;; Your code goes here ...
+ (provide 'my-feature)
+ #+end_src
+ 当配置文件(require 'my-feature)时，自动寻找同名.el .elc文件
+***** 将.el .elc文件所在路径加入环境变量
+(push "/some/path/" load-path)
+***** 启动emacs的时候的delay
+require是直接load所有package
+Auto-loading是当且仅当使用该package的时候才load
+#+begin_src 
+(autoload 'some-function "some-file")
+#+end_src
+***** use-package 
+      #+begin_src 
+(use-package helm) ; require
+(use-package helm
+  :defer t)        ; autoload
+(use-package helm
+  :defer t
+  :init
+  ;; Code to execute before Helm is loaded
+  :config
+  ;; Code to execute after Helm is loaded
+  )                  
+      #+end_src
+***** package.el写法
+      #+begin_src 
+<layer>-packages 比如：yyx-packages作为包的名字
+(defconst mylayer-packages
+  '(
+    ;; Get the package from MELPA, ELPA, etc.
+    some-package
+    (some-package :location elpa)
+
+    ;; A local package
+    (some-package :location local)
+
+    ;; A package recipe
+    (some-package :location (recipe
+                             :fetcher github
+                             :repo "some/repo"))
+
+    ;; An excluded package
+    (some-package :excluded t)
+    ))      
+<layer>/init-<package>  这条语句一定要有，init package
+      #+end_src
+***** layer相关el载入顺序
+packages.el funcs.el config.el keybindings.el
+If a package is part of the end user's dotspacemacs-additional-packages, it will also be installed. 在layer层
+
 ** 初始化配置
 *** 代码管理
 **** 启动逻辑
@@ -121,6 +188,7 @@ M-m #number 跳转到第几个窗口
 Type ~/ 回车 进入Home路径/即Roaming
 Type / 回车 进入盘符根路径，即C:
 Type ./ 回车 进入默认路径，即在default-directory中设置的路径
+SPC f r 快速打开最近文件目录
 #+end_src
 *** 设置默认文件夹
     #+begin_src 
@@ -137,6 +205,18 @@ ivy轻巧 极简主义
     #+begin_src 
 M-x flush-lines
 Flush lines containing match for regexp:^$    
+    #+end_src
+*** SPC键位说明：
+    #+begin_src 
+SPC = M-m    
+    #+end_src
+*** recentf快速打开最近目录
+    #+begin_src 
+SPC f r
+    #+end_src
+*** 不重启重载配置的方法，利用SPC=M-m
+    #+begin_src 
+SPC f e R
     #+end_src
 
 * Emaces Usful Command
@@ -899,6 +979,17 @@ smex-history-length to change the number of recent commands that Smex keeps trac
 ** web浏览器Xwidget & 附带安装pdf阅读器
 *** 解决not compiled问题
 https://emacs.stackexchange.com/questions/27293/your-emacs-does-not-come-with-xwidget-support-windows-10
+** PDF阅读器
+*** Doc-view-mode
+**** 安装方法
+ 在cygwin中用apt-cyg安装Ghostscript和xpdf包，之后即可正常使用
+**** 快捷键
+     #+begin_src 
+p/n	上下翻页
++/-	缩放
+C-s	搜索
+q	退出     
+     #+end_src
 
 * Latex 编辑命令
 ** 平台搭建
@@ -908,6 +999,33 @@ https://emacs.stackexchange.com/questions/27293/your-emacs-does-not-come-with-xw
  需要添加到环境变量，之后emacs才能在任何cmd中调用latex命令
 ***  通过elpa emacs package管理工具安装AUXTex
 否则无法编译导出pdf文件
+*** 安装auctex package
+**** source code 在init.el中设置auctex
+     #+begin_src 
+;; 所有关于latex导出pdf的设置
+(require 'auctex)
+(load "auctex.el" nil t t)
+(load "preview.el" nil t t)
+(setq Tex-auto-save t)
+(setq Tex-parse-self t)
+(setq-default Tex-master nil)
+(setq TeX-global-PDF-mode t TeX-engine 'xelatex)
+;; 设置默认编译命令
+(add-hook 'LaTex-mode-hook
+          (lambda()
+            (add-to-list 'Tex-command-list '("XeLaTex" "%`xelatex%(mode)')'%t" Tex-run-Tex nil t))
+            (setq Tex-command-default "XeLaTex")
+            ))     
+     #+end_src
+**** 在.spacemacs中添加auctex到package中
+**** 修改elpa自动下载下来的auctex.el文件
+如果没有这一步，会报错找不到auctex feature
+一般来说feature是由同名feature.el提供，并在结尾有
+(provide 'feature)
+因此，修改文件即可
+**** 需要修改init.el中的语句
+auctex-12.1.1库中只有preview.el文件
+
 ** 导出pdf
 *** 编译方法
  需要先编译
@@ -932,6 +1050,27 @@ https://emacs.stackexchange.com/questions/27293/your-emacs-does-not-come-with-xw
 \usepackage[UTF8]{ctex}
  #+end_src
 ****** 中文支持需要针对textlive层面操作
+*** 最终解决方案：
+**** 使用默认编译工具：
+C-c C-c 用xelatex编译
+**** 安装latex-preview-pane
+正常安装方法
+此外，默认的导出pdf方式为pdflatex
+一定要在latex-preview-pane.el中把所有字符串pdflatex替换为xelatex
+需要配合pdf阅读器使用，doc-view-mode
+**** 实时启动包
+     #+begin_src 
+M-x latex-preview-pane-mode
+(latex-preview-pane-enable) 配置init.el 全局启动该package     
+     #+end_src
+**** 键位绑定
+     #+begin_src 
+Refresh Preview (bound to M-p)
+Open in External Program (Bound to M-P)
+Disable LaTeX Preview Pane (turns the mode off, you can also use M-x latex-preview-pane-mode to toggle it off.
+Customize LaTeX Preview Pane (opens a customization buffer where you can set the command to use for generating previews)     
+     #+end_src
+
 ** 中文环境包
 #+BEGIN_SRC 
 % 中文支持包
