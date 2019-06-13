@@ -990,6 +990,14 @@ p/n	上下翻页
 C-s	搜索
 q	退出     
      #+end_src
+**** 书签功能
+利用emacs自带的package Bookmarks
+#+begin_src 
+C-x r m	设置书签
+C-x r b	跳转到书签
+C-x r l	列出所有书签
+M-x bookmark-delete	删除书签
+#+end_src
 
 * Latex 编辑命令
 ** 平台搭建
@@ -1707,6 +1715,13 @@ C-S enter 产生一个同级子树 to do标题
 - C-c / t 以树的形式展示所有的 TODO
 ** 超链接文件或者图片
 *** 命令
+    #+begin_src 
+[[./a.png]] 插入图片的org-mode 代码
+M-x 运行iimage-mode可以在emacs中直接显示/隐藏图片
+#+CAPTION: 电话拨打过快过多   设置图片标题
+#+ATTR_HTML: :width 100%   设置图片尺寸：表示宽度和浏览器页面宽度相同    
+    #+end_src
+
 ** 表格和图片增加标签和说明，并交叉引用
 *** 命令
 #+BEGIN_SRC 
@@ -2127,6 +2142,20 @@ exit 退出bender系统
 )
 (add-hook 'web-mode-hook  'my-web-mode-hook)
 #+end_src
+* Algorithems & Data Structure
+** Sorting 
+*** Insertion sort
+**** Time complexity 
+O(n2)O(n2)
+
+*** Merge sort
+**** Time complexity 
+O(nlgn)
+*** 七种sort算法
+[./images/sort_algorithms.png]
+#+CAPTION: sort algorithms
+#+ATTR_HTML: :width 100%
+
 * Spring 2018
 ** EE 147
 *** Lab answers
