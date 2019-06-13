@@ -218,6 +218,66 @@ SPC f r
     #+begin_src 
 SPC f e R
     #+end_src
+*** 手写configuration文件，对于package installation
+**** 使用帮助菜单，查看变量功能
+**** init.el中手写配置函数
+学习package中.el的写法
+     #+begin_src 
+(defcustom org-download-screenshot-method "gnome-screenshot -a -f %s"   "最后一个短语限定该变量的默认值"
+  "The tool to capture screenshots."
+  :type '(choice
+          (const :tag "gnome-screenshot" "gnome-screenshot -a -f %s")   "tag 是标签，紧跟着的是变量的实际取值"
+          (const :tag "scrot" "scrot -s %s")
+          (const :tag "gm" "gm import %s")
+          (const :tag "imagemagick/import" "import %s")
+          ;; screenshot method in ms-windows, /capture=4 stands for interactive.
+          (const :tag "IrfanView" "i_view64 /capture=4 /convert=\"%s\"")
+          ;; screenshot script in osx, -i stands for interactive,
+          ;; press space key to toggle between selection and
+          ;; window/application mode.
+          (const :tag "screencapture" "screencapture -i %s")
+          ;; take an image that is already on the clipboard, for Linux
+          (const :tag "xclip"
+                 "xclip -selection clipboard -t image/png -o > %s")
+          ;; take an image that is already on the clipboard, for Windows
+          (const :tag "imagemagick/convert" "convert clipboard: %s")
+          (function :tag "Custom function")))     
+     #+end_src
+*** 图片显示问题 org-mode
+安装缺少的.dll文件即可
+首先运行C-h v image-library-alist，看看你的版本需要什么文件
+在org中显示image
+C-c C-x C-v org-taggle-inline-images
+*** 终极图片处理
+**** 常规解决方案iimage-mode
+     #+begin_src 
+ file: ./a.png 插入图片的org-mode 代码
+ file:images/a.png
+ M-x 运行iimage-mode可以在emacs中直接显示/隐藏图片
+ #+CAPTION: 电话拨打过快过多   设置图片标题
+ #+ATTR_HTML: :width 100%   设置图片尺寸：表示宽度和浏览器页面宽度相同    
+     #+end_src
+**** 更好的解决方案: org-download + imagemagick
+***** 配置方法 
+****** 安装
+  安装org-download及imagemagick cygwin版本
+  添加环境变量
+****** imagemagick的使用方法及配置
+ convert clipboard: d:/test/test.png  cmd命令行将剪切板上的图片保存为test.png
+ 需要在导入org-download的时候修改默认的org-download-screenshot配置
+ 在init.el中添加如下语句
+ #+begin_src 
+ (setq org-download-screenshot-method "convert clipboard: %s")
+ #+end_src
+ 则设置了org-download-screenshot-method的默认方法为imagemagick中的convert
+**** 使用方法
+     #+begin_src 
+ M-x org-download-screenshot-methods 一键完成粘贴 剪切板中的图片，不需要保存路径
+ C-S-y 绑定按键到该命令即可
+ (global-set-key (kbd "C-S-y") 'org-download-screenshot)  -连接表示需要 同时按键
+ 或者直接将images中的文件拖动到emacs即可，需要org-download包支持    
+ C-c C-x C-v 显示所插入的图片 开启org-taggle-inline-image-mode 控制开启和关闭
+     #+end_src
 
 * Emaces Usful Command
 ** Command
@@ -1714,12 +1774,34 @@ C-S enter 产生一个同级子树 to do标题
 - C-c C-t 变换TODO的状态 先配置TODO类型在配置TODO的状态
 - C-c / t 以树的形式展示所有的 TODO
 ** 超链接文件或者图片
-*** 命令
+*** 常规解决方案iimage-mode
     #+begin_src 
-[[./a.png]] 插入图片的org-mode 代码
+file: ./a.png 插入图片的org-mode 代码
+file:images/a.png
 M-x 运行iimage-mode可以在emacs中直接显示/隐藏图片
 #+CAPTION: 电话拨打过快过多   设置图片标题
 #+ATTR_HTML: :width 100%   设置图片尺寸：表示宽度和浏览器页面宽度相同    
+    #+end_src
+*** 更好的解决方案: org-download + imagemagick
+**** 配置方法 
+***** 安装
+ 安装org-download及imagemagick cygwin版本
+ 添加环境变量
+***** imagemagick的使用方法及配置
+convert clipboard: d:/test/test.png  cmd命令行将剪切板上的图片保存为test.png
+需要在导入org-download的时候修改默认的org-download-screenshot配置
+在init.el中添加如下语句
+#+begin_src 
+(setq org-download-screenshot-method "convert clipboard: %s")
+#+end_src
+则设置了org-download-screenshot-method的默认方法为imagemagick中的convert
+*** 使用方法
+    #+begin_src 
+M-x org-download-screenshot-methods 一键完成粘贴 剪切板中的图片，不需要保存路径
+C-S-y 绑定按键到该命令即可
+(global-set-key (kbd "C-S-y") 'org-download-screenshot)  -连接表示需要 同时按键
+或者直接将images中的文件拖动到emacs即可，需要org-download包支持    
+C-c C-x C-v 显示所插入的图片 开启org-taggle-inline-image-mode 控制开启和关闭
     #+end_src
 
 ** 表格和图片增加标签和说明，并交叉引用
@@ -2152,9 +2234,9 @@ O(n2)O(n2)
 **** Time complexity 
 O(nlgn)
 *** 七种sort算法
-[./images/sort_algorithms.png]
-#+CAPTION: sort algorithms
-#+ATTR_HTML: :width 100%
+#+DOWNLOADED: file:D%3A/github/command_demo/images/sort_algorithms.png @ 2019-06-13 18:32:29
+[[file:Algorithems_&_Data_Structure/sort_algorithms_2019-06-13_18-32-29.png]]
+[file: images/sort_algorithms.png]
 
 * Spring 2018
 ** EE 147
