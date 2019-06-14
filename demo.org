@@ -130,6 +130,7 @@ M-x eval-buffer
 *** 选中、复制、粘贴、查找 
     #+begin_src 
 Ctrl+space (从当前光标处开始选中) 注意：需要在日期与键盘中把切换输入法的快捷键解绑
+Ctrl+Shift+space (从当前光标处开始选中) 如果上一条命令不可用，临时用这个
 Ctrl+w (剪切)
 Alt+w (复制) 
 Ctrl+y (粘贴) 
@@ -1815,10 +1816,10 @@ C-c C-x C-v 显示所插入的图片 开启org-taggle-inline-image-mode 控制�
 ** 表格的输入
 *** 插入表格
 #+CAPTION: 表格的标题
-| 1 | one |
-| 2 | two |
+| 1 | one                          |
+| 2 | two                          |
 | 3 | This is a long chunk of text |
-| 4 | four |
+| 4 | four                         |
 *** 限制所在列的长度
 |   | <6>    |
 | 1 | one    |
@@ -2227,8 +2228,10 @@ exit 退出bender系统
 * Algorithems & Data Structure
 ** Sorting 
 *** Insertion sort
-**** Time complexity 
-O(n2)O(n2)
+比较大小，插入序列中合适位置
+
+#+DOWNLOADED: c:/Users/ADMINI~1/AppData/Local/Temp/screenshot.png @ 2019-06-14 10:24:46
+[[file:Algorithems_&_Data_Structure/screenshot_2019-06-14_10-24-46.png]]
 
 *** Merge sort
 **** Time complexity 
@@ -2237,6 +2240,68 @@ O(nlgn)
 #+DOWNLOADED: file:D%3A/github/command_demo/images/sort_algorithms.png @ 2019-06-13 18:32:29
 [[file:Algorithems_&_Data_Structure/sort_algorithms_2019-06-13_18-32-29.png]]
 [file: images/sort_algorithms.png]
+* LeetCode学习
+** 正序题号
+*** 哈希表 Hash table
+**** 数据类型比较
+ | 1 | 数组   | 连续地址  | cpu缓存 快 | 不易拓展 |
+ | 2 | 链表   | 散列地址  | cpu内容 慢 | 适合拓展 |
+ | 3 | 哈希表 | 连续+散列 | 拉链法     | 数据内容与数据地址之间用hash函数对应 |
+ 特征：数据地址由数据内容确定 
+**** 常用散列法
+***** 除法散列法
+index = value % 16
+***** 平方散列法
+index = (value * value) >> 28   （右移，除以2^28。记法：左移变大，是乘。右移变小，是除。）
+***** 斐波那契（Fibonacci）散列法
+index = (value * 2654435769) >> 28
+** python版本
+*** 1
+**** 基础知识
+| name       | 名称 | editable | 书写 | 命名方式            | 调用方式                                        | 备注                   |
+|------------+------+----------+------+---------------------+-------------------------------------------------+------------------------|
+| list       | 列表 | 可修改   | []   | a[0]                | a[0]                                            |                        |
+| tumper     | 元组 | 不可修改 | ()   | a(0)                | a[0]                                            | 单元素元组命名：a(50,) |
+| dictionary | 字典 | 可修改   | {}   | dicts = {key:value} | value = dicts[key] 等效于value = dicts.get(key) | 单一映射，只能由键找值 |
+**** enumerate枚举
+函数用法：
+for index,value in enumerate(lst):
+第一个是index 第二个是list中的值
+**** zip()
+用法示例
+#+begin_src 
+books = ['疯狂Kotlin讲义', '疯狂Swift讲义', '疯狂Python讲义']
+prices = [79, 69, 89]
+# 使用zip()函数压缩两个列表，从而实现并行遍历
+for book, price in zip(books, prices):
+    print("%s的价格是: %5.2f" % (book, price))
+#+end_src
+输出结果：
+#+begin_src 
+疯狂Kotlin讲义的价格是: 79.00
+疯狂Swift讲义的价格是: 69.00
+疯狂Python讲义的价格是: 89.00
+#+end_src
+*** 2
+**** 求余运算
+243//10 = 24
+243/10 = 24.3
+243%10 = 3
+**** 循环语句的写法
+     #+begin_src 
+        while(l1 or l2):
+            x= l1.val if l1 else 0
+            y= l2.val if l2 else 0
+            s=carry+x+y
+            carry=s//10
+            r.next=ListNode(s%10)
+            r=r.next
+            if(l1!=None):l1=l1.next
+            if(l2!=None):l2=l2.next     
+     #+end_src
+*** 3
+python中遍历问题，喜欢用字典dictionary，原因是速度快
+通过if判断是否之前添加过到字典中，从而查找到符合一定条件的值。
 
 * Spring 2018
 ** EE 147
@@ -2512,8 +2577,8 @@ https://blog.csdn.net/OptSolution/article/details/64442962
 能力检索
 ***  状态保持
 **** 能力检索
+- 状态调整 痛苦 专注 框架 效率 兴趣
 - 状态调整 思维永生 黑暗 兴趣
-- 
 - 状态调整 思维永生 x y fun 分类器 逻辑顺序
 - 状态调整：绝望 信仰 兴趣 证明自己
 - 思维永生：计划 脑子 放松
