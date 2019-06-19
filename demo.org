@@ -2666,12 +2666,32 @@ driver.close()
 ** 库
 *** threading
 **** 命令
-     #+begin_src 
-threading.activeCount() 返回当前thread的个数
-threading.enumerate()   此方法返回当前运行中的Thread对象列表     
-
+     #+begin_src python
+import threading 
+mthread = threading.Thread(target=function_name, args=(function_parameter1, function_parameterN,)) #传入参数为元组，要在末尾加逗号
+mthread.start() # 启动刚刚创建的线程 
+threading.activeCount()  #返回当前thread的个数
+threading.enumerate()    #此方法返回当前运行中的Thread对象列表     
+time.sleep(2) # 主线程不会等子线程，要么延长主线程，要么t.join()使主线程等待子线程
+t.join 必须放到.start的循环体的外面，必须先启动线程之后，才能判断线程是否结束，主线程等待子线程结束
      #+end_src
-
+**** 简单的计数器代码
+     #+begin_src python
+import threading 
+import time
+ 
+def worker():
+    print ("worker")
+    time.sleep(1)
+    return
+ 
+for i in range(5):
+    t = threading.Thread(target=worker)
+    t.start()
+for i in range(5):
+    t.join()
+print(threading.activeCount())     
+     #+end_src
 ** 必备操作集锦 
 *** 正则表达式
 **** 库
