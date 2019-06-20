@@ -2761,6 +2761,78 @@ finally:
 **** 快速获取某标签出现的个数
 很简单，直接用len()函数计算即可
 print(len(driver.find_elements_by_xpath('//div[@tabindex="0"]')))
+**** 所有你想要的，这里都有
+     #+begin_src python
+# 知乎 关注的专栏
+from selenium import webdriver
+import time
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+def list_all(no_err_num, listnum):
+    # get link and text
+    link = driver.find_element_by_xpath('//*[@id="Profile-following"]/div[2]/div[%s]/div/div/div[2]/h2/a'%listnum).get_attribute('href')
+    name = driver.find_element_by_xpath('//*[@id="Profile-following"]/div[2]/div[%s]/div/div/div[2]/h2/a'%listnum).text
+    
+    # click 
+    driver.get(link)
+    
+    # web wait until get botton
+    try:
+        ele = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.XPATH, '//*[@id="root"]/div/main/div/header/div/div[2]/button[1]')))
+    except Exception as f:
+#            print(f)
+        print('超时错误：找不到关注专栏对应的元素')
+    else:
+        # check if this wenti is followed 
+        check_str = driver.find_element_by_xpath('//*[@id="root"]/div/main/div/header/div/div[2]/button[1]').text
+        if check_str == '关注专栏':
+            # click this botton
+            print('当前状态：未关注     执行：单击关注专栏')
+            driver.find_element_by_xpath('//*[@id="root"]/div/main/div/header/div/div[2]/button[1]').click()      
+            time.sleep(1)
+        else:
+            print('当前状态：已关注     不执行任何操作')
+
+    # debug code 
+    debug_check_str = driver.find_element_by_xpath('//*[@id="root"]/div/main/div/header/div/div[2]/button[1]').text
+    if debug_check_str == '关注专栏':
+        print('错误！！！！！专栏仍未被关注')
+    else:
+         no_err_num += 1
+         print('成功关注此专栏: ',name)
+        
+    return no_err_num
+
+chrome_options = Options()
+chrome_options.add_experimental_option("debuggerAddress", "127.0.0.1:9222")
+chrome_driver = "D:\chrome_driver\chromedriver.exe"
+driver = webdriver.Chrome(chrome_driver, chrome_options=chrome_options)
+print(driver.title)
+
+print('Successfully logged in')
+
+num = 0
+page = 2  
+no_err_num = 0 
+#for i in range(1,12):
+for i in range(1, page+1):
+    driver.get('https://www.zhihu.com/people/yang-yi-xin-12-38/following/columns?page=%s' %i)
+    add = len(driver.find_elements_by_xpath('//div[@tabindex="0"]'))
+    for j in range(1,add + 1):
+        driver.get('https://www.zhihu.com/people/yang-yi-xin-12-38/following/columns?page=%s' %i)
+        # add is the number of lists
+        time.sleep(1)
+        no_err_num = list_all(no_err_num,j)
+
+        str += 1
+        num = num + 1
+        print('No error number: ', no_err_num)
+        print('Total solving number: ', num)
+     #+end_src
 ** 库
 *** threading
 **** 命令
