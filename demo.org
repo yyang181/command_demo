@@ -2445,9 +2445,50 @@ type() 查询数据类型
 dir() 查询一个类或者对象所有属性 更好用！            用来查看类中包含的所有函数
 help() 查询模块、类型、对象、方法、属性的详细信息     详细查看函数的功能
 #+END_SRC
+** 异常处理——try语句
+*** 基本知识
+    #+begin_src python
+try:
+    <语句> #运行别的代码
+except <名字>： 
+    <语句> #如果在try部份引发了'name'异常
+except <名字>，<数据>:
+    <语句> #如果引发了'name'异常，获得附加的数据
+else:
+    <语句> #如果没有异常发生
+try:
+    <语句>
+finally:
+    <语句> #退出try时总会执行finally语句    
+    #+end_src
+*** 用法说明
+当你想无论是否发生异常都确保执行某些代码时，try/finally是有用的。
+try语句用来放可能会出错的代码，except语句保证即使try中语句出错，try结构体退出，后面的代码继续运行
+finally语句则为依然报错，但是之前会执行finally中的语句
+*** 代码示例
+    #+begin_src python
+a=10
+b=0
+try:
+    c = b/ a
+    print c
+except (IOError ,ZeroDivisionError),x:
+    print x
+else:
+    print "no error"
+print "done"    
+
+except Exception as e:
+    print(e)
+    #+end_src
+
 ** 爬虫
 *** 最优网页路径选择
 根据网址的命名规则
+*** 最优标签ID name 特征爬取选择
+1. html源码包含最科学最有效的数据框架
+2. 先考虑格式，再考虑命名规范，最后考虑正则表达式
+3. div[2] 表示第二个div标签 //*[@id="Profile-following"]/div[2]/div[1]/div/div/div[2]/h2/a
 *** 获取html信息：request库
 **** 获取string类型的html信息的python代码
      #+begin_src python
@@ -2474,6 +2515,14 @@ r.content http响应内容的二进制形式
 *** 使用python中的selenium库快速定位html中标签的位置
 **** 最快 浏览器检查功能
 在浏览器右键该元素，然后检查 右击复制xpath路径即可
+**** 浏览器检查功能 技巧
+同类标签，用[]来区分第几个
+
+核心技巧：用ID识别，之后区分第几个
+#+begin_src 
+//*[@id="Profile-following"]/div[2]/div[1]/div/div/div[2]/h2/a
+div[2] 表示第二个div标签
+#+end_src
 **** 用python code实现
      #+begin_src python
  # This file is used to search between html 
@@ -2552,13 +2601,20 @@ r.content http响应内容的二进制形式
       #+end_src
       #+begin_src 
  [@]表示标签下面的属性 绝对路径方法
- //@表示标签下的属性  相对路径方法
+//a/@herf 表示标签下的属性  相对路径方法
  test() 表示标签里面的内容     
  / 表示绝对路径，从根开始查找
  // 表示相对路径，查找所有符合条件的标签
  [last()-1]跟在标签后面，表示查找的是倒数第二个标签 例如：html_data = html.xpath('//li[last()-1]/a/text()')
  //*[@id="kw"] 　解释：使用相对路径查找所有的标签，属性id等于kw的标签
 //div/li[text()="{}"] 解释：查找特定内容的标签
+//div[2] 表示查找第二个div标签 如果有多个非嵌套的div存在，一定要注明你查找的是第几个，否则会有多个返回值
+contains 表示包含 
+//a[contains(@href, 'logout')] 查找href属性中包含有logout的所有的a标签 
+//*[contains(text(), '退出' 
+starts-with 开头 ends-with 结尾
+//a[starts-with(@class, 'a')]
+driver.find_element_by_xpath("//a").get_attribute("href") 获取标签的属性
       #+end_src
 **** 模拟基本操作
      #+begin_src 
@@ -2606,12 +2662,33 @@ click() 单击元素
  context_click()方法用于模拟鼠标右键事件，在调用时需要传入右键的元素。
  perform()
  执行所有ActionChains 中存储的行为，可以理解成是对整个操作事件的提交动作。
-***** 鼠标悬浮操作:需要多线程处理并发threading
+***** 鼠标悬浮操作:
+****** 解决方案一：获取当前焦点元素 有效
+       #+begin_src python
+driver.switch_to.active_element.find_element_by_xpath('//*[@id="Popover%s-content"]/div/div/div[3]/div[2]/button'%str).click()       
+       #+end_src
+****** 解决方案二：需要多线程处理并发threading 部分有效
       #+begin_src python
 ActionChains(driver).move_to_element(driver.find_element_by_link_text("设置")).perform()
 Tread.sleep(2)
 driver.find_element_by_link_text("高级搜索").click()
       #+end_src
+****** 解决方案三：连贯的鼠标操作 待检验
+******* # ActionChains can be used in a chain pattern:链式写法
+        #+begin_src python
+ menu = driver.find_element_by_css_selector(".nav")
+ hidden_submenu = driver.find_element_by_css_selector(".nav #submenu1")
+        #+end_src
+******* # Or actions can be queued up one by one, then performed.:分步写法
+        #+begin_src python
+ menu = driver.find_element_by_css_selector(".nav")
+ hidden_submenu = driver.find_element_by_css_selector(".nav #submenu1")
+
+ actions = ActionChains(driver)
+ actions.move_to_element(menu)
+ actions.click(hidden_submenu)
+ actions.perform()
+        #+end_src
 ***** 键盘操作
 ****** 键盘操作命令
     send_keys(Keys.BACK_SPACE) 删除键（BackSpace）
@@ -2663,6 +2740,27 @@ https://www.cnblogs.com/mapu/p/8533817.html
  ActionChains(browser).key_down(Keys.CONTROL).send_keys("w").key_up(Keys.CONTROL).perform()
 ***** 关闭当前标签页（从标签页A打开新的标签页B，关闭标签页A）
 driver.close()
+**** 显示等待：某条件达成之后继续进行
+***** 代码示例：
+      #+begin_src python
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+driver = webdriver.Firefox()
+driver.get("http://somedomain/url_that_delays_loading")
+try:
+	element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "myDynamicElement")))
+finally:
+	driver.quit()
+      #+end_src
+***** 使用说明
+代码很清晰了，需要跟try结合一起用比较好
+善用异常处理和显示等待，可以极大的提高代码运行的效率
+**** 快速获取某标签出现的个数
+很简单，直接用len()函数计算即可
+print(len(driver.find_elements_by_xpath('//div[@tabindex="0"]')))
 ** 库
 *** threading
 **** 命令
