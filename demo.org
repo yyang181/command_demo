@@ -217,7 +217,9 @@ SPC f r
     #+end_src
 *** 不重启重载配置的方法，利用SPC=M-m
     #+begin_src 
-SPC f e R
+SPC f e R  只能处理.spacemacs
+M-x eval-buffer 同上
+M-x load-file init.el 可以重载任何文件
     #+end_src
 *** 手写configuration文件，对于package installation
 **** 使用帮助菜单，查看变量功能
@@ -460,6 +462,21 @@ M– M-c	negtive-argument; capitalize-word
 M– M-u	negtive-argument; upcase-word
 M– M-l	negtive-argument; downcase-word
      #+end_src
+*** 快速打开init.el文件的方法
+可以再init.el中简单的配置命令,然后按F2就可以了
+#+begin_src 
+;; 快速打开配置文件
+(defun open-init-file()
+  (interactive)
+  (find-file "~/.emacs.d/init.el"))
+;; 这一行代码，将函数 open-init-file 绑定到 <f2> 键上
+(global-set-key (kbd "<f2>") 'open-init-file)
+#+end_src
+*** 设置emacs为默认全屏打开
+代码
+#+begin_src 
+(setq initial-frame-alist (quote ((fullscreen . maximized))))
+#+end_src
 
 * Emaces Usful Command
 ** Command
@@ -3940,6 +3957,8 @@ https://blog.csdn.net/OptSolution/article/details/64442962
 开启快速启动须开启休眠功能
 
 * 能力
+- 痛苦 专注 框架 效率 兴趣
+- 劳逸结合 精力分配 休息的频率 脑力体力转换
 - 信息x 
 - 目标y
 - 分析处理：分类 体系化 核心化
