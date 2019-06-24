@@ -2518,6 +2518,8 @@ load foo.py 载入文件
 run foo.py 运行文件
 ****** .ipynb与.py文件的用法区别
 .ipynb用来写python文件，用于初始调试，最终成功以后可以导出为.py文件
+.ipynb可以用来写测试代码，没有赋值的语句运行直接显示结果
+****** .ipynb如果引用.py文件，想要实时更新.py的修改内容，必须在ein中打开.py 此时connect to buffer
 ****** 最常用的快捷键
 input cell之间移动
 Crtl + 上下键控制
@@ -3936,6 +3938,14 @@ $       匹配结束位置
 [^xyz]负值字符集合。匹配未包含的任意字符。例如，“[^abc]”可以匹配“plain”中的“plin”。      
       #+end_src
 *** 6
+**** 二维数组、矩阵的创建和初始化元素
+     #+begin_src python
+rows = [[] for _ in range(numRows)]     # 创建[[], [], [], []]的数组
+rows[counts].append(c)                  # 添加元素的格式
+     #+end_src
+**** 把字符串连接起来
+''.join([''.join(r) for r in rows])
+*** 7
 
 * Spring 2018
 ** EE 147
