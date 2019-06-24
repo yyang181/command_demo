@@ -477,6 +477,20 @@ M– M-l	negtive-argument; downcase-word
 #+begin_src 
 (setq initial-frame-alist (quote ((fullscreen . maximized))))
 #+end_src
+*** 取消每次打开.py文件都要询问一次是否载入python layer
+(add-to-list 'auto-mode-alist '("\\.py?\\'" . python-mode))
+*** 设置emacs默认的python版本，cmd输入python打开的版本
+**** emacs eshell默认python
+(setq python-python-command "d:/anaconda/python.exe")
+**** cmd默认python
+***** 如果缺少dll包
+只需要安装官网版本的python3.7即可，不用添加环境变量，用anaconda中的python.exe+官网Python的dll即可
+***** 识别python命令及设置默认python
+      #+begin_src 
+  which python 可以查看当前python的路径和版本
+  将"d:/anaconda"中的python添加到系统变量并且放到emacs/bin/python.exe的前面即可
+  先后顺序决定了优先使用哪个python.exe    
+      #+end_src
 
 * Emaces Usful Command
 ** Command
@@ -2333,129 +2347,271 @@ https://blog.csdn.net/afei__/article/details/51464783
 *** 使用步骤
 **** 用orgmode输出.mm思维导图文件C-c C-e
 **** 用freemind软件打开.mm文件，并保存为.png即可
-* Jupyter notebook
-** 终极解决方案 EIN
-*** 首先设置jupyter服务器的密码
-**** emacs命令：
-#+BEGIN_SRC 
-M-x ein:notebook=login
-#+END_SRC
-**** jupyter服务器密码设置
-网址：https://blog.csdn.net/clifnich/article/details/53912611
-#+BEGIN_SRC 
-from notebook.auth import passwd
-alt + enter 来执行这个命令并进入下一行；在下一行里面输入：
-passwd()
-#+END_SRC
-**** 我的密码
-qaz111
-** 常用命令
-*** 快捷键汇总
-**** 命令模式 (按键 Esc 开启)
-#+BEGIN_SRC 
-Enter : 转入编辑模式
-Shift-Enter : 运行本单元，选中下个单元
-Ctrl-Enter : 运行本单元
-Alt-Enter : 运行本单元，在其下插入新单元
-Y : 单元转入代码状态
-M :单元转入markdown状态
-R : 单元转入raw状态
-1 : 设定 1 级标题
-2 : 设定 2 级标题
-3 : 设定 3 级标题
-4 : 设定 4 级标题
-5 : 设定 5 级标题
-6 : 设定 6 级标题
-Up : 选中上方单元
-K : 选中上方单元
-Down : 选中下方单元
-J : 选中下方单元
-Shift-K : 扩大选中上方单元
-Shift-J : 扩大选中下方单元
-A : 在上方插入新单元
-B : 在下方插入新单元
-X : 剪切选中的单元
-C : 复制选中的单元
-Shift-V : 粘贴到上方单元
-V : 粘贴到下方单元
-Z : 恢复删除的最后一个单元
-D,D : 删除选中的单元
-Shift-M : 合并选中的单元
-Ctrl-S : 文件存盘
-S : 文件存盘
-L : 转换行号
-O : 转换输出
-Shift-O : 转换输出滚动
-Esc : 关闭页面
-Q : 关闭页面
-H : 显示快捷键帮助
-I,I : 中断Notebook内核
-0,0 : 重启Notebook内核
-Shift : 忽略
-Shift-Space : 向上滚动
-Space : 向下滚动
-#+END_SRC
-**** 编辑模式 ( Enter 键启动)
-#+BEGIN_SRC 
-Tab : 代码补全或缩进
-Shift-Tab : 提示
-Ctrl-] : 缩进
-Ctrl-[ : 解除缩进
-Ctrl-A : 全选
-Ctrl-Z : 复原
-Ctrl-Shift-Z : 再做
-Ctrl-Y : 再做
-Ctrl-Home : 跳到单元开头
-Ctrl-Up : 跳到单元开头
-Ctrl-End : 跳到单元末尾
-Ctrl-Down : 跳到单元末尾
-Ctrl-Left : 跳到左边一个字首
-Ctrl-Right : 跳到右边一个字首
-Ctrl-Backspace : 删除前面一个字
-Ctrl-Delete : 删除后面一个字
-Esc : 进入命令模式
-Ctrl-M : 进入命令模式
-Shift-Enter : 运行本单元，选中下一单元
-Ctrl-Enter : 运行本单元
-Alt-Enter : 运行本单元，在下面插入一单元
-Ctrl-Shift-- : 分割单元
-Ctrl-Shift-Subtract : 分割单元
-Ctrl-S : 文件存盘
-Shift : 忽略
-Up : 光标上移或转入上一单元
-Down :光标下移或转入下一单元
-#+END_SRC
-*** 常用命令
-#+BEGIN_SRC 
-执行当前cell，并自动跳到下一个cell：Shift Enter
-执行当前cell，执行后不自动调转到下一个cell：Ctrl-Enter
-是当前的cell进入编辑模式：Enter
-退出当前cell的编辑模式：Esc
-删除当前的cell：双D
-为当前的cell加入line number：单L
-将当前的cell转化为具有一级标题的maskdown：单1
-将当前的cell转化为具有二级标题的maskdown：单2
-将当前的cell转化为具有三级标题的maskdown：单3
-为一行或者多行添加/取消注释：Crtl /
-撤销对某个cell的删除：z
-浏览器的各个Tab之间切换：Crtl PgUp和Crtl PgDn
-快速跳转到首个cell：Crtl Home
-快速跳转到最后一个cell：Crtl End
-#+END_SRC
-** 文件导入
-***  如何将本地的.py文件load到jupyter的一个cell里面
- #+BEGIN_SRC 
- %load test.py #test.py是当前路径下的一个python文件
- #+END_SRC
-*** 如何将网络中的.py文件load到jupyter的一个cell里面
- #+BEGIN_SRC 
-在cell中输入%load http://.....，然后运行该cell，就会将load后面所对应地址的代码load到当前的cell中；
- #+END_SRC
-*** 利用cell运行.py文件
-#+BEGIN_SRC 
-%run file.py
-#+END_SRC
 * Python 语言
+** 系列软件安装指南
+*** anaconda
+一定记住添加环境变量
+路径：
+#+begin_src 
+"d:/anaconda/python.exe" 默认python路径
+"d:/anaconda/Scripts" 默认ipython jupyter Spyder等高级程序路径
+Anaconda3
+Anaconda3\Scripts         这是前两个环境变量
+Anaconda3\Library\bin     这是新加的环境变量
+#+end_src
+*** TensorFlow
+	1. 必须安装Microsoft的visual studio
+	2. 下载安装cuda9.0版本+cudnn for cuda9.0
+	3. 设置环境变量 bin libnvvp extras\CUPTI\libx64
+  4. Python3.6 3.5均可用 3.7有问题？
+*** Jupyter notebook
+**** EIN：在emacs中使用jupyter notebook
+***** 基本配置
+****** 在emacs中打开ein
+  首次打开需要登录
+  M-x ein:notebooklist-login
+  需要先在浏览器中打开一个jupyter notebook
+  然后输入该网页的url
+****** 如何获取notebook的密码
+  在cmd中输入
+  jupyter notebook list 来查询当前的url及密码，例如
+  http://localhost:8888/?token=b09b8e943762452bd443e04ce6814ac536316368b2a1b6ae
+  token前面的是url 后面的即是密码，输入即可
+****** windows环境下重要配置python shell需要跟anaconda的路径匹配，否则无法使用ipython
+       #+begin_src 
+  (setq python-shell-interpreter "d:/anaconda/python.exe"
+        python-shell-interpreter-args
+        "-i d:/anaconda/Scripts/ipython-script.py")     
+       #+end_src
+***** 使用方法
+  https://www.cnblogs.com/keye/p/7697854.html
+  http://tkf.github.io/emacs-ipython-notebook/#ein:console-security-dir
+  https://github.com/millejoh/emacs-ipython-notebook
+****** 说明
+  EIN提供的是一个在emacs中复现jupyter notebook的功能，即在emacs中打开
+  然后通过jupyter notebook打开文件，注意文件名：后面有jupyter的标识
+  然后即可通过C-c C-c来编译了
+****** jupyter notebook buffer的控制快捷键
+       #+begin_src 
+  TAB widget-forward   widget是小部件
+  C-M-i widget-backward
+  <S-tab> widget-backward
+  <backtab> widget-backward
+  C-c C-r ein:notebooklist-reload
+  Reload current Notebook list.
+
+  g ein:notebooklist-reload
+  Reload current Notebook list.
+
+  p ein:notebooklist-prev-item
+  n ein:notebooklist-next-item
+  q bury-buffer     
+       #+end_src
+****** .py文件的控制快捷键
+       #+begin_src 
+  key             binding
+  ---             -------
+
+  C-c          Prefix Command
+  C-x          Prefix Command
+  ESC          Prefix Command
+  C-:          ein:shared-output-eval-string
+  <C-down>     ein:worksheet-goto-next-input
+  <C-up>               ein:worksheet-goto-prev-input
+  <M-S-return> ein:worksheet-execute-cell-and-insert-below
+  <M-down>     ein:worksheet-move-cell-down
+  <M-up>               ein:worksheet-move-cell-up
+
+  C-x C-s              ein:notebook-save-notebook-command
+  C-x C-w              ein:notebook-rename-command
+
+  M-RET                ein:worksheet-execute-cell-and-goto-next
+  M-,          ein:pytools-jump-back-command
+  M-.          ein:pytools-jump-to-source-command
+  M-n          ein:worksheet-next-input-history
+  M-p          ein:worksheet-previous-input-history
+
+  C-c C-a              ein:worksheet-insert-cell-above
+  C-c C-b              ein:worksheet-insert-cell-below
+  C-c C-c              ein:worksheet-execute-cell
+  C-c C-e              ein:worksheet-toggle-output
+  C-c C-f              ein:file-open
+  C-c C-h              ein:pytools-request-tooltip-or-help
+  C-c TAB              ein:completer-complete
+  C-c C-k              ein:worksheet-kill-cell
+  C-c C-l              ein:worksheet-clear-output
+  C-c RET              ein:worksheet-merge-cell
+  C-c C-n              ein:worksheet-goto-next-input
+  C-c C-o              ein:notebook-open
+  C-c C-p              ein:worksheet-goto-prev-input
+  C-c C-q              ein:notebook-kill-kernel-then-close-command
+  C-c C-r              ein:notebook-reconnect-session-command
+  C-c C-s              ein:worksheet-split-cell-at-point
+  C-c C-t              ein:worksheet-toggle-cell-type
+  C-c C-u              ein:worksheet-change-cell-type
+  C-c C-v              ein:worksheet-set-output-visibility-all
+  C-c C-w              ein:worksheet-copy-cell
+  C-c C-x              Prefix Command
+  C-c C-y              ein:worksheet-yank-cell
+  C-c C-z              ein:notebook-kernel-interrupt-command
+  C-c ESC              Prefix Command
+  C-c !                ein:worksheet-rename-sheet
+  C-c '                ein:edit-cell-contents
+  C-c +                ein:notebook-worksheet-insert-next
+  C-c -                ein:notebook-worksheet-delete
+  C-c 1                ein:notebook-worksheet-open-1th
+  C-c 2                ein:notebook-worksheet-open-2th
+  C-c 3                ein:notebook-worksheet-open-3th
+  C-c 4                ein:notebook-worksheet-open-4th
+  C-c 5                ein:notebook-worksheet-open-5th
+  C-c 6                ein:notebook-worksheet-open-6th
+  C-c 7                ein:notebook-worksheet-open-7th
+  C-c 8                ein:notebook-worksheet-open-8th
+  C-c 9                ein:notebook-worksheet-open-last
+  C-c S                ein:worksheet-toggle-slide-type
+  C-c i                ein:inspect-object
+  C-c {                ein:notebook-worksheet-open-prev-or-last
+  C-c }                ein:notebook-worksheet-open-next-or-first
+  C-c C-S-l    ein:worksheet-clear-all-output
+  C-c C-#              ein:notebook-close
+  C-c C-$              ein:tb-show
+  C-c C-'              ein:worksheet-turn-on-autoexec
+  C-c C-,              ein:pytools-jump-back-command
+  C-c C-.              ein:pytools-jump-to-source-command
+  C-c C-/              ein:notebook-scratchsheet-open
+  C-c C-;              ein:shared-output-show-code-cell-at-point
+  C-c <down>   ein:worksheet-move-cell-down
+  C-c <up>     ein:worksheet-move-cell-up
+
+  C-c C-x C-l  ein:notebook-toggle-latex-fragment
+  C-c C-x C-r  ein:notebook-restart-session-command
+
+  C-c M-+              ein:notebook-worksheet-insert-prev
+  C-c M-w              ein:worksheet-copy-cell
+  C-c M-{              ein:notebook-worksheet-move-prev
+  C-c M-}              ein:notebook-worksheet-move-next
+       #+end_src
+****** old version 无效命令
+******* emacs命令：
+   #+BEGIN_SRC 
+   M-x ein:notebook=login
+   #+END_SRC
+******* jupyter服务器密码设置
+   网址：https://blog.csdn.net/clifnich/article/details/53912611
+   #+BEGIN_SRC 
+   from notebook.auth import passwd
+   alt + enter 来执行这个命令并进入下一行；在下一行里面输入：
+   passwd()
+   #+END_SRC
+******* 我的密码
+   qaz111
+
+**** 常用命令
+***** 快捷键汇总
+****** 命令模式 (按键 Esc 开启)
+  #+BEGIN_SRC 
+  Enter : 转入编辑模式
+  Shift-Enter : 运行本单元，选中下个单元
+  Ctrl-Enter : 运行本单元
+  Alt-Enter : 运行本单元，在其下插入新单元
+  Y : 单元转入代码状态
+  M :单元转入markdown状态
+  R : 单元转入raw状态
+  1 : 设定 1 级标题
+  2 : 设定 2 级标题
+  3 : 设定 3 级标题
+  4 : 设定 4 级标题
+  5 : 设定 5 级标题
+  6 : 设定 6 级标题
+  Up : 选中上方单元
+  K : 选中上方单元
+  Down : 选中下方单元
+  J : 选中下方单元
+  Shift-K : 扩大选中上方单元
+  Shift-J : 扩大选中下方单元
+  A : 在上方插入新单元
+  B : 在下方插入新单元
+  X : 剪切选中的单元
+  C : 复制选中的单元
+  Shift-V : 粘贴到上方单元
+  V : 粘贴到下方单元
+  Z : 恢复删除的最后一个单元
+  D,D : 删除选中的单元
+  Shift-M : 合并选中的单元
+  Ctrl-S : 文件存盘
+  S : 文件存盘
+  L : 转换行号
+  O : 转换输出
+  Shift-O : 转换输出滚动
+  Esc : 关闭页面
+  Q : 关闭页面
+  H : 显示快捷键帮助
+  I,I : 中断Notebook内核
+  0,0 : 重启Notebook内核
+  Shift : 忽略
+  Shift-Space : 向上滚动
+  Space : 向下滚动
+  #+END_SRC
+****** 编辑模式 ( Enter 键启动)
+  #+BEGIN_SRC 
+  Tab : 代码补全或缩进
+  Shift-Tab : 提示
+  Ctrl-] : 缩进
+  Ctrl-[ : 解除缩进
+  Ctrl-A : 全选
+  Ctrl-Z : 复原
+  Ctrl-Shift-Z : 再做
+  Ctrl-Y : 再做
+  Ctrl-Home : 跳到单元开头
+  Ctrl-Up : 跳到单元开头
+  Ctrl-End : 跳到单元末尾
+  Ctrl-Down : 跳到单元末尾
+  Ctrl-Left : 跳到左边一个字首
+  Ctrl-Right : 跳到右边一个字首
+  Ctrl-Backspace : 删除前面一个字
+  Ctrl-Delete : 删除后面一个字
+  Esc : 进入命令模式
+  Ctrl-M : 进入命令模式
+  Shift-Enter : 运行本单元，选中下一单元
+  Ctrl-Enter : 运行本单元
+  Alt-Enter : 运行本单元，在下面插入一单元
+  Ctrl-Shift-- : 分割单元
+  Ctrl-Shift-Subtract : 分割单元
+  Ctrl-S : 文件存盘
+  Shift : 忽略
+  Up : 光标上移或转入上一单元
+  Down :光标下移或转入下一单元
+  #+END_SRC
+***** 常用命令
+  #+BEGIN_SRC 
+  执行当前cell，并自动跳到下一个cell：Shift Enter
+  执行当前cell，执行后不自动调转到下一个cell：Ctrl-Enter
+  是当前的cell进入编辑模式：Enter
+  退出当前cell的编辑模式：Esc
+  删除当前的cell：双D
+  为当前的cell加入line number：单L
+  将当前的cell转化为具有一级标题的maskdown：单1
+  将当前的cell转化为具有二级标题的maskdown：单2
+  将当前的cell转化为具有三级标题的maskdown：单3
+  为一行或者多行添加/取消注释：Crtl /
+  撤销对某个cell的删除：z
+  浏览器的各个Tab之间切换：Crtl PgUp和Crtl PgDn
+  快速跳转到首个cell：Crtl Home
+  快速跳转到最后一个cell：Crtl End
+  #+END_SRC
+**** 文件导入
+*****  如何将本地的.py文件load到jupyter的一个cell里面
+   #+BEGIN_SRC 
+   %load test.py #test.py是当前路径下的一个python文件
+   #+END_SRC
+***** 如何将网络中的.py文件load到jupyter的一个cell里面
+   #+BEGIN_SRC 
+  在cell中输入%load http://.....，然后运行该cell，就会将load后面所对应地址的代码load到当前的cell中；
+   #+END_SRC
+***** 利用cell运行.py文件
+  #+BEGIN_SRC 
+  %run file.py
+  #+END_SRC
 ** 帮助命令
 #+BEGIN_SRC 
 type() 查询数据类型
@@ -3473,15 +3629,63 @@ r的左子树-新x的右子树
 [[file:Algorithems_&_Data_Structure/screenshot_2019-06-18_16-44-28.png]]
 ** 高级设计和分析技术
 *** 动态规划
+三个重要的概念：最优子结构、边界、状态转移公式
+**** 10级梯子模型
+有一座高度是10级台阶的楼梯，从下往上走，每跨一步只能向上1级或者2级台阶。要求用程序来求出一共有多少种走法。
+比如，每次走1级台阶，一共走10步，这是其中一种走法。我们可以简写成 1,1,1,1,1,1,1,1,1,1。
+再比如，每次走2级台阶，一共走5步，这是另一种走法。我们可以简写成 2,2,2,2,2。
 
+假如只差一步就能走完整个楼梯，要分为几种情况？因为每一步能走一级或者两级台阶，所以有如下两种情况：
 
+1.最后一步走2级台阶，也就是从8级到10级
 
+2.最后一步走1级台阶，也就是从9级到10级
 
+那么在上面的基础上假设1级到8级有X种走法，1级到9级有Y种走法，那么1级到10级有几种走法？
 
+我们把10级台阶的走法表达为F(10)此时:
+F(10) = F(9)+F(8)
 
+F(9)   = F(8)+F(7)
 
+F(8)   = F(7)+F(6)
 
+...
 
+F(3)   = F(2)+F(1)
+
+看到没，我们把一个复杂的问题分阶段分步的简化，简化成简单的问题，这就是动态规划的思想。
+
+当只有1级台阶和2级台阶时走法很明显，即F(1)=1、F(2)=2，可以归纳出如下公式：
+
+F(n) = F(n-1) + F(n-2)(n >= 3);
+
+F(2) = 2;
+
+F(1) = 1;
+动态规划中包含三个重要的概念，最优子结构、边界、状态转移公式。
+
+上面我们分析出F(10)=F(9)+F(8)， 其中，F(9)和F(8)是F(10)的最优子结构。
+
+当只有1级和2级台阶时，我们可以直接得出结果，而无需再次简化。我们称F(2)和F(1)是问题的"边界"，如果一个问题没有边界，那么这个问题就没有有限解。
+
+F(n) = F(n-1) + F(n-2)是阶段之间的状态转移公式，它是动态规划的核心，决定了问题的每个阶段和下阶段之间的关系。
+
+至此，动态规划的“问题建模就完成了”。
+*** 贪心算法
+基本思路
+其基本的解题思路为：
+
+1.建立数学模型来描述问题
+
+2.把求解的问题分成若干个子问题
+
+3.对每一子问题求解，得到子问题的局部最优解
+
+4.把子问题对应的局部最优解合成原来整个问题的一个近似最优解
+
+必须注意的是策略的选择必须具备无后效性，即某个状态的选择不会影响到之前的状态，只与当前状态有关，所以对采用的贪婪的策略一定要仔细分析其是否满足无后效性
+*** 摊还分析
 
 * LeetCode学习
 ** 正序题号
@@ -3957,8 +4161,8 @@ https://blog.csdn.net/OptSolution/article/details/64442962
 开启快速启动须开启休眠功能
 
 * 能力
-- 痛苦 专注 框架 效率 兴趣
-- 劳逸结合 精力分配 休息的频率 脑力体力转换
+- 计划 痛苦 专注 框架 效率 兴趣 
+- 劳逸结合 精力分配 休息的频率 脑力体力转换 方法>>努力
 - 信息x 
 - 目标y
 - 分析处理：分类 体系化 核心化
