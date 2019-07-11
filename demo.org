@@ -741,105 +741,6 @@ C-h v type flycheck-check-syntax-automatically
  type 需要绑定的键位 并按enter确认
  type 需要绑定的命令 并按enter确认
  #+END_SRC
-** Python 语言支持及jupyter notebook引用
-*** ein:中jupyter notebook命令集
-#+BEGIN_SRC 
-key             binding
----             -------
-
-C-c             Prefix Command
-C-x             Prefix Command
-ESC             Prefix Command
-.               ein:notebook-complete-dot
-C-:             ein:shared-output-eval-string
-<C-down>        ein:worksheet-goto-next-input
-<C-up>          ein:worksheet-goto-prev-input
-<M-S-return>    ein:worksheet-execute-cell-and-insert-below
-<M-down>        ein:worksheet-move-cell-down
-<M-up>          ein:worksheet-move-cell-up
-
-C-x C-s         ein:notebook-save-notebook-command
-C-x C-w         ein:notebook-rename-command
-
-M-RET           ein:worksheet-execute-cell-and-goto-next
-M-,             ein:pytools-jump-back-command
-M-.             ein:pytools-jump-to-source-command
-M-n             ein:worksheet-next-input-history
-M-p             ein:worksheet-previous-input-history
-
-C-c C-a         ein:worksheet-insert-cell-above
-C-c C-b         ein:worksheet-insert-cell-below
-C-c C-c         ein:worksheet-execute-cell
-C-c C-e         ein:worksheet-toggle-output
-C-c C-f         ein:pytools-request-tooltip-or-help
-C-c TAB         ein:completer-complete
-C-c C-k         ein:worksheet-kill-cell
-C-c C-l         ein:worksheet-clear-output
-C-c RET         ein:worksheet-merge-cell
-C-c C-n         ein:worksheet-goto-next-input
-C-c C-o         ein:console-open
-C-c C-p         ein:worksheet-goto-prev-input
-C-c C-q         ein:notebook-kill-kernel-then-close-command
-C-c C-r         ein:notebook-restart-kernel-command
-C-c C-s         ein:worksheet-split-cell-at-point
-C-c C-t         ein:worksheet-toggle-cell-type
-C-c C-u         ein:worksheet-change-cell-type
-C-c C-v         ein:worksheet-set-output-visibility-all
-C-c C-w         ein:worksheet-copy-cell
-C-c C-x         ein:tb-show
-C-c C-y         ein:worksheet-yank-cell
-C-c C-z         ein:notebook-kernel-interrupt-command
-C-c ESC         Prefix Command
-C-c !           ein:worksheet-rename-sheet
-C-c +           ein:notebook-worksheet-insert-next
-C-c -           ein:notebook-worksheet-delete
-C-c 1           ein:notebook-worksheet-open-1th
-C-c 2           ein:notebook-worksheet-open-2th
-C-c 3           ein:notebook-worksheet-open-3th
-C-c 4           ein:notebook-worksheet-open-4th
-C-c 5           ein:notebook-worksheet-open-5th
-C-c 6           ein:notebook-worksheet-open-6th
-C-c 7           ein:notebook-worksheet-open-7th
-C-c 8           ein:notebook-worksheet-open-8th
-C-c 9           ein:notebook-worksheet-open-last
-C-c {           ein:notebook-worksheet-open-prev-or-last
-C-c }           ein:notebook-worksheet-open-next-or-first
-C-c C-S-l       ein:worksheet-clear-all-output
-C-c C-#         ein:notebook-close
-C-c C-'         ein:worksheet-turn-on-autoexec
-C-c C-,         ein:pytools-jump-back-command
-C-c C-.         ein:pytools-jump-to-source-command
-C-c C-/         ein:notebook-scratchsheet-open
-C-c C-;         ein:shared-output-show-code-cell-at-point
-C-c <down>      ein:worksheet-move-cell-down
-C-c <up>        ein:worksheet-move-cell-up
-
-C-c M-+         ein:notebook-worksheet-insert-prev
-C-c M-w         ein:worksheet-copy-cell
-C-c M-{         ein:notebook-worksheet-move-prev
-C-c M-}         ein:notebook-worksheet-move-next
-#+END_SRC
-*** 打开jupyter notebook的url http://localhost:8892/tree
-*** 重要知识
-因为最初安装的时候只在anaconda里面装了jupyter，所以Windows的cmd并不能直接运行Jupyter
-
-cmd能直接运行python的原因是吧python的路径添加到了环境path
-
-所以同理，我们吧anaconda安装目录中包含有.exe执行文件 jupyter.exe所在的路径加入环境path即可在
-Windows的cmd中直接输入jupyter notebook 打开浏览器中相关内容了
-*** 安装两个package
-**** 重点谈一下ein包
-***** ein unsigned需要在.spacemacs文件中添加package 用来调用jupyter notebook虚拟环境
-***** 配置两个变量 ein:jupyter-default-server-command ein:jupyter-default-notebook-directory
-#+BEGIN_SRC 
-ein:jupyter-default-server-command and set the value to the path you determined above.
-ein:jupyter-default-notebook-directory and set it to the path where you are keeping your jupyter notebooks.
-#+END_SRC
-***** 
-*** 安装两个package
-**** elpy unsigned需要在.spacemacs文件中添加package 用来支持Python mode
-**** pyvenv unsigned需要在.spacemacs文件中添加package 用来调用jupyter notebook虚拟环境
-**** pyvenv package已经被证实不好用，用ein官方包代替
 ** 重要：配置private layer:yyang181
 *** 优先使用.spacemacs文件，如果没有，使用init.el文件生成.spacemacs
 *** 只修改两个文件init.el 和.spacemacs
@@ -1260,7 +1161,7 @@ smex-history-length to change the number of recent commands that Smex keeps trac
 *** 解决not compiled问题
 https://emacs.stackexchange.com/questions/27293/your-emacs-does-not-come-with-xwidget-support-windows-10
 ** PDF阅读器
-*** Doc-view-mode
+n*** Doc-view-mode
 **** 安装方法
  在cygwin中用apt-cyg安装Ghostscript和xpdf包，之后即可正常使用
 **** 快捷键
@@ -2373,153 +2274,7 @@ Anaconda3\Library\bin     这是新加的环境变量
   4. Python3.6 3.5均可用 3.7有问题？
 *** Jupyter notebook
 **** EIN：在emacs中使用jupyter notebook
-***** 基本配置
-****** 在emacs中打开ein
-  首次打开需要登录
-  M-x ein:notebooklist-login
-  需要先在浏览器中打开一个jupyter notebook
-  然后输入该网页的url
-****** 如何获取notebook的密码
-  在cmd中输入
-  jupyter notebook list 来查询当前的url及密码，例如
-  http://localhost:8888/?token=b09b8e943762452bd443e04ce6814ac536316368b2a1b6ae
-  token前面的是url 后面的即是密码，输入即可
-****** windows环境下重要配置python shell需要跟anaconda的路径匹配，否则无法使用ipython
-       #+begin_src 
-  (setq python-shell-interpreter "d:/anaconda/python.exe"
-        python-shell-interpreter-args
-        "-i d:/anaconda/Scripts/ipython-script.py")     
-       #+end_src
-***** 使用方法
-  https://www.cnblogs.com/keye/p/7697854.html
-  http://tkf.github.io/emacs-ipython-notebook/#ein:console-security-dir
-  https://github.com/millejoh/emacs-ipython-notebook
-****** 说明
-  EIN提供的是一个在emacs中复现jupyter notebook的功能，即在emacs中打开
-  然后通过jupyter notebook打开文件，注意文件名：后面有jupyter的标识
-  然后即可通过C-c C-c来编译了
-****** jupyter notebook buffer的控制快捷键
-       #+begin_src 
-  TAB widget-forward   widget是小部件
-  C-M-i widget-backward
-  <S-tab> widget-backward
-  <backtab> widget-backward
-  C-c C-r ein:notebooklist-reload
-  Reload current Notebook list.
-
-  g ein:notebooklist-reload
-  Reload current Notebook list.
-
-  p ein:notebooklist-prev-item
-  n ein:notebooklist-next-item
-  q bury-buffer     
-       #+end_src
-****** .py文件的控制快捷键
-       #+begin_src 
-  key             binding
-  ---             -------
-
-  C-c          Prefix Command
-  C-x          Prefix Command
-  ESC          Prefix Command
-  C-:          ein:shared-output-eval-string
-  <C-down>     ein:worksheet-goto-next-input
-  <C-up>               ein:worksheet-goto-prev-input
-  <M-S-return> ein:worksheet-execute-cell-and-insert-below
-  <M-down>     ein:worksheet-move-cell-down
-  <M-up>               ein:worksheet-move-cell-up
-
-  C-x C-s              ein:notebook-save-notebook-command
-  C-x C-w              ein:notebook-rename-command
-
-  M-RET                ein:worksheet-execute-cell-and-goto-next
-  M-,          ein:pytools-jump-back-command
-  M-.          ein:pytools-jump-to-source-command
-  M-n          ein:worksheet-next-input-history
-  M-p          ein:worksheet-previous-input-history
-
-  C-c C-a              ein:worksheet-insert-cell-above
-  C-c C-b              ein:worksheet-insert-cell-below
-  C-c C-c              ein:worksheet-execute-cell
-  C-c C-e              ein:worksheet-toggle-output
-  C-c C-f              ein:file-open
-  C-c C-h              ein:pytools-request-tooltip-or-help
-  C-c TAB              ein:completer-complete
-  C-c C-k              ein:worksheet-kill-cell
-  C-c C-l              ein:worksheet-clear-output
-  C-c RET              ein:worksheet-merge-cell
-  C-c C-n              ein:worksheet-goto-next-input
-  C-c C-o              ein:notebook-open
-  C-c C-p              ein:worksheet-goto-prev-input
-  C-c C-q              ein:notebook-kill-kernel-then-close-command
-  C-c C-r              ein:notebook-reconnect-session-command
-  C-c C-s              ein:worksheet-split-cell-at-point
-  C-c C-t              ein:worksheet-toggle-cell-type
-  C-c C-u              ein:worksheet-change-cell-type
-  C-c C-v              ein:worksheet-set-output-visibility-all
-  C-c C-w              ein:worksheet-copy-cell
-  C-c C-x              Prefix Command
-  C-c C-y              ein:worksheet-yank-cell
-  C-c C-z              ein:notebook-kernel-interrupt-command
-  C-c ESC              Prefix Command
-  C-c !                ein:worksheet-rename-sheet
-  C-c '                ein:edit-cell-contents
-  C-c +                ein:notebook-worksheet-insert-next
-  C-c -                ein:notebook-worksheet-delete
-  C-c 1                ein:notebook-worksheet-open-1th
-  C-c 2                ein:notebook-worksheet-open-2th
-  C-c 3                ein:notebook-worksheet-open-3th
-  C-c 4                ein:notebook-worksheet-open-4th
-  C-c 5                ein:notebook-worksheet-open-5th
-  C-c 6                ein:notebook-worksheet-open-6th
-  C-c 7                ein:notebook-worksheet-open-7th
-  C-c 8                ein:notebook-worksheet-open-8th
-  C-c 9                ein:notebook-worksheet-open-last
-  C-c S                ein:worksheet-toggle-slide-type
-  C-c i                ein:inspect-object
-  C-c {                ein:notebook-worksheet-open-prev-or-last
-  C-c }                ein:notebook-worksheet-open-next-or-first
-  C-c C-S-l    ein:worksheet-clear-all-output
-  C-c C-#              ein:notebook-close
-  C-c C-$              ein:tb-show
-  C-c C-'              ein:worksheet-turn-on-autoexec
-  C-c C-,              ein:pytools-jump-back-command
-  C-c C-.              ein:pytools-jump-to-source-command
-  C-c C-/              ein:notebook-scratchsheet-open
-  C-c C-;              ein:shared-output-show-code-cell-at-point
-  C-c <down>   ein:worksheet-move-cell-down
-  C-c <up>     ein:worksheet-move-cell-up
-
-  C-c C-x C-l  ein:notebook-toggle-latex-fragment
-  C-c C-x C-r  ein:notebook-restart-session-command
-
-  C-c M-+              ein:notebook-worksheet-insert-prev
-  C-c M-w              ein:worksheet-copy-cell
-  C-c M-{              ein:notebook-worksheet-move-prev
-  C-c M-}              ein:notebook-worksheet-move-next
-       #+end_src
-****** old version 无效命令
-******* emacs命令：
-   #+BEGIN_SRC 
-   M-x ein:notebook=login
-   #+END_SRC
-******* jupyter服务器密码设置
-   网址：https://blog.csdn.net/clifnich/article/details/53912611
-   #+BEGIN_SRC 
-   from notebook.auth import passwd
-   alt + enter 来执行这个命令并进入下一行；在下一行里面输入：
-   passwd()
-   #+END_SRC
-******* 我的密码
-   qaz111
 ***** onc for all
-****** .ipynb可以直接执行.py文件 
-load foo.py 载入文件
-run foo.py 运行文件
-****** .ipynb与.py文件的用法区别
-.ipynb用来写python文件，用于初始调试，最终成功以后可以导出为.py文件
-.ipynb可以用来写测试代码，没有赋值的语句运行直接显示结果
-****** .ipynb如果引用.py文件，想要实时更新.py的修改内容，必须在ein中打开.py 此时connect to buffer
 ****** 最常用的快捷键
 input cell之间移动
 Crtl + 上下键控制
@@ -2557,112 +2312,359 @@ C-c C-l              ein:worksheet-clear-output
 复制粘贴cell
 C-c C-w              ein:worksheet-copy-cell
 C-c C-y              ein:worksheet-yank-cell
-**** 常用命令
-***** 快捷键汇总
-****** 命令模式 (按键 Esc 开启)
-  #+BEGIN_SRC 
-  Enter : 转入编辑模式
-  Shift-Enter : 运行本单元，选中下个单元
-  Ctrl-Enter : 运行本单元
-  Alt-Enter : 运行本单元，在其下插入新单元
-  Y : 单元转入代码状态
-  M :单元转入markdown状态
-  R : 单元转入raw状态
-  1 : 设定 1 级标题
-  2 : 设定 2 级标题
-  3 : 设定 3 级标题
-  4 : 设定 4 级标题
-  5 : 设定 5 级标题
-  6 : 设定 6 级标题
-  Up : 选中上方单元
-  K : 选中上方单元
-  Down : 选中下方单元
-  J : 选中下方单元
-  Shift-K : 扩大选中上方单元
-  Shift-J : 扩大选中下方单元
-  A : 在上方插入新单元
-  B : 在下方插入新单元
-  X : 剪切选中的单元
-  C : 复制选中的单元
-  Shift-V : 粘贴到上方单元
-  V : 粘贴到下方单元
-  Z : 恢复删除的最后一个单元
-  D,D : 删除选中的单元
-  Shift-M : 合并选中的单元
-  Ctrl-S : 文件存盘
-  S : 文件存盘
-  L : 转换行号
-  O : 转换输出
-  Shift-O : 转换输出滚动
-  Esc : 关闭页面
-  Q : 关闭页面
-  H : 显示快捷键帮助
-  I,I : 中断Notebook内核
-  0,0 : 重启Notebook内核
-  Shift : 忽略
-  Shift-Space : 向上滚动
-  Space : 向下滚动
-  #+END_SRC
-****** 编辑模式 ( Enter 键启动)
-  #+BEGIN_SRC 
-  Tab : 代码补全或缩进
-  Shift-Tab : 提示
-  Ctrl-] : 缩进
-  Ctrl-[ : 解除缩进
-  Ctrl-A : 全选
-  Ctrl-Z : 复原
-  Ctrl-Shift-Z : 再做
-  Ctrl-Y : 再做
-  Ctrl-Home : 跳到单元开头
-  Ctrl-Up : 跳到单元开头
-  Ctrl-End : 跳到单元末尾
-  Ctrl-Down : 跳到单元末尾
-  Ctrl-Left : 跳到左边一个字首
-  Ctrl-Right : 跳到右边一个字首
-  Ctrl-Backspace : 删除前面一个字
-  Ctrl-Delete : 删除后面一个字
-  Esc : 进入命令模式
-  Ctrl-M : 进入命令模式
-  Shift-Enter : 运行本单元，选中下一单元
-  Ctrl-Enter : 运行本单元
-  Alt-Enter : 运行本单元，在下面插入一单元
-  Ctrl-Shift-- : 分割单元
-  Ctrl-Shift-Subtract : 分割单元
-  Ctrl-S : 文件存盘
-  Shift : 忽略
-  Up : 光标上移或转入上一单元
-  Down :光标下移或转入下一单元
-  #+END_SRC
+
+打断kernel进程
+C-c C-z ein:notebook-kernel-interupte-command
+****** .ipynb可以直接执行.py文件 
+load foo.py 载入文件
+run foo.py 运行文件
+****** .ipynb与.py文件的用法区别
+.ipynb用来写python文件，用于初始调试，最终成功以后可以导出为.py文件
+.ipynb可以用来写测试代码，没有赋值的语句运行直接显示结果
+****** .ipynb如果引用.py文件，想要实时更新.py的修改内容，必须在ein中打开.py 此时connect to buffer
+***** 基本配置
+****** 在emacs中打开ein
+  首次打开需要登录
+  M-x ein:notebooklist-login
+  需要先在浏览器中打开一个jupyter notebook
+  然后输入该网页的url
+****** 如何获取notebook的密码
+  在cmd中输入
+  jupyter notebook list 来查询当前的url及密码，例如
+  http://localhost:8888/?token=b09b8e943762452bd443e04ce6814ac536316368b2a1b6ae
+  token前面的是url 后面的即是密码，输入即可
+****** windows环境下重要配置python shell需要跟anaconda的路径匹配，否则无法使用ipython
+       #+begin_src 
+  (setq python-shell-interpreter "d:/anaconda/python.exe"
+        python-shell-interpreter-args
+        "-i d:/anaconda/Scripts/ipython-script.py")     
+       #+end_src
+****** 如何安装EIN package
+******* 重点谈一下ein包
+******** ein unsigned需要在.spacemacs文件中添加package 用来调用jupyter notebook虚拟环境
+******** 配置两个变量 ein:jupyter-default-server-command ein:jupyter-default-notebook-directory
+   #+BEGIN_SRC 
+   ein:jupyter-default-server-command and set the value to the path you determined above.
+   ein:jupyter-default-notebook-directory and set it to the path where you are keeping your jupyter notebooks.
+   #+END_SRC
+******** 使用方法
+     https://www.cnblogs.com/keye/p/7697854.html
+     http://tkf.github.io/emacs-ipython-notebook/#ein:console-security-dir
+     https://github.com/millejoh/emacs-ipython-notebook
+********* 说明
+     EIN提供的是一个在emacs中复现jupyter notebook的功能，即在emacs中打开
+     然后通过jupyter notebook打开文件，注意文件名：后面有jupyter的标识
+     然后即可通过C-c C-c来编译了
+********* jupyter notebook buffer的控制快捷键
+          #+begin_src 
+     TAB widget-forward   widget是小部件
+     C-M-i widget-backward
+     <S-tab> widget-backward
+     <backtab> widget-backward
+     C-c C-r ein:notebooklist-reload
+     Reload current Notebook list.
+
+     g ein:notebooklist-reload
+     Reload current Notebook list.
+
+     p ein:notebooklist-prev-item
+     n ein:notebooklist-next-item
+     q bury-buffer     
+          #+end_src
+********* ein:中jupyter notebook命令集
+      #+BEGIN_SRC 
+      key             binding
+      ---             -------
+
+      C-c             Prefix Command
+      C-x             Prefix Command
+      ESC             Prefix Command
+      .               ein:notebook-complete-dot
+      C-:             ein:shared-output-eval-string
+      <C-down>        ein:worksheet-goto-next-input
+      <C-up>          ein:worksheet-goto-prev-input
+      <M-S-return>    ein:worksheet-execute-cell-and-insert-below
+      <M-down>        ein:worksheet-move-cell-down
+      <M-up>          ein:worksheet-move-cell-up
+
+      C-x C-s         ein:notebook-save-notebook-command
+      C-x C-w         ein:notebook-rename-command
+
+      M-RET           ein:worksheet-execute-cell-and-goto-next
+      M-,             ein:pytools-jump-back-command
+      M-.             ein:pytools-jump-to-source-command
+      M-n             ein:worksheet-next-input-history
+      M-p             ein:worksheet-previous-input-history
+
+      C-c C-a         ein:worksheet-insert-cell-above
+      C-c C-b         ein:worksheet-insert-cell-below
+      C-c C-c         ein:worksheet-execute-cell
+      C-c C-e         ein:worksheet-toggle-output
+      C-c C-f         ein:pytools-request-tooltip-or-help
+      C-c TAB         ein:completer-complete
+      C-c C-k         ein:worksheet-kill-cell
+      C-c C-l         ein:worksheet-clear-output
+      C-c RET         ein:worksheet-merge-cell
+      C-c C-n         ein:worksheet-goto-next-input
+      C-c C-o         ein:console-open
+      C-c C-p         ein:worksheet-goto-prev-input
+      C-c C-q         ein:notebook-kill-kernel-then-close-command
+      C-c C-r         ein:notebook-restart-kernel-command
+      C-c C-s         ein:worksheet-split-cell-at-point
+      C-c C-t         ein:worksheet-toggle-cell-type
+      C-c C-u         ein:worksheet-change-cell-type
+      C-c C-v         ein:worksheet-set-output-visibility-all
+      C-c C-w         ein:worksheet-copy-cell
+      C-c C-x         ein:tb-show
+      C-c C-y         ein:worksheet-yank-cell
+      C-c C-z         ein:notebook-kernel-interrupt-command
+      C-c ESC         Prefix Command
+      C-c !           ein:worksheet-rename-sheet
+      C-c +           ein:notebook-worksheet-insert-next
+      C-c -           ein:notebook-worksheet-delete
+      C-c 1           ein:notebook-worksheet-open-1th
+      C-c 2           ein:notebook-worksheet-open-2th
+      C-c 3           ein:notebook-worksheet-open-3th
+      C-c 4           ein:notebook-worksheet-open-4th
+      C-c 5           ein:notebook-worksheet-open-5th
+      C-c 6           ein:notebook-worksheet-open-6th
+      C-c 7           ein:notebook-worksheet-open-7th
+      C-c 8           ein:notebook-worksheet-open-8th
+      C-c 9           ein:notebook-worksheet-open-last
+      C-c {           ein:notebook-worksheet-open-prev-or-last
+      C-c }           ein:notebook-worksheet-open-next-or-first
+      C-c C-S-l       ein:worksheet-clear-all-output
+      C-c C-#         ein:notebook-close
+      C-c C-'         ein:worksheet-turn-on-autoexec
+      C-c C-,         ein:pytools-jump-back-command
+      C-c C-.         ein:pytools-jump-to-source-command
+      C-c C-/         ein:notebook-scratchsheet-open
+      C-c C-;         ein:shared-output-show-code-cell-at-point
+      C-c <down>      ein:worksheet-move-cell-down
+      C-c <up>        ein:worksheet-move-cell-up
+
+      C-c M-+         ein:notebook-worksheet-insert-prev
+      C-c M-w         ein:worksheet-copy-cell
+      C-c M-{         ein:notebook-worksheet-move-prev
+      C-c M-}         ein:notebook-worksheet-move-next
+      #+END_SRC
+********* 打开jupyter notebook的url http://localhost:8892/tree
+********* windows cmd简单命令打开jupyter的原理
+      因为最初安装的时候只在anaconda里面装了jupyter，所以Windows的cmd并不能直接运行Jupyter
+
+      cmd能直接运行python的原因是吧python的路径添加到了环境path
+
+      所以同理，我们吧anaconda安装目录中包含有.exe执行文件 jupyter.exe所在的路径加入环境path即可在
+      Windows的cmd中直接输入jupyter notebook 打开浏览器中相关内容了
+********* 旧版本测试安装两个package
+********** elpy unsigned需要在.spacemacs文件中添加package 用来支持Python mode
+********** pyvenv unsigned需要在.spacemacs文件中添加package 用来调用jupyter notebook虚拟环境
+********** pyvenv package已经被证实不好用，用ein官方包代替
+********* .py文件的控制快捷键
+          #+begin_src 
+     key             binding
+     ---             -------
+
+     C-c          Prefix Command
+     C-x          Prefix Command
+     ESC          Prefix Command
+     C-:          ein:shared-output-eval-string
+     <C-down>     ein:worksheet-goto-next-input
+     <C-up>               ein:worksheet-goto-prev-input
+     <M-S-return> ein:worksheet-execute-cell-and-insert-below
+     <M-down>     ein:worksheet-move-cell-down
+     <M-up>               ein:worksheet-move-cell-up
+
+     C-x C-s              ein:notebook-save-notebook-command
+     C-x C-w              ein:notebook-rename-command
+
+     M-RET                ein:worksheet-execute-cell-and-goto-next
+     M-,          ein:pytools-jump-back-command
+     M-.          ein:pytools-jump-to-source-command
+     M-n          ein:worksheet-next-input-history
+     M-p          ein:worksheet-previous-input-history
+
+     C-c C-a              ein:worksheet-insert-cell-above
+     C-c C-b              ein:worksheet-insert-cell-below
+     C-c C-c              ein:worksheet-execute-cell
+     C-c C-e              ein:worksheet-toggle-output
+     C-c C-f              ein:file-open
+     C-c C-h              ein:pytools-request-tooltip-or-help
+     C-c TAB              ein:completer-complete
+     C-c C-k              ein:worksheet-kill-cell
+     C-c C-l              ein:worksheet-clear-output
+     C-c RET              ein:worksheet-merge-cell
+     C-c C-n              ein:worksheet-goto-next-input
+     C-c C-o              ein:notebook-open
+     C-c C-p              ein:worksheet-goto-prev-input
+     C-c C-q              ein:notebook-kill-kernel-then-close-command
+     C-c C-r              ein:notebook-reconnect-session-command
+     C-c C-s              ein:worksheet-split-cell-at-point
+     C-c C-t              ein:worksheet-toggle-cell-type
+     C-c C-u              ein:worksheet-change-cell-type
+     C-c C-v              ein:worksheet-set-output-visibility-all
+     C-c C-w              ein:worksheet-copy-cell
+     C-c C-x              Prefix Command
+     C-c C-y              ein:worksheet-yank-cell
+     C-c C-z              ein:notebook-kernel-interrupt-command
+     C-c ESC              Prefix Command
+     C-c !                ein:worksheet-rename-sheet
+     C-c '                ein:edit-cell-contents
+     C-c +                ein:notebook-worksheet-insert-next
+     C-c -                ein:notebook-worksheet-delete
+     C-c 1                ein:notebook-worksheet-open-1th
+     C-c 2                ein:notebook-worksheet-open-2th
+     C-c 3                ein:notebook-worksheet-open-3th
+     C-c 4                ein:notebook-worksheet-open-4th
+     C-c 5                ein:notebook-worksheet-open-5th
+     C-c 6                ein:notebook-worksheet-open-6th
+     C-c 7                ein:notebook-worksheet-open-7th
+     C-c 8                ein:notebook-worksheet-open-8th
+     C-c 9                ein:notebook-worksheet-open-last
+     C-c S                ein:worksheet-toggle-slide-type
+     C-c i                ein:inspect-object
+     C-c {                ein:notebook-worksheet-open-prev-or-last
+     C-c }                ein:notebook-worksheet-open-next-or-first
+     C-c C-S-l    ein:worksheet-clear-all-output
+     C-c C-#              ein:notebook-close
+     C-c C-$              ein:tb-show
+     C-c C-'              ein:worksheet-turn-on-autoexec
+     C-c C-,              ein:pytools-jump-back-command
+     C-c C-.              ein:pytools-jump-to-source-command
+     C-c C-/              ein:notebook-scratchsheet-open
+     C-c C-;              ein:shared-output-show-code-cell-at-point
+     C-c <down>   ein:worksheet-move-cell-down
+     C-c <up>     ein:worksheet-move-cell-up
+
+     C-c C-x C-l  ein:notebook-toggle-latex-fragment
+     C-c C-x C-r  ein:notebook-restart-session-command
+
+     C-c M-+              ein:notebook-worksheet-insert-prev
+     C-c M-w              ein:worksheet-copy-cell
+     C-c M-{              ein:notebook-worksheet-move-prev
+     C-c M-}              ein:notebook-worksheet-move-next
+          #+end_src
+********* old version 无效命令
+********** emacs命令：
+      #+BEGIN_SRC 
+      M-x ein:notebook=login
+      #+END_SRC
+********** jupyter服务器密码设置
+      网址：https://blog.csdn.net/clifnich/article/details/53912611
+      #+BEGIN_SRC 
+      from notebook.auth import passwd
+      alt + enter 来执行这个命令并进入下一行；在下一行里面输入：
+      passwd()
+      #+END_SRC
+********** 我的密码
+      qaz111
+**** 浏览器版本jupyter使用方法
 ***** 常用命令
-  #+BEGIN_SRC 
-  执行当前cell，并自动跳到下一个cell：Shift Enter
-  执行当前cell，执行后不自动调转到下一个cell：Ctrl-Enter
-  是当前的cell进入编辑模式：Enter
-  退出当前cell的编辑模式：Esc
-  删除当前的cell：双D
-  为当前的cell加入line number：单L
-  将当前的cell转化为具有一级标题的maskdown：单1
-  将当前的cell转化为具有二级标题的maskdown：单2
-  将当前的cell转化为具有三级标题的maskdown：单3
-  为一行或者多行添加/取消注释：Crtl /
-  撤销对某个cell的删除：z
-  浏览器的各个Tab之间切换：Crtl PgUp和Crtl PgDn
-  快速跳转到首个cell：Crtl Home
-  快速跳转到最后一个cell：Crtl End
-  #+END_SRC
-**** 文件导入
-*****  如何将本地的.py文件load到jupyter的一个cell里面
+****** 快捷键汇总
+******* 命令模式 (按键 Esc 开启)
    #+BEGIN_SRC 
-   %load test.py #test.py是当前路径下的一个python文件
+   Enter : 转入编辑模式
+   Shift-Enter : 运行本单元，选中下个单元
+   Ctrl-Enter : 运行本单元
+   Alt-Enter : 运行本单元，在其下插入新单元
+   Y : 单元转入代码状态
+   M :单元转入markdown状态
+   R : 单元转入raw状态
+   1 : 设定 1 级标题
+   2 : 设定 2 级标题
+   3 : 设定 3 级标题
+   4 : 设定 4 级标题
+   5 : 设定 5 级标题
+   6 : 设定 6 级标题
+   Up : 选中上方单元
+   K : 选中上方单元
+   Down : 选中下方单元
+   J : 选中下方单元
+   Shift-K : 扩大选中上方单元
+   Shift-J : 扩大选中下方单元
+   A : 在上方插入新单元
+   B : 在下方插入新单元
+   X : 剪切选中的单元
+   C : 复制选中的单元
+   Shift-V : 粘贴到上方单元
+   V : 粘贴到下方单元
+   Z : 恢复删除的最后一个单元
+   D,D : 删除选中的单元
+   Shift-M : 合并选中的单元
+   Ctrl-S : 文件存盘
+   S : 文件存盘
+   L : 转换行号
+   O : 转换输出
+   Shift-O : 转换输出滚动
+   Esc : 关闭页面
+   Q : 关闭页面
+   H : 显示快捷键帮助
+   I,I : 中断Notebook内核
+   0,0 : 重启Notebook内核
+   Shift : 忽略
+   Shift-Space : 向上滚动
+   Space : 向下滚动
    #+END_SRC
-***** 如何将网络中的.py文件load到jupyter的一个cell里面
+******* 编辑模式 ( Enter 键启动)
    #+BEGIN_SRC 
-  在cell中输入%load http://.....，然后运行该cell，就会将load后面所对应地址的代码load到当前的cell中；
+   Tab : 代码补全或缩进
+   Shift-Tab : 提示
+   Ctrl-] : 缩进
+   Ctrl-[ : 解除缩进
+   Ctrl-A : 全选
+   Ctrl-Z : 复原
+   Ctrl-Shift-Z : 再做
+   Ctrl-Y : 再做
+   Ctrl-Home : 跳到单元开头
+   Ctrl-Up : 跳到单元开头
+   Ctrl-End : 跳到单元末尾
+   Ctrl-Down : 跳到单元末尾
+   Ctrl-Left : 跳到左边一个字首
+   Ctrl-Right : 跳到右边一个字首
+   Ctrl-Backspace : 删除前面一个字
+   Ctrl-Delete : 删除后面一个字
+   Esc : 进入命令模式
+   Ctrl-M : 进入命令模式
+   Shift-Enter : 运行本单元，选中下一单元
+   Ctrl-Enter : 运行本单元
+   Alt-Enter : 运行本单元，在下面插入一单元
+   Ctrl-Shift-- : 分割单元
+   Ctrl-Shift-Subtract : 分割单元
+   Ctrl-S : 文件存盘
+   Shift : 忽略
+   Up : 光标上移或转入上一单元
+   Down :光标下移或转入下一单元
    #+END_SRC
-***** 利用cell运行.py文件
-  #+BEGIN_SRC 
-  %run file.py
-  #+END_SRC
+****** 常用命令
+   #+BEGIN_SRC 
+   执行当前cell，并自动跳到下一个cell：Shift Enter
+   执行当前cell，执行后不自动调转到下一个cell：Ctrl-Enter
+   是当前的cell进入编辑模式：Enter
+   退出当前cell的编辑模式：Esc
+   删除当前的cell：双D
+   为当前的cell加入line number：单L
+   将当前的cell转化为具有一级标题的maskdown：单1
+   将当前的cell转化为具有二级标题的maskdown：单2
+   将当前的cell转化为具有三级标题的maskdown：单3
+   为一行或者多行添加/取消注释：Crtl /
+   撤销对某个cell的删除：z
+   浏览器的各个Tab之间切换：Crtl PgUp和Crtl PgDn
+   快速跳转到首个cell：Crtl Home
+   快速跳转到最后一个cell：Crtl End
+   #+END_SRC
+***** 文件导入
+******  如何将本地的.py文件load到jupyter的一个cell里面
+    #+BEGIN_SRC 
+    %load test.py #test.py是当前路径下的一个python文件
+    #+END_SRC
+****** 如何将网络中的.py文件load到jupyter的一个cell里面
+    #+BEGIN_SRC 
+   在cell中输入%load http://.....，然后运行该cell，就会将load后面所对应地址的代码load到当前的cell中；
+    #+END_SRC
+****** 利用cell运行.py文件
+   #+BEGIN_SRC 
+   %run file.py
+   #+END_SRC
 ** 帮助命令
 #+BEGIN_SRC 
 type() 查询数据类型
@@ -3680,7 +3682,19 @@ r的左子树-新x的右子树
 [[file:Algorithems_&_Data_Structure/screenshot_2019-06-18_16-44-28.png]]
 ** 高级设计和分析技术
 *** 动态规划
-三个重要的概念：最优子结构、边界、状态转移公式
+**** ALL
+https://blog.csdn.net/hunt_ing/article/details/81904953
+重叠子问题 + 最优子结构
+最优子结构：当问题的最优解包含了其子问题的最优解时，称该问题具有最优子结构性质。
+重叠子问题：在用递归算法自顶向下解问题时，每次产生的子问题并不总是新问题，有些子问题被反复计算多次。
+用递归求解最优解的值
+**** One
+分解：
+重叠：
+状态转移公式：
+递归：
+****  三个重要的概念
+最优子结构、边界、状态转移公式
 **** 10级梯子模型
 有一座高度是10级台阶的楼梯，从下往上走，每跨一步只能向上1级或者2级台阶。要求用程序来求出一共有多少种走法。
 比如，每次走1级台阶，一共走10步，这是其中一种走法。我们可以简写成 1,1,1,1,1,1,1,1,1,1。
@@ -3946,6 +3960,81 @@ rows[counts].append(c)                  # 添加元素的格式
 **** 把字符串连接起来
 ''.join([''.join(r) for r in rows])
 *** 7
+**** *与**运算符
+*表示乘法
+**表示乘方
+*** 8 
+**** 判断字符串是不是空格的方法isspace()
+     #+begin_src python
+s = 'hello there'
+for i in s:
+   print i.isspace()     
+     #+end_src
+**** 判断字符串是不是数字isdigit() 字母.isalpha()
+**** 判断语句 and or
+if a and b and c
+if a or b or c
+**** 数组索引 倒序
+a[1:3]
+a[-1]表示倒数第一个元素
+a[0:-1] 数组中index 0 到结尾
+*** 9
+**** 判断奇数偶数
+a % 2 == 0 偶数
+**** 在每个字符间隔插入#
+'#'.join(x)
+效果如下
+120hellow world
+'1#2#0#h#e#l#l#o#w# #w#o#r#l#d'
+*** 10 
+**** 获取元素的index 该方法只能查找第一个出现的索引
+如果是string s.index('h')
+如果是数组 s.index(1)
+**** 获取所有元素的索引 enumerate
+[index for (index,value) in enumerate(lst) if value == item]
+*** 11
+*** 12
+*** 13 
+*** 14
+**** str.join方法
+     #+begin_src python
+str = "-";
+seq = ("a", "b", "c"); # 字符串序列
+print str.join( seq );     
+     #+end_src
+*** 15
+**** 三数之和问题
+用指针于中心值两端
+*** 16
+*** 17
+*** 18
+*** 19
+*** 20
+**** 使用stack栈来处理
+数据结构提供思路，需要动手去构建栈，而不是现成的栈给你使用
+*** 21
+
+* 人工智能-AI
+** Paper研读
+*** Dr. Amit
+**** Mazaheri_A_Skip_Connection_Architecture_for_Localization_of_Image_Manipulations_CVPRW_2019_paper
+***** 基础知识
+****** RNN
+******* 与CNN的区别
+训练样本输入是连续的序列,且序列的长短不一，比如基于时间的序列：一段段连续的语音，一段段连续的手写文字。这些序列比较长，且长度不一，比较难直接的拆分成一个个独立的样本来通过DNN/CNN进行训练
+******* 处理序列
+模型的feature h(t)是变化的不再是确定的值，而是由h(t-1)和x(t)来决定的
+在序列索引号t位置的隐藏状态h(t)，则由x(t)和在t−1位置的隐藏状态h(t−1)共同决定
+******* 前向传播与后向传播
+前向传播：沿着神经网络输入到输出，更新权重w
+反向传播：沿着神经网络输出到输入，更新权重w
+****** LSTM Long Short-Term Memory
+******* RNN的变种
+LSTM可以避免常规RNN的梯度消失
+******* 与RNN的区别
+LSTM在在每个序列索引位置t的门一般包括遗忘门，输入门和输出门三种
+遗忘门（forget gate）顾名思义，是控制是否遗忘的，在LSTM中即以一定的概率控制是否遗忘上一层的隐藏细胞状态
+输入门（input gate）负责处理当前序列位置的输入
 
 * Spring 2018
 ** EE 147
@@ -4220,16 +4309,23 @@ https://blog.csdn.net/OptSolution/article/details/64442962
 开启快速启动须开启休眠功能
 
 * 能力
-- 计划 痛苦 专注 框架 效率 兴趣 
-- 劳逸结合 精力分配 休息的频率 脑力体力转换 方法>>努力
-- 信息x 
-- 目标y
-- 分析处理：分类 体系化 核心化
+** Verify
+自律 时间规划写下来 痛苦比兴趣有用多了（也许对我而言）
+** Demo
+ - 计划 痛苦 专注 框架 效率 兴趣 
+ - 劳逸结合 精力分配 休息的频率 脑力体力转换 方法>>努力
+ - 规划设计
+** 时间规划
+概览：PPT 英语 AI C++ 能力实践
+#+CAPTION: 每日计划
+| 时间 | 事项         |
+|------+--------------|
+| 2hr  | 英语听力学习 |
+|      |              |
+
 ** 顶层设计
-***  做事
-优先级分级
-***  能力
-能力检索
+*** 能力测试
+生活=程序 尝试=验证 数字化
 ***  状态保持
 **** 能力检索
 - 状态调整 痛苦 专注 框架 效率 兴趣
@@ -4291,6 +4387,15 @@ https://blog.csdn.net/OptSolution/article/details/64442962
 - 专注：预测
 - 脚步：转体
 - 借力回推：不发力
+
+** 论文阅读、文献理解
+换位思考，如果你是作者你会怎么处理你的论文
+** PPT制作
+把文字内容简化、提炼
+以图表，时间轴等形式图形化展示出来
+** 英语听力
+精听：
+跟读：
 
 * 终极写作模板 latex完美版
 ** 源代码
