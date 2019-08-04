@@ -2841,6 +2841,10 @@ contains 表示包含
 starts-with 开头 ends-with 结尾
 //a[starts-with(@class, 'a')]
 driver.find_element_by_xpath("//a").get_attribute("href") 获取标签的属性
+重要： contains start-with只能爬取第一个出现的标签 如果想要全部标签，最好用绝对路径重复例如
+#//*[@id="ContentPlaceHolder1_gvNewsList"]/tbody/tr[1]/td[1] tr重复排列列表
+那么#//*[@id="ContentPlaceHolder1_gvNewsList"]/tbody/tr 即可
+以上全是扯淡 差别就在于一个是element 一个是elements
       #+end_src
 **** 模拟基本操作
      #+begin_src 
