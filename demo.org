@@ -1,3 +1,5 @@
+#+TITLE: README
+#+OPTIONS: toc:nil
 #+TYP_TODO: 紧急(1!) 学习(2!) 事件(3!) 零碎(4!) |
 #+SEQ_TODO: PENDING(p!) TODO(t!) | DONE(d!) ABORT(a@/!) IDEA(i!)
 * Top Layer
@@ -19,6 +21,10 @@ github.com
 1. 先复制.emacs.d文件夹 然后启动emacs一次
 2. 删除原本的.spacemacs文件
 3. 将备份库里面的.spacemacs文件复制到路径中
+4. 在init.el中修改emacs版本信息
+5. 安装source code pro字体
+6. 用cygwin64安装C++支持dll
+7. 安装gnutls dll添加ssh等连接远端服务区的命令
     #+end_src
 *** 错误代码说明
 Source Code Pro是一种字体
@@ -2208,6 +2214,8 @@ C-c C-x C-y	org-table-paste-rectangle	按原有的列数与行数粘贴一个长
     ))
 #+END_SRC
 *** 命令快捷键
+<s + TAB直接生成代码块
+<s + TAB在代码块中加上行数   -n -r
 #+BEGIN_SRC 
 C-c 编译主菜单
 C-c ' 分号 新建一个buffer来写语言，如果保存则回写当前buffer
@@ -2258,6 +2266,40 @@ https://blog.csdn.net/afei__/article/details/51464783
 *** 使用步骤
 **** 用orgmode输出.mm思维导图文件C-c C-e
 **** 用freemind软件打开.mm文件，并保存为.png即可
+** org-markdown
+*** emacs配置
+    #+begin_src 
+(with-eval-after-load 'org
+  (add-to-list 'org-export-backends 'md))    
+    #+end_src
+*** 去掉table of contents
+    #+begin_src 
+#+TITLE: org 导出 md
+#+AUTHOR: me
+#+OPTIONS: toc:nil
+    #+end_src
+** org-babel代码运行
+*** 配置
+原文链接：https://blog.csdn.net/sinat_41104353/article/details/84642149    
+
+注意：大写的C包含了c cpp语言
+    #+begin_src 
+(org-babel-do-load-languages
+      'org-babel-load-languages
+      '((emacs-lisp . t)
+        (C . t)
+        (java . t)
+        (js . t)
+        (ruby . t)
+        (ditaa . t)
+        (python . t)
+        (shell . t)
+        (latex . t)
+        (plantuml . t)
+        (R . t)))
+    #+end_src
+*** 
+
 * Python 语言
 ** 系列软件安装指南
 *** anaconda
@@ -3095,6 +3137,25 @@ for i in range(5):
     t.join()
 print(threading.activeCount())     
      #+end_src
+** python环境迁移/虚拟环境创建
+*** 打包所有已安装的package
+    #+begin_src 
+pip freeze                   //查看所有已安装的package
+pip freeze > packages.txt    //把所有已安装的包放入.txt文件
+pip install -r packages.txt  //批量安装package
+    #+end_src
+*** 虚拟环境建立
+    #+begin_src 
+conda create -n my_env python=3.6
+activate  my_env
+deactivate my_env    
+    #+end_src
+*** 常见问题 setup egg_info
+解决方案
+#+begin_src 
+pip install --upgrade  pip --user
+pip install setuptools
+#+end_src
 ** 必备操作集锦 
 *** 正则表达式
 **** 库
@@ -4475,3 +4536,12 @@ https://mail.google.com/mail/u/1/#inbox/162f9d4479616148
 - State "事件"       from              [2018-04-24 周二 11:06]
 *** IDEA EE243 HW3 problem 1 考虑迭代问题和K值聚类
 - State "IDEA"       from "TODO"       [2018-05-09 周三 11:04]
+
+* 代码测试区
+  #+begin_src python -n -r
+  import numpy
+  import time
+  #+end_src
+
+  #+RESULTS:
+
