@@ -11,6 +11,9 @@ github.com
 .spacemacs c:/Users/Administrator/AppData/Roaming
 #+END_SRC
 ！注意，git自动上传命令缺少.spacemacs，需要手动上传
+*** win10安装核心解决方案
+1. !!! 需要把官网的dep库也下载下来，放到emacs/bin里面！！！用VPN下载package 这样才能有ssh等linux专用命令，才能在windows环境下连接到库
+2. 核心是init.el文件，.spacemacs需要在2个user-config位置将init.el中要求的库对应添加
 *** 安装注意事项：
     #+begin_src 
 1. 先复制.emacs.d文件夹 然后启动emacs一次
