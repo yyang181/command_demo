@@ -3495,9 +3495,11 @@ suptitle('DCT 4-by-4 basis images');
 MinGw安装
 g++ 是调用c++编辑器的驱动
 gcc是调用c 编辑器的驱动
+之后需要将D:\mingw\bin添加到环境变量
 安装成功标志：
 gcc -v 
 g++ -v
+并且bin中有gcc g++ gdb 3个exe
 ** ubuntu及oracal虚拟机 （过时）
 Get a virtual machine (VM) with Ubuntu 16.04 (Xenial): make your own, re-use one you have, or
 download a ready-made one from
