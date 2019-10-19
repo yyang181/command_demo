@@ -3529,6 +3529,19 @@ git pull origin master
 exit 退出bender系统
    #+end_src
 ** cygwin 类Unix的Windows端软件
+** 在emacs中编译 运行cpp文件
+https://blog.csdn.net/shuxiao9058/article/details/7633054
+*** 打开命令行工具的方法
+    #+begin_src 
+M-x shell 好用，另开一个shell buffer 
+M-m ! 直接在buffer的缓冲区打开一个shell命令输入接口    
+    #+end_src
+*** 编译/执行命令
+    #+begin_src 
+g++ test.cpp -g -o test.exe 
+.\test  最新的win10支持 .\来运行
+dir == ls 查看当前目录下的所有文件    
+    #+end_src
 * Html语言
 ** 配置
 需要web-mode package
