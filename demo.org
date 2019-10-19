@@ -1,5 +1,3 @@
-# #+TITLE: README
-# #+OPTIONS: toc:nil
 #+TYP_TODO: 紧急(1!) 学习(2!) 事件(3!) 零碎(4!) |
 #+SEQ_TODO: PENDING(p!) TODO(t!) | DONE(d!) ABORT(a@/!) IDEA(i!)
 * Top Layer
