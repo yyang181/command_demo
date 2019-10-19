@@ -1272,6 +1272,8 @@ C-c C-k      LaTeX/TeX Output/Kill Job
  需要先编译
  #+BEGIN_SRC 
  C-c C-c 编译latex文件
+ C-c C-l 查看编译日志
+ 如果编译通过会在原路径生成.pdf
  之后打开pdf即可
  #+END_SRC
 *** 使用XeLaTex工具导出PDF
@@ -2299,6 +2301,47 @@ https://blog.csdn.net/afei__/article/details/51464783
         (R . t)))
     #+end_src
 *** 
+** org-latex
+*** 步骤
+1. 修改头文件package设置
+2. 把.tex文件拖入含有aux文件路径
+3. C-c C-c编译 并生成pdf文件
+*** 需要配置的package设置
+    #+begin_src latex
+\documentclass{article}
+% Change "article" to "report" to get rid of page number on title page
+\usepackage{amsmath,amsfonts,amsthm,amssymb}
+\usepackage[UTF8]{ctex}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{extramarks}
+\usepackage{chngpage}
+\usepackage{soul}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{graphicx,float,wrapfig}
+\usepackage{ifthen}
+\usepackage{listings}
+\usepackage{courier}
+
+%% Introduce the package needed for the hyperlink
+\usepackage[colorlinks,
+            linkcolor=blue,
+            anchorcolor=green,
+            citecolor=green
+            ]{hyperref}  
+
+\date{\today}
+\title{}
+\hypersetup{
+ pdfauthor={},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.3 (Org mode 9.2.6)}, 
+ pdflang={English}}
+\begin{document}    
+    #+end_src
 
 * Python 语言
 ** 系列软件安装指南
