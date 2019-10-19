@@ -3542,6 +3542,124 @@ g++ test.cpp -g -o test.exe
 .\test  最新的win10支持 .\来运行
 dir == ls 查看当前目录下的所有文件    
     #+end_src
+** C++基本语法
+*** 基本符号
+**** <<endl
+ 相当于换行符号
+ \n ==  <<endl
+
+ 其中<<表示向屏幕传递多个参数
+ #+begin_src 
+ cout << "type: \t\t" << "************size**************"<< endl; 
+ #+end_src
+**** ->
+https://blog.csdn.net/a6333230/article/details/99674661
+->用于指针
+
+->用于指向结构体的指针
+
+->用于指向结构体的指针，表示结构体内的元素
+**** ::
+调用变量
+
+作用域::变量
+
+https://blog.csdn.net/a6333230/article/details/99674661
+*** 函数用法
+**** int main()
+https://blog.csdn.net/zhaobinbin2015/article/details/81007737
+ 固定用法： 在程序体中 Argc 表示输入参数的个数, Argv  表示输入的参数 [0] [1]…
+ #+begin_src 
+#include
+int main(int argc, char ** argv)
+{
+    int i;
+    for (i=0; i < argc; i++)
+        printf(“Argument %d is %s.\n”, i, argv[i]);
+    return 0;
+}
+
+argv[0] 是程序全名 test.exe
+ #+end_src
+**** 关键字
+***** 存储类
+****** auto
+https://www.cnblogs.com/KunLunSu/p/7861330.html
+auto可以在声明变量的时候根据变量初始值的类型自动为此变量选择匹配的类型，类似的关键字还有decltype。举个例子：
+#+begin_src 
+int a = 10;
+auto au_a = a;//自动类型推断，au_a为int类型
+cout << typeid(au_a).name() << endl;
+#+end_src
+typeid运算符可以输出变量的类型。程序的运行结果输出了
+****** Register存储类
+https://www.runoob.com/cplusplus/cpp-storage-classes.html
+register 存储类用于定义存储在寄存器中而不是 RAM 中的局部变量。这意味着变量的最大尺寸等于寄存器的大小（通常是一个词），且不能对它应用一元的 '&' 运算符（因为它没有内存位置）。
+****** static 存储类
+https://www.runoob.com/cplusplus/cpp-storage-classes.html
+static 存储类指示编译器在程序的生命周期内保持局部变量的存在，而不需要在每次它进入和离开作用域时进行创建和销毁。因此，使用 static 修饰局部变量可以在函数调用之间保持局部变量的值。
+
+static 修饰符也可以应用于全局变量。当 static 修饰全局变量时，会使变量的作用域限制在声明它的文件内。
+
+在 C++ 中，当 static 用在类数据成员上时，会导致仅有一个该成员的副本被类的所有对象共享。
+****** thread_local 存储类
+使用 thread_local 说明符声明的变量仅可在它在其上创建的线程上访问。 变量在创建线程时创建，并在销毁线程时销毁。 每个线程都有其自己的变量副本。
+thread_local 说明符可以与 static 或 extern 合并。
+可以将 thread_local 仅应用于数据声明和定义，thread_local 不能用于函数声明或定义。
+以下演示了可以被声明为 thread_local 的变量：
+https://www.runoob.com/cplusplus/cpp-storage-classes.html
+***** using关键字 
+https://jingyan.baidu.com/article/f3ad7d0f720d9809c3345bc5.html
+1. 定义using namespace来声明命名空间，后续使用到命名空间中的内容都不需要添加命名空间
+2. using关键字可以设置别名
+3. using还可以重写设置访问权限，首先定义下图所示的两个类，子类私有继承基类，子类中将基类中的变量a，重写设置访问权限为public
+***** Extern关键字
+https://www.runoob.com/cplusplus/cpp-variable-types.html
+extern 关键字在任何地方声明一个变量，虽然您可以在 C++ 程序中多次声明一个变量，但变量只能在某个文件、函数或代码块中被定义一次。
+#+begin_src 
+Extern int a, b, c 变量声明：
+Int a, b, c  变量定义：
+#+end_src
+
+用法详解
+#+begin_src 
+File A.cpp
+extern int a //声明变量a
+a = 1;               //定义变量a
+Int a;               //定义变量a
+
+File B.cpp
+extern int    //声明变量a
+#+end_src
+只能定义一次不同文件中的声明就是引用该变量的数值
+*** 字符常量、转义字符、运算符、循环体
+*** 数组
+https://www.runoob.com/cplusplus/cpp-arrays.html
+
+在 C++ 中要声明一个数组，需要指定元素的类型和元素的数量，如下所示：
+#+begin_src 
+type arrayName [ arraySize ];
+
+double balance[5] = {1000.0, 2.0, 3.4, 7.0, 50.0};
+
+int threedim[5][10][4];   //多维数组
+#+end_src
+*** 指向数组的指针
+    #+begin_src 
+数组名 是指向&balance[0]的指针,即数组第一个元素的地址
+&是取址运算符，表示后面变量地址    &a
+*是取值运算符，表示取出存放在p位置的值
+Int *p = &a     //把指针p指向存放变量a的地址
+a 变量
+&a 存放a的地址
+P 指针/内存位置
+*p p指针指向地址存放的值    
+
+指针是一个变量，其值为其所指向的变量的地址
+    #+end_src
+#+DOWNLOADED: screenshot @ 2019-10-19 17:45:05
+[[file:C++%E8%AF%AD%E8%A8%80_&_linux%E7%B3%BB%E7%BB%9F/2019-10-19_17-45-05_screenshot.png]]
+*** 
 * Html语言
 ** 配置
 需要web-mode package
