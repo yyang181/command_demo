@@ -1,4 +1,5 @@
--*- mode: markdown; coding: utf-8 -*-
+# -*- mode: markdown; coding: utf-8 -*-
+#+UTF-8: 
 #+TITLE: README
 #+OPTIONS: toc:nil
 #+TYP_TODO: 紧急(1!) 学习(2!) 事件(3!) 零碎(4!) |
