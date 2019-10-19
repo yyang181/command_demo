@@ -1,3 +1,4 @@
+-**- mode: markdown; coding: utf-8 -**-
 
 
 # Top Layer
@@ -356,7 +357,7 @@ C-c C-x C-v org-taggle-inline-images
     
         1.  安装
         
-            安装org-download及imagemagick cygwin版本
+            安装org-download及imagemagick cygwin版本 可以直接安装windows版本
             添加环境变量
         
         2.  imagemagick的使用方法及配置
@@ -2920,7 +2921,7 @@ From <https://github.com/kelvinh/kelvinh.github.com>
 
 ### anaconda
 
-一定记住添加环境变量
+一定记住添加环境变量 dll文件只在anaconda cmd中可以找到，在windows环境中需要设置环境变量才可以
 路径：
 
     "d:/anaconda/python.exe" 默认python路径
@@ -3367,6 +3368,102 @@ From <https://github.com/kelvinh/kelvinh.github.com>
         3.  利用cell运行.py文件
         
                 %run file.py
+
+
+## EIN中的使用方法
+
+
+### 打开浏览器的jupyter notebook
+
+
+### 在emacs中用M-x ein:notebooklist-login登陆
+
+如何获取notebook的密码
+在cmd中输入 jupyter notebook list 来查询当前的url及密码，例如 <http://localhost:8888/?token=b09b8e943762452bd443e04ce6814ac536316368b2a1b6ae> token前面的是url 后面的即是密码，输入即可
+
+
+### EIN中的文件管理
+
+    TAB 小部件跳转
+    n 下一行
+    p 上一行
+    g 重载当前notebook list    
+
+
+### EIN:jupyter notebook编辑环境
+
+1.  窗口管理
+
+        C-x b 打开当前所有的buffer
+        M-m 1/2 左右窗口切换
+        C-x 1   只显示当前窗口
+        M-m Tab 切换最近的buffer
+
+2.  .py文件载入
+
+        %load test.py #test.py是当前路径下的一个python文件    
+
+3.  编辑环境：cell快捷键
+
+    1.  文件保存
+    
+            C-x C-s         ein:notebook-save-notebook-command
+            C-x C-w         ein:notebook-rename-command      
+    
+    2.  Prefix command
+    
+            C-c             Prefix Command
+            C-x             Prefix Command
+            ESC             Prefix Command      ESC = M-n
+    
+    3.  cell 插入与删除
+    
+            C-c C-a         ein:worksheet-insert-cell-above
+            C-c C-b         ein:worksheet-insert-cell-below
+            C-c C-k         ein:worksheet-kill-cell
+            C-c C-l         ein:worksheet-clear-output      
+    
+    4.  cell 跳转
+    
+            <C-down>        ein:worksheet-goto-next-input
+            <C-up>          ein:worksheet-goto-prev-input      
+            C-c C-n         ein:worksheet-goto-next-input
+            C-c C-p         ein:worksheet-goto-prev-input
+    
+    5.  cell 移动
+    
+        <M-down>        ein:worksheet-move-cell-down
+        <M-up>          ein:worksheet-move-cell-up
+    
+    6.  cell 执行
+    
+            C-c C-c         ein:worksheet-execute-cell
+            M-RET           ein:worksheet-execute-cell-and-goto-next
+            <M-S-return>    ein:worksheet-execute-cell-and-insert-below      
+            M-,             ein:pytools-jump-back-command
+            M-.             ein:pytools-jump-to-source-command
+            M-n             ein:worksheet-next-input-history
+            M-p             ein:worksheet-previous-input-history
+    
+    7.  kernel中断
+    
+            C-c C-z         ein:notebook-kernel-interrupt-command
+            C-c C-q         ein:notebook-kill-kernel-then-close-command
+            C-c C-r         ein:notebook-restart-kernel-command      
+
+
+## emacs中测试.py文件
+
+
+### 将.py中的代码导入ipython块中
+
+    %load test.py #test.py是当前路径下的一个python文件    
+
+
+### 直接编辑测试.py文件
+
+init.el中已经配置好了anaconda中的ipython core
+直接C-c C-p即可打开ipython运行窗口
 
 
 ## 帮助命令
