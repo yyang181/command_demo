@@ -505,7 +505,11 @@ M– M-l	negtive-argument; downcase-word
 1. 打开cmd，首先进入到Jupyter的安装目录，我的是在D:\Python\Anaconda\Scrips中。然后，输入命令“jupyter notebook --generate-config”
 2. 找到#c.NotebookApp.notebook_dir =' '，删掉开头的“#”，在‘ ’中输入你要启动的目录路径
 3. c.NotebookApp.notebook_dir = 'd:/github/code_test/python'
-
+*** reload buffer 
+重载当前文件，不用关闭然后在重新打开emacs
+#+begin_src 
+M-x revert-buffer
+#+end_src
 * Emaces Usful Command
 ** Command
 *** 常用命令
@@ -1813,6 +1817,39 @@ tabsize=4, %
 上面命令设置了纸张为a4 纸，并且版心占页面长度的比例为80%；scale也可以改为ratio，表示版面边距占页面长度的比例。该宏包还可以设置页面的上下左右边距，例如
 \geometry{a4paper,left=2cm,right=2cm,top=1cm,bottom=1cm}
 #+END_SRC
+** latex + bibtex生成参考文献
+https://blog.csdn.net/manjhOK/article/details/82820390
+*** latex书写
+**** 环境包定义
+ 该段代码需要放到.tex文件正文中
+     #+begin_src 
+ \bibliographystyle{preference_template}   //参考文献的模板的文件名(不加后缀)
+ \bibliography{BibTeX file}             //参考文件源文件的文件名(不加后缀)
+     #+end_src
+**** 引用.bib中的内容
+     #+begin_src 
+\cite{von2003captcha}     
+     #+end_src
+*** 同路径下文件
+**** 添加 preference_template
+最常用 ieee.bst
+****  添加 .bib
+把bibtex格式输入.txt之后修改后缀为.bib即可
+*** 生成参考文献列表 1 2 1 1
+（1）点击“LaTex"编译，模板文件夹中会生成*.aux文件、*.dvi文件、*.log文件以及*.gz文件；
+
+（2）点击“BibTex“编译，模板文件中会生成*.blg文件和*.bbl文件；
+
+（3）点击“LaTex"编译，获得新的*.aux文件、*.dvi文件、*.log文件以及*.gz文件；
+
+（4）再次点击“Latex”编译，即可查看生成结果。 
+*** 最终代码示例
+    #+begin_src 
+\bibliographystyle{ieee}      
+\bibliography{ref}       
+\cite{paszke2016enet}
+    #+end_src
+
 * Org mode 
 ** 配置
 需要安装web-mode详情见html语言中的配置。
@@ -2301,45 +2338,47 @@ https://blog.csdn.net/afei__/article/details/51464783
 *** 
 ** org-latex
 *** 步骤
-1. 修改头文件package设置
-2. 把.tex文件拖入含有aux文件路径
-3. C-c C-c编译 并生成pdf文件
-4. C-c C-c再运行一次可以直接打开pdf文件 用view命令替代xelatex
+**** pdf文件生成
+ 1. C-c C-e l l 生成latex
+ 2. C-c C-e l p 生成pdf文件
+**** 用生成的latex对pdf进行微调，得到最终想要的输出
+ 1. 在org-mode 头部添加org-article的模板输出格式声明
+ 2. C-c C-c编译 并生成pdf文件
+ 3. C-c C-c再运行一次可以直接打开pdf文件 用view命令替代xelatex
 *** 可以顺利运行中文的package设置
+下面的代码添加到int.el即可，注意要在.org的开头添加Label-class: org-article
     #+begin_src 
-\documentclass{article}
-% Change "article" to "report" to get rid of page number on title page
-\usepackage{amsmath,amsfonts,amsthm,amssymb}
-\usepackage[UTF8]{ctex}
-\usepackage{setspace}
-\usepackage{fancyhdr}
-\usepackage{lastpage}
-\usepackage{extramarks}
-\usepackage{chngpage}
-\usepackage{soul}
-\usepackage[usenames,dvipsnames]{color}
-\usepackage{graphicx,float,wrapfig}
-\usepackage{ifthen}
-\usepackage{listings}
-\usepackage{courier}
-
-%% Introduce the package needed for the hyperlink
-\usepackage[colorlinks,
-            linkcolor=blue,
-            anchorcolor=green,
-            citecolor=green
-            ]{hyperref}  
-
-\date{\today}
-\title{}
-\hypersetup{
- pdfauthor={},
- pdftitle={},
- pdfkeywords={},
- pdfsubject={},
- pdfcreator={Emacs 26.3 (Org mode 9.2.6)}, 
- pdflang={English}}
-\begin{document}    
+(with-eval-after-load 'ox-latex
+  (add-to-list 'org-latex-classes
+               '("org-article"
+                 "\\documentclass{article}
+                 \\usepackage{amsmath,amsfonts,amsthm,amssymb}
+                 \\usepackage{setspace}
+                 \\usepackage{fancyhdr}
+                 \\usepackage{lastpage}
+                 \\usepackage{extramarks}
+                 \\usepackage{chngpage}
+                 \\usepackage{soul}
+                 \\usepackage[usenames,dvipsnames]{color}
+                 \\usepackage{graphicx,float,wrapfig}
+                 \\usepackage{ifthen}
+                 \\usepackage{listings}
+                 \\usepackage{courier}
+                 \\usepackage[colorlinks,
+                              linkcolor=blue,
+                              anchorcolor=green,
+                              citecolor=green
+                              ]{hyperref}  
+                 \\usepackage{xcolor}
+                 \\usepackage{xeCJK}
+                 [NO-DEFAULT-PACKAGES]      
+                 [PACKAGES]                 
+                 [EXTRA]"
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
     #+end_src
 *** 设置org-mode的默认pdf导出模板
 **** 在init.el中添加latex模板
@@ -2349,35 +2388,39 @@ https://blog.csdn.net/rogeryu1234/article/details/53266947
 
 xeCJK 是对中文的支持, tikz 是LaTeX下的绘图包, listings 是对代码的支持.
      #+begin_src elisp
-;;org-export 
-(require 'ox-latex)
-(add-to-list 'org-latex-classes
-             '("org-article"
-               "\\documentclass{article}
-                 \\usepackage{graphicx}
+;; 所有关于org-导出latex模板的设置，包括自定义模板
+;;org-export latex
+(with-eval-after-load 'ox-latex
+  (add-to-list 'org-latex-classes
+               '("org-article"
+                 "\\documentclass{article}
+                 \\usepackage{amsmath,amsfonts,amsthm,amssymb}
+                 \\usepackage{setspace}
+                 \\usepackage{fancyhdr}
+                 \\usepackage{lastpage}
+                 \\usepackage{extramarks}
+                 \\usepackage{chngpage}
+                 \\usepackage{soul}
+                 \\usepackage[usenames,dvipsnames]{color}
+                 \\usepackage{graphicx,float,wrapfig}
+                 \\usepackage{ifthen}
+                 \\usepackage{listings}
+                 \\usepackage{courier}
+                 \\usepackage[colorlinks,
+                              linkcolor=blue,
+                              anchorcolor=green,
+                              citecolor=green
+                              ]{hyperref}  
                  \\usepackage{xcolor}
                  \\usepackage{xeCJK}
-                 \\usepackage{fixltx2e}
-                 \\usepackage{longtable}
-                 \\usepackage{float}        
-                 \\usepackage{tikz}         
-                 \\usepackage{wrapfig}      
-                 \\usepackage{latexsym,amssymb,amsmath}
-                 \\usepackage{textcomp}
-                 \\usepackage{listings}     
-                \\usepackage{marvosym}     
-                \\usepackage{textcomp}     
-                \\usepackage{latexsym}     
-                \\usepackage{natbib}       
-                \\usepackage{geometry}     
-                [NO-DEFAULT-PACKAGES]      
-                [PACKAGES]                 
-                [EXTRA]"
-                ("\\section{%s}" . "\\section*{%s}")
-                ("\\subsection{%s}" . "\\subsection*{%s}")
-                ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-                ("\\paragraph{%s}" . "\\paragraph*{%s}")
-                ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+                 [NO-DEFAULT-PACKAGES]      
+                 [PACKAGES]                 
+                 [EXTRA]"
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
      #+end_src
 **** 在org-mode中添加导出latex的配置
      #+begin_src 
@@ -2395,6 +2438,11 @@ xeCJK 是对中文的支持, tikz 是LaTeX下的绘图包, listings 是对代码
                                "xelatex -interaction nonstopmode %f"))    
      #+end_src
 
+*** 修改生成的latex文件中图片尺寸
+    #+begin_src 
+\includegraphics[width=.5\linewidth]
+修改width即可    
+    #+end_src
 * Python 语言
 ** 系列软件安装指南
 *** anaconda

@@ -1,0 +1,8 @@
+@misc{paszke2016enet,
+    title={ENet: A Deep Neural Network Architecture for Real-Time Semantic Segmentation},
+    author={Adam Paszke and Abhishek Chaurasia and Sangpil Kim and Eugenio Culurciello},
+    year={2016},
+    eprint={1606.02147},
+    archivePrefix={arXiv},
+    primaryClass={cs.CV}
+}
