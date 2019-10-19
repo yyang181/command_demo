@@ -1,5 +1,5 @@
-#+TITLE: README
-#+OPTIONS: toc:nil
+# #+TITLE: README
+# #+OPTIONS: toc:nil
 #+TYP_TODO: 紧急(1!) 学习(2!) 事件(3!) 零碎(4!) |
 #+SEQ_TODO: PENDING(p!) TODO(t!) | DONE(d!) ABORT(a@/!) IDEA(i!)
 * Top Layer
@@ -2306,8 +2306,9 @@ https://blog.csdn.net/afei__/article/details/51464783
 1. 修改头文件package设置
 2. 把.tex文件拖入含有aux文件路径
 3. C-c C-c编译 并生成pdf文件
-*** 需要配置的package设置
-    #+begin_src latex
+4. C-c C-c再运行一次可以直接打开pdf文件 用view命令替代xelatex
+*** 可以顺利运行中文的package设置
+    #+begin_src 
 \documentclass{article}
 % Change "article" to "report" to get rid of page number on title page
 \usepackage{amsmath,amsfonts,amsthm,amssymb}
@@ -2342,6 +2343,59 @@ https://blog.csdn.net/afei__/article/details/51464783
  pdflang={English}}
 \begin{document}    
     #+end_src
+*** 设置org-mode的默认pdf导出模板
+**** 在init.el中添加latex模板
+https://blog.csdn.net/rogeryu1234/article/details/53266947
+
+[NO-DEFAULT-PACKAGES] . 其含义的是不加载org默认的宏包
+
+xeCJK 是对中文的支持, tikz 是LaTeX下的绘图包, listings 是对代码的支持.
+     #+begin_src elisp
+;;org-export 
+(require 'ox-latex)
+(add-to-list 'org-latex-classes
+             '("org-article"
+               "\\documentclass{article}
+                 \\usepackage{graphicx}
+                 \\usepackage{xcolor}
+                 \\usepackage{xeCJK}
+                 \\usepackage{fixltx2e}
+                 \\usepackage{longtable}
+                 \\usepackage{float}        
+                 \\usepackage{tikz}         
+                 \\usepackage{wrapfig}      
+                 \\usepackage{latexsym,amssymb,amsmath}
+                 \\usepackage{textcomp}
+                 \\usepackage{listings}     
+                \\usepackage{marvosym}     
+                \\usepackage{textcomp}     
+                \\usepackage{latexsym}     
+                \\usepackage{natbib}       
+                \\usepackage{geometry}     
+                [NO-DEFAULT-PACKAGES]      
+                [PACKAGES]                 
+                [EXTRA]"
+                ("\\section{%s}" . "\\section*{%s}")
+                ("\\subsection{%s}" . "\\subsection*{%s}")
+                ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+     #+end_src
+**** 在org-mode中添加导出latex的配置
+     #+begin_src 
+#+LATEX_CLASS: org-article
+#+TITLE: Org to \LaTeX     
+     #+end_src
+**** 在org-mode中添加新的packages
+     #+begin_src 
+#+LATEX_HEADER: \usepackage[colorlinks=true,linkcolor=red]{hyperref}     
+     #+end_src
+
+**** 设置默认org-latex引擎
+     #+begin_src 
+ (setq org-latex-pdf-process '("xelatex -interaction nonstopmode %f"
+                               "xelatex -interaction nonstopmode %f"))    
+     #+end_src
 
 * Python 语言
 ** 系列软件安装指南
@@ -4658,7 +4712,7 @@ https://mail.google.com/mail/u/1/#inbox/162f9d4479616148
 - State "IDEA"       from "TODO"       [2018-05-09 周三 11:04]
 
 * 代码测试区
-  #+begin_src python -n -r
+  #+begin_src
   import numpy
   import time
   #+end_src
