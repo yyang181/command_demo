@@ -502,14 +502,31 @@ M– M-l	negtive-argument; downcase-word
   先后顺序决定了优先使用哪个python.exe    
       #+end_src
 *** 设置jupyter notebook的默认启动路径
-1. 打开cmd，首先进入到Jupyter的安装目录，我的是在D:\Python\Anaconda\Scrips中。然后，输入命令“jupyter notebook --generate-config”
-2. 找到#c.NotebookApp.notebook_dir =' '，删掉开头的“#”，在‘ ’中输入你要启动的目录路径
-3. c.NotebookApp.notebook_dir = 'd:/github/code_test/python'
+**** 该设置完成之后只对从anaconda prompt中键入Jupyter notebook方式打开有效，windows cmd中也支持
+ 1. 打开cmd，首先进入到Jupyter的安装目录，我的是在D:\Python\Anaconda\Scrips中。然后，输入命令“jupyter notebook --generate-config”
+ 2. 找到#c.NotebookApp.notebook_dir =' '，删掉开头的“#”，在‘ ’中输入你要启动的目录路径
+ 3. c.NotebookApp.notebook_dir = 'd:/github/code_test/python'
+**** windows解决方案 直接修改快捷方式中的目标
+这是快捷方式中的原始路径 目标
+     #+begin_src 
+D:\anaconda\python.exe D:\anaconda\cwp.py D:\anaconda D:\anaconda\python.exe D:\anaconda\Scripts\jupyter-notebook-script.py "%USERPROFILE%/"
+把"%USERPROFILE%/"都删除即可，之后就可以用快捷方式直接打开了
+     #+end_src
 *** reload buffer 
 重载当前文件，不用关闭然后在重新打开emacs
 #+begin_src 
 M-x revert-buffer
 #+end_src
+*** 文件管理：快速打开新文件及新窗口的方法以及最近文件的方法
+    #+begin_src 
+M-m f 文件管理最好用的profix命令
+M-m f r 打开最近文件目录
+M-m f o 将当前文件或路径在另外的窗口中打开
+M-m f h/l 打开当前文件所在的路径以便于打开路径中的其他文件
+C-x C-f 新建文件/打开同路径下的某个文件   主要用于没有打开过的本路径下的文件
+C-x b 打开buffer 管理器  将scratch脚本保存成带后缀的格式即可创建新文件了  不好用
+        #+end_src
+
 * Emaces Usful Command
 ** Command
 *** 常用命令
@@ -3465,6 +3482,53 @@ VS C++ 14
  在浏览器控制台的console中输入：navigator.webdriver
 ****** 查找发爬虫js
 在浏览器控制台network选项卡界面下，查找403的名称
+*** python中的模型保存于转换
+**** ckpt模型的保存
+https://www.cnblogs.com/zerotoinfinity/p/10242849.html
+checkpoint是检查点的文件，文件保存了一个目录下所有的模型文件列表
+
+model.ckpt.meta文件保存了Tensorflow计算图结构，可以理解为神经网络的网络结构，
+
+ckpt.data是保存模型中每个变量的取值
+
+model.ckpt.index保存了所有变量名
+
+**** ckpt转换为pb 存在严重问题，服务器版本的tensorflow与电脑版本的不一致，就会导致训练完成的cxpt无法在windows中导出pb模型
+***** 模型数据说明
+ https://blog.csdn.net/guyuealian/article/details/82218092
+
+ 通过传入 CKPT 模型的路径得到模型的图和变量数据
+ 通过 import_meta_graph 导入模型中的图
+ 通过 saver.restore 从模型中恢复图中各个变量的数据
+ 通过 graph_util.convert_variables_to_constants 将模型持久化
+ 原文链接：https://blog.csdn.net/guyuealian/article/details/82218092
+
+ tf.train.Saver()保存模型，然后得到多个文件，一般长这个样子
+ 1. DATA 
+ 2. META
+ 3. INDEX
+ 4. checkpoint文件
+***** 最后一层结点名字
+input:0”是张量的名称，而"input"表示的是节点的名称。
+
+PS：注意节点名称，应包含name_scope 和 variable_scope命名空间，并用“/”隔开，如"InceptionV3/Logits/SpatialSqueeze"
+**** pb模型的保存于导入
+
+*** Tensorboard保存与查看
+**** 将模型保存
+https://www.cnblogs.com/hejunlin1992/p/7840864.html
+ Enet模型中有详细的tensorboard保存方法
+
+ 关键函数为tf.summary.FileWrite
+**** 导出tensorboard图形显示界面
+***** 源文件
+ 路径一般为log 文件名字一般为：event
+***** 在windows cmd中打开命令
+      #+begin_src 
+cd F:\github\code_test\python\muyuan\enet\Muyuan_Version_TensorFlow-ENet\log
+tensorboard --logdir=original       
+      #+end_src
+***** 之后把网址复制到浏览器即可生成
 
 * Matlab语言
 ** 知识补充 cell的使用
@@ -3659,7 +3723,35 @@ P 指针/内存位置
     #+end_src
 #+DOWNLOADED: screenshot @ 2019-10-19 17:45:05
 [[file:C++%E8%AF%AD%E8%A8%80_&_linux%E7%B3%BB%E7%BB%9F/2019-10-19_17-45-05_screenshot.png]]
-*** 
+*** 字符串序列
+string类包含了所需的标准库
+*** 时间和日期
+使用日期和时间相关的函数和结构，需要在 C++ 程序中引用 <ctime> 头文件
+*** c++的基本输入输出
+    #+begin_src 
+<iostream>	该文件定义了 cin、cout、cerr 和 clog 对象，分别对应于标准输入流、标准输出流、非缓冲标准错误流和缓冲标准错误流。
+<iomanip>	该文件通过所谓的参数化的流操纵器（比如 setw 和 setprecision），来声明对执行标准化 I/O 有用的服务。
+<fstream>	该文件为用户控制的文件处理声明服务。我们将在文件和流的相关章节讨论它的细节。    
+    #+end_src
+标准输入输出示例
+#+begin_src 
+#include <iostream>
+ 
+using namespace std;
+ 
+int main( )
+{
+   char name[50];
+ 
+   cout << "请输入您的名称： ";
+   cin >> name;
+   cout << "您的名称是： " << name << endl;
+ 
+}
+#+end_src
+cerr: 非缓冲，当即显示
+clog: 缓冲，延迟显示
+
 * Html语言
 ** 配置
 需要web-mode package
