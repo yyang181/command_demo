@@ -148,6 +148,9 @@ C-/ 取消之前的命令
     #+end_src
 *** 光标操作
     #+begin_src 
+M-< 快速跳转到buffer的开头
+M-> 快速跳转到buffer的结尾
+C-l 把当前光标所在的行移动到屏幕的正中央
 C-g g 跳转到第几行
 c-x c-s 保存当前文件
 c-v 上滚屏
@@ -181,6 +184,7 @@ c-h k 快捷键
     #+end_src
 *** 多buffer管理：
     #+begin_src 
+C-x 0 数字0 关闭当前子窗口 ！！！！！最好用
 C-x b helm-buffer-list更好用一点
 C-x C-b buffer-list
 C-x o 在窗口之间切换
@@ -525,6 +529,7 @@ M-m f o 将当前文件或路径在另外的窗口中打开
 M-m f h/l 打开当前文件所在的路径以便于打开路径中的其他文件
 C-x C-f 新建文件/打开同路径下的某个文件   主要用于没有打开过的本路径下的文件
 C-x b 打开buffer 管理器  将scratch脚本保存成带后缀的格式即可创建新文件了  不好用
+C-x 0 数字0 关闭当前子窗口
         #+end_src
 
 * Emaces Usful Command
@@ -2939,6 +2944,28 @@ C-c C-z         ein:notebook-kernel-interrupt-command
 C-c C-q         ein:notebook-kill-kernel-then-close-command
 C-c C-r         ein:notebook-restart-kernel-command      
       #+end_src
+** jupyter notebook魔法技巧
+*** 魔法函数
+    #+begin_src 
+%pwd  显示当前的工作路径
+%hist  显示当前Jupyter中，所有运行过的历史代码
+%who  该魔法函数用于显示当前Jupyter环境中的所有变量或名称。
+%reset 该魔法函数用于删除当前Jupyter环境中的所有变量或名称。
+%load  该魔法函数用于加载本地Python文件或者网络中的Python文件，例如本地脚本文件的加载：%load xxx.py
+%run  该魔法函数用于运行本地或网络中的Python文件，例如本地脚本文件的运行：%run xxx.py。    
+%lsmagic 列出当前可用的 magic 函数
+    #+end_src
+*** spyder风格模仿
+**** 核心magic函数 所有变量查看
+%whos 查看所有变量名称及值
+%who 查看所有变量名 
+**** 单个变量打印
+ 把变量名称或没有定义输出结果的语句放在cell的最后一行，无需print语句，Jupyter也会显示变量值
+
+ 如果想不显示最后一行的输出结果，只需要在最后一行加上;即可 
+**** 查看函数/方法的帮助
+?func/class即可
+
 ** emacs中测试.py文件
 *** 将.py中的代码导入ipython块中
     #+begin_src 
@@ -3529,7 +3556,46 @@ cd F:\github\code_test\python\muyuan\enet\Muyuan_Version_TensorFlow-ENet\log
 tensorboard --logdir=original       
       #+end_src
 ***** 之后把网址复制到浏览器即可生成
+*** 将列表转换为二维数组，以方便排序和查看最大元素
+**** 唯一的办法就是新建一个二位数字，然后把值添加进去
+     #+begin_src 
+a = np.ones([len(alphas), 4])
+for i in range(len(alphas)):
+    a[i,:] = sort_lines[i]     
+     #+end_src
+**** 以下方法不可行，不能改变list这种存储方式
+     #+begin_src 
+ a = [[i for i in line] for line in sort_lines]       
+     #+end_src
+*** emacs中代码块批量缩进
+    #+begin_src 
+C-c > 向右缩进代码块
+C-c < 向左缩进代码块    
+    #+end_src
+*** python中保存数据
+**** .json文件保存
+***** 导出
+      #+begin_src 
+import json
 
+names = ['joker','joe','nacy','timi']
+
+filename='names.json'
+with open(filename,'w') as file_obj:
+    json.dump(names,file_obj)     
+      #+end_src
+***** 导入
+      #+begin_src 
+import json
+
+
+
+filename='names.json'
+with open(filename) as file_obj:
+    names = json.load(file_obj)
+    
+print(names)      
+      #+end_src
 * Matlab语言
 ** 知识补充 cell的使用
 *** 将矩阵保存到cell里面，从而用一个for循环索引cell的编号来画图
@@ -3751,7 +3817,7 @@ int main( )
 #+end_src
 cerr: 非缓冲，当即显示
 clog: 缓冲，延迟显示
-
+** 
 * Html语言
 ** 配置
 需要web-mode package
