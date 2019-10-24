@@ -531,7 +531,10 @@ C-x C-f 新建文件/打开同路径下的某个文件   主要用于没有打�
 C-x b 打开buffer 管理器  将scratch脚本保存成带后缀的格式即可创建新文件了  不好用
 C-x 0 数字0 关闭当前子窗口
         #+end_src
-
+*** 重命名buffer
+    #+begin_src 
+M-x rename-buffer 重命名当期那buffer    
+    #+end_src
 * Emaces Usful Command
 ** Command
 *** 常用命令
@@ -2940,6 +2943,7 @@ M-p             ein:worksheet-previous-input-history
       #+end_src
 ***** kernel中断
       #+begin_src 
+C-c C-r       最好用，直接重连kernel
 C-c C-z         ein:notebook-kernel-interrupt-command
 C-c C-q         ein:notebook-kill-kernel-then-close-command
 C-c C-r         ein:notebook-restart-kernel-command      
@@ -3588,14 +3592,75 @@ with open(filename,'w') as file_obj:
       #+begin_src 
 import json
 
-
-
 filename='names.json'
 with open(filename) as file_obj:
     names = json.load(file_obj)
     
 print(names)      
       #+end_src
+**** np.array保存
+***** 导出
+      #+begin_src 
+import numpy as np
+pts1 = np.array
+np.save("filename.npy",pts1)
+      #+end_src
+***** 导出
+      #+begin_src 
+import numpy as np
+np.load("filename.npy")      
+pts1
+      #+end_src
+
+*** 批量化 封装化处理图片，脚本的模板
+    #+begin_src 
+import cv2
+import numpy as np
+import os 
+import json
+
+def generate(image_files, dir_output1_images, dir_output2_images):
+    num = 0
+
+    size_windows = 5
+
+    min_canny = 5
+    max_canny = 150
+    apertureSize = 3
+
+    for image in image_files:
+        num += 1
+        img = cv2.imread(image, 0)
+
+        dst = cv2.GaussianBlur(img, (size_windows, size_windows), 0)
+
+        edges = cv2.Canny(dst, min_canny, max_canny, apertureSize)
+
+        name_images_in = image.split('\\')[1]
+
+        lines = cv2.HoughLinesP(edges, 1, np.pi / 360, threshod, minLineLength, maxLineGap)
+
+        # save edge images
+        cv2.imwrite(dir_output1_images + '/' + name_images_in, dst)
+
+        # save hough lines images
+        cv2.imwrite(dir_output2_images + '/' + name_images_in, edges)
+
+flag_jpg = True
+
+dir_input_images = 'input'
+dir_output1_images = 'blur'
+dir_output2_images = 'edge'
+
+if flag_jpg == True:
+    tpye_input_images = '.jpg'
+else:
+    tpye_input_images = '.png'
+    tpye_output_images = '.png'
+
+image_files = sorted([os.path.join(dir_input_images, file) for file in os.listdir(dir_input_images) if file.endswith(tpye_input_images)])
+generate(image_files, dir_output1_images, dir_output2_images)
+    #+end_src
 * Matlab语言
 ** 知识补充 cell的使用
 *** 将矩阵保存到cell里面，从而用一个for循环索引cell的编号来画图
