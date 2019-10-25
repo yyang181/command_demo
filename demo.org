@@ -295,6 +295,8 @@ C-c C-x C-v org-taggle-inline-images
  或者直接将images中的文件拖动到emacs即可，需要org-download包支持    
  C-c C-x C-v 显示所插入的图片 开启org-taggle-inline-image-mode 控制开启和关闭
      #+end_src
+**** 问题解决
+如果出现无法插入图片的情况，可以尝试先建立文件夹
 *** 正则表达式
 **** 学习链接网站
 https://blog.csdn.net/hljqfl/article/details/86483206
@@ -2941,6 +2943,14 @@ M-.             ein:pytools-jump-to-source-command
 M-n             ein:worksheet-next-input-history
 M-p             ein:worksheet-previous-input-history
       #+end_src
+***** 历史记录：输入输出
+      #+begin_src 
+M-n          ein:worksheet-next-input-history
+M-p          ein:worksheet-previous-input-history
+
+C-c C-e              ein:worksheet-toggle-output      
+C-c C-v              ein:worksheet-set-output-visibility-all
+      #+end_src
 ***** kernel中断
       #+begin_src 
 C-c C-r       最好用，直接重连kernel
@@ -2951,6 +2961,10 @@ C-c C-r         ein:notebook-restart-kernel-command
 ** jupyter notebook魔法技巧
 *** 魔法函数
     #+begin_src 
+前缀说明
+%：	行魔法函数，只对本行代码生效。 
+%%：	Cell魔法函数，在整个Cell中生效，必须放于Cell首行。
+
 %pwd  显示当前的工作路径
 %hist  显示当前Jupyter中，所有运行过的历史代码
 %who  该魔法函数用于显示当前Jupyter环境中的所有变量或名称。
@@ -2958,6 +2972,7 @@ C-c C-r         ein:notebook-restart-kernel-command
 %load  该魔法函数用于加载本地Python文件或者网络中的Python文件，例如本地脚本文件的加载：%load xxx.py
 %run  该魔法函数用于运行本地或网络中的Python文件，例如本地脚本文件的运行：%run xxx.py。    
 %lsmagic 列出当前可用的 magic 函数
+%ls?  魔法命令后面加上? 显示魔法命令的说明
     #+end_src
 *** spyder风格模仿
 **** 核心magic函数 所有变量查看
@@ -2969,7 +2984,20 @@ C-c C-r         ein:notebook-restart-kernel-command
  如果想不显示最后一行的输出结果，只需要在最后一行加上;即可 
 **** 查看函数/方法的帮助
 ?func/class即可
+*** 创建新的.py文件并内容如下
+    #+begin_src 
+%%writefile test_peace.py
+import numpy as np
+print(np.random.randint(1,5))    
+    #+end_src
+*** 画图
+    #+begin_src 
+%matplotlib inline
+import matplotlib.pyplot as plt
+import numpy as np
 
+plt.plot(....)    
+    #+end_src
 ** emacs中测试.py文件
 *** 将.py中的代码导入ipython块中
     #+begin_src 
