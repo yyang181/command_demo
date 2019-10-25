@@ -2483,10 +2483,24 @@ Anaconda3\Scripts         这是前两个环境变量
 Anaconda3\Library\bin     这是新加的环境变量
 #+end_src
 *** TensorFlow
-	1. 必须安装Microsoft的visual studio
-	2. 下载安装cuda9.0版本+cudnn for cuda9.0
-	3. 设置环境变量 bin libnvvp extras\CUPTI\libx64
-  4. Python3.6 3.5均可用 3.7有问题？
+**** 安装指南
+	 1. 必须安装Microsoft的visual studio
+	 2. 下载安装cuda9.0版本+cudnn for cuda9.0
+	 3. 设置环境变量 bin libnvvp extras\CUPTI\libx64
+   4. Python3.6 3.5均可用 3.7有问题？ 3.7可用
+**** conda虚拟环境（anaconda虚拟环境后续不支持）
+     #+begin_src 
+conda create -n tensorflow python=3.7     
+activate tensorflow 
+deactivate 
+
+安装额外的包
+conda install -n your_env_name [package]
+
+删除环境/包
+conda remove -n your_env_name(虚拟环境名称) --all
+conda remove --name your_env_name  package_name  # 删除环境中的某个包
+     #+end_src
 *** Jupyter notebook
 **** EIN：在emacs中使用jupyter notebook
 ***** onc for all
@@ -2991,13 +3005,38 @@ import numpy as np
 print(np.random.randint(1,5))    
     #+end_src
 *** 画图
-    #+begin_src 
-%matplotlib inline
-import matplotlib.pyplot as plt
-import numpy as np
+**** plt.plot只能画2D图
+     #+begin_src 
+ %matplotlib inline
+ import matplotlib.pyplot as plt
+ import numpy as np
+ plt.plot()    
+     #+end_src
+**** plt.imshow可以画任何图形 
+     #+begin_src 
+ %matplotlib inline
+ import matplotlib.pyplot as plt
+ import numpy as np
+ plt.plot()         
+     #+end_src
+**** 多个图像同时显示的方法
+***** subplot 优点，维度可扩展 写法复杂
+      #+begin_src 
+ %matplotlib inline
+ import matplotlib.pyplot as plt
+ import numpy as np
+ plt.subplot(1,2,1)
+ plt.imshow(im)
+ plt.subplot(1,2,2)
+ plt.imshow(book)      
+      #+end_src
+***** np.concatenate 固定axis，只能横向或者纵向扩展，优点在于写法简单
+      #+begin_src 
+      vis = np.concatenate((im, book), 0) # axis 默认为0标识纵向排列 
+      vis = np.concatenate((im, book), 1) # axis = 1 标识横向排列 
+      cv2.imwrite('vis.jpg', vis)      
+      #+end_src
 
-plt.plot(....)    
-    #+end_src
 ** emacs中测试.py文件
 *** 将.py中的代码导入ipython块中
     #+begin_src 
@@ -3688,6 +3727,11 @@ else:
 
 image_files = sorted([os.path.join(dir_input_images, file) for file in os.listdir(dir_input_images) if file.endswith(tpye_input_images)])
 generate(image_files, dir_output1_images, dir_output2_images)
+    #+end_src
+*** numpy按元素操作
+    #+begin_src 
+pts2[:,0] = pts2[:,0] + 360
+pts2[pts2 > 1] = 0 
     #+end_src
 * Matlab语言
 ** 知识补充 cell的使用
