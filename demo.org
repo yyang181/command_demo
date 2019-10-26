@@ -3970,8 +3970,8 @@ clean:
 **** cpp
 ***** 最简单的g++ 编译cpp的Makefile代码示例
       #+begin_src 
- test.o: test.cpp
-		 g++ test.cpp -g -o test.o     
+ test: test.cpp
+		 g++ test.cpp -g -o test.exe
       #+end_src
 **** c
 ***** 最简单的gcc 编译c的Makefile示例代码
@@ -3989,8 +3989,6 @@ hello.o: hello.c
   3）对于产生的最终目标文件，我们可以新建一个bin目录，并将其置于其下
 
   4）对于编译链接，我们可以采用范性编程的思想，利用find和patsubst等命令来构造sources和objects等变量
-
-
 ** ubuntu及oracal虚拟机 （过时）
 Get a virtual machine (VM) with Ubuntu 16.04 (Xenial): make your own, re-use one you have, or
 download a ready-made one from
@@ -4189,7 +4187,6 @@ int main( )
 #+end_src
 cerr: 非缓冲，当即显示
 clog: 缓冲，延迟显示
-** 
 * Html语言
 ** 配置
 需要web-mode package
