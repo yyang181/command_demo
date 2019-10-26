@@ -3629,6 +3629,12 @@ cd F:\github\code_test\python\muyuan\enet\Muyuan_Version_TensorFlow-ENet\log
 tensorboard --logdir=original       
       #+end_src
 ***** 之后把网址复制到浏览器即可生成
+***** 浏览器链接打不开的解决方案
+      #+begin_src 
+tensorboard --logdir logs --host=127.0.0.1 把链接载入主机上即可
+tensorboard --logdir=logs --host=127.0.0.1 把链接载入主机上即可
+http://127.0.0.1:6006/      
+      #+end_src
 *** 将列表转换为二维数组，以方便排序和查看最大元素
 **** 唯一的办法就是新建一个二位数字，然后把值添加进去
      #+begin_src 
@@ -3850,6 +3856,19 @@ xlrd xlwt
 if __name__ == '__main__':
     run()
     #+end_src
+*** TensorFlow使用的GPU
+    #+begin_src 
+import tensorflow as tf
+device_name = tf.test.gpu_device_name()
+if not tf.test.is_gpu_available():
+  raise SystemError('GPU device not found')
+print('Found GPU at: {}'.format(device_name))    
+    #+end_src
+*** tensorboard中graph图使用说明
+**** 整体结构
+左侧为main graph 右侧为auxiliary graph 流向为down-top
+conceptual graph是用来显示Keras保存的模型
+**** 
 * Matlab语言
 ** 知识补充 cell的使用
 *** 将矩阵保存到cell里面，从而用一个for循环索引cell的编号来画图
