@@ -2485,14 +2485,16 @@ Anaconda3\Library\bin     这是新加的环境变量
 *** TensorFlow
 **** 安装指南
 	 1. 必须安装Microsoft的visual studio
-	 2. 下载安装cuda9.0版本+cudnn for cuda9.0
+	 2. 下载安装cuda9.0版本+cudnn for cuda9.0 cuda与cudnn的版本号一定要对应！！！！！比如10.0 10.0
 	 3. 设置环境变量 bin libnvvp extras\CUPTI\libx64
    4. Python3.6 3.5均可用 3.7有问题？ 3.7可用
+   5. 安装命令不能简单的用pip install tensorflow  可以参考：pip install --upgrade --ignore-installed tensorflow
+   6. scikit-image package包含了很多image相关的库，需要安装
 **** conda虚拟环境（anaconda虚拟环境后续不支持）
      #+begin_src 
 conda create -n tensorflow python=3.7     
-activate tensorflow 
-deactivate 
+conda activate tensorflow 
+conda deactivate 
 
 安装额外的包
 conda install -n your_env_name [package]
@@ -3732,6 +3734,121 @@ generate(image_files, dir_output1_images, dir_output2_images)
     #+begin_src 
 pts2[:,0] = pts2[:,0] + 360
 pts2[pts2 > 1] = 0 
+    #+end_src
+*** excel文件终极处理
+核心教程https://blog.csdn.net/sinat_28576553/article/details/81275650
+**** xlsx格式
+***** package
+openpyxl, os
+***** 读取工作表
+      #+begin_src 
+      workbook=openpyxl.load_workbook(xls)
+      worksheet=workbook.worksheets[0]      
+      #+end_src
+***** 单元格元素查找
+      #+begin_src 
+worksheet.cell(row=i, column=5).value      起始为（1,1）而不是（0,0）
+      #+end_src
+***** 单元格元素修改
+      #+begin_src 
+worksheet.cell(i,j,worksheet.cell(row=i, column=j).value)  与查找的区别在于cell函数里面的元素个数      
+      #+end_src
+***** 工作表保存
+      #+begin_src 
+end_workbook.save(filename = 'test.xlsx)      
+      #+end_src
+***** 代码展示
+      #+begin_src 
+import openpyxl, os
+"""
+usage: 
+    just put all .xlsx files in the same direction of this .py file and set outname if you want.
+
+param:
+    name_output_xlsx: 输出的Excel文件名   
+    
+return:
+    
+"""
+
+def modify(xls, name_output_xlsx):
+    # load .xlsx file
+    workbook=openpyxl.load_workbook(xls)
+    worksheet=workbook.worksheets[0]
+    
+    #确认输出的Excel文件是否存在，如果不存在新建
+    if os.path.exists(name_output_xlsx) == False:
+        end_workbook = workbook
+    else:
+        end_workbook = openpyxl.load_workbook(name_output_xlsx)
+    
+    end_worksheet = end_workbook.worksheets[0]
+
+    for i in range(10, 14):
+#        print(i, worksheet.cell(row=i, column=5).value)
+        if worksheet.cell(row=i, column=5).value == None:
+            continue
+        else:
+            print('*****************************', xls, worksheet.cell(row=i, column=4).value)
+            for j in range(5, 10):     
+                print('Currently modifing: ',  worksheet.cell(row=i, column=4).value, worksheet.cell(row=2, column=j).value, end='\n')
+                
+                print(worksheet.cell(row=i, column=j).value,end="\n")
+                end_worksheet.cell(i,j,worksheet.cell(row=i, column=j).value)
+                print()
+    end_workbook.save(filename = name_output_xlsx)   
+
+if __name__ == '__main__':
+    #outpu param setting
+    name_output_xlsx = r'工作进展-计划表模板.xlsx'
+    
+    # load all excel files
+    dir_input = './'
+    allxls = sorted([os.path.join(dir_input, file) for file in os.listdir(dir_input) if file.endswith('.xlsx')])
+    
+    # modify and save as output xlsx
+    for num in range(len(allxls)):
+        modify(allxls[num], name_output_xlsx)      
+      #+end_src
+
+**** xls格式
+***** packages
+xlrd xlwt 
+***** 读数据
+****** 获取工作簿及工作表
+       #+begin_src 
+  import xlrd  #引入模块
+ 
+ #打开文件，获取excel文件的workbook（工作簿）对象
+ workbook=xlrd.open_workbook("DataSource/Economics.xls")  #文件路径
+
+ #获取所有sheet的名字
+ names=workbook.sheet_names()
+ print(names) #['各省市', '测试表']  输出所有的表名，以列表的形式
+ 
+ #通过sheet索引获得sheet对象
+ worksheet=workbook.sheet_by_index(0)
+ print(worksheet)  #<xlrd.sheet.Sheet object at 0x000001B98D99CFD0>
+ 
+ #通过sheet名获得sheet对象
+ worksheet=workbook.sheet_by_name("各省市")
+ print(worksheet) #<xlrd.sheet.Sheet object at 0x000001B98D99CFD0>
+ 
+ #由上可知，workbook.sheet_names() 返回一个list对象，可以对这个list对象进行操作
+ sheet0_name=workbook.sheet_names()[0]  #通过sheet索引获取sheet名称
+ print(sheet0_name)  #各省市
+       #+end_src
+****** 具体上网站上学习即可
+*** 路径下所有文件检索方法
+    #+begin_src 
+    # load all excel files
+    dir_input = './'
+    allxls = sorted([os.path.join(dir_input, file) for file in os.listdir(dir_input) if file.endswith('.xlsx')])    
+    #+end_src
+*** init封装.py格式
+    #+begin_src 
+if __name__ == '__main__':
+    run()
     #+end_src
 * Matlab语言
 ** 知识补充 cell的使用
