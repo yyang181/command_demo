@@ -3922,8 +3922,8 @@ g++ -v
      -rm -rf *.o        
       #+end_src
 ***** 核心思路
- 1. 建立依赖关系
- 2. 生成命令
+ 1. 建立依赖关系  output : prerequist
+ 2. 生成命令   gcc g++
 **** 便捷写法
 ***** 依赖关系简化
 ****** 简化符号
@@ -3946,7 +3946,6 @@ clean:
     rm -rf *.o       
        #+end_src
 ***** 常量表示
-****** 
 ****** 代码示例 c
        #+begin_src 
 OBJS = main.o add.o sub.o
@@ -3961,8 +3960,8 @@ clean:
        #+begin_src 
 OBJS = main.cpp add.cpp sub.cpp
 main: $(OBJS) 
-%.o : %.cpp
-    gcc $^ -g -o $@
+%.exe : %.cpp
+    g++ $^ -g -o $@
 
 clean:
     -rm -rf $(OBJS)       
@@ -3981,6 +3980,16 @@ hello: hello.o
 hello.o: hello.c
     gcc -c hello.c -o hello.o
 #+end_src
+*** 重要问题
+**** windows是无法直接执行.out文件的
+linux下可以用./a.out直接执行
+
+解决方案：生成.exe即可
+**** g++ 与 gcc的用法区别
+1. gcc 必须先用 -c -o 编译生成.out文件，之后在.exe
+2. g++ 可以直接指定 -o 输出为.exe即可，不能输出.out
+**** windows下无法执行.out文件
+linux可以g++生成.out之后直接./a.out即可
 *** 大型程序
   1）对于大型的project，我们可以新建一个src目录，将各个模块的源文件放在其下
 
