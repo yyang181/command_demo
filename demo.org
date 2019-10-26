@@ -3903,6 +3903,94 @@ gcc是调用c 编辑器的驱动
 gcc -v 
 g++ -v
 并且bin中有gcc g++ gdb 3个exe
+
+需要安装修改mingw中的make.exe名字
+** Makefile环境搭建
+*** make命令
+ 1. make命令在windows环境下需要安装mingw
+ 2. 修改mingw32-make.exe 更名为make.exe
+*** makefile的生成
+新建无格式的文本，注意不能为txt,名字为：Makefile 格式一定是TAB不能为4个空格
+*** Makefile书写规范
+**** 通用规范
+***** 命令行前面不是4个空格，一定是1个TAB
+***** 删除编译的中间.o文件
+ 该段代码一定要放到Makefile的末尾
+      #+begin_src 
+.PHONY: clean
+ clean:
+     -rm -rf *.o        
+      #+end_src
+***** 核心思路
+ 1. 建立依赖关系
+ 2. 生成命令
+**** 便捷写法
+***** 依赖关系简化
+****** 简化符号
+ 　　$^    代表所有的依赖文件 即指向add.c sub.c
+
+ 　　$@  代表所有的目标文件 所有的.out
+
+ 　　$<   代表第一个依赖文件 即指向main.c
+****** 代码示例
+       #+begin_src 
+main: main.o add.o sub.o
+main.o: main.c  
+    gcc -c $< -o $@
+add.o: add.c
+    gcc -c $^ -o $@  
+sub.o: sub.c
+    gcc -c $^ -o $@
+
+clean:
+    rm -rf *.o       
+       #+end_src
+***** 常量表示
+****** 
+****** 代码示例 c
+       #+begin_src 
+OBJS = main.o add.o sub.o
+main: $(OBJS) 
+%.o : %.c
+    gcc -c $^ -o $@
+
+clean:
+    -rm -rf $(OBJS)       
+       #+end_src
+****** 代码示例 cpp
+       #+begin_src 
+OBJS = main.cpp add.cpp sub.cpp
+main: $(OBJS) 
+%.o : %.cpp
+    gcc $^ -g -o $@
+
+clean:
+    -rm -rf $(OBJS)       
+       #+end_src
+**** cpp
+***** 最简单的g++ 编译cpp的Makefile代码示例
+      #+begin_src 
+ test.o: test.cpp
+		 g++ test.cpp -g -o test.o     
+      #+end_src
+**** c
+***** 最简单的gcc 编译c的Makefile示例代码
+注意 .c 一定要有中间.out 也就是说-c编译过程
+#+begin_src 
+hello: hello.o    
+hello.o: hello.c
+    gcc -c hello.c -o hello.o
+#+end_src
+*** 大型程序
+  1）对于大型的project，我们可以新建一个src目录，将各个模块的源文件放在其下
+
+  2）对于编译产生的中间文件，我们可以新建一个build目录，并将其置于其下
+
+  3）对于产生的最终目标文件，我们可以新建一个bin目录，并将其置于其下
+
+  4）对于编译链接，我们可以采用范性编程的思想，利用find和patsubst等命令来构造sources和objects等变量
+
+
 ** ubuntu及oracal虚拟机 （过时）
 Get a virtual machine (VM) with Ubuntu 16.04 (Xenial): make your own, re-use one you have, or
 download a ready-made one from
@@ -3940,11 +4028,22 @@ M-x shell 好用，另开一个shell buffer
 M-m ! 直接在buffer的缓冲区打开一个shell命令输入接口    
     #+end_src
 *** 编译/执行命令
+-g 表示生成可执行调试文件 -o指定输出文件名 -c指定只编译 输出.out 
+
+编译生成.out object file 
     #+begin_src 
 g++ test.cpp -g -o test.exe 
 .\test  最新的win10支持 .\来运行
 dir == ls 查看当前目录下的所有文件    
     #+end_src
+*** 编译环境配置
+**** 简单的单文件脚本
+     #+begin_src 
+g++ -g -o test.cpp test.exe     
+     #+end_src
+**** 大型程序
+Makefile
+
 ** C++基本语法
 *** 基本符号
 **** <<endl
