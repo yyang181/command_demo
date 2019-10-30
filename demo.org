@@ -535,8 +535,64 @@ C-x 0 数字0 关闭当前子窗口
         #+end_src
 *** 重命名buffer
     #+begin_src 
-M-x rename-buffer 重命名当期那buffer    
+M-x rename-buffer 重命名当前buffer    
+M-x rename-file 重命名当前文件
     #+end_src
+*** Ctrl+space被搜狗输入法占用
+**** 终极解决方案（autohotkey修改第二级别mark set）
+***** 安装autohotkey
+***** 使用
+https://blog.csdn.net/ChinarCSDN/article/details/82914429
+1. 新建autohotkey.script
+2. 写入命令
+3. 将写好的脚本放入开始菜单启动路径C:\Users\17186\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
+***** 语法规范
+****** 基本按键表述
+       #+begin_src 
+^ = ctrl 
++ = shift
+# = windows 
+! = alt 
+& 组合两个按键
+< 成对的按键中左边       
+> 成对的按键中右边       
+       #+end_src
+****** 替换热键
+！！！左边的按键 实现 右边按键的功能
+       #+begin_src 
+^space::^+2
+return       
+       #+end_src
+****** 删除热键
+       #+begin_src 
+^space::return       
+       #+end_src
+***** 禁用特定窗口的热键
+https://jingyan.baidu.com/article/77b8dc7f80b9386175eab663.html
+
+**** 修改注册表 已被证实无效
+***** 说明
+  1. 修改注册表，因为默认的注册表键值为Ctrl+space
+  2. 修改语言栏设置
+***** 注册表修改方法
+ https://stackoverflow.com/questions/179119/how-to-prevent-windows-xp-from-stealing-my-input-ctrl-space-which-is-meant-for-e
+      #+begin_src 
+ Procedure
+ Go to Start > Type in regedit and start it
+ Navigate to HKEY_CURRENT_USER/Control Panel/Input Method/Hot Keys
+ Select the key named:
+ 00000070 for the Chinese (Traditional) IME - Ime/NonIme Toggle hotkey
+ 00000010 for the Chinese (Simplified) IME - Ime/NonIme Toggle hotkey
+ In the right sub-window, there are three subkeys.
+ Key Modifiers designate Alt/Ctrl/Shift/etc and is set to Ctrl (02c00000).
+ Virtual Key designates the finishing key and is set to Space (20000000).
+ Change the first byte in Key Modifiers from 02 to 00
+ Change the first byte in Virtual Key from 20 to FF
+ Log off and log back on. I don't think it's necessary to restart.
+ Do not change the Hot keys for input languages in Control Panel, unless you want to do this all over again.     
+      #+end_src
+*** 鼠标指针消失
+对文本进行编辑，之后移动鼠标即可重现
 * Emaces Usful Command
 ** Command
 *** 常用命令
@@ -3031,6 +3087,7 @@ print(np.random.randint(1,5))
  plt.imshow(im)
  plt.subplot(1,2,2)
  plt.imshow(book)      
+ plt.savefig(photo_dir+"/image_" + str(i))
       #+end_src
 ***** np.concatenate 固定axis，只能横向或者纵向扩展，优点在于写法简单
       #+begin_src 
@@ -3047,6 +3104,13 @@ print(np.random.randint(1,5))
 *** 直接编辑测试.py文件
 init.el中已经配置好了anaconda中的ipython core
 直接C-c C-p即可打开ipython运行窗口
+** 代码测试的基本流程
+*** 依托工具 jupyter notebook
+*** 流程 封装的最高级别是class类而不是def函数
+1. 在EIN中写代码
+2. 跑通之后封装
+3. 封装之后调用函数或者类
+4. 组合模块
 ** 帮助命令
 #+BEGIN_SRC 
 type() 查询数据类型
@@ -3493,6 +3557,159 @@ deactivate my_env
 pip install --upgrade  pip --user
 pip install setuptools
 #+end_src
+** 基线模型
+*** 语法
+**** from model import *
+*表示导入了模块的整个类，可以直接使用类，不需要句点表示法，不推荐使用，容易引发难以发现的问题
+     #+begin_src 
+import numpy
+a = numpy.array([1,1])
+
+from numpy import * 
+a=array([1,1])     
+     #+end_src
+**** tf.app.flags
+支持接收命令行传递参数，相当于接受argv
+
+代码实例中，--str_name表示flag的名字，后面紧跟为flag的值
+#+begin_src 
+[root@AliHPC-G41-211 test]# python tt.py
+def_v_1
+10
+False
+[root@AliHPC-G41-211 test]# python tt.py --str_name test_str --int_name 99 --bool_name True
+test_str
+99
+True
+#+end_src
+**** 全局变量的设置
+***** 声明法
+      #+begin_src 
+‘global 变量名’，一旦运行过声明语句了，以后遇到这个名字的变量，就都认为是全局变量了      
+      #+end_src
+***** 模块化
+      #+begin_src 
+#gl.py  全局变量模块定义
+ 
+GL_A=‘hello’
+ 
+GL_B=’world’
+ 
+#test.py 全局变量引用模块
+ 
+import gl
+ 
+def hello_world()
+    print(gl. GL_A， gl. GL_B)
+ 
+hello_world()
+a = gl. GL_A
+      #+end_src
+**** tf.contrib.slim.arg_scope
+***** 说明
+ slim.arg_scope常用于为tensorflow里的layer函数提供默认值以使构建模型的代码更加紧凑苗条(slim):
+
+ 并不是所有的方法都能用arg_scope设置默认参数, 只有用@slim.add_arg_scope修饰过的方法才能使用arg_scope
+***** 使用步骤
+1. 使用@slim.add_arg_scope修饰目标函数
+2. 用with slim.arg_scope（）为目标函数设置默认参数.
+3. with slim.arg_scope([fun1],a=10): fun1为需要设置默认参数的目标函数，a = 10为设置的参数
+***** 代码示例
+ #+begin_src 
+ import tensorflow as tf
+ slim = tf.contrib.slim
+ with slim.arg_scope(
+         [layers.conv2d], 
+         padding='SAME',         
+         initializer= xavier_initializer(),
+         regularizer= l2_regularizer(0.05)):  
+     net = slim.conv2d(net, 256, [5, 5])
+ #+end_src
+ #+begin_src 
+@slim.add_arg_scope
+def fn(a, b, c=3):
+    d = c + b
+    print("a={}, b={}".format(a, b))
+    return d
+
+with slim.arg_scope([fn], a = 1):
+    fn(b = 2) 
+ #+end_src
+**** tf.train.saver/tf.train.supervisor
+***** tf.train.supervisor完全可以替代tf.train.saver的功能
+      #+begin_src 
+从上面代码可以看出，Supervisor帮助我们处理一些事情
+（1）自动去checkpoint加载数据或初始化数据
+（2）自身有一个Saver，可以用来保存checkpoint
+（3）有一个summary_computed用来保存Summary
+所以，我们就不需要：
+（1）手动初始化或从checkpoint中加载数据
+（2）不需要创建Saver，使用sv内部的就可以
+（3）不需要创建summary writer      
+      #+end_src
+***** 常规用法，用tf.train.saver()保存，并restore显示载入模型
+      #+begin_src 
+ # Before starting, initialize the variables.  We will 'run' this first.
+ saver = tf.train.Saver()
+ init = tf.global_variables_initializer()     
+
+# Launch the graph.
+sess = tf.Session()
+sess.run(init)
+
+if len(os.listdir(log_path)) != 0:  # 已经有模型直接读取
+    saver.restore(sess, os.path.join(log_path, log_name))
+for step in range(201):
+    sess.run(train)
+    if step % 20 == 0:
+        print(step, sess.run(W), sess.run(b))
+saver.save(sess, os.path.join(log_path, log_name))
+      #+end_src
+***** tf.train.supervisor
+如果模型已经存在,就先读取模型接着训练.tf.train.Supervisor可以简化这个步骤
+#+begin_src 
+import tensorflow as tf
+import numpy as np
+import os
+log_path = r"D:\Source\model\supervisor"
+log_name = "linear.ckpt"
+x_data = np.random.rand(100).astype(np.float32)
+y_data = x_data * 0.1 + 0.3
+
+W = tf.Variable(tf.random_uniform([1], -1.0, 1.0))
+b = tf.Variable(tf.zeros([1]))
+y = W * x_data + b
+
+loss = tf.reduce_mean(tf.square(y - y_data))
+optimizer = tf.train.GradientDescentOptimizer(0.5)
+train = optimizer.minimize(loss)
+
+saver = tf.train.Saver()
+init = tf.global_variables_initializer()
+
+sv = tf.train.Supervisor(logdir=log_path, init_op=init)  # logdir用来保存checkpoint和summary
+saver = sv.saver  # 创建saver
+with sv.managed_session() as sess:  # 会自动去logdir中去找checkpoint，如果没有的话，自动执行初始化
+    for i in range(201):
+        sess.run(train)
+        if i % 20 == 0:
+            print(i, sess.run(W), sess.run(b))
+    saver.save(sess, os.path.join(log_path, log_name))
+#+end_src
+**** slim.learning.create_train_op()
+***** 说明
+用来确保计算total_losses的时候，更新了update_ops are done and the gradient updates are computed
+***** 使用方法：优先选择第二种方法
+       #+begin_src 
+       train_op = slim.learning.create_train_op(total_loss, optimizer)      
+
+第一种方法：
+# Actually runs training.
+  slim.learning.train(train_op, train_log_dir)
+
+第二种方法：sess.run
+total_loss, global_step_count, accuracy_val, mean_IOU_val, _ = sess.run([train_op, global_step, accuracy, mean_IOU, metrics_op])
+       #+end_src
 ** 必备操作集锦 
 *** 正则表达式
 **** 库
@@ -3593,7 +3810,7 @@ ckpt.data是保存模型中每个变量的取值
 
 model.ckpt.index保存了所有变量名
 
-**** ckpt转换为pb 存在严重问题，服务器版本的tensorflow与电脑版本的不一致，就会导致训练完成的cxpt无法在windows中导出pb模型
+**** ckpt转换为pb 已测试可用
 ***** 模型数据说明
  https://blog.csdn.net/guyuealian/article/details/82218092
 
@@ -3612,6 +3829,38 @@ model.ckpt.index保存了所有变量名
 input:0”是张量的名称，而"input"表示的是节点的名称。
 
 PS：注意节点名称，应包含name_scope 和 variable_scope命名空间，并用“/”隔开，如"InceptionV3/Logits/SpatialSqueeze"
+***** 示例代码
+      #+begin_src 
+import tensorflow as tf
+from tensorflow.python.framework import graph_util
+'''
+:param input_checkpoint:
+:param output_graph: PB模型保存路径
+:return:
+'''
+# 指定输出的节点名称,该节点名称必须是原模型中存在的节点
+# 直接用最后输出的节点，可以在tensorboard中查找到，tensorboard只能在linux中使用
+input_checkpoint = './ckpt'
+input_meta_graph = './ckpt/model.ckpt-0.meta'
+output_node_names = "total_loss"
+output_graph = './pb_model/model.pb'
+
+saver = tf.train.import_meta_graph(input_meta_graph)
+# saver = tf.train.import_meta_graph(input_checkpoint + '.meta', clear_devices=True)
+graph = tf.get_default_graph() # 获得默认的图
+input_graph_def = graph.as_graph_def()  # 返回一个序列化的图代表当前的图
+
+with tf.Session() as sess:
+    saver.restore(sess, tf.train.latest_checkpoint(input_checkpoint)) #恢复图并得到数据
+    output_graph_def = graph_util.convert_variables_to_constants(  # 模型持久化，将变量值固定
+        sess=sess,
+        input_graph_def=input_graph_def,# 等于:sess.graph_def
+        output_node_names=output_node_names.split(","))# 如果有多个输出节点，以逗号隔开
+
+    with tf.gfile.GFile(output_graph, "wb") as f: #保存模型
+        f.write(output_graph_def.SerializeToString()) #序列化输出
+    print("%d ops in the final graph." % len(output_graph_def.node)) #得到当前图有几个操作节点
+      #+end_src
 **** pb模型的保存于导入
 
 *** Tensorboard保存与查看
@@ -3869,6 +4118,93 @@ print('Found GPU at: {}'.format(device_name))
 左侧为main graph 右侧为auxiliary graph 流向为down-top
 conceptual graph是用来显示Keras保存的模型
 **** 
+*** python中的class类
+**** 优先级：类>函数 类不用写return
+**** 类的声明
+     #+begin_src 
+class Config(object):    
+     #+end_src
+**** 类的引用
+可以对Config这个类中的默认值进行修改。未修改的保持默认值
+     #+begin_src 
+class PigConfig(Config):
+    # Mask RCNN 模型训练参数,每个参数的具体意义见Config父类
+    NAME = "Pig"
+
+    IMAGES_PER_GPU = 2
+
+    NUM_CLASSES = 2
+
+    # 每个训练/验证epoch的step数量
+    STEPS_PER_EPOCH = 200 # 500
+    VALIDATION_STEPS = 100 # 200     
+     #+end_src
+*** assert
+assert condition 判断条件是否满足，如果为false则raise an error
+用法示例
+#+begin_src 
+assert '.' not in source, 'Source name can not contain a dot'
+#+end_src
+*** TensorFlow将模型保存为pb模型
+**** 典型示例
+     #+begin_src 
+import tensorflow as tf
+import os
+from tensorflow.python.framework import graph_util
+ 
+pb_file_path = os.getcwd()
+ 
+with tf.Session(graph=tf.Graph()) as sess:
+    x = tf.placeholder(tf.int32, name='x')
+    y = tf.placeholder(tf.int32, name='y')
+    b = tf.Variable(1, name='b')
+    xy = tf.multiply(x, y)
+    # 这里的输出需要加上name属性
+    op = tf.add(xy, b, name='op_to_store')
+ 
+    sess.run(tf.global_variables_initializer())
+ 
+    # convert_variables_to_constants 需要指定output_node_names，list()，可以多个
+    constant_graph = graph_util.convert_variables_to_constants(sess, sess.graph_def, ['op_to_store'])
+ 
+    # 测试 OP
+    feed_dict = {x: 10, y: 3}
+    print(sess.run(op, feed_dict))
+ 
+    # 写入序列化的 PB 文件
+    with tf.gfile.FastGFile(pb_file_path+'model.pb', mode='wb') as f:
+        f.write(constant_graph.SerializeToString())
+ 
+    # 输出
+    # INFO:tensorflow:Froze 1 variables.
+    # Converted 1 variables to const ops.
+    # 31     
+     #+end_src
+**** 核心代码
+在原有模型上进行微调
+     #+begin_src 
+from tensorflow.python.framework import graph_util 
+    sess.run(tf.global_variables_initializer())
+ 
+    # convert_variables_to_constants 需要指定output_node_names，list()，可以多个】
+    graph_def = tf.get_default_graph().as_graph_def()
+    constant_graph = graph_util.convert_variables_to_constants(sess, sess.graph_def, ['op_to_store'])
+ 
+    # 测试 OP
+    feed_dict = {x: 10, y: 3}
+    print(sess.run(op, feed_dict))
+ 
+    # 写入序列化的 PB 文件
+    with tf.gfile.FastGFile(pb_file_path+'model.pb', mode='wb') as f:
+        f.write(constant_graph.SerializeToString())    
+     #+end_src
+**** 问题解决
+***** 最后一层note的写法，即对应的op的名称
+“add:0”是张量的名称而"add"表示的是节点的名称
+**** 显示graph中的所有tensor
+     #+begin_src 
+print([n.name for n in graph.as_graph_def().node])     
+     #+end_src
 * Matlab语言
 ** 知识补充 cell的使用
 *** 将矩阵保存到cell里面，从而用一个for循环索引cell的编号来画图
@@ -5270,6 +5606,10 @@ https://blog.csdn.net/OptSolution/article/details/64442962
 **** 解决方案
 1. 在英伟达显卡管理中，设置核心显卡为全局设置即可
 2. 只在外接显示屏上显示 需要禁用核心显卡
+** autohotkey
+
+
+
 
 * 能力
 ** Verify
