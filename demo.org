@@ -3538,6 +3538,7 @@ for i in range(5):
     t.join()
 print(threading.activeCount())     
      #+end_src
+*** pandas数据处理库
 ** python环境迁移/虚拟环境创建
 *** 打包所有已安装的package
     #+begin_src 
@@ -4483,11 +4484,22 @@ https://blog.csdn.net/a6333230/article/details/99674661
 
 ->用于指向结构体的指针，表示结构体内的元素
 **** ::
-调用变量
+***** 表示作用域，和所属关系
+ 调用变量
 
-作用域::变量
+ 作用域::变量
 
-https://blog.csdn.net/a6333230/article/details/99674661
+ https://blog.csdn.net/a6333230/article/details/99674661
+***** 代码示例
+      #+begin_src 
+python中 class A.add()
+cpp中 class A::add()      
+      #+end_src
+**** ? :
+三目条件运算符
+A ? B : C 
+如果A为真，输出B 
+如果A为假，输出C
 *** 函数用法
 **** int main()
 https://blog.csdn.net/zhaobinbin2015/article/details/81007737
@@ -4568,20 +4580,25 @@ double balance[5] = {1000.0, 2.0, 3.4, 7.0, 50.0};
 int threedim[5][10][4];   //多维数组
 #+end_src
 *** 指向数组的指针
-    #+begin_src 
-数组名 是指向&balance[0]的指针,即数组第一个元素的地址
-&是取址运算符，表示后面变量地址    &a
-*是取值运算符，表示取出存放在p位置的值
-Int *p = &a     //把指针p指向存放变量a的地址
-a 变量
-&a 存放a的地址
-P 指针/内存位置
-*p p指针指向地址存放的值    
+**** 指针运算符* &
+     #+begin_src 
+ 数组名 是指向&balance[0]的指针,即数组第一个元素的地址
+ &是取址运算符，表示后面变量地址    &a
+ *是取值运算符，表示取出存放在p位置的值
+ Int *p = &a     //把指针p指向存放变量a的地址
+ a 变量
+ &a 存放a的地址
+ P 指针/内存位置
+ *p p指针指向地址存放的值    
 
-指针是一个变量，其值为其所指向的变量的地址
-    #+end_src
-#+DOWNLOADED: screenshot @ 2019-10-19 17:45:05
-[[file:C++%E8%AF%AD%E8%A8%80_&_linux%E7%B3%BB%E7%BB%9F/2019-10-19_17-45-05_screenshot.png]]
+ 指针是一个变量，其值为其所指向的变量的地址
+     #+end_src
+ #+DOWNLOADED: screenshot @ 2019-10-19 17:45:05
+ [[file:C++%E8%AF%AD%E8%A8%80_&_linux%E7%B3%BB%E7%BB%9F/2019-10-19_17-45-05_screenshot.png]]
+**** 引用符号int& r = i; 
+这里表示r 是 i的别名 他们的值同时变化，并且引用的时候必须初始化
+**** int* a与 int *a
+int* a跟int *a是一样的，只是int *a更严谨，
 *** 字符串序列
 string类包含了所需的标准库
 *** 时间和日期
@@ -4610,6 +4627,243 @@ int main( )
 #+end_src
 cerr: 非缓冲，当即显示
 clog: 缓冲，延迟显示
+*** public private 
+**** 基本说明
+ 类的一个特征就是封装，public和private作用就是实现这一目的。所以：
+
+ 用户代码（类外）可以访问public成员而不能访问private成员；private成员只能由类成员（类内）和友元访问。
+**** 代码示例
+     #+begin_src 
+class Point
+{
+public:
+  void setPoint(int x, int y) //实现setPoint函数
+  {
+    xPos = x;
+    yPos = y;
+  };
+  void printPoint() //实现printPoint函数
+  {
+    cout<< "x = " << xPos << endl;
+    cout<< "y = " << yPos << endl;
+  };
+private:
+  int xPos;
+  int yPos;
+};
+
+class Point2
+{
+public:
+  void setPoint(int x, int y);
+  void printPoint();
+
+private:
+  int xPos;
+  int yPos;
+};     
+     #+end_src
+*** vector向量
+**** 初始化
+     #+begin_src 
+        #include<vector>
+        vector<int> a ;                                //声明一个int型向量a
+        vector<int> a(10) ;                            //声明一个初始大小为10的向量
+        vector<int> a(10, 1) ;                         //声明一个初始大小为10且初始值都为1的向量
+        vector<int> b(a) ;                             //声明并用向量a初始化向量b
+        vector<int> b(a.begin(), a.begin()+3) ;        //将a向量中从第0个到第2个(共3个)作为向量b的初始值     
+
+        int n[] = {1, 2, 3, 4, 5} ;
+        vector<int> a(n, n+5) ;              //将数组n的前5个元素作为向量a的初值
+        vector<int> a(&n[1], &n[4]) ;        //将n[1] - n[4]范围内的元素作为向量a的初值
+     #+end_src
+**** 元素输入与访问
+同数组一样 vector<int> a 
+
+那么调用为： a[0]
+**** 向量的基本操作
+     #+begin_src 
+     1. a.size()                 //获取向量中的元素个数
+    2. a.empty()                //判断向量是否为空
+    3. a.clear()                //清空向量中的元素
+    4. 复制
+        a = b ;            //将b向量复制到a向量中
+    5. 比较
+        保持 ==、!=、>、>=、<、<= 的惯有含义 ;
+        如: a == b ;    //a向量与b向量比较, 相等则返回1
+    6. 插入 - insert
+        ①、 a.insert(a.begin(), 1000);            //将1000插入到向量a的起始位置前
+        ②、 a.insert(a.begin(), 3, 1000) ;        //将1000分别插入到向量元素位置的0-2处(共3个元素)
+        ③、 vector<int> a(5, 1) ;
+            vector<int> b(10) ;
+            b.insert(b.begin(), a.begin(), a.end()) ;        //将a.begin(), a.end()之间的全部元素插入到b.begin()前
+    7. 删除 - erase
+        ①、 b.erase(b.begin()) ;                     //将起始位置的元素删除
+        ②、 b.erase(b.begin(), b.begin()+3) ;        //将(b.begin(), b.begin()+3)之间的元素删除
+    8. 交换 - swap
+        b.swap(a) ;            //a向量与b向量进行交换     
+     #+end_src
+**** 二维向量
+     #+begin_src 
+vector< vector<int> > b(10, vector<int>(5));        //创建一个10*5的int型二维向量     
+     #+end_src
+**** 成员函数
+     #+begin_src 
+c.assign(beg,end)c.assign(n,elem)
+　　将[beg; end)区间中的数据赋值给c。将n个elem的拷贝赋值给c。
+c.at(idx)
+　　传回索引idx所指的数据，如果idx越界，抛出out_of_range。
+c.back()      // 传回最后一个数据，不检查这个数据是否存在。
+c.begin()     // 传回迭代器中的第一个数据地址。
+c.capacity()  // 返回容器中数据个数。
+c.clear()     // 移除容器中所有数据。
+c.empty()     // 判断容器是否为空。
+c.end()       // 指向迭代器中末端元素的下一个，指向一个不存在元素。
+c.erase(pos)  // 删除pos位置的数据，传回下一个数据的位置。
+c.erase(beg,end)  //删除[beg,end)区间的数据，传回下一个数据的位置。
+c.front()     // 传回第一个数据。
+get_allocator // 使用构造函数返回一个拷贝。
+c.insert(pos,elem)    // 在pos位置插入一个elem拷贝，传回新数据位置。
+c.insert(pos,n,elem)  // 在pos位置插入n个elem数据。无返回值。
+c.insert(pos,beg,end) // 在pos位置插入在[beg,end)区间的数据。无返回值。
+c.max_size()       // 返回容器中最大数据的数量。
+c.pop_back()       // 删除最后一个数据。
+c.push_back(elem)  // 在尾部加入一个数据。
+c.rbegin()         // 传回一个逆向队列的第一个数据。
+c.rend()           // 传回一个逆向队列的最后一个数据的下一个位置。
+c.resize(num)      // 重新指定队列的长度。
+c.reserve()        // 保留适当的容量。
+c.size()           // 返回容器中实际数据的个数。
+c1.swap(c2)
+swap(c1,c2)        // 将c1和c2元素互换。同上操作。
+operator[]         // 返回容器中指定位置的一个引用。     
+     #+end_src
+*** unordered-map 字典
+**** 使用方法 
+     #+begin_src 
+#include <unordered_map>     
+
+unordered_map<int, string> myMap={{ 5, "张大" },{ 6, "李五" }};//使用{}赋值
+myMap[2] = "李四";  //使用[ ]进行单个插入，若已存在键值2，则赋值修改，若无则插入。
+myMap.insert(pair<int, string>(3, "陈二"));//使用insert和pair插入
+
+auto iterator = myMap.find(2);//find()返回一个指向2的迭代器
+     #+end_src
+**** .end()
+如果.find()查找不到该元素，则返回.end()
+*** 构造函数和析构函数 类对象的初始化赋值和分配空间清除
+https://blog.csdn.net/sinat_34791632/article/details/88619225
+**** 作用
+构造函数：初始化内存空间，初始化class中的值 好处在于
+
+可以直接写 Line line(10.0); 这样的格式直接给class Line内部的元素len赋值为10.0
+
+析构函数：删除所分配的资源
+**** 构造函数
+1）、类的成员函数名和类名相同
+
+2）、定义时可带有参数
+
+3）、没有返回值类型声明
+
+4）、在没有提供构造函数时，通过类名声明对象会调用默认的构造函数
+
+5）、一般情况下我们需要手工调用构造函数
+**** 析构函数
+1）、C++中的类可以定义一个特殊的成员函数清理对象，这个特殊的成员函数叫析构函数
+
+2）、析构函数没有任何参数和返回值类型
+
+3）、析构函数在对象销毁时自动调用
+**** 代码示例
+
+
+*** :: -> :
+**** ->
+用于指向结构体的指针，整个语句功能，对指针指向的结构体的成员元素进行赋值
+#+begin_src 
+struct role *w //定义一个结构体指针
+w - > level  //对结构体中的成员变量level进行赋值
+#+end_src
+**** ::
+如果a的作用域为类ww时，调用a时用
+#+begin_src 
+class ww
+{
+  public:
+    int a();
+}
+int ww::a()//表示test是属于A的
+{
+ return 0;
+}
+#+end_src
+**** : 函数定义中初始化列表
+下面两种语法等效
+***** 初始化列表
+      #+begin_src 
+  Line::Line( double len): length(len)
+  {
+      cout << "Object is being created, length = " << len << endl;
+  }      
+      #+end_src
+***** 正常函数
+      #+begin_src 
+Line::Line( double len)
+{
+    length = len;
+    cout << "Object is being created, length = " << len << endl;
+}      
+      #+end_src
+** c++代码书写
+*** 写法规范
+1. 与python不同，cpp中每一行结尾都需要加上;
+2. 函数前面 标识return返回值的数据类型比如Int void float
+3. 函数体用大括号，输入参数后面直接换行大括号即可
+4. 大括号内部必须进行缩进
+5. 指针的写法： int* a 
+*** 代码示例
+    #+begin_src 
+#include <iostream>
+using namespace std;
+
+class Point
+{
+public:
+  void setPoint(int x, int y) //实现setPoint函数
+  {
+    xPos = x;
+    yPos = y;
+  };
+  void printPoint() //实现printPoint函数
+  {
+    cout<< "x = " << xPos << endl;
+    cout<< "y = " << yPos << endl;
+  };
+private:
+  int xPos;
+  int yPos;
+};
+
+int main()
+{
+  Point M; //用定义好的类创建一个对象 点M
+  M.setPoint(10, 20); //设置 M点 的x,y值
+  M.printPoint(); //输出 M点 的信息
+  return 0;
+}
+
+class Point2
+{
+public:
+  void setPoint(int x, int y);
+  void printPoint();
+
+private:
+  int xPos;
+  int yPos;
+};    
+    #+end_src
 * Html语言
 ** 配置
 需要web-mode package
@@ -5405,6 +5659,8 @@ print str.join( seq );
 **** 使用stack栈来处理
 数据结构提供思路，需要动手去构建栈，而不是现成的栈给你使用
 *** 21
+** c++版本
+*** 1 
 
 * 人工智能-AI
 ** Paper研读
@@ -5460,7 +5716,36 @@ Step4：生成CART决策树
 算法停止计算的条件是节点中的样本个数小于预定阈值，或样本集的基尼指数小于预定阈值，或者没有更多特征。
 **** python代码实现
 https://shuwoom.com/?p=1452
+** 随机森林
+*** 基本概念
+本质上是决策树，多个决策树组成了随机森林
 
+相对于单个决策树，增强了准确率降低了解释性
+*** 随机性
+1. 训练集大小为N, 随机且又放回的抽样N个训练样本作为该树的训练集
+2. 如果每个样本的特征维度为M，指定一个常数m<<M，随机地从M个特征中选取m个特征子集，每次树进行分裂时，从这m个特征中选择最优的；
+*** 随机森林分类效果（错误率）与两个因素有关：
+森林中任意两棵树的相关性：相关性越大，错误率越大；
+
+森林中每棵树的分类能力：每棵树的分类能力越强，整个森林的错误率越低。（特征越小，看法越片面，分类能力就越弱）
+
+减小特征选择个数m，树的相关性和分类能力也会相应的降低；增大m，两者也会随之增大。所以关键问题是如何选择最优的m（或者是范围），这也是随机森林唯一的一个参数。
+*** 袋外误差率 out of bag error(oob error)
+** 分类与回归
+*** 回归 不需要加上softmax函数
+回归问题的应用场景（预测的结果是连续的，例如预测明天的温度，23，24，25度）
+
+回归问题通常是用来预测一个值，如预测房价、未来的天气情况等等，例如一个产品的实际价格为500元，通过回归分析预测值为499元，我们认为这是一个比较好的回归分析。一个比较常见的回归算法是线性回归算法（LR）。另外，回归分析用在神经网络上，其最上层是不需要加上softmax函数的，而是直接对前一层累加即可。回归是对真实值的一种逼近预测。
+*** 分类
+分类问题的应用场景（预测的结果是离散的，例如预测明天天气-阴，晴，雨）
+
+分类问题是用于将事物打上一个标签，通常结果为离散值。例如判断一幅图片上的动物是一只猫还是一只狗，分类通常是建立在回归之上，分类的最后一层通常要使用softmax函数进行判断其所属类别。分类并没有逼近的概念，最终正确结果只有一个，错误的就是错误的，不会有相近的概念。最常见的分类方法是逻辑回归，或者叫逻辑分类。
+*** 聚类 也成为无监督分类
+如果给定一组样本特征 , 我们没有对应的属性值 , 而是想发掘这组样本在  维空间的分布, 比如分析哪些样本靠的更近，哪些样本之间离得很远, 这就是属于聚类问题
+*** 降维
+如果我们想用维数更低的子空间来表示原来高维的特征空间, 那么这就是降维问题
+
+降维就是希望去除特征的冗余, 用更加少的维数来表示特征.降维算法最基础的就是PCA了, 后面的很多算法都是以PCA为基础演化而来
 * Spring 2018
 ** EE 147
 *** Lab answers
@@ -5739,10 +6024,7 @@ https://blog.csdn.net/OptSolution/article/details/64442962
 1. 在英伟达显卡管理中，设置核心显卡为全局设置即可
 2. 只在外接显示屏上显示 需要禁用核心显卡
 ** autohotkey
-
-
-
-
+使用方法详见Top layers 必备操作集锦
 * 能力
 ** Verify
 自律 时间规划写下来 痛苦比兴趣有用多了（也许对我而言）
