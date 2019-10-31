@@ -4365,6 +4365,34 @@ exit 退出bender系统
 ** cygwin 类Unix的Windows端软件
 ** 在emacs中编译 运行cpp文件
 https://blog.csdn.net/shuxiao9058/article/details/7633054
+*** 代码调试逻辑
+1. 在c++ mode 中写入代码
+2. 用F9直接编译生成a.exe文件,并运行a.exe可执行文件 
+3. 确认编译通过之后，用F5执行编译+运行命令直接输出结果
+3. 使用命令M-x gdb打开调试窗口，并对程序进行测试
+*** 一键编译并运行c++ mode 
+init.el设置代码，并将命令绑定到快捷键F5
+#+begin_src 
+;;一键快速编译并运行 C++-mode
+;;一键快速编译并运行 C++-mode
+(defun your-g++-compile-and-run ()
+  (interactive)
+  (compile (format "g++ %s -g -o %s && %s " (buffer-name (current-buffer)) (substring (buffer-name (current-buffer)) 0 -4) (substring (buffer-name (current-buffer)) 0 -4))))
+(global-set-key [(f5)] 'your-g++-compile-and-run)  ;;快捷键F9
+#+end_src
+*** 一键编译C++ mode 
+init.el设置代码 将编译命令绑定到F9
+研究lisp语言
+http://www.bagualu.net/wordpress/archives/6596#sec-6-4
+     #+begin_src 
+;;一键快速编译 C++-mode
+(defun quick-compile ()
+  "A quick compile funciton for C++"
+  (interactive)
+  (compile (concat "g++ " (buffer-name (current-buffer)) " -g -o " (substring (buffer-name (current-buffer)) 0 -4)))
+  )
+(global-set-key [(f9)] 'quick-compile)  ;;快捷键F9
+     #+end_src
 *** 打开命令行工具的方法
     #+begin_src 
 M-x shell 好用，另开一个shell buffer 
@@ -4386,7 +4414,57 @@ g++ -g -o test.cpp test.exe
      #+end_src
 **** 大型程序
 Makefile
+** debug gdb
+*** emacs打开方式
+M-x gud-gdb 
+或者直接在shell中键入命令 gdb test.exe
+*** 基本调试语法
+**** 设置断点
+     #+begin_src 
+break 函数名
 
+break 行号
+
+break 文件名:函数名
+
+break 文件名:行号
+
+break +偏移量
+
+break -偏移量
+
+break *地址
+
+info break查看断点列表     
+     #+end_src
+**** 删除断点
+     #+begin_src 
+delete <断点id>：删除指定断点
+
+delete：删除所有断点
+
+clear
+
+clear 函数名
+
+clear 行号
+
+clear 文件名：行号
+
+clear 文件名：函数名     
+     #+end_src
+**** 运行 run r 
+**** 变量显示
+     #+begin_src 
+p {var1, var2, var3} 一行显示多个变量
+display {var1, var2, var3} 跟踪自动显示     
+     #+end_src
+**** 单步执行
+单步执行有两个命令next和step，两者的区别是next遇到函数不会进入函数内部，step会执行到函数内部。
+
+如果需要逐条汇编指令执行，可以分别使用nexti和stepi。
+**** 改变变量的值
+“通过set variable <变量>=<表达式>”来修改变量的值。
 ** C++基本语法
 *** 基本符号
 **** <<endl
@@ -5328,6 +5406,39 @@ LSTM可以避免常规RNN的梯度消失
 LSTM在在每个序列索引位置t的门一般包括遗忘门，输入门和输出门三种
 遗忘门（forget gate）顾名思义，是控制是否遗忘的，在LSTM中即以一定的概率控制是否遗忘上一层的隐藏细胞状态
 输入门（input gate）负责处理当前序列位置的输入
+** 决策树
+*** 基本特点
+**** 分类
+ 离散or连续
+**** 特征选择
+最好的决策树是CART分类树 ID3和C4.5用于分类，CART可用于分类与回归
+
+ID3（通过信息增益选择特征）、C4.5（通过信息增益比选择特征）、CART（通过Gini指数选择特征）
+
+CART分类树通过基尼指数选择最优特征，同时决定该特征的最优二值切分点，而ID3和C4.5直接选择最优特征，不用划分。
+**** 划分原则
+使用某特征对数据集划分之后，各数据子集的纯度要比划分钱的数据集D的纯度高（也就是不确定性要比划分前数据集D的不确定性低）
+**** 裁剪 过拟合 用随机森林来做
+决策树容易过拟合，一般需要剪枝来缩小树结构规模、缓解过拟合。
+*** CART分类树 
+**** 算法 
+输入：训练数据集D，停止计算的条件
+
+输出：CART决策树
+
+根据训练数据集，从根结点开始，递归地对每个结点进行以下操作，构建二叉树：
+
+Step1：设结点的训练数据集为D，计算现有特征对该数据集的基尼指数。此时，对每一个特征A，对其可能取的每个值a，根据样本点A=a的测试为“是”或“否”将D分割为D1和D2两部分，利用上式Gini(D,A)来计算A=a时的基尼指数。
+
+Step2：在所有可能的特征A以及他们所有可能的切分点a中，选择基尼指数最小的特征及其对应可能的切分点作为最有特征与最优切分点。依最优特征与最有切分点，从现结点生成两个子节点，将训练数据集依特征分配到两个子节点中去。
+
+Step3：对两个子结点递归地调用Step1、Step2，直至满足条件。
+
+Step4：生成CART决策树
+
+算法停止计算的条件是节点中的样本个数小于预定阈值，或样本集的基尼指数小于预定阈值，或者没有更多特征。
+**** python代码实现
+https://shuwoom.com/?p=1452
 
 * Spring 2018
 ** EE 147
