@@ -4812,7 +4812,28 @@ soup.find(id='primaryconsumers') ul标签中的属性
 soup.find(attrs={'data-custom':'custom'}) ul标签中的data-custom属性 值为custom 属性传递写法
 find_parent() find_parents() 查找父标签
 find_next_siblings() 查找同类  注意：这两个函数一定要先把trs = trs[0]变成一个可以调用的类型
+* github代码库管理 
+** 忽略文件配置
+*** 编写逻辑
+1. 在同级目录，即有.git文件夹的路径下新建.gitignore文件
+2. 将忽略配置写入文件
 
+.gitignore的管理范围是当前路径 因此可以用多个.gitignore对不同文件夹分逻辑管理
+*** 编写代码
+    #+begin_src 
+*.jpg 忽略所有Jpg文件
+!lib.jpg # 但 lib.jpg 除外    
+build # 忽略 build目录， 及下面的文件
+*.[oa] # 忽略*.o和*.a文件
+
+dbg # 忽略dbg文件和dbg目录
+dbg/ # 只忽略dbg目录，不忽略dbg文件
+/dbg # 只忽略当前目录下的dbg文件和目录，子目录的dbg不在忽略范围内
+    #+end_src
+*** 无法commit到远端的问题解决
+**** 方案一
+直接删除.git文件夹即可
+**** 设置.gitignore文件 忽略.git文件夹
 * Algorithems & Data Structure
 ** Sorting 
 *** Insertion sort
