@@ -2528,6 +2528,12 @@ xeCJK 是对中文的支持, tikz 是LaTeX下的绘图包, listings 是对代码
     #+end_src
 * Python 语言
 ** 系列软件安装指南
+*** 稳定版本
+tensorflow 1.15.0
+cudn 10
+cudnn 7.6.4
+
+更换cuda版本只需要更改环境变量的顺序即可
 *** anaconda
 一定记住添加环境变量 dll文件只在anaconda cmd中可以找到，在windows环境中需要设置环境变量才可以
 路径：
@@ -2558,6 +2564,61 @@ conda install -n your_env_name [package]
 删除环境/包
 conda remove -n your_env_name(虚拟环境名称) --all
 conda remove --name your_env_name  package_name  # 删除环境中的某个包
+
+安装指定版本的python
+conda install python=3.6.5
+     #+end_src
+*** 常见问题解决
+**** 版本信息查询工具
+***** cuda版本查询命令
+nvcc -V
+***** tensorflow是否用gpu进行计算
+可以直接在任务管理器中查看cpu gpu使用量
+       #+begin_src 
+python
+import tensorflow as tf
+sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))       
+
+import tensorflow as tf
+a = tf.constant(1)
+b = tf.constant(1)
+c = a + b
+sess = tf.Session(config =tf.ConfigProto(log_device_placement = True))
+print(sess.run(c))
+       #+end_src
+**** 更换cuda版本及cudnn版本之后
+注意事项：
+1. 删除环境变量中的舍弃版本
+2. 重装tensorflow 
+**** tensorflow==1.15安装命令
+cpu-gpu打包安装命令
+#+begin_src 
+pip install --pre "tensorflow==1.15.*"
+#+end_src
+**** pip install 安装package超时
+解决方案在前面设置超时时间
+#+begin_src 
+pip --default-timeout=100 install gevent
+#+end_src
+**** 通过setup.py安装模块
+解压文件
+cmd切换到文件setup.py的目录下
+先执行 python setup.py build
+再执行python setup.py install
+**** 通过whl安装库
+pip install whl
+**** 更改python版本从3.7-3.6之后出现cv2无法import问题
+只需要在cv2的site-package文件夹中将cv2.cp37-win_amd64 替换为cv2.cp36-win_amd64即可
+*** pytorch
+**** 安装环境
+一定要是python3.6.7  
+vs2017 对应cuda 10.0
+vs2019 对应cuda 10.1
+
+**** 如何判断cuda工具包是否可用
+     #+begin_src 
+import torch
+torch.cuda.is_available()     
      #+end_src
 *** Jupyter notebook
 **** EIN：在emacs中使用jupyter notebook
@@ -3711,6 +3772,25 @@ with sv.managed_session() as sess:  # 会自动去logdir中去找checkpoint，�
 第二种方法：sess.run
 total_loss, global_step_count, accuracy_val, mean_IOU_val, _ = sess.run([train_op, global_step, accuracy, mean_IOU, metrics_op])
        #+end_src
+**** argparse 命令行输入工具
+     #+begin_src 
+import argparse
+parser = argparse.ArgumentParser(description='GSCNN')
+parser.add_argument("echo",help="echo the string")
+parser.add_argument('--rescale', type=float, default=1.0,
+                    help='Rescaled LR Rate')
+
+#获取参数
+args = parser.parse_args()
+#定位参数
+args.echo
+args.rescale
+
+# 命令行使用
+python model_lgb.py --type 开飞机 --Tag 1
+
+# --rescale 是可选参数 echo 是定位参数必选
+     #+end_src
 ** 必备操作集锦 
 *** 正则表达式
 **** 库
@@ -4206,6 +4286,92 @@ from tensorflow.python.framework import graph_util
      #+begin_src 
 print([n.name for n in graph.as_graph_def().node])     
      #+end_src
+*** 测试目录是否testdir存在，如果不存在，它将为您创建目录
+    #+begin_src 
+import os  # Import the OS module
+
+MESSAGE = 'The directory already exists.'
+CheckDir = 'testdir'
+try:
+    home = os.path.expanduser("~")  # Set the variable home by expanding the user's set home directory
+
+    if not os.path.exists(CheckDir):  # os.path.join() for making a full path safely
+        print("No directory found for " + CheckDir)  # Output if no directory
+        os.makedirs(CheckDir)  # If not create the directory, inside their home directory
+        print("Directory created for " + CheckDir)
+    else:
+        print(MESSAGE)
+except Exception as e:
+    print(e)    
+    #+end_src
+*** 如何确认库中有没有某个特定的module
+    #+begin_src 
+import scipy.misc
+dir(scipy.misc)    
+    #+end_src
+*** scipy.misc 找不到imread解决方案
+**** 最优解，使用更新的库替换
+     #+begin_src 
+scipy.imageio.imread    替换scipy.misc.imread
+     #+end_src
+**** 库版本
+     #+begin_src 
+pip install Pillow
+pip install scipy==1.1.0
+pip install mkl numpy
+     #+end_src
+*** import future
+在old版本的python中使用新版本的python特性，可以用
+#+begin_src 
+from __future__ import division
+#+end_src
+*** init.py文件的作用
+init.py文件的作用是将文件夹变为一个Python模块，并且批量导入所需要的模块
+init的py文件是一个module的指示器。如果一个文件夹里面有这个py文件，那么它就可以被视为一个包，通过import引入，如果没有，则无法引入
+**** 基本使用方法
+     #+begin_src 
+# package 
+# __init__.py a.py b.py
+import a
+import b
+
+# unit.py 
+import package 
+print(package.a package.b)     
+     #+end_src
+**** 用all方法
+     #+begin_src 
+# __init__.py a.py b.py
+__all__ = ['a', 'b']
+
+# c.py
+from utils import *
+unitls.a unitls.b
+     #+end_src
+**** 常见问题解决方案
+***** 综合整理
+      #+begin_src 
+报错Subprocess.CalledProcessError:Command ‘[‘ninja’,’-v’]’ returned non-zero exit status 1.
+参考：https://zhuanlan.zhihu.com/p/53418563
+解决方法是：修改…Anaconda3/Lib/site-packages/torch/utils/cpp_extension.py文件
+将[‘ninja’,’-v’]改成[‘ninja’,’–v’]
+
+subprocess.CalledProcessError: Command ‘[‘where’, ‘cl’]’ returned non-zero exit status 1.
+这个问题是因为电脑安装的VS2017，没有将编译器路径加入环境变量。解决方法参考链接为https://blog.csdn.net/qing666888/article/details/83246992
+
+
+      
+      #+end_src
+***** 找不到cl.exe 
+添加下述路径到环境变量 该路径含有cl.exe
+      #+begin_src 
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\bin\Hostx64\x64       
+      #+end_src
+***** ninja -v 返回值异常
+将对应位置的代码 -v修改为 --version
+#+begin_src 
+修改Anaconda3/Lib/site-packages/torch/utils/cpp_extension.py文件
+#+end_src
 * Matlab语言
 ** 知识补充 cell的使用
 *** 将矩阵保存到cell里面，从而用一个for循环索引cell的编号来画图
@@ -4370,7 +4536,8 @@ https://blog.csdn.net/shuxiao9058/article/details/7633054
 1. 在c++ mode 中写入代码
 2. 用F9直接编译生成a.exe文件,并运行a.exe可执行文件 
 3. 确认编译通过之后，用F5执行编译+运行命令直接输出结果
-3. 使用命令M-x gdb打开调试窗口，并对程序进行测试
+4. 直接在cpp中打印想要查看的变量，通过F5运行来查看结果
+4. 使用命令M-x gdb打开调试窗口，并对程序进行测试
 *** 一键编译并运行c++ mode 
 init.el设置代码，并将命令绑定到快捷键F5
 #+begin_src 
@@ -4415,6 +4582,9 @@ g++ -g -o test.cpp test.exe
      #+end_src
 **** 大型程序
 Makefile
+*** 必备操作集锦
+**** 多行代码块批量缩进
+不同于python EIN模式，c++ mode可以直接选中区域，TAB即可
 ** debug gdb
 *** emacs打开方式
 M-x gud-gdb 
@@ -4581,20 +4751,26 @@ int threedim[5][10][4];   //多维数组
 #+end_src
 *** 指向数组的指针
 **** 指针运算符* &
-     #+begin_src 
- 数组名 是指向&balance[0]的指针,即数组第一个元素的地址
- &是取址运算符，表示后面变量地址    &a
- *是取值运算符，表示取出存放在p位置的值
- Int *p = &a     //把指针p指向存放变量a的地址
- a 变量
- &a 存放a的地址
- P 指针/内存位置
- *p p指针指向地址存放的值    
+***** 易混淆含义
+      #+begin_src 
+int *p = & a 中
+实际上的表述应为 int* p = & a 也即=右边的表达式应该为一个指针 这里之所以写成Int *p是为了便于多个变量赋值的时候含义明确      
+      #+end_src
+***** 说明
+      #+begin_src 
+  数组名 是指向&balance[0]的指针,即数组第一个元素的地址
+  &是取址运算符，表示后面变量地址    &a
+  *是取值运算符，表示取出存放在p位置的值
+  Int *p = &a     //把指针p指向存放变量a的地址
+  a 变量
+  &a 存放a的地址
+  P 指针/内存位置
+  *p p指针指向地址存放的值    
 
- 指针是一个变量，其值为其所指向的变量的地址
-     #+end_src
- #+DOWNLOADED: screenshot @ 2019-10-19 17:45:05
- [[file:C++%E8%AF%AD%E8%A8%80_&_linux%E7%B3%BB%E7%BB%9F/2019-10-19_17-45-05_screenshot.png]]
+  指针是一个变量，其值为其所指向的变量的地址
+      #+end_src
+  #+DOWNLOADED: screenshot @ 2019-10-19 17:45:05
+  [[file:C++%E8%AF%AD%E8%A8%80_&_linux%E7%B3%BB%E7%BB%9F/2019-10-19_17-45-05_screenshot.png]]
 **** 引用符号int& r = i; 
 这里表示r 是 i的别名 他们的值同时变化，并且引用的时候必须初始化
 **** int* a与 int *a
@@ -4776,8 +4952,6 @@ https://blog.csdn.net/sinat_34791632/article/details/88619225
 
 3）、析构函数在对象销毁时自动调用
 **** 代码示例
-
-
 *** :: -> :
 **** ->
 用于指向结构体的指针，整个语句功能，对指针指向的结构体的成员元素进行赋值
@@ -4786,20 +4960,46 @@ struct role *w //定义一个结构体指针
 w - > level  //对结构体中的成员变量level进行赋值
 #+end_src
 **** ::
-如果a的作用域为类ww时，调用a时用
-#+begin_src 
-class ww
+***** 用法1 作用域限定符
+ 如果a的作用域为类ww时，调用a时用
+
+ 作用域限定符，当在类体中直接定义函数时，不需要在函数名字的前面加上类名，但是在类体外实现函数定义的时候，必须加上类名并且加上作用域限定
+
+ C++为例避免不同的类有名称相同的成员而采用作用域的方式进行区分
+ #+begin_src 
+ class ww
+ {
+   public:
+     int a();
+ }
+ int ww::a()//表示test是属于A的
+ {
+  return 0;
+ }
+ #+end_src
+***** 用法2 
+调用静态变量
+ #+begin_src 
+class Point
 {
-  public:
-    int a();
-}
-int ww::a()//表示test是属于A的
-{
- return 0;
-}
-#+end_src
+public:
+  static int cPos;
+};
+
+int Point::cPos = 10;
+
+int main(){
+    cout<< "cPos = " << M.cPos << endl;
+};
+ #+end_src
 **** : 函数定义中初始化列表
 下面两种语法等效
+***** 用法示例 
+两种写法完全等效
+      #+begin_src 
+ListNode(int x) { val = x; next = NULL;} 
+ListNode(int x) : val(x), next(NULL) {}
+      #+end_src
 ***** 初始化列表
       #+begin_src 
   Line::Line( double len): length(len)
@@ -4815,6 +5015,82 @@ Line::Line( double len)
     cout << "Object is being created, length = " << len << endl;
 }      
       #+end_src
+*** new关键字的
+**** 用法
+ 实际上相当于3部
+ 1. 调用operator new分配内存，operator new (sizeof(A)) 
+ 2. 调用构造函数生成类对象，A::A() 
+ 3. 返回相应指针 
+
+ 另外也可以用两行代码来替代
+ #+begin_src 
+ ListNode l1(1)
+ ListNode *phead = &l1
+ #+end_src
+**** 代码书写
+     #+begin_src 
+string *ps = new string("hello world");
+ListNode* pNode = new ListNode(0);     
+     #+end_src
+*** typedef
+用typedef简化复杂的声明和定义 相当于给某种复杂的数据类型起一个别名，方便多次使用
+*** template 模板
+使用模板的目的就是能够让程序员编写与类型无关的代码
+**** 函数模板
+     #+begin_src 
+template<typename T> // 这里typename关键字可以换为 class T为形参
+int compare(const T& left, const T& right) {
+  if (left < right) {
+    return -1; 
+  }
+  if (right < left) {
+    return 1; 
+  }
+  return 0;
+}
+ 
+compare<int>(1, 2); //使用模板函数
+     #+end_src
+     #+begin_src 
+template <模板形参表>
+<返回值类型>  <函数名>（模板函数形参表）
+{
+      //函数定义体
+}     
+     #+end_src
+**** 类模板
+类模板与函数模板的区别在于作用域不同，一个作用于函数一个作用于类
+     #+begin_src 
+template <class T>
+class Stack { 
+  private: 
+    vector<T> elems;     // 元素 
+ 
+  public: 
+    void push(T const&);  // 入栈
+    void pop();               // 出栈
+    T top() const;            // 返回栈顶元素
+    bool empty() const{       // 如果为空则返回真。
+        return elems.empty(); 
+    } 
+};      
+     #+end_src
+*** #define语句
+相当于简单的文本替换，跟函数有区别
+#+begin_src 
+#define MAXTIME 1000
+#+end_src
+跨平台和系统的大型软件，进行条件编译
+#+begin_src 
+#ifdef WINDOWS
+……
+……
+#endif
+#ifdef LINUX
+……
+……
+#endif
+#+end_src
 ** c++代码书写
 *** 写法规范
 1. 与python不同，cpp中每一行结尾都需要加上;
@@ -5397,8 +5673,198 @@ F(n) = F(n-1) + F(n-2)是阶段之间的状态转移公式，它是动态规划�
 
 必须注意的是策略的选择必须具备无后效性，即某个状态的选择不会影响到之前的状态，只与当前状态有关，所以对采用的贪婪的策略一定要仔细分析其是否满足无后效性
 *** 摊还分析
+* Algorithems & Data Structure 2019 11 02
+** 学习思想及标准
+算法与数据结构是一种思想，一种方法，一种思维方式 
+1. 吃透彻 代码用法 使用场景 核心思想
+2. python跑通算法
+3. 精通cpp语言
+4. cpp跑通算法
+
+LeetCode代码为准 把数据结构细节跑通
+** 10个数据结构+10种算法
+*** 数组
+**** 数组
+***** sizeof运算符 求数组长度
+      #+begin_src 
+      int a1[5] = {1, 2, 3};  // other element will be set as the default value
+      int size = sizeof(a1) / sizeof(*a1);      //sizeof(a1[0])结果永远是4
+      int size = sizeof(a1) / sizeof(a1[0]);     
+      #+end_src
+***** sort排序
+      #+begin_src 
+   sort(a1, a1 + size); //a1本身表示指针，a1+size表示数组末尾元素的地址     
+   sort(start, end, compare)
+      #+end_src
+***** 枚举数组所有元素
+****** 写法一
+       #+begin_src 
+   cout << "[Version 1] The contents of a1 are:";
+   for (int i = 0; i < size; ++i) {
+     cout << " " << a1[i];
+   }      
+       #+end_src
+****** 写法二
+       #+begin_src 
+   cout << "[Version 2] The contents of a1 are:";
+   for (int& item: a1) {
+     cout << " " << item;
+   }      
+       #+end_src
+**** 动态数组 vector 解决内存浪费
+***** 将数组转换为vector
+      #+begin_src 
+  vector<int> v0;
+  vector<int> v1(5, 0); 5个元素 初始值为0
+  // 2. make a copy
+  vector<int> v2(v1.begin(), v1.end());
+  vector<int> v3(v2);
+  int a[5] = {0, 1, 2, 3, 4};
+
+  vector < int > v4(a, a+4)
+  vector<int> v4(a, *(&a + 1));      
+      #+end_src
+***** 求数组长度
+      #+begin_src 
+  cout << "The size of v4 is: " << v4.size() << endl;      
+      #+end_src
+***** sort排序
+      #+begin_src 
+  // 7. sort
+  sort(v4.begin(), v4.end());      
+      #+end_src
+***** 添加删除元素
+      #+begin_src 
+  // 8. add new element at the end of the vector
+  v4.push_back(value);
+  // 9. delete the last element
+  v4.pop_back();      
+  // 10. 在a.begin()+1 位置插入一个元素，值为5
+  a.insert(a.begin()+1,5); 
+  // 11. 在a.begin()+1 位置插入3个元素，值为5
+  a.insert(a.begin()+1, 3, 5); 
+  // 12. 在a.begin()+1 位置插入数组b的b+3, b+5个元素，不包括b+6
+  a.insert(a.begin()+1,b+3,b+6); //b为数组，在a的第1个元素（从第0个算起）的位置插入b的第3个元素到第5个元素（不包括b+6），如b为1,2,3,4,5,9,8 ，插入元素后为1,4,5,9,2,3,4,5,9,8
+      #+end_src
+**** 二维数组
+**** 字符串
+***** 简介
+ 字符串实际上是一个Unicode字符 数组，所有数组操作都可以用
+***** 额外操作
+      #+begin_src 
+#include <iostream>
+
+int main() {
+    string s1 = "Hello World";
+    // 1. concatenate
+    s1 += "!";
+    cout << s1 << endl;
+    // 2. find
+    cout << "The position of first 'o' is: " << s1.find('o') << endl;
+    cout << "The position of last 'o' is: " << s1.rfind('o') << endl;
+    // 3. get substr
+    cout << s1.substr(6, 5) << endl;
+}     
+      #+end_src
+***** substr 截取子串
+      #+begin_src 
+#include<string>
+#include<iostream>
+using namespace std;
+int main()
+{
+    string x="Hello_World";
+    /*默认截取从0到npos.重载原型为string substr(_off=0,_count=npos);npos一般表示为string类中不存在的位置,_off表示字符串的开始位置，_count截取的字符的数目*/
+    cout<<x.substr()<<endl;
+    cout<<x.substr(5)<<endl;//截取x[5]到结尾，即npos.重载原型为string substr(_off,_count=npos)
+    cout<<x.substr(0,5)<<endl;//以x[0]为始，向后截取5位（包含x[0]），重载原型string substr(_off,_count)
+    /*
+    备注：
+    指定的截取长度加起始位置即_off+_count>源字符串的长度，则子字符串将延续到源字符串的结尾
+    */
+}      
+      #+end_src
+*** 链表 
+**** 单链表
+***** 初始化赋值
+      #+begin_src 
+TreeNode(int x) : val(x), left(NULL), right(NULL) {} //把x赋给val，left和right赋值NULL      
+      #+end_src
+***** 代码示例 
+      #+begin_src 
+// Definition for singly-linked list.
+struct SinglyListNode {
+    int val;
+    SinglyListNode *next;
+    SinglyListNode(int x) : val(x), next(NULL) {}
+};      
+      #+end_src
+***** 添加操作
+与数组不同，我们不需要将所有元素移动到插入元素之后。因此，您可以在 O(1) 时间复杂度中将新结点插入到链表中，这非常高效。
+
+众所周知，我们使用头结点来代表整个列表。因此，在列表开头添加新节点时更新头结点 head 至关重要。
+** 数据结构c++语言清华大学邓俊辉
+*** 复杂度
+**** 时间复杂度 
+渐进上界：最差情况 O(n)
+渐进下界：最好情况 ou(n)
+**** 空间复杂度
+时间复杂度是空间复杂度的天然上界
+**** 常数O(1)
+*** 递归
+自我调用
+**** 数组求和算法 线性递归版
+计算n的元素和 = 计算前n-1个元素的和 + 第n个元素
+
+减而治之的思想
+*** 抽象数据类型 ADT
+**** 数组
+连续地址单元 元素A[i]对应的物理地址为：A + i x S 其中S 一般为4 byte 
+**** ADT接口
+应该支持多种操作接口
+size() get() put()等等
+*** 列表 
+从数组的静态存储方式更改为动态存储，其物理地址不需要连续，添加、删除操作所需要的时间大大缩小
+*** 栈与队列
+栈：只在顶部 后进先出lifo
+队列：银行排队 先进先出fifo
+*** 二叉树
+**** 有根树的定义
+根节点 节点 边
+***** 深度
+每个节点v到根节点r所经过边的数目，称作v的深度
+***** 度数
+节点v的孩子总数（恰好比v低一层的子节点）称为度数或者度
+***** 无孩子的节点称为叶节点
+包括根在内的其他节点称为内节点
+***** 树的高度
+树中所有节点深度的最大值称作树的高度
+**** 二叉树
+每个节点的度数都不超过2
+不含一度节点的二叉树称为真二叉树
+**** 有根数 -> 二叉树
+左儿子右兄弟 引申规则：右兄弟 那么兄弟连成一条线
+**** 二叉树的实现
+基本组成实体 节点
+*** 图
+**** 基本概念
+G = (V, E) 顶点 和 边
+***** 度数
+与顶点v关联的边数称为v的度数
+***** 简单图
+不含任何自环的图
+***** 邻接矩阵
+图的最基本的实现方式
+***** 邻接表
+邻接矩阵空间效率低，换为表的形式
+*** 搜索树
 
 * LeetCode学习
+** 学习策略及逻辑
+1. 第一遍对题目用到的c++语法全部熟悉
+2. 第二遍对题目用到的算法思想
+3. 尝试自己手写全部题目
+4. 尝试优化答题思路
 ** 正序题号
 *** 哈希表 Hash table
 **** 数据类型比较
@@ -5661,7 +6127,11 @@ print str.join( seq );
 *** 21
 ** c++版本
 *** 1 
+**** 时间复杂度 
+https://blog.csdn.net/qq_41523096/article/details/82142747
 
+经典的4种时间复杂度
+O（1）< O（logn）< O（n）< O（n^2）
 * 人工智能-AI
 ** Paper研读
 *** Dr. Amit
@@ -6021,29 +6491,68 @@ https://blog.csdn.net/OptSolution/article/details/64442962
 **** 问题描述
  如果关闭笔记本显示器，只在外接显示屏上显示，会出现卡顿问题，原因在于使用了核心显卡作为图像处理显卡
 **** 解决方案
-1. 在英伟达显卡管理中，设置核心显卡为全局设置即可
-2. 只在外接显示屏上显示 需要禁用核心显卡
+***** 方案一 最优解
+ 在英伟达显卡管理中，设置独立显卡为全局设置即可 核心显卡可以保持开启，但是一定要在管理3D设置中电源管理模式修改为最高性能有限。
+***** 方案二 禁用核心显卡即可 但是会影响夜间模式等功能
+ 只在外接显示屏上显示 需要禁用核心显卡
 ** autohotkey
 使用方法详见Top layers 必备操作集锦
+** vpn使用
+*** NordVPN
+目前有效的方法，每次使用网上提供的最新的服务器
+** linux环境
+*** ssh登录用法
+ssh yangyixin@10.106.20.31
+*** vim编辑器基本使用方法
+ Ecs 切换输入模式和命令模式
+**** 文件管理
+  #+begin_src 
+  :q  退出
+  :wq 保存并退出
+  :q! 不保存并退出
+  :w 保存
+  :w! 强行保存
+  :wq --> :x
+  #+end_src
+**** 编辑 
+     #+begin_src 
+     i: 在当前光标所在字符的前面，转为输入模式；
+     a: 在当前光标所在字符的后面，转为输入模式；
+     o: 在当前光标所在行的下方，新建一行，并转为输入模式；
+     I：在当前光标所在行的行首，转换为输入模式
+     A：在当前光标所在行的行尾，转换为输入模式
+     O：在当前光标所在行的上方，新建一行，并转为输入模式；    
+     #+end_src
+*** ssh之后退出当前登录
+exit
 * 能力
+** Top Layers
+学习效率 我要做什么 解决问题的标准流程
+
+状态保持：兴趣 克制 心如止水 正反馈机制 实践出真知 状态是目标 包含了相关的能力
+
+问题解决：分步 建立标准流程 分点-定点 两点：要解决什么问题，关键点出在哪里
+
+能力总结：一定要越详细越具体越好
+
+思想永远比勤奋更重要
+** 问题处理流程
+
 ** Verify
-自律 时间规划写下来 痛苦比兴趣有用多了（也许对我而言）
+自律 时间规划写下来 正反馈机制
 ** Demo
- - 计划 痛苦 专注 框架 效率 兴趣 
+ - 计划 框架 学习能力 学习效率 兴趣 正反馈机制 实践出真知
  - 劳逸结合 精力分配 休息的频率 脑力体力转换 方法>>努力
  - 规划设计
-** 时间规划
-概览：PPT 英语 AI C++ 能力实践
-#+CAPTION: 每日计划
-| 时间 | 事项         |
-|------+--------------|
-| 2hr  | 英语听力学习 |
-|      |              |
+** 核心能力 精简版
+*** 效率提升 + 解决能力
+带着目的去处理问题 分类 精准定位 问题到底出在哪里
 
+信息熵 
 ** 顶层设计
 *** 能力测试
 生活=程序 尝试=验证 数字化
-***  状态保持
+*** 状态保持
 **** 能力检索
 - 状态调整 痛苦 专注 框架 效率 兴趣
 - 状态调整 思维永生 黑暗 兴趣
@@ -6062,57 +6571,65 @@ https://blog.csdn.net/OptSolution/article/details/64442962
 *** 神级分析能力：
 - 模仿
 - 控制变量
-** 分析能力
-- 提炼
-- 细化
-** 处理问题
-- Google 搜索获取知识 优先找实例
-- 参考知识库
-- 控制变量
-** 状态保持
-- 优先级分类
-- 能力分类检索
-** 时间规划：
-- 合理分配决定体量
-- 最大化产能
-- 上限：最优绝对学习时间
-- 精力分配 取舍 分轻重缓急
-** 学习效率 
-- 总结：理解透彻 模仿实例 控制变量debug
-- 最高效的方法是：找实例，仿写，活用
-- 问题分类：理解类，实用类
-** 学习专注
-- 绝望 足够痛苦 不惜一切代价压迫
-- 音乐兴趣   本身知识兴趣
-- 信仰永生
-- 兴趣 提升-持续投入
-** 学习类型
-- 理解类：
-- 上课：特点  怎么用
-- 程序 实用 类：通过实例，程序来理解 视频或者实例
-- 做题，处理类：
-- 总结 知识归纳类：
-** 作业-文本表述能力
-- 简扼描述
-- 参考paper的表述逻辑
-- 养成academic integrity习惯
-** 英语听力
-- 专注语音信息
-- 实体化 音频为问题
-- 语义分析，着重提供的信息
-** 乒乓球
-- 专注：预测
-- 脚步：转体
-- 借力回推：不发力
+** 能力树
+*** 时间规划
+ 概览：PPT 英语 AI C++ 能力实践
+ #+CAPTION: 每日计划
+ | 时间 | 事项         |
+ |------+--------------|
+ | 2hr  | 英语听力学习 |
+ |      |              |
+*** 分析能力
+ - 提炼
+ - 细化
+*** 处理问题
+ - Google 搜索获取知识 优先找实例
+ - 参考知识库
+ - 控制变量
+*** 状态保持
+ - 优先级分类
+ - 能力分类检索
+*** 时间规划：
+ - 合理分配决定体量
+ - 最大化产能
+ - 上限：最优绝对学习时间
+ - 精力分配 取舍 分轻重缓急
+*** 学习效率 
+ - 总结：理解透彻 模仿实例 控制变量debug
+ - 最高效的方法是：找实例，仿写，活用
+ - 问题分类：理解类，实用类
+*** 学习专注
+ - 绝望 足够痛苦 不惜一切代价压迫
+ - 音乐兴趣   本身知识兴趣
+ - 信仰永生
+ - 兴趣 提升-持续投入
+*** 学习类型
+ - 理解类：
+ - 上课：特点  怎么用
+ - 程序 实用 类：通过实例，程序来理解 视频或者实例
+ - 做题，处理类：
+ - 总结 知识归纳类：
+*** 作业-文本表述能力
+ - 简扼描述
+ - 参考paper的表述逻辑
+ - 养成academic integrity习惯
+*** 英语听力
+ - 专注语音信息
+ - 实体化 音频为问题
+ - 语义分析，着重提供的信息
+*** 乒乓球
+ - 专注：预测
+ - 脚步：转体
+ - 借力回推：不发力
 
-** 论文阅读、文献理解
-换位思考，如果你是作者你会怎么处理你的论文
-** PPT制作
-把文字内容简化、提炼
-以图表，时间轴等形式图形化展示出来
-** 英语听力
-精听：
-跟读：
+*** 论文阅读、文献理解
+ 换位思考，如果你是作者你会怎么处理你的论文
+*** PPT制作
+ 把文字内容简化、提炼
+ 以图表，时间轴等形式图形化展示出来
+*** 英语听力
+ 精听：
+ 跟读：
 * 技能提升
 ** 思路 
 1. 完成项目
