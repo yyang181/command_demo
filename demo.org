@@ -3791,6 +3791,29 @@ python model_lgb.py --type 开飞机 --Tag 1
 
 # --rescale 是可选参数 echo 是定位参数必选
      #+end_src
+** Docker部署
+*** 准备工作
+**** requirements.txt 
+通过pip freeze 生成
+#+begin_src 
+pip freeze > requirements.txt
+#+end_src
+**** Dockerfile 
+     #+begin_src 
+#基于的基础镜像
+FROM python:3.7
+
+#代码添加到code文件夹
+ADD ./EF_NFCS /code
+
+# 设置code文件夹是工作目录
+WORKDIR /code
+
+# 安装支持
+RUN pip install -r requirements.txt     
+     #+end_src
+
+
 ** 必备操作集锦 
 *** 正则表达式
 **** 库
@@ -6499,6 +6522,7 @@ https://blog.csdn.net/OptSolution/article/details/64442962
 使用方法详见Top layers 必备操作集锦
 ** vpn使用
 *** NordVPN
+最有效：使用手机热点登录
 目前有效的方法，每次使用网上提供的最新的服务器
 ** linux环境
 *** ssh登录用法
