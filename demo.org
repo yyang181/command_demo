@@ -495,6 +495,7 @@ M– M-l	negtive-argument; downcase-word
 #+end_src
 *** 取消每次打开.py文件都要询问一次是否载入python layer
 (add-to-list 'auto-mode-alist '("\\.py?\\'" . python-mode))
+此外，如果.py文件的开头有类似于#usr/bin/python3等代码，会设置python的默认版本，也会引发询问python layer的过程。
 *** 设置emacs默认的python版本，cmd输入python打开的版本
 **** emacs eshell默认python
 (setq python-python-command "d:/anaconda/python.exe")
@@ -4395,6 +4396,12 @@ C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.2
 #+begin_src 
 修改Anaconda3/Lib/site-packages/torch/utils/cpp_extension.py文件
 #+end_src
+*** 如何用python批量复制文件
+    #+begin_src 
+from shutil import copyfile
+
+copyfile(source_file, des)    
+    #+end_src
 * Matlab语言
 ** 知识补充 cell的使用
 *** 将矩阵保存到cell里面，从而用一个for循环索引cell的编号来画图
@@ -5383,6 +5390,8 @@ dbg # 忽略dbg文件和dbg目录
 dbg/ # 只忽略dbg目录，不忽略dbg文件
 /dbg # 只忽略当前目录下的dbg文件和目录，子目录的dbg不在忽略范围内
     #+end_src
+*** 注意事项
+注意：如果你创建.gitignore文件之前就push了某一文件，那么即使你在.gitignore文件中写入过滤该文件的规则，该规则也不会起作用，git仍然会对该文件进行版本管理。
 *** 无法commit到远端的问题解决
 **** 方案一
 直接删除.git文件夹即可
