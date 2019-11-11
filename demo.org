@@ -6830,3 +6830,10 @@ https://mail.google.com/mail/u/1/#inbox/162f9d4479616148
 
   #+RESULTS:
 
+* emacs版本控制文件位置
+** 20191111
+1. U盘
+
+2. google drive 个人电脑ThinkPad X1 Extreme牧原文件夹
+
+3. google drive 我的云端硬盘emacs文件夹
