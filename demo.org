@@ -1317,6 +1317,14 @@ M-x bookmark-delete	删除书签
 因此，修改文件即可
 **** 需要修改init.el中的语句
 auctex-12.1.1库中只有preview.el文件
+** emacs使用总结
+   #+begin_src 
+使用xelatex作为latex编译工具，支持中文
+
+C-c C-c 选择xelatex编译pdf
+
+C-c C-v 直接查看生成的pdf文件   或者C-c C-c选择view
+   #+end_src
 ** auctex/preview使用方法
 *** auctex
 **** latex编写的过程中快速插入快捷键
@@ -6569,8 +6577,15 @@ exit
 能力总结：一定要越详细越具体越好
 
 思想永远比勤奋更重要
-** 问题处理流程
 
+项目 + 能力 跳出舒适区
+
+英语
+** 问题处理流程
+*** 解决问题的思想
+不能只提供思路，要有方案和细节
+
+个人价值和定位
 ** Verify
 自律 时间规划写下来 正反馈机制
 ** Demo
