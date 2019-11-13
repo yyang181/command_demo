@@ -298,6 +298,42 @@ C-c C-x C-v org-taggle-inline-images
 **** 问题解决
 如果出现无法插入图片的情况，可以尝试先建立文件夹
 *** 正则表达式
+**** 测试
+正则表达式测试工具
+https://c.runoob.com/front-end/854
+     #+begin_src 
+asadfjlsdjflsb sadflkjsdal sadfjl
+c.b
+
+c.d cdd
+abbcdd abb cdd      
+     #+end_src
+**** 最常用的命令集合
+     #+begin_src 
+"." 一个匹配除了换行符(newline)之外任何单个字符的特殊字符 a.b   任意字符
+"*" 表示某个前导表达式重复任意次 “fo*”: “f”, “fo”, “foo”     重复字符
+
++ 匹配前导表达式至少一次的出现 “ca+r”匹配串“car”和“caaaar”，不匹配“cr” 至少一次
+? 匹配前导表达式至多一次的出现 “ca?r”仅仅匹配“car”或“cr”              至多一次
+
+^ 仅仅匹配在文本中行首的那个空串的特殊字符。就是说，“^foo”匹配在行首的 “foo”  设定查找位置行首
+$ 和“^”相似，但仅匹配行尾的空串。因此“x+$”匹配在行尾的一个或多个“x” 的串     设定查找位置行尾
+
+[0-9]{1,2} 表示个数，数字个数为1-2的字符串
+
+最好得方法：
+精准匹配，用字符串替换的思想
+
+删除保留可选
+前瞻：
+exp1(?=exp2) 查找exp2前面的exp1
+后顾：
+(?<=exp2)exp1 查找exp2后面的exp1
+负前瞻：
+exp1(?!exp2) 查找后面不是exp2的exp1
+负后顾：
+(?<!=exp2)exp1 查找前面不是exp2的exp1
+     #+end_src
 **** 学习链接网站
 https://blog.csdn.net/hljqfl/article/details/86483206
 https://blog.csdn.net/zzllabcd/article/details/5895952
@@ -441,16 +477,6 @@ exp1(?!exp2) 查找后面不是exp2的exp1
 贪婪与非贪婪模式
 .* 贪婪模式 尽可能多的匹配
 .*? 非贪婪模式，第一次匹配到就结束匹配
-     #+end_src
-**** 测试
-正则表达式测试工具
-https://c.runoob.com/front-end/854
-     #+begin_src 
-asadfjlsdjflsb sadflkjsdal sadfjl
-c.b
-
-c.d cdd
-abbcdd abb cdd      
      #+end_src
 *** undo-redo undo-tree
     #+begin_src 
@@ -2429,6 +2455,12 @@ https://blog.csdn.net/afei__/article/details/51464783
     #+end_src
 *** 
 ** org-latex
+*** 使用细则
+1. orm-mode中C-c C-e l l 生成tex文件
+2. 删除tex文件第一行时间信息，并且同时打开.tex .org文件
+3. 使用latex编译生成pdf的步骤对pdf进行修改，C-c C-c编译 C-c C-v修改
+
+org-mode和latex的书写规范一样，空一行代表换行
 *** 步骤
 **** pdf文件生成
  1. C-c C-e l l 生成latex
@@ -3148,6 +3180,18 @@ print(np.random.randint(1,5))
  plt.plot()         
      #+end_src
 **** 多个图像同时显示的方法
+***** 调试验证 画图
+用plot.subplot或者直接画两个图即可 最优的画图选择
+示例代码
+#+begin_src 
+plt.figure(figsize=(20,10))
+plt.imshow(image)
+plt.savefig(photo_dir+"/image_" + str(i))
+
+plt.figure(figsize=(20,10))
+plt.imshow(mask)      
+plt.savefig(photo_dir+"/image_" + str(i))
+#+end_src
 ***** subplot 优点，维度可扩展 写法复杂
       #+begin_src 
  %matplotlib inline
@@ -3165,7 +3209,104 @@ print(np.random.randint(1,5))
       vis = np.concatenate((im, book), 1) # axis = 1 标识横向排列 
       cv2.imwrite('vis.jpg', vis)      
       #+end_src
+**** cv2读取文件格式为BRG需要先转换为RBG之后才能正确显示
+代码为
+#+begin_src 
+import cv2
+import numpy as np
 
+img = cv2.imread("1 (1).jpg")
+
+# BRG转换为RBG
+image = image[...,::-1]
+
+hsv=cv2.cvtColor(img,cv2.COLOR_BGR2HSV)#HSV空间
+#+end_src
+*** jupyter notebook实时调整参数输出结果
+必须在浏览器版本的jupyter中可用，emacs版本中的EIN不行
+**** 函数调用
+详情见advanced-line-detection项目
+     #+begin_src 
+ import cv2
+ import numpy as np
+ import matplotlib.pyplot as plt
+ from perspective_regionofint_main import *
+ from thresholding_main import *
+ from ipywidgets import interactive, interact, fixed
+
+ #used in interactive thresholding operation
+ writeup = 1
+ #used in interactive thresholding operation
+ verbose_threshold = 1
+
+ img = cv2.imread("1 (9).jpg")
+ imshape = img.shape
+ img = img[...,::-1]
+
+ hsv=cv2.cvtColor(img,cv2.COLOR_BGR2HSV)#HSV空间
+
+ vertices = np.array([[(.55*imshape[1], 0.6*imshape[0]), (imshape[1],imshape[0]),
+                       (0,imshape[0]),(.45*imshape[1], 0.6*imshape[0])]], dtype=np.int32)
+
+ dst1 = region_of_interest(dst, vertices)
+
+ #Threshold operation for debuggin only
+ s_thl = 0
+ s_thh = 50
+ v_thl = 80
+ v_thh = 110
+ if writeup == 1:
+     if verbose_threshold == 1:
+         interact (thresholding_interative, img=fixed(img), adp_thr = (0,255), k_size = (1,31,2), grad_thx_min =(0,255), 
+                   grad_thx_max =(0,255),
+                   grad_thy_min =(0,255), grad_thy_max = (0,255), mag_th_min = (0,255),
+                   mag_th_max = (0,255), dir_th_min  = (0,2,0.1), dir_th_max = (0,2,.1), 
+                   s_threshold_min = (s_thl,s_thh), 
+                   s_threshold_max = (s_thl,s_thh), v_threshold_min = (v_thl,v_thh), v_threshold_max = (v_thl,v_thh));    
+     #+end_src
+**** 需要调参的函数内容
+     #+begin_src 
+def thresholding_interative(img, grad_thx_min =211, grad_thx_max =255,grad_thy_min =0, grad_thy_max = 25, mag_th_min = 150,mag_th_max = 255, dir_th_min  = 0.7, dir_th_max = 1.3, s_threshold_min = 113, s_threshold_max = 255, v_threshold_min = 234, v_threshold_max = 255,  k_size = 15, adp_thr = 250):
+    # Convert to HSV color space and separate the V channel
+    imshape = img.shape
+
+    #vertices = np.array([[(.65*imshape[1], 0.65*imshape[0]), (imshape[1],imshape[0]),
+    #                    (0,imshape[0]),(.35*imshape[1], 0.65*imshape[0])]], dtype=np.int32)
+    #img = region_of_interest(img, vertices)
+    hls = cv2.cvtColor(img, cv2.COLOR_RGB2HLS).astype(np.float)
+    s_channel = hls[:,:,2].astype(np.uint8)
+    #l_channel = hls[:,:,1].astype(np.uint8)
+    hsv = cv2.cvtColor(img, cv2.COLOR_RGB2HSV).astype(np.float)
+    v_channel = hls[:,:,2].astype(np.uint8)
+    #threshold grad
+    ksize = k_size # Choose a larger odd number to smooth gradient measurements
+    gradx = abs_sobel_thresh(v_channel, orient='x', sobel_kernel=ksize, thresh=(grad_thx_min,grad_thx_max))
+    grady = abs_sobel_thresh(v_channel, orient='y', sobel_kernel=ksize, thresh=(grad_thy_min, grad_thy_max))
+    mag_binary = mag_thresh(v_channel, sobel_kernel=ksize, mag_thresh=(mag_th_min, mag_th_max))
+    dir_binary = dir_threshold(v_channel, sobel_kernel=ksize, thresh=(dir_th_min, dir_th_max))
+    combined = np.zeros_like(gradx)
+    combined[((gradx == 1) & (grady == 1)) | ((mag_binary == 1) & (dir_binary == 1))] = 1
+    
+    # Threshold color channel
+    s_binary = color_thr(s_channel, v_channel, s_threshold=(s_threshold_min,s_threshold_max), v_threshold= (v_threshold_min,v_threshold_max)).astype(np.uint8)
+    
+    gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY).astype(np.uint8)
+    adp = adp_thresh_grayscale(gray, adp_thr)/255
+    #plt.imshow(adp, cmap = 'gray')
+    #plt.show()
+    # Stack each channel
+    # Note color_binary[:, :, 0] is all 0s, effectively an all black image. It might
+    # be beneficial to replace this channel with something else.
+    #color_binary = np.dstack(( np.zeros_like(s_binary),combined, s_binary))
+    color_binary = np.zeros_like(gradx)
+    color_binary[(combined == 1) | (s_binary == 1) | (adp == 1)] = 1
+    color_binary = np.dstack(( color_binary,color_binary,color_binary)).astype(np.float32)
+    vertices = np.array([[(.55*imshape[1], 0.6*imshape[0]), (imshape[1],imshape[0]),
+                        (0,imshape[0]),(.45*imshape[1], 0.6*imshape[0])]], dtype=np.int32)
+    color_binary = region_of_interest(color_binary.astype(np.uint8), vertices)
+    plt.imshow(color_binary*255, cmap = "gray")
+    #return color_binary.astype(np.float32), combined, s_binary     
+     #+end_src
 ** emacs中测试.py文件
 *** 将.py中的代码导入ipython块中
     #+begin_src 
@@ -3822,7 +3963,6 @@ WORKDIR /code
 RUN pip install -r requirements.txt     
      #+end_src
 
-
 ** 必备操作集锦 
 *** 正则表达式
 **** 库
@@ -4014,6 +4154,29 @@ C-c > 向右缩进代码块
 C-c < 向左缩进代码块    
     #+end_src
 *** python中保存数据
+**** 格式及方法对应说明
+json只能用来处理字符串
+np用来处理矩阵
+
+字典用.json     不带s
+矩阵用np.save 
+列表用np.save 先转换为np 在转换回来
+列表用.json     不带s
+
+其中json.load 与json.loads的区别
+load 与 dump处理文件
+loads 与 dumps处理字符串
+**** 列表与Numpy互相转换
+     #+begin_src 
+# 保存
+import numpy as np
+a=np.array(a)
+np.save('a.npy',a)   # 保存为.npy格式
+# 读取
+a=np.load('a.npy')
+a=a.tolist()
+     
+     #+end_src
 **** .json文件保存
 ***** 导出
       #+begin_src 
@@ -4405,10 +4568,11 @@ C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.2
 修改Anaconda3/Lib/site-packages/torch/utils/cpp_extension.py文件
 #+end_src
 *** 如何用python批量复制文件
+注意：一定得是文件的名字.jpg这种 源文件和目标文件写法都是对应到文件
     #+begin_src 
 from shutil import copyfile
 
-copyfile(source_file, des)    
+copyfile(source_file, des_file)    
     #+end_src
 * Matlab语言
 ** 知识补充 cell的使用
@@ -6172,6 +6336,10 @@ https://blog.csdn.net/qq_41523096/article/details/82142747
 
 经典的4种时间复杂度
 O（1）< O（logn）< O（n）< O（n^2）
+** C-Plus-Plus题解库
+*** sorting 
+**** 
+
 * 人工智能-AI
 ** Paper研读
 *** Dr. Amit
