@@ -194,6 +194,11 @@ C-x 2 纵向新建窗口
 C-x 3 横向新建窗口
 M-m #number 跳转到第几个窗口    
 
+存疑：是否所有mode下都可以用？
+恢复上一次的窗口状态
+C-c left undo 
+C-c right redo
+
 同窗口下多buffer切换（大于两个，否则可以直接M-m Tab）
 M-m b 1-9 
     #+end_src
@@ -2567,6 +2572,20 @@ xeCJK 是对中文的支持, tikz 是LaTeX下的绘图包, listings 是对代码
 \includegraphics[width=.5\linewidth]
 修改width即可    
     #+end_src
+*** 公式
+org mode中公式的用法和latex完全一致
+https://blog.csdn.net/csfreebird/article/details/43636615
+#+begin_src 
+C-c C-x C-l 预览输入的公式
+
+优先使用的符号
+\(   \)  插入行内公式
+\[    \] 插入行间公式
+
+可能有问题，plain tex符号
+$ $ 插入行内公式
+$$    $$ 插入行间公式
+#+end_src
 * Python 语言
 ** 系列软件安装指南
 *** 稳定版本
@@ -4153,8 +4172,9 @@ for i in range(len(alphas)):
 C-c > 向右缩进代码块
 C-c < 向左缩进代码块    
     #+end_src
-*** python中保存数据
+*** python中保存数据 与第三条结合使用
 **** 格式及方法对应说明
+最优解：pickle,能够处理任何格式的python数据
 json只能用来处理字符串
 np用来处理矩阵
 
@@ -6734,6 +6754,13 @@ ssh yangyixin@10.106.20.31
      #+end_src
 *** ssh之后退出当前登录
 exit
+** git客户端更新 windows
+git update-git-for-windows
+** 只要是涉及到处理图像的问题
+去除噪声太重要了！！！
+#+begin_src 
+gray = cv2.medianBlur(gray, 3)
+#+end_src
 * 能力
 ** Top Layers
 学习效率 我要做什么 解决问题的标准流程
