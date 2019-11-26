@@ -4621,6 +4621,29 @@ from shutil import copyfile
 
 copyfile(source_file, des_file)    
     #+end_src
+*** 求解线性、非线性方程组
+https://blog.csdn.net/ialexanderi/article/details/73953039
+**** sympy模块
+     #+begin_src 
+rom sympy import solve
+from sympy.abc import x
+print(solve(x * 3 - 9, x))     
+     #+end_src
+**** scipy模块
+     #+begin_src 
+from scipy.optimize import fsolve
+def func(i):
+    x, y, z = i[0], i[1], i[2]
+    return [
+           x + 2 * y + 3 * z - 6,
+           5 * (x ** 2) + 6 * (y ** 2) + 7 * (z ** 2) - 18,
+           9 * (x ** 3) + 10 * (y ** 3) + 11 * (z ** 3) - 30
+           ]
+
+r = fsolve(func,[0, 0, 0])
+print(r)
+
+     #+end_src
 * Matlab语言
 ** 知识补充 cell的使用
 *** 将矩阵保存到cell里面，从而用一个for循环索引cell的编号来画图
