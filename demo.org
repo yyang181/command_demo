@@ -4005,12 +4005,20 @@ re.sub 说明：将匹配到正则的所有字符串替换为另一个字符串�
 re.split 说明：按照正则进行分割，返回一个列表（列表内容不包含分隔符）
 re.S 说明：是一个参数，多行匹配。如果不用re.S则在单行中进行匹配，如果用了re.S则在整体中进行字符匹配
 re.M 说明：是一个参数，^$标志将会匹配每一行。默认情况下是只匹配符合正则的第一行和最后一行
-*** 合并字符串
-1. 直接相加
-2. 用join命令
+*** 字符串合并、替换
+**** 合并字符串
+ 1. 直接相加
+ 2. 用join命令
+ #+begin_src 
+ parts = ['Is', 'Chicago', 'Not', 'Chicago?']
+ ''.join(parts)
+ #+end_src
+**** 替换字符串
+返回字符串中的 old（旧字符串） 替换成 new(新字符串)后生成的新字符串，如果指定第三个参数max，则替换不超过 max 次。
 #+begin_src 
-parts = ['Is', 'Chicago', 'Not', 'Chicago?']
-''.join(parts)
+str = "this is string example....wow!!! this is really string";
+print str.replace("is", "was");
+print str.replace("is", "was", 3);
 #+end_src
 *** 文件名按名称进行排序
 核心函数 sorted, 使用key参数
