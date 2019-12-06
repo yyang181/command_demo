@@ -4332,7 +4332,7 @@ else:
     tpye_input_images = '.png'
     tpye_output_images = '.png'
 
-image_files = sorted([os.path.join(dir_input_images, file) for file in os.listdir(dir_input_images) if file.endswith(tpye_input_images)])
+image_files = sorted([os.path.join(dir_input_images, file) for file in os.listdir(dir_input_images) if file.endswith(tpye_input_images, 'png')])
 generate(image_files, dir_output1_images, dir_output2_images)
     #+end_src
 *** numpy按元素操作
