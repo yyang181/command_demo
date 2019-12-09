@@ -4671,6 +4671,23 @@ r = fsolve(func,[0, 0, 0])
 print(r)
 
      #+end_src
+*** 文件名处理全部集锦
+**** 代码合集
+     #+begin_src 
+只显示文件名，不包含上级路径
+name_images_in = img.split('\\')[1]      
+name = img.split('-')
+
+将文件名替换为
+des_file = fname.replace('images', r'images\0')
+# print(des_file)
+copyfile(fname, des_file)
+
+正则表达式精准识别所需要的字符
+m = re.findall('[(](.*?)[)]', img)
+'[(](.*?)[)]' 表示（）内部的所有元素
+     #+end_src
+
 * Matlab语言
 ** 知识补充 cell的使用
 *** 将矩阵保存到cell里面，从而用一个for循环索引cell的编号来画图
