@@ -4703,7 +4703,7 @@ r = fsolve(func,[0, 0, 0])
 print(r)
 
      #+end_src
-*** 文件名处理全部集锦
+*** 文件名处理、拼接全部集锦
 **** 代码合集
      #+begin_src 
 只显示文件名，不包含上级路径
@@ -4719,7 +4719,36 @@ copyfile(fname, des_file)
 m = re.findall('[(](.*?)[)]', img)
 '[(](.*?)[)]' 表示（）内部的所有元素
      #+end_src
+*** 判断变量是否已经被定义，是否存在
+    #+begin_src 
+方法一
+user_name 是变量名，需要在外面加上分号
+if isset('user_name'): 
+  print 'user_name is defined'
+else
+  print 'user_name is not defined'
 
+方法二
+a是变量名，需要加上分号
+'a' in vars()     
+输出结果为TRUE、FALSE
+    #+end_src
+*** 在图片上添加文字
+    #+begin_src 
+cv2.putText(img, '%s'%i, (50,150), cv2.FONT_HERSHEY_COMPLEX, 5, (0, 255, 0), 12)    
+             图像，文字内容， 坐标 ，字体，大小，颜色，字体厚度
+    #+end_src
+*** 平方和平方根的计算
+**** 方法一
+     #+begin_src 
+num * 0.5 平方
+num ** 0.5 平方根     
+     #+end_src
+**** 方法二
+     #+begin_src 
+num * 0.5 平方
+num ** 0.5 平方根     
+     #+end_src
 * Matlab语言
 ** 知识补充 cell的使用
 *** 将矩阵保存到cell里面，从而用一个for循环索引cell的编号来画图
