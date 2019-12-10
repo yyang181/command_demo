@@ -4287,54 +4287,62 @@ pts1
       #+end_src
 
 *** 批量化 封装化处理图片，脚本的模板
-    #+begin_src 
-import cv2
-import numpy as np
-import os 
-import json
+**** 同时处理多种格式的文件的方法
+***** 方法示例
+      #+begin_src 
+ import glob
+ for jpg_file in glob.glob("./*[.jpg, .png]"):
+     jpg2pgm( jpg_file , "/test" )
+      #+end_src
+**** 批量处理流程
+     #+begin_src 
+ import cv2
+ import numpy as np
+ import os 
+ import json
 
-def generate(image_files, dir_output1_images, dir_output2_images):
-    num = 0
+ def generate(image_files, dir_output1_images, dir_output2_images):
+     num = 0
 
-    size_windows = 5
+     size_windows = 5
 
-    min_canny = 5
-    max_canny = 150
-    apertureSize = 3
+     min_canny = 5
+     max_canny = 150
+     apertureSize = 3
 
-    for image in image_files:
-        num += 1
-        img = cv2.imread(image, 0)
+     for image in image_files:
+         num += 1
+         img = cv2.imread(image, 0)
 
-        dst = cv2.GaussianBlur(img, (size_windows, size_windows), 0)
+         dst = cv2.GaussianBlur(img, (size_windows, size_windows), 0)
 
-        edges = cv2.Canny(dst, min_canny, max_canny, apertureSize)
+         edges = cv2.Canny(dst, min_canny, max_canny, apertureSize)
 
-        name_images_in = image.split('\\')[1]
+         name_images_in = image.split('\\')[1]
 
-        lines = cv2.HoughLinesP(edges, 1, np.pi / 360, threshod, minLineLength, maxLineGap)
+         lines = cv2.HoughLinesP(edges, 1, np.pi / 360, threshod, minLineLength, maxLineGap)
 
-        # save edge images
-        cv2.imwrite(dir_output1_images + '/' + name_images_in, dst)
+         # save edge images
+         cv2.imwrite(dir_output1_images + '/' + name_images_in, dst)
 
-        # save hough lines images
-        cv2.imwrite(dir_output2_images + '/' + name_images_in, edges)
+         # save hough lines images
+         cv2.imwrite(dir_output2_images + '/' + name_images_in, edges)
 
-flag_jpg = True
+ flag_jpg = True
 
-dir_input_images = 'input'
-dir_output1_images = 'blur'
-dir_output2_images = 'edge'
+ dir_input_images = 'input'
+ dir_output1_images = 'blur'
+ dir_output2_images = 'edge'
 
-if flag_jpg == True:
-    tpye_input_images = '.jpg'
-else:
-    tpye_input_images = '.png'
-    tpye_output_images = '.png'
+ if flag_jpg == True:
+     tpye_input_images = '.jpg'
+ else:
+     tpye_input_images = '.png'
+     tpye_output_images = '.png'
 
-image_files = sorted([os.path.join(dir_input_images, file) for file in os.listdir(dir_input_images) if file.endswith(tpye_input_images, 'png')])
-generate(image_files, dir_output1_images, dir_output2_images)
-    #+end_src
+ image_files = sorted([os.path.join(dir_input_images, file) for file in os.listdir(dir_input_images) if file.endswith(tpye_input_images, 'png')])
+ generate(image_files, dir_output1_images, dir_output2_images)
+     #+end_src
 *** numpy按元素操作
     #+begin_src 
 pts2[:,0] = pts2[:,0] + 360
