@@ -4057,7 +4057,7 @@ str1 = ''.join(list1)
 list1 = [1, 2, 3]
 str1 = ''.join(str(e) for e in list1)
     #+end_src
-*** 将字符串、列表、字典等数据结构存储为本地文件
+*** 将字符串、列表、字典等数据结构存储为本地文件 pickle
 效果：可以直接在另外文件以原始格式打开数据
 **** 存储步骤
      #+begin_src python
@@ -4072,6 +4072,30 @@ import pickle
 pkl_file = open('result.pki','rb') 
 result = pickle.load(pkl_file)
 pkl_file.close()     
+     #+end_src
+*** 读取，写入txt文件
+**** 读取文件
+     #+begin_src 
+全数字读取，直接转换为np格式
+import numpy as np
+a = np.loadtxt('1.result.txt')
+
+按行读取
+data = []
+for line in open("data.txt","r"): #设置文件对象并读取每一行文件
+    data.append(line)               #将每一行文件加入到list中     
+
+按行读取并转换为数组格式
+np.array(data)
+
+字符串读取
+with open('1.result.txt',"r") as f:    #设置文件对象
+    str = f.read()    #可以是随便对文件的操作
+     #+end_src
+**** 写入文件
+     #+begin_src 
+with open('data.txt','w') as f:    #设置文件对象
+    f.write(str)                 #将字符串写入文件中     
      #+end_src
 *** 获取html内容的python写法
     #+begin_src python
