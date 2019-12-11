@@ -4039,24 +4039,47 @@ str = "this is string example....wow!!! this is really string";
 print str.replace("is", "was");
 print str.replace("is", "was", 3);
 #+end_src
-*** 文件名按名称进行排序
-核心函数 sorted, 使用key参数
-    #+begin_src 
-i表示传入参数 ：后面表示以某种形式进行排序
+*** 文件名按名称进行排序(list + numpy)方法
+list版本：核心函数 sorted, 使用key参数
+numpy版本可以又list转换而来
+**** 示例一
+     #+begin_src 
+ i表示传入参数 ：后面表示以某种形式进行排序
 
-i = [['社旗9场生长场', '8', '保育', '2', '10', '00', 'jpg'],
-''.join([i[4], i[5]]  表示组合 [10], [00]为[1000], 即以[1000]作为排序标准
+ i = [['社旗9场生长场', '8', '保育', '2', '10', '00', 'jpg'],
+ ''.join([i[4], i[5]]  表示组合 [10], [00]为[1000], 即以[1000]作为排序标准
 
-result = sorted(tem, key=lambda i:int(''.join([i[4], i[5]])))    
-    #+end_src
-*** list与string互转
-    #+begin_src python 
-list1 = ['1', '2', '3']
-str1 = ''.join(list1)
+ result = sorted(tem, key=lambda i:int(''.join([i[4], i[5]])))    
+     #+end_src
+**** 示例二
+     #+begin_src 
+list01=[[‘1’, 508], [‘1’, 281], [‘7’, 429], [‘9’, 696], [‘9’, 576], [‘g’, 79], [‘f’, 314]]
+out_data = sorted(list01, key = lambda x:x[1])     
+     #+end_src
+**** numpy方法
+     #+begin_src 
+import numpy as np
+data = np.array([[1,2],[5,3],[4,6],[7,5],[9,0]])
+data = data[np.argsort(data[:,0])] # 表示按照第一列排序
+print(data)     
+     #+end_src
+*** list与string互转 list与numpy互转
+**** list转string
+     #+begin_src python 
+ list1 = ['1', '2', '3']
+ str1 = ''.join(list1)
 
-list1 = [1, 2, 3]
-str1 = ''.join(str(e) for e in list1)
-    #+end_src
+ list1 = [1, 2, 3]
+ str1 = ''.join(str(e) for e in list1)
+     #+end_src
+**** list与numpy互转
+     #+begin_src 
+List转numpy.array:
+temp = np.array(list) 
+
+numpy.array转List:
+arr = temp.tolist()      
+     #+end_src
 *** 将字符串、列表、字典等数据结构存储为本地文件 pickle
 效果：可以直接在另外文件以原始格式打开数据
 **** 存储步骤
@@ -4733,12 +4756,21 @@ a是变量名，需要加上分号
 'a' in vars()     
 输出结果为TRUE、FALSE
     #+end_src
-*** 在图片上添加文字
-    #+begin_src 
+*** 在图片上添加文字、直线、和点（圆）
+     #+begin_src 
+添加文字
 cv2.putText(img, '%s'%i, (50,150), cv2.FONT_HERSHEY_COMPLEX, 5, (0, 255, 0), 12)    
-             图像，文字内容， 坐标 ，字体，大小，颜色，字体厚度
-    #+end_src
-*** 平方和平方根的计算
+              图像，文字内容， 坐标 ，字体，大小，颜色，字体厚度
+
+画点、圆
+cv.circle(img, (160, 160), 60, (0, 255, 255), -1)
+          图像、圆心 半径 颜色 实心圆-1 0-5空心圆的线宽
+
+画直线
+cv2.line(image, (min_line_left[0], min_line_left[1]), (min_line_left[2], min_line_left[3]), (0, 255, 255), line_width)
+         图像   （x1, y1)           (x2, y2), 颜色 线宽
+     #+end_src
+*** 平方和平方根的计算 以及直线斜率及度数的计算公式
 **** 方法一
      #+begin_src 
 num * 0.5 平方
@@ -4749,6 +4781,32 @@ num ** 0.5 平方根
 num * 0.5 平方
 num ** 0.5 平方根     
      #+end_src
+**** 直线与水平线的夹角度数
+     #+begin_src 
+import numpy as np
+angle = np.rad2deg(np.arctan2(y[-1] - y[0], x[-1] - x[0]))     
+     #+end_src
+**** 直线的斜率
+     #+begin_src 
+     k = (y2-y1) / (x2-x1 + 0.00001)     
+     b = y1 - k * x1
+     #+end_src
+**** 点到直线的距离
+     #+begin_src 
+     k 为斜率 b为截距
+     import math
+     dis = math.fabs(k * point1_x - point1_y + b) / math.pow(k * k + 1, 0.5)     
+     #+end_src
+*** numpy 库 
+**** 添加元素
+     #+begin_src 
+p_arr = np.concatenate((p_arr,[p_])) # 先将p_变成list形式进行拼接，注意输入为一个tuple
+p_arr = np.append(p_arr,p_) #直接向p_arr里添加p_     
+     #+end_src
+*** 带有索引的enumerate枚举方法
+    #+begin_src 
+for i, element in enumerate(seq):
+    #+end_src
 * Matlab语言
 ** 知识补充 cell的使用
 *** 将矩阵保存到cell里面，从而用一个for循环索引cell的编号来画图
