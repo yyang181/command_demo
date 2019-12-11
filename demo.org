@@ -4756,19 +4756,28 @@ a是变量名，需要加上分号
 'a' in vars()     
 输出结果为TRUE、FALSE
     #+end_src
-*** 在图片上添加文字、直线、和点（圆）
+*** 在图片上添加文字、直线、和点（圆）以及cv2.imshow方法快速展示图形结果（便于debug）
+**** 画图方法
+      #+begin_src 
+ 添加文字
+ cv2.putText(img, '%s'%i, (50,150), cv2.FONT_HERSHEY_COMPLEX, 5, (0, 255, 0), 12)    
+               图像，文字内容， 坐标 ，字体，大小，颜色，字体厚度
+
+ 画点、圆
+ cv.circle(img, (160, 160), 60, (0, 255, 255), -1)
+           图像、圆心 半径 颜色 实心圆-1 0-5空心圆的线宽
+
+ 画直线
+ cv2.line(image, (min_line_left[0], min_line_left[1]), (min_line_left[2], min_line_left[3]), (0, 255, 255), line_width)
+          图像   （x1, y1)           (x2, y2), 颜色 线宽
+      #+end_src
+**** cv2.imshow使用方法
      #+begin_src 
-添加文字
-cv2.putText(img, '%s'%i, (50,150), cv2.FONT_HERSHEY_COMPLEX, 5, (0, 255, 0), 12)    
-              图像，文字内容， 坐标 ，字体，大小，颜色，字体厚度
+import cv2 
 
-画点、圆
-cv.circle(img, (160, 160), 60, (0, 255, 255), -1)
-          图像、圆心 半径 颜色 实心圆-1 0-5空心圆的线宽
-
-画直线
-cv2.line(image, (min_line_left[0], min_line_left[1]), (min_line_left[2], min_line_left[3]), (0, 255, 255), line_width)
-         图像   （x1, y1)           (x2, y2), 颜色 线宽
+cv2.imshow('p_transform', dst)
+cv2.waitKey() # 里面可以加上等待时间，50表示50ms
+cv2.destroyAllWindows()     
      #+end_src
 *** 平方和平方根的计算 以及直线斜率及度数的计算公式
 **** 方法一
