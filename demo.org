@@ -635,6 +635,10 @@ https://jingyan.baidu.com/article/77b8dc7f80b9386175eab663.html
       #+end_src
 *** 鼠标指针消失
 对文本进行编辑，之后移动鼠标即可重现
+*** emacs中python-mode出现flycheck多种位置错误
+原因：anaconda的python版本不兼容flycheck
+
+解决方案：将python.exe在环境变量中设置为python3.8即可，将python3.8的路径上移即可
 * Emaces Usful Command
 ** Command
 *** 常用命令
@@ -4839,6 +4843,23 @@ end
 suptitle('DCT 4-by-4 basis images');
 #+END_SRC
 ** 类 class 函数变量名： 变量名.成员变量
+** matlab中运行python代码
+*** 配置python环境
+    #+begin_src 
+pyversion D:/anaconda/python.exe 该命令会添加python到matlab中
+其中D:/anaconda/python.exe 是python解释器的路径    
+    #+end_src
+*** 使用方法及调试
+https://blog.csdn.net/qq_28314803/article/details/84857166
+    #+begin_src 
+Matlab的外部环境是支持python的，在matlab的安装路径 matlab\extern\engines里面，可以看到有python引擎存在的
+直接再matlab命令行窗口输入pyversion，即可查看当前matlab下的python运行版本。
+py.numpy.zeros([5,5])
+这里提一下，当你输入py.numpy.后，可以按下tab健，这时会出现一些可用命令（方便吧）。
+Matlab下的python命令全是以“py.”开头的，比如 py.numpy.reshape
+这里numpy表示的是python下的numpy库，reshape和matlab里面的reshape作用一样
+    
+    #+end_src
 * C++语言 & linux系统
 ** 平台搭建
 需要安装g++ gcc编译平台
@@ -4945,6 +4966,39 @@ linux可以g++生成.out之后直接./a.out即可
   3）对于产生的最终目标文件，我们可以新建一个bin目录，并将其置于其下
 
   4）对于编译链接，我们可以采用范性编程的思想，利用find和patsubst等命令来构造sources和objects等变量
+** SDK 软件开发工具包：opencv等库的安装及使用
+*** 依赖
+安装cmake vs opencv
+
+工作流程：
+1. 下载OpenCV source code
+2. 新建build文件夹保存编译文件
+3. 运行cmake 命令，使用Mingw作为generator
+4. make + install 
+#+begin_src 
+mkdir build
+cd build
+cmake -S d:/opencv/sources -B d:/opencv/build -G "MinGW Makefiles"
+mingw32-make -j 8    已经手动将mingw中的mingw32-make重命名为了make 
+mingw32-make install   结果：build路径下出现build\install文件夹
+添加环境变量build\install\x64\mingw\bin
+#+end_src
+
+*** 通过cmake编译opencv库生成opencv.sln文件
+命令 其中d:/opencv为下载的源文件路径
+#+begin_src 
+cmake-gui 更优的图形处理编译工具 必须指定mingw作为编译器 clear the cache to make it reappear
+cmake -S d:/opencv/sources -B d:/opencv/build -G "MinGW Makefiles"
+#+end_src
+*** 编译和安装
+上一步已经生成了makefiles
+
+接下来make
+*** 基本知识
+**** SDK
+ UI，user interface:人和程序交互的地方
+ API: 应用程序编程接口
+ SDK: 开发集成工具环境,API就是数据接口。在SDK环境下调用API数据
 ** ubuntu及oracal虚拟机 （过时）
 Get a virtual machine (VM) with Ubuntu 16.04 (Xenial): make your own, re-use one you have, or
 download a ready-made one from
@@ -4974,6 +5028,7 @@ git pull origin master
 exit 退出bender系统
    #+end_src
 ** cygwin 类Unix的Windows端软件
+可以将windows的命令行变成一个可以直接运行cpp文件的shell
 ** 在emacs中编译 运行cpp文件
 https://blog.csdn.net/shuxiao9058/article/details/7633054
 *** 代码调试逻辑
