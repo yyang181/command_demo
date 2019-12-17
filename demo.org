@@ -4861,7 +4861,227 @@ Matlab下的python命令全是以“py.”开头的，比如 py.numpy.reshape
     
     #+end_src
 * C++语言 & linux系统
-** 平台搭建
+** windows下子系统linux搭建
+*** 安装ubuntu
+https://blog.csdn.net/u012516524/article/details/79870414
+1. 开启win10开发者模式
+2. 启用或关闭windows功能->适用于Linux的 windows子系统，选中后点确定
+3. 在微软应用商店中安装ubuntu软件
+4. linux图形化界面安装 可能需要挂VPN
+#+begin_src 
+sudo apt-get update
+sudo apt-get install xorg
+sudo apt-get install xfce4
+
+Xrdp允许Windows或Linux系统通过远程桌面的方式来访问另外一台主机
+sudo apt-get install xrdp
+sudo sed -i 's/port=3389/port=3390/g' /etc/xrdp/xrdp.ini
+sudo echo xfce4-session >~/.xsession
+sudo service xrdp restart
+#+end_src
+5. 在windows搜索 远程桌面 应用 然后在“计算机”中输入“本机的IP：3390”以及Ubuntu中的用户名点击确定就可以了，所有的操作到这里就结束了 10.108.195.253:3390
+6. 远程桌面可以访问图形化界面
+7. ubuntu可以直接访问命令行
+*** 设置root命令并获取root权限
+    #+begin_src 
+设置root权限及密码
+sudo passwd root 
+
+获取root权限
+su root   
+
+退出root权限       
+exit
+
+删除root权限
+sudo passwd -l root  
+    #+end_src
+*** 安装必备package
+    #+begin_src 
+sudo apt install gcc
+sudo apt install g++
+sudo apt install build-essential    
+    #+end_src
+*** 编译和运行
+    #+begin_src 
+编译源程序
+g++ test.cpp -o test.out
+
+查看程序运行结果    
+./a.out 
+    #+end_src
+*** 文件管理
+与windows文件互通
+
+路径为：/mnt 该路径下有windows硬盘分区C,D,E,F 
+
+可以直接打开windows桌面修改文件及其路径即可
+*** ubuntu系统文件夹功能介绍
+    #+begin_src 
+1./bin目录
+/bin目录包含了引导启动所需的命令或普通用户可能用的命令(可能在引导启动后)。这些命令都是二进制文件的可执行程序(bin是binary-二进制的简称)，多是系统中重要的系统文件。
+2./sbin目录
+/sbin目录类似/bin，也用于存储二进制文件。因为其中的大部分文件多是系统管理员使用的基本的系统程序，所以虽然普通用户必要且允许时可以使用，但一般不给普通用户使用。
+3./etc 目录
+/etc目录存放着各种系统配置文件，其中包括了用户信息文件/etc/passwd，系统初始化文件/etc/rc等。linux正是*这些文件才得以正常地运行。
+4./root目录
+/root目录是超级用户的目录。
+5./lib目录
+/lib目录是根文件系统上的程序所需的共享库，存放了根文件系统程序运行所需的共享文件。这些文件包含了可被许多程序共享的代码，以避免每个程序都包含有相同的子程序的副本，故可以使得可执行文件变得更小，节省空间。
+6./lib/modules目录
+/lib/modules目录包含系统核心可加载各种模块，尤其是那些在恢复损坏的系统时重新引导系统所需的模块(例如网络和文件系统驱动)。
+7./dev目录
+/dev目录存放了设备文件，即设备驱动程序，用户通过这些文件访问外部设备。比如，用户可以通过访问/dev/mouse来访问鼠标的输入，就像访问其他文件一样。
+8./tmp目录
+/tmp目录存放程序在运行时产生的信息和数据
+9./boot目录
+/boot 目录存放引导加载器 (bootstraploader)使用的文件，如lilo，核心映像也经常放在这里，而不是放在根目录中。但是如果有许多核心映像，这个目录就可能变得很大，这时使用单独的文件系统会更好一些。还有一点要注意的是，要确保核心映像必须在ide硬盘的前1024柱面内。
+10./mnt目录
+/mnt 目录是系统管理员临时装载(mount)文件系统的安装点。程序并不自动支持安装到/mnt。/mnt下面可以分为许多子目录，例如/mnt/dosa可能是使用msdos文件系统的软驱，而/mnt/exta可能是使用ext2文件系统的软驱，/mnt/cdrom光驱等等。
+11./home目录
+/home目录是所有普通用户的宿主目录所在地，在一般情况下，如果想要对用户进行磁盘限额功能，最好将此目录单独分区。
+12./usr目录
+/usr目录包含了所有的命令、说明文件、程序库等，此目录下有很多重要的目录，常见的有：/usr/local 这个目录包含管理员自己安装的程序；/usr/share 包含文件的帮助文件；/usr/bin 和/usr/sbin 包含了所有的命令。
+13./var目录
+/var目录包含了日志文件、计划性任务和邮件等内容。
+14./media目录
+/media目录主要用于挂载多媒体设备。    
+    #+end_src
+*** 环境变量设置
+    #+begin_src 
+临时设置
+export PATH=/opt/android-studio/bin:$PATH
+
+当前用户的全局设置
+vim ~/.profile，添加行：
+export PATH=/opt/android-studio/bin:$PATH
+使生效
+source .profile    
+
+所有用户的全局设置
+vim /etc/profile
+在里面加入：
+export PATH=/opt/android-studio/bin:$PATH
+使生效
+source /etc/profile
+    #+end_src
+*** ssh登录用法
+ssh yangyixin@10.106.20.31
+*** vim编辑器基本使用方法
+ Ecs 切换输入模式和命令模式
+**** 文件管理
+  #+begin_src 
+  :q  退出
+  :wq 保存并退出
+  :q! 不保存并退出
+  :w 保存
+  :w! 强行保存
+  :wq --> :x
+  #+end_src
+**** 编辑 
+     #+begin_src 
+     i: 在当前光标所在字符的前面，转为输入模式；
+     a: 在当前光标所在字符的后面，转为输入模式；
+     o: 在当前光标所在行的下方，新建一行，并转为输入模式；
+     I：在当前光标所在行的行首，转换为输入模式
+     A：在当前光标所在行的行尾，转换为输入模式
+     O：在当前光标所在行的上方，新建一行，并转为输入模式；    
+     #+end_src
+*** ssh之后退出当前登录
+exit
+*** OpenCV安装
+官方说明文档 https://docs.opencv.org/4.1.0/d7/d9f/tutorial_linux_install.html
+非官方文档 https://blog.csdn.net/qq_36486890/article/details/97511295
+**** 安装相关软件包
+     #+begin_src 
+sudo apt install  build-essential
+ 
+sudo apt install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev  
+ 
+sudo apt install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev    
+
+无法定位软件包libjasper-dev 的错误提示 的解决方案
+sudo add-apt-repository "deb http://security.ubuntu.com/ubuntu xenial-security main"
+sudo apt update
+sudo apt upgrade
+sudo apt install libjasper1 libjasper-dev
+     #+end_src
+**** 用 CMake 从 Source 构建 OpenCV
+     #+begin_src 
+在源码source build之外创建build文件夹
+cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local ../sources     
+
+cmake-gui 图形化界面
+     #+end_src
+**** 编译运行 安装OpenCV库
+     #+begin_src 
+make -j7 # runs 7 jobs in parallel
+sudo make install     
+     #+end_src
+**** 配置环境
+     #+begin_src 
+打开一个空白配置文件路径
+sudo vim /etc/ld.so.conf.d/opencv.conf     
+键入：
+/usr/local/lib  
+
+使刚才配置生效
+sudo ldconfig 
+
+配置bash 
+sudo vim /etc/bash.bashrc  
+在文末添加
+PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig  
+export PKG_CONFIG_PATH  
+
+使刚才配置生效
+source /etc/bash.bashrc  
+
+最后更新
+sudo updatedb 
+     #+end_src
+**** 测试 opencv需要有图形化界面才能显示
+***** 编译+运行命令
+      #+begin_src 
+ cmake .
+ make
+ ./opencv_example     
+      #+end_src
+***** CMakeLists 文件内容
+      #+begin_src 
+# cmake needs this line
+cmake_minimum_required(VERSION 3.1)
+
+# Enable C++11
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
+
+# Define project name
+project(opencv_example_project)
+
+# Find OpenCV, you may need to set OpenCV_DIR variable
+# to the absolute path to the directory containing OpenCVConfig.cmake file
+# via the command line or GUI
+find_package(OpenCV REQUIRED)
+
+# If the package has been found, several variables will
+# be set, you can find the full list with descriptions
+# in the OpenCVConfig.cmake file.
+# Print some message showing some of them
+message(STATUS "OpenCV library status:")
+message(STATUS "    config: ${OpenCV_DIR}")
+message(STATUS "    version: ${OpenCV_VERSION}")
+message(STATUS "    libraries: ${OpenCV_LIBS}")
+message(STATUS "    include path: ${OpenCV_INCLUDE_DIRS}")
+
+# Declare the executable target built from your sources
+add_executable(opencv_test opencv_test.cpp)
+
+# Link your application with OpenCV libraries
+target_link_libraries(opencv_test LINK_PRIVATE ${OpenCV_LIBS})      
+      #+end_src
+
+** windows下gcc g++平台搭建
 需要安装g++ gcc编译平台
 MinGw安装
 g++ 是调用c++编辑器的驱动
@@ -7038,6 +7258,10 @@ git update-git-for-windows
 #+begin_src 
 gray = cv2.medianBlur(gray, 3)
 #+end_src
+** cmd获取本机IP地址
+   #+begin_src 
+ipconfig   
+   #+end_src
 * 能力
 ** Top Layers
 学习效率 我要做什么 解决问题的标准流程 如何保持持久的兴趣
