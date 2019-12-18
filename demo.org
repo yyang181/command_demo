@@ -3795,6 +3795,8 @@ pip install -r packages.txt  //批量安装package
 conda create -n my_env python=3.6
 activate  my_env
 deactivate my_env    
+conda env remove -n test_env 
+conda info -e
     #+end_src
 *** 常见问题 setup egg_info
 解决方案
