@@ -7319,6 +7319,8 @@ gray = cv2.medianBlur(gray, 3)
    #+begin_src 
 ipconfig   
    #+end_src
+** windows执行linux命令 bash 运行shell脚本
+需要安装git bash并添加到环境变量然后即可直接bash install.sh 执行命令了
 * 能力
 ** Top Layers
 学习效率 我要做什么 解决问题的标准流程 如何保持持久的兴趣
