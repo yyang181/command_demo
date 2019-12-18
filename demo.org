@@ -3783,21 +3783,76 @@ for i in range(5):
 print(threading.activeCount())     
      #+end_src
 *** pandas数据处理库
-** python环境迁移/虚拟环境创建
+** python环境迁移/虚拟环境创建 conda创建环境 pip安装packages
 *** 打包所有已安装的package
     #+begin_src 
 pip freeze                   //查看所有已安装的package
 pip freeze > packages.txt    //把所有已安装的包放入.txt文件
 pip install -r packages.txt  //批量安装package
     #+end_src
-*** 虚拟环境建立
+*** 虚拟环境建立 conda
     #+begin_src 
 conda create -n my_env python=3.6
-activate  my_env
-deactivate my_env    
+conda activate  my_env
+conda deactivate my_env    
 conda env remove -n test_env 
 conda info -e
     #+end_src
+*** conda设置国内服务器镜像
+    #+begin_src 
+# 查看源：
+conda config --show-sources
+
+# 添加Anaconda的TUNA镜像
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+# TUNA的help中镜像地址加有引号，需要去掉
+ 
+# 设置搜索时显示通道地址
+conda config --set show_channel_urls yes    
+    #+end_src
+*** 虚拟环境建立 pip
+    #+begin_src 
+安装特定版本
+pip install django==1.1.5   #=在python中代表赋值的作用，只有==才是等于的意思    
+
+导出python环境
+pip freeze > requestment.txt #可以获取到当前环境下的所有安装包的版本，有助于以后布置别台电脑，可以避免bug，从而导入跟现在一样的环境。
+
+从导出的python环境中安装所需要的包
+pip install –r requestment.txt
+
+卸载导出的python环境中的包
+pip uinstall –r requestment.txt
+    #+end_src
+*** pip设置国内服务器镜像
+https://www.cnblogs.com/shuaiyin/p/10922467.html
+**** 单次安装package
+     #+begin_src 
+ 更换国内pypi镜像（推荐临时使用这些源）
+ pip install <包名> -i http://pypi.v2ex.com/simple 
+ 阿里：https://mirrors.aliyun.com/pypi/simple 
+ 豆瓣：http://pypi.douban.com/simple 
+ 中国科学技术大学：http://pypi.mirrors.ustc.edu.cn/simple/     
+     #+end_src
+**** 设置全局镜像
+     #+begin_src 
+指定全局安装源 （不想每一次加 -i）
+在linux和macos，配置文件为：$HOME/.pip/pip.conf 
+
+在windows上，配置文件为：%HOME%\pip\pip.ini
+
+(1):在windows文件管理器中,输入 %APPDATA%
+
+(2):会定位到一个新的目录下，在该目录下新建pip文件夹，然后到pip文件夹里面去新建个pip.ini文件
+
+(3):在新建的pip.ini文件中输入以下内容，搞定文件路径："C:\Users\Administrator\AppData\Roaming\pip\pip.ini"
+
+[global] 
+
+timeout = 6000 
+
+index-url = https://pypi.tuna.tsinghua.edu.cn/simple
+     #+end_src
 *** 常见问题 setup egg_info
 解决方案
 #+begin_src 
