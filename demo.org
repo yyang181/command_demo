@@ -5137,7 +5137,84 @@ add_executable(opencv_test opencv_test.cpp)
 # Link your application with OpenCV libraries
 target_link_libraries(opencv_test LINK_PRIVATE ${OpenCV_LIBS})      
       #+end_src
+*** 必备操作集锦
+**** 基本命令使用
+     #+begin_src 
+复制文件或目录
+cp [options] source dest     
+sudo cp sources.list sources.list.bak
 
+系统版本号查询
+lsb_release -a
+uname -a
+cat /proc/version
+
+     #+end_src
+**** 要通过远程桌面连接linux子系统 必须先启动xrdt服务
+命令为;
+#+begin_src 
+重启xrdp服务
+sudo service xrdp restart
+
+获取本机IP地址
+ipconfig
+#+end_src
+**** 在linux环境中使用emacs
+通过apt-get install emacs命令直接安装emacs编辑器即可提供类似 vim的文本编辑功能
+退出文件的命令为：C-x C-c
+**** apt-get命令
+     #+begin_src 
+sudo apt-get update  更新源
+sudo apt-get install package 安装包
+sudo apt-get remove package 删除包
+sudo apt-cache search package 搜索软件包
+sudo apt-cache show package  获取包的相关信息，如说明、大小、版本等
+sudo apt-get install package --reinstall  重新安装包
+sudo apt-get -f install  修复安装
+sudo apt-get remove package --purge 删除包，包括配置文件等
+sudo apt-get build-dep package 安装相关的编译环境
+sudo apt-get upgrade 更新已安装的包
+sudo apt-get dist-upgrade 升级系统
+sudo apt-cache depends package 了解使用该包依赖那些包
+sudo apt-cache rdepends package 查看该包被哪些包依赖
+sudo apt-get source package  下载该包的源代码
+sudo apt-get clean && sudo apt-get autoclean 清理无用的包
+sudo apt-get check 检查是否有损坏的依赖     
+     #+end_src
+**** apt-get更新源替换为国内镜像 
+***** 清华
+ https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/
+方法同中科大版本，只需要将列表内容替换为清华网站上对应ubuntu版本
+版本信息获取方式：
+#+begin_src 
+lsb_release -a
+#+end_src
+***** 中科大
+ https://blog.csdn.net/zgljl2012/article/details/79065174/
+      #+begin_src 
+ 1、原文件备份
+ sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak 
+
+ 2、编辑源列表文件
+ cd /etc/apt/
+ sudo vim /etc/apt/sources.list
+
+ 3、将原来的列表删除，添加如下内容（中科大镜像源）
+ deb http://mirrors.ustc.edu.cn/ubuntu/ xenial main restricted universe multiverse
+ deb http://mirrors.ustc.edu.cn/ubuntu/ xenial-security main restricted universe multiverse
+ deb http://mirrors.ustc.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse
+ deb http://mirrors.ustc.edu.cn/ubuntu/ xenial-proposed main restricted universe multiverse
+ deb http://mirrors.ustc.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse
+ deb-src http://mirrors.ustc.edu.cn/ubuntu/ xenial main restricted universe multiverse
+ deb-src http://mirrors.ustc.edu.cn/ubuntu/ xenial-security main restricted universe multiverse
+ deb-src http://mirrors.ustc.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse
+ deb-src http://mirrors.ustc.edu.cn/ubuntu/ xenial-proposed main restricted universe multiverse
+ deb-src http://mirrors.ustc.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse
+
+ 4、运行
+sudo apt-get update
+sudo apt-get upgrade
+      #+end_src
 ** windows下gcc g++平台搭建
 需要安装g++ gcc编译平台
 MinGw安装
@@ -5337,6 +5414,24 @@ http://www.bagualu.net/wordpress/archives/6596#sec-6-4
   )
 (global-set-key [(f9)] 'quick-compile)  ;;快捷键F9
      #+end_src
+*** 一键打印输出变量的值 调试方法
+**** 方法一
+在cpp代码中加入调试代码范例
+https://blog.csdn.net/a1323933782/article/details/86775738
+#+begin_src 
+调试阶段：
+定义调试语句
+#define DebugP(x) std::cout << "Line" << __LINE__ << "	" << #x << "=" << x << std::endl
+
+输出变量名
+DebugP(a); DebugP(b);
+
+提交阶段：
+只需要将调试语句修改为以下即可
+#define DebugP
+
+注意事项：不要在调用DebugP的时候对变量进行任何操作！错误示范：DebugP(a++);
+#+end_src
 *** 打开命令行工具的方法
     #+begin_src 
 M-x shell 好用，另开一个shell buffer 
