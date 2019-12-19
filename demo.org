@@ -4877,6 +4877,44 @@ p_arr = np.append(p_arr,p_) #直接向p_arr里添加p_
     #+begin_src 
 for i, element in enumerate(seq):
     #+end_src
+*** .gitignore 文件编写 和通过github进行版本控制的方法
+**** 编写语法
+***** 基本规则
+      #+begin_src 
+  bin/: 忽略当前路径下的bin文件夹，该文件夹下的所有内容都会被忽略，不忽略 bin 文件
+  /bin: 忽略根目录下的bin文件
+  /*.c: 忽略 cat.c，不忽略 build/cat.c
+  debug/*.obj: 忽略 debug/io.obj，不忽略 debug/common/io.obj 和 tools/debug/io.obj
+  **/foo: 忽略/foo, a/foo, a/b/foo等
+  a/**/b: 忽略a/b, a/x/b, a/x/y/b等
+  !/bin/run.sh: 不忽略 bin 目录下的 run.sh 文件
+  *.log: 忽略所有 .log 文件
+  config.php: 忽略当前路径的 config.php 文件    
+      #+end_src
+***** 高级规则
+      #+begin_src 
+/ 结束的模式只匹配文件夹以及在该文件夹路径下的内容，但是不匹配该文件
+/ 开始的模式匹配项目跟目录
+? 通用匹配单个字符
+[] 通用匹配单个字符列表
+/** 匹配多级目录，可在开始，中间，结束
+      #+end_src
+***** 高级示例
+      #+begin_src 
+排除任何目录下的readme.assets文件夹下面的所有.jpg .png文件
+!**/README.assets/*.jpg
+!**/README.assets/*.png      
+      #+end_src
+**** .gitignore规则不生效
+     #+begin_src 
+.gitignore只能忽略那些原来没有被track的文件，如果某些文件已经被纳入了版本管理中，则修改.gitignore是无效的。
+解决方法就是先把本地缓存删除（改变成未track状态），然后再提交:     
+
+可以直接删除
+git rm -r --cached .
+git add .
+git commit -m 'update .gitignore'
+     #+end_src
 * Matlab语言
 ** 知识补充 cell的使用
 *** 将矩阵保存到cell里面，从而用一个for循环索引cell的编号来画图
@@ -6011,6 +6049,48 @@ private:
   int yPos;
 };    
     #+end_src
+** linux-ubuntu环境Docker部署流程
+*** docker安装
+https://blog.csdn.net/fei2636/article/details/79384969
+#+begin_src 
+1. 安装docker
+sudo apt-get install -y docker.io
+
+2. 启动docker
+systemctl start docker
+systemctl enable docker
+
+#+end_src
+*** win10 linux子系统systemctl报错
+https://blog.csdn.net/li_yan_sring/article/details/84408701
+System has not been booted with systemd as init system (PID 1). Can’t operate.
+解决方案如下,执行以下命令，如果docker --version能正确显示版本号，则安装成功
+#+begin_src 
+1. 先安装redis-server 
+sudo apt-get install redis-server
+2. 启动redis
+sudo service redis-server start
+
+
+无效方法
+sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+sudo apt-get update
+sudo apt-get install docker-ce
+#+end_src
+*** 添加当前用户权限 避免每次使用docker都需要sudo 
+    #+begin_src 
+yyx为用户名
+sudo usermod -aG docker yyx    
+sudo groupadd docker
+sudo gpasswd -a yyx docker
+su - yyx
+
+显示所有权限用户，如果出现yyx则表示添加成功
+id -nG
+    #+end_src
+
 * Html语言
 ** 配置
 需要web-mode package
