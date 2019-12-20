@@ -4936,45 +4936,18 @@ git rm -r --cached .
 git add .
 git commit -m 'update .gitignore'
      #+end_src
-** linux环境下python安装
-   #+begin_src 
-1. 下载安装包 默认下载完成后的保存路径为~/Downloads
-wget下载下来的文件有问题，直接从官网挂VPN下载源码即可
-wget https://www.python.org/ftp/python/3.6.9/Python-3.6.9.tgz   
+*** pip使用方法
+    #+begin_src 
+pip检测更新
+pip list –outdated
 
-2. 解压缩文件
-sudo tar -xvf Python-3.6.9.tgz -C /usr/local
+pip升级包
+pip install --upgrade packagename
+pip install --upgrade --user setuptools
 
-3. 编译
-/usr/local/Python-3.6.9
-./configure --prefix=/usr/local/Python-3.6.9
-
-4. 安装
-make
-make install 
-
-5. 创建新版本的软链接
-修改旧版本
-mv /usr/bin/python /usr/bin/python_bak
-
-6.创建新的软连接 
-当前python3.6版本的可执行程序的位置：/usr/local/Python-3.6.9/bin/python3
-python命令对应的的位置：/usr/bin/python
-mkdir -p /usr/local/python
-ln -s /usr/local/Python-3.6.9/bin/python3 /usr/bin/python
-
-7.直接添加环境变量 即可
-emacs ~/.bash_profile
-export PATH=$PATH:$HOME/bin:/usr/local/Python-3.6.9/bin
-
-8.检查python的版本
-python -V
-python-3.6.0
-软连接创建成功
-
-9.安装pip3
-
-   #+end_src
+pip卸载包
+pip uninstall packagename    
+    #+end_src
 * Matlab语言
 ** 知识补充 cell的使用
 *** 将矩阵保存到cell里面，从而用一个for循环索引cell的编号来画图
@@ -5242,6 +5215,11 @@ target_link_libraries(opencv_test LINK_PRIVATE ${OpenCV_LIBS})
 cp [options] source dest     
 sudo cp sources.list sources.list.bak
 
+修改文件名
+mv 文件名 文件名	将源文件名改为目标文件名
+mv 文件名 目录名	将文件移动到目标目录
+mv 目录名 目录名	目标目录已存在，将源目录移动到目标目录；目标目录不存在则改名
+
 系统版本号查询
 lsb_release -a
 uname -a
@@ -5249,6 +5227,19 @@ cat /proc/version
 
 查询某文件夹所占内存的大小
 du -sh /home/yangyixin/cpp
+
+查询当前路径下的所有文件信息
+ls -lhi
+
+删除文件、文件夹
+rm -rf /var/log/httpd/access
+-r 就是向下递归，不管有多少级目录，一并删除；
+-f 就是直接强行删除，不作任何提示的意思。
+
+linux硬链接与软链接
+内容-用户数据，即文件数据块 (data block)，数据块是记录文件真实内容的地方；
+文件名-元数据则是文件的附加属性，如文件名、文件大小、创建时间、所有者、文件所在的inode等信息。
+在 Linux 中，元数据中的 inode 号（inode 号即索引节点号）才是文件的唯一标识而非文件名。文件名仅是为了方便人们的记忆和使用，系统或程序通过 inode 号寻找正确的文件数据块。如图1：
      #+end_src
 **** 要通过远程桌面连接linux子系统 必须先启动xrdt服务
 命令为;
@@ -5315,6 +5306,56 @@ lsb_release -a
 sudo apt-get update
 sudo apt-get upgrade
       #+end_src
+**** linux环境下python安装
+     #+begin_src 
+  1. 下载安装包 默认下载完成后的保存路径为~/Downloads
+  wget下载下来的文件有问题，直接从官网挂VPN下载源码即可
+  wget https://www.python.org/ftp/python/3.6.9/Python-3.6.9.tgz   
+
+  2. 解压缩文件
+  sudo tar -xvf Python-3.6.9.tgz -C /usr/local
+
+  3. 编译
+  路径为：/usr/local/Python-3.6.9 需要加入--with-ssl，否则pip无ssl模块将无法使用
+  ./configure --with-ssl --prefix=/usr/local/Python-3.6.9 
+
+  4. 安装
+  make
+  make install 
+
+  5. 创建新版本的软链接
+  修改旧版本
+  mv /usr/bin/python /usr/bin/python_bak
+
+  6.创建新的软连接 
+  当前python3.6版本的可执行程序的位置：/usr/local/Python-3.6.9/bin/python3
+  python命令对应的的位置：/usr/bin/python
+  mkdir -p /usr/local/python
+  ln -s /usr/local/Python-3.6.9/bin/python3 /usr/bin/python
+  建立pip3.6可执行程序的软链接
+  ln -s /usr/local/Python-3.6.9/bin/pip3.6 /usr/bin/pip
+
+  6. 软链接建立流程
+  备份原有/usr/bin/python /usr/bin/pip 通过重命名 或者直接删除如果不需要保存的话 rm -rf /usr/bin/python
+  mv /usr/bin/python /usr/bin/python_bak
+  mv /usr/bin/pip /usr/bin/pip_bak
+
+  建立可执行程序的软链接
+  ln -s /usr/local/Python-3.6.9/bin/python3 /usr/bin/python
+  ln -s /usr/local/Python-3.6.9/bin/pip3.6 /usr/bin/pip
+
+  7.直接添加环境变量 即可
+  emacs ~/.bash_profile
+  export PATH=$PATH:$HOME/bin:/usr/local/Python-3.6.9/bin
+
+  8.检查python的版本
+  python -V
+  python-3.6.0
+  软连接创建成功
+
+  9.安装pip3
+ sudo apt install pip3
+     #+end_src
 ** windows下gcc g++平台搭建
 需要安装g++ gcc编译平台
 MinGw安装
