@@ -3797,6 +3797,7 @@ conda activate  my_env
 conda deactivate my_env    
 conda env remove -n test_env 
 conda info -e
+conda remove -n rcnn
     #+end_src
 *** conda设置国内服务器镜像
     #+begin_src 
