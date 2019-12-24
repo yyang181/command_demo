@@ -2604,6 +2604,31 @@ C-c C-x C-l 预览输入的公式
 $ $ 插入行内公式
 $$    $$ 插入行间公式
 #+end_src
+** 必备操作集锦
+*** org mode文档开头配置汇总说明
+    #+begin_src 
+#+LATEX_HEADER: \usepackage[colorlinks=true,linkcolor=red]{hyperref}
+#+LATEX_CLASS: org-article
+#+TITLE: Org to \LaTeX
+#+AUTHOR: Yixin Yang
+#+OPTIONS: toc:nil
+#+OPTIONS: ^:{}         
+    #+end_src
+*** org mode编写导出为md pdf时出现下划线转义字符问题
+**** 单org文件解决方案
+在org文件开头加入下列代码
+     #+begin_src 
+#+OPTIONS: ^:{}     
+
+a_{b}时，_ 后被 {} 括起来的内容就会被转义
+a_b 时，就按普通的方式来显示
+     #+end_src
+**** 全局org mode，通过修改elisp语言
+https://blog.csdn.net/weixin_34234823/article/details/92663464
+在init.el文件中添加如下代码，未经过测试
+     #+begin_src 
+(setq org-export-with-sub-superscripts '{})     
+     #+end_src
 * Python 语言
 ** 系列软件安装指南
 *** 稳定版本
