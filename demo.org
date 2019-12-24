@@ -2330,6 +2330,8 @@ C-c C-x C-y	org-table-paste-rectangle	按原有的列数与行数粘贴一个长
 #+LATEX_HEADER: \usepackage[colorlinks=true,linkcolor=red]{hyperref}
 #+LATEX_CLASS: org-article
 #+TITLE: Org to \LaTeX
+#+AUTHOR: Yixin Yang
+#+OPTIONS: toc:nil
 #+END_src
 ** Org mode 处理代码块
 *** 设置语言环境
@@ -2569,6 +2571,8 @@ xeCJK 是对中文的支持, tikz 是LaTeX下的绘图包, listings 是对代码
      #+begin_src 
 #+LATEX_CLASS: org-article
 #+TITLE: Org to \LaTeX     
+#+AUTHOR: Yixin Yang
+#+OPTIONS: toc:nil
      #+end_src
 **** 在org-mode中添加新的packages
      #+begin_src 
