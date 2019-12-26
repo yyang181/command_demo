@@ -4954,6 +4954,7 @@ for i, element in enumerate(seq):
 *** .gitignore 文件编写 和通过github进行版本控制的方法
 **** 编写语法
 ***** 基本规则
+编写gitignore规则的时候一定要注意，如果是非直接上下级路径，一定要添加两个星号表示
       #+begin_src 
   bin/: 忽略当前路径下的bin文件夹，该文件夹下的所有内容都会被忽略，不忽略 bin 文件
   /bin: 忽略根目录下的bin文件
@@ -4975,9 +4976,12 @@ for i, element in enumerate(seq):
       #+end_src
 ***** 高级示例
       #+begin_src 
-排除任何目录下的readme.assets文件夹下面的所有.jpg .png文件
+排除任何目录下的readme.assets文件夹下面的所有.jpg .png文件 
 !**/README.assets/*.jpg
 !**/README.assets/*.png      
+
+!**/assets/**/*.jpg
+!**/assets/**/*.png
       #+end_src
 **** .gitignore规则不生效
      #+begin_src 
@@ -4989,6 +4993,12 @@ git rm -r --cached .
 git add .
 git commit -m 'update .gitignore'
      #+end_src
+**** 确认文件被哪条gitignore语句忽略
+     #+begin_src 
+git check-ignore -v 文件名     
+git check-ignore -v App.class
+     #+end_src
+
 *** pip使用方法
     #+begin_src 
 pip检测更新
