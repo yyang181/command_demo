@@ -2634,6 +2634,24 @@ https://blog.csdn.net/weixin_34234823/article/details/92663464
      #+begin_src 
 (setq org-export-with-sub-superscripts '{})     
      #+end_src
+*** 修改org-mode插入图片，图片的默认保存路径
+变量名：org-download-image-dir
+**** 方案一：在org-mode开头添加代码 可以做到实时对应org文件名作为文件夹的名称
+可以在插入图片时，将图片放入与.org同名的文件夹下
+     #+begin_src 
+# -*- eval: (setq org-download-image-dir (file-name-sans-extension (buffer-name))); -*-     
+     #+end_src
+**** 方案二：在init.el中添加默认的路径信息 固定路径
+可将路径修改到assets文件夹下
+     #+begin_src 
+(setq-default org-download-image-dir "./assets")      
+     #+end_src
+**** 方案三：在init.el中添加默认的路径信息 文件名作为路径
+测试未通过
+     #+begin_src 
+(setq-default org-download-image-dir (file-name-sans-extension (buffer-name)))
+     #+end_src
+
 * Python 语言
 ** 系列软件安装指南
 *** 稳定版本
@@ -6442,6 +6460,7 @@ Shift + c 锚点工具
 t 文字工具
 r 旋转工具
 Alt + 鼠标左键 快速复制图形
+Alt + 鼠标滚轮 放大缩小当前画面
 Ctrl + z 还原操作undo 
 Ctrl + shift + z 重做操作redo
 Shift + m 形状生成工具
@@ -6460,6 +6479,27 @@ Shift + e 橡皮擦工具
 修改直线上的锚点位置：先用直接选择工具选中图形即可，之后拖动锚点即可修改图形形状
 *** 形状生成器
 交叉重叠的图形使用形状生成工具后，图形中的每一个交叉点都会变为单独的个体，按住Alt键点击对应位置，即可删除个体。
+* Adobe Photoshop 作图软件
+** 基本快捷键
+   #+begin_src 
+撤销：CTRL+Z
+
+旋转操作：先使用自由变换工具，之后鼠标落在画面之外即可对图形进行旋转
+
+自由变换工具： CTRL+T 选中图层之后 调整图层大小
+
+快速选择功能： v 
+
+直接选择功能： a
+
+取消选中 CTRL+D    
+
+使用技巧： 单击修图  ALT缩小
+
+蒙版上绘制黑色，可以产生图层之间透明的效果   
+
+合并图层：选中两个图层之后 Ctrl + e 
+   #+end_src
 
 * github代码库管理 
 ** 忽略文件配置
