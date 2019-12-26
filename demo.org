@@ -4990,6 +4990,8 @@ for i, element in enumerate(seq):
 
 可以直接删除
 git rm -r --cached .
+此处命令执行完成之后即可通过github desktop进行commit命令了
+
 git add .
 git commit -m 'update .gitignore'
      #+end_src
@@ -5271,6 +5273,23 @@ add_executable(opencv_test opencv_test.cpp)
 # Link your application with OpenCV libraries
 target_link_libraries(opencv_test LINK_PRIVATE ${OpenCV_LIBS})      
       #+end_src
+*** anaconda安装
+**** 步骤
+     #+begin_src 
+1. 安装下载下来的安装包
+bash ~/Downloads/Anaconda3-5.2.0-Linux-x86_64.sh
+
+2. conda: command not found ，解决方法是立即生效环境变量 
+source的用法：用于重新执行刚修改的初始化文件，使之立即生效，而不必注销并重新登录
+source ~/.bashrc
+     
+3. 手动修改环境变量
+vi ~/.bashrc
+在bashrc文件的最后添加：export PATH="/home/用户名/anaconda3/bin:$PATH"。（vi编辑器中按i进入编辑模式）
+添加完按esc退出编辑模式，并按:x（保存并退出）
+最后需要更新.bashrc：
+source ~/.bashrc
+     #+end_src
 *** 必备操作集锦
 **** 基本命令使用
      #+begin_src 
