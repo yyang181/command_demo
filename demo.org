@@ -2651,7 +2651,10 @@ https://blog.csdn.net/weixin_34234823/article/details/92663464
      #+begin_src 
 (setq-default org-download-image-dir (file-name-sans-extension (buffer-name)))
      #+end_src
-
+*** *文本加粗的方式*
+    #+begin_src 
+*abc* 将abc加粗    
+    #+end_src
 * Python 语言
 ** 系列软件安装指南
 *** 稳定版本

@@ -1,629 +1,630 @@
 
 # Table of Contents
 
-1.  [Top Layer](#org36e13fa)
-    1.  [Install Emacs](#org11f906e)
-        1.  [Up to date backup](#orge78d750)
-        2.  [win10安装核心解决方案](#orge8574db)
-        3.  [安装注意事项：](#orga6a489e)
-        4.  [错误代码说明](#org99c2e9e)
-    2.  [版本控制](#orgc160f53)
-        1.  [创建不受emacs官方git管理的文件夹](#org43b6f0f)
-    3.  [初始化配置](#orga61bd79)
-        1.  [代码管理](#org8cbb580)
-        2.  [git必备包](#org8e98d16)
-    4.  [必备操作集锦](#orgc09f1fc)
-        1.  [不重启emacs直接生效配置方法](#org5cb6434)
-        2.  [选中、复制、粘贴、查找](#orgf1962b4)
-        3.  [光标操作](#org3ec99ad)
-        4.  [命令主菜单](#org072dd61)
-        5.  [帮助主菜单](#org53ec0c1)
-        6.  [多buffer管理：](#org0911e26)
-        7.  [根目录Roaming打开方式及三种快速目录切换](#org6523fa8)
-        8.  [设置默认文件夹](#org06b3ee4)
-        9.  [补全工具选择：](#orgce7adb3)
-        10. [中文字体支持，数字加字母乱码解决方案](#org18c0342)
-        11. [删除文中多行空白行](#org867b732)
-        12. [SPC键位说明：](#orge480992)
-        13. [recentf快速打开最近目录](#org4335d83)
-        14. [不重启重载配置的方法，利用SPC=M-m](#org9a77410)
-        15. [手写configuration文件，对于package installation](#orgdeef0b5)
-        16. [图片显示问题 org-mode](#org248be8e)
-        17. [终极图片处理](#org9a5c48b)
-        18. [正则表达式](#org557a921)
-        19. [undo-redo undo-tree](#orgd4ea3db)
-        20. [大小写转换](#org12f968a)
-        21. [快速打开init.el文件的方法](#orgef85980)
-        22. [设置emacs为默认全屏打开](#org1083808)
-        23. [取消每次打开.py文件都要询问一次是否载入python layer](#orgec81185)
-        24. [设置emacs默认的python版本，cmd输入python打开的版本](#org5af9f38)
-        25. [设置jupyter notebook的默认启动路径](#org4275bdf)
-        26. [reload buffer](#orgc1a68fa)
-        27. [文件管理：快速打开新文件及新窗口的方法以及最近文件的方法](#orgf658ddd)
-        28. [重命名buffer](#org8c62807)
-        29. [Ctrl+space被搜狗输入法占用](#org59eef7c)
-        30. [鼠标指针消失](#org289bb61)
-        31. [emacs中python-mode出现flycheck多种位置错误](#orge3ce987)
-2.  [Emaces Usful Command](#orga610c36)
-    1.  [Command](#orgbf3be57)
-        1.  [常用命令](#org4ee9211)
-        2.  [命令主菜单](#org6bc3cbb)
-        3.  [帮助](#orgf75a961)
-    2.  [一些解决方案](#org092c601)
-        1.  [多buffer管理：](#orgf375ecb)
-        2.  [任意文件同一个窗口打开](#org19bffd3)
-        3.  [快捷跳转行数](#org4c8562c)
-        4.  [设置在左侧显示行数功能](#org2596812)
-        5.  [复制粘贴及矩形区域选择解决方案](#orgc94efbe)
-        6.  [笔记，保存及预览设置](#org12af05f)
-        7.  [在org mode里面插入图片，并且可以选择直接在本文文档中查看图片](#orgd1f4ca2)
-    3.  [Spacemacs](#orgb4aa4c7)
-        1.  [Spacemacs 配置文件 添加package cuda-mode](#org7b2a8b1)
-        2.  [Spacemacs 配置文件 初始化init.el文件 使所有buffer默认打开company模式](#org17121ac)
-    4.  [Company 自动补全包 命令集](#org2f58444)
-    5.  [Expand-region 快捷键文本选中 package](#org0e93c0a)
-    6.  [Magit package自动上传本地文档到github](#orge237d35)
-    7.  [Git-auto-commit 每次保存文件自动commit到github 需要在.spaces中初始化才能startup载入](#org1663d3c)
-        1.  [配置步骤](#org52afda6)
-        2.  [使用方法](#orgf602b2a)
-        3.  [按键配置代码 init.el文件](#org13c24ab)
-    8.  [Evil-nerd-commenter Package](#org88d6122)
-        1.  [配置步骤](#orgfe05239)
-        2.  [使用方法](#orgcb2061a)
-    9.  [Flycheck](#orgcd765aa)
-        1.  [配置方法](#org88bf012)
-    10. [Git 综述](#org26943e0)
-    11. [神器：global-set-key自定义绑定 键位 到命令](#org9f8056c)
-        1.  [方法一 修改init.el文件](#orgc64bd63)
-        2.  [方法二 可能会出现单次设置单次使用](#orgeda262b)
-    12. [重要：配置private layer:yyang181](#org2facd6e)
-        1.  [优先使用.spacemacs文件，如果没有，使用init.el文件生成.spacemacs](#org0c3c84d)
-        2.  [只修改两个文件init.el 和.spacemacs](#org5ea95b4)
-        3.  [设置users layer .spacemacs](#orgb4cf975)
-        4.  [.spacemacs文件](#orgb6fee14)
-    13. [Configuration Layers](#org608d08c)
-        1.  [可以检查其他人的layer里面的文件来学习使用方法](#org9aced72)
-        2.  [结构](#org7c664ca)
-        3.  [layer中各种文件的作用](#org595bb99)
-        4.  [配置packages](#org93628d3)
-    14. [终极解决方案](#org6711fcd)
-        1.  [优先在init.el文件中处理包](#orgccbe0ef)
-        2.  [步骤：在init.el文件中导入package 并且配置即可](#org3d7fcc8)
-        3.  [例子](#org0e005c5)
-    15. [web浏览器 w3m](#org3edd3a9)
-        1.  [配置](#org178e271)
-        2.  [effective operation](#org2c95e3e)
-        3.  [一定要配置w3m emacs-w3m两个package在cygwin中](#org7dd7995)
-        4.  [需要配合cygwin一起使用！](#org148b187)
-        5.  [快捷键](#orga2b552a)
-        6.  [键位绑定](#org327a370)
-        7.  [可用的快捷键-一定要注意大小写](#org107afac)
-        8.  [github上面的推荐配置：](#orgceb70ef)
-        9.  [自用配置 有错误 备用](#org50c85ce)
-    16. [web浏览器eww Windows可用](#orgd65f2e7)
-        1.  [配置](#org7e991ec)
-        2.  [快捷键](#orga95986c)
-    17. [cygwin linux系统模拟](#org65427f1)
-        1.  [cygwin是什么](#org47abe1c)
-        2.  [安装](#orgd627476)
-        3.  [基本操作](#orgf77e6dc)
-        4.  [技巧](#org89e3f97)
-        5.  [package installation methods](#orgdd12eb4)
-        6.  [package installation methods New version](#org9359969)
-        7.  [安装w3m emacs-w3m的技术细节](#orgbdd7a41)
-    18. [Smex 让输入命令变得飞快](#org7f35e82)
-        1.  [配置：](#org2856e56)
-    19. [web浏览器Xwidget & 附带安装pdf阅读器](#org3fbb999)
-        1.  [解决not compiled问题](#orgeab88de)
-    20. [PDF阅读器](#org6067e41)
-3.  [Latex 编辑命令](#org18a07a6)
-    1.  [平台搭建](#org206ff3f)
-        1.  [TeXLive + Emacs + AUCTex + SumatraPDF](#org009ab0f)
-        2.  [通过清华镜像安装textlive](#org7758814)
-        3.  [通过elpa emacs package管理工具安装AUXTex](#org6a7cb9b)
-        4.  [安装auctex package](#org860c487)
-    2.  [emacs使用总结](#orgf9f5cb1)
-    3.  [auctex/preview使用方法](#orga7d3432)
-        1.  [auctex](#org40c746d)
-        2.  [preview-latex](#orgc0cd082)
-    4.  [导出pdf](#orgc3285fb)
-        1.  [编译方法](#org13770b0)
-        2.  [使用XeLaTex工具导出PDF](#orgbbb78b8)
-        3.  [可选解决方案：](#org2f56d46)
-        4.  [终极解决方案：auctex package](#org1c5a6e1)
-    5.  [中文环境包](#orge953b29)
-    6.  [latex编辑公式](#org431f899)
-        1.  [博客资源：如何写公式](#org604cff6)
-        2.  [公式环境](#orga352adf)
-        3.  [公式符号](#org322832c)
-        4.  [其他还有一些数学环境里的「要」和「不要](#org57572a2)
-    7.  [latex 设置字体格式](#org448dae0)
-        1.  [设置字体大小](#org56849b6)
-        2.  [设置字体颜色](#org9e9e8e2)
-        3.  [设置字体居中](#org1ed93cb)
-        4.  [设置字体加粗 下划线等命令](#org810514e)
-    8.  [latex设置段落格式](#org1585de3)
-        1.  [首行缩进](#org094389b)
-        2.  [空行](#org6be6d67)
-    9.  [latex 插入图片](#org35b52e0)
-        1.  [一定要注意！！！！！！谁他妈说的，草，不确定](#org98edb07)
-        2.  [图片路径设置格式](#orgcd73d57)
-        3.  [一般需要包含的宏包](#orga833e14)
-        4.  [神器：图片处理，超链接处理](#orga5afd23)
-        5.  [nips图片格式](#org07cf165)
-        6.  [博客图片格式](#orgd3927d5)
-        7.  [多个图片排列 tabular](#org00c0886)
-    10. [latex 新建页](#org9f7c52e)
-    11. [latex 脚注](#org11dbee3)
-    12. [latex 交叉引用 \label \ref](#org4e193a5)
-        1.  [用法解释](#org2f610c5)
-    13. [latex 中新建environment](#orgd81ec06)
-        1.  [学习资料](#org07253b2)
-    14. [latex 中分栏](#orgb1cafb1)
-        1.  [网址：https://blog.csdn.net/u013225150/article/details/51713299](#org9c36209)
-        2.  [双栏模式进入和退出](#orgcfc4db9)
-        3.  [分栏的中间间距和竖线](#orgdb1b116)
-    15. [latex 中语法高亮](#org0eaf4fa)
-        1.  [以c语言为例](#org8600e15)
-        2.  [更全面的代码参数设置见网址https://blog.csdn.net/lydyangliu/article/details/9208635](#orgdd03a39)
-    16. [latex 中页边距设置](#orgd059a14)
-    17. [latex + bibtex生成参考文献](#orgc93d97a)
-        1.  [latex书写](#orgbd25af6)
-        2.  [同路径下文件](#org7b14e34)
-        3.  [生成参考文献列表 1 2 1 1](#org541fb21)
-        4.  [最终代码示例](#orga12fda7)
-4.  [Org mode](#orgcefd1c2)
-    1.  [配置](#org1f8c749)
-    2.  [Useful Command](#orgb746661)
-        1.  [编译](#orga605949)
-        2.  [标题](#org4893a09)
-        3.  [块标签](#org4406e77)
-        4.  [排版段落格式](#org9b7cc3c)
-        5.  [设置默认在org mode下面使用缩进格式](#org86975a1)
-    3.  [产生时间戳](#org6036e62)
-    4.  [待办事项功能](#org7c92a45)
-        1.  [使用方法](#org0231c93)
-        2.  [命令：](#orgc68e435)
-        3.  [自定义TODO标签的格式](#org25bb979)
-        4.  [自定义标签括号里面附加选项](#org300a256)
-        5.  [对所有org文档配置默认](#org14fd13f)
-        6.  [设置任务优先级](#orgd5b20b5)
-        7.  [步骤](#orgfc4220c)
-    5.  [超链接文件或者图片](#org8180bb3)
-        1.  [常规解决方案iimage-mode](#org6c57d87)
-        2.  [更好的解决方案: org-download + imagemagick](#orgacb555b)
-        3.  [使用方法](#org9920b29)
-    6.  [表格和图片增加标签和说明，并交叉引用](#orga775d24)
-        1.  [命令](#org587489d)
-    7.  [表格的输入](#orgbe5d667)
-        1.  [插入表格](#orga0006eb)
-        2.  [限制所在列的长度](#org01b5add)
-        3.  [美化表格](#orgdcb6acd)
-        4.  [操作说明](#org5647309)
-    8.  [Org 一键导出latex之后转pdf的方法](#orgd789023)
-        1.  [方案对比md tex](#org2fcc8b3)
-        2.  [目前暂时没有比较好的中文解决方案](#org4ebbdae)
-        3.  [英文处理直接编译然后用pdftex输出所需要的pdf 中文只能暂时用html格式将就一下了](#org6fdfffc)
-        4.  [配置.spacemacs文件来添加中文支持包](#org3fe8851)
-    9.  [Org mode配置latex环境及常用宏包](#org4a0b034)
-    10. [Org mode 处理代码块](#orgbed98ac)
-        1.  [设置语言环境](#org7dde212)
-        2.  [配置init.el文件](#org1ce13b8)
-        3.  [命令快捷键](#orgf4efca1)
-        4.  [例子](#orge5db1b7)
-        5.  [测试matlab代码块](#org573df66)
-        6.  [注意事项](#org9fb8b01)
-    11. [Org-page package创建个人主页](#orga420897)
-        1.  [.emacs 文件源代码 手动添加package 注意：目前好像不能用](#org28497a7)
-    12. [orgmode中使用思维导图](#orga25ed90)
-        1.  [软件安装](#orgeace23d)
-        2.  [使用步骤](#orgc236296)
-    13. [org-markdown](#org30e5b9c)
-        1.  [emacs配置](#orge041b31)
-        2.  [去掉table of contents](#org519a8bf)
-    14. [org-babel代码运行](#org29b6fa4)
-        1.  [配置](#org33993b8)
-        2.  [](#orged8cee2)
-    15. [org-latex](#org7e54856)
-        1.  [使用细则](#orgb3e56d2)
-        2.  [步骤](#orgade65e9)
-        3.  [可以顺利运行中文的package设置](#orgaa953a7)
-        4.  [设置org-mode的默认pdf导出模板](#org15a33c4)
-        5.  [修改生成的latex文件中图片尺寸](#org87b9eac)
-        6.  [公式](#org1ebd9db)
-    16. [必备操作集锦](#orgaa5fa51)
-        1.  [org mode文档开头配置汇总说明](#org6ff9c2e)
-        2.  [org mode编写导出为md pdf时出现下划线转义字符问题](#org6e7af1f)
-        3.  [修改org-mode插入图片，图片的默认保存路径](#orgdfa68a5)
-5.  [Python 语言](#org82640a1)
-    1.  [系列软件安装指南](#org4c4ccb0)
-        1.  [稳定版本](#orgd8bc1cf)
-        2.  [anaconda](#org043b20f)
-        3.  [TensorFlow](#orgad49d1b)
-        4.  [常见问题解决](#org2eba5f0)
-        5.  [pytorch](#org5b9d2a4)
-        6.  [Jupyter notebook](#org4503863)
-    2.  [EIN中的使用方法](#orgd966788)
-        1.  [打开浏览器的jupyter notebook](#org60404db)
-        2.  [在emacs中用M-x ein:notebooklist-login登陆](#org35f17f3)
-        3.  [EIN中的文件管理](#orgd86dcf6)
-        4.  [EIN:jupyter notebook编辑环境](#orgac4b521)
-    3.  [jupyter notebook魔法技巧](#org5c07fae)
-        1.  [魔法函数](#org7073fa1)
-        2.  [spyder风格模仿](#orge548631)
-        3.  [创建新的.py文件并内容如下](#org0a2d21a)
-        4.  [画图](#org769fde0)
-        5.  [jupyter notebook实时调整参数输出结果](#org8c443e3)
-    4.  [emacs中测试.py文件](#orgddcb940)
-        1.  [将.py中的代码导入ipython块中](#orgf3c4ad5)
-        2.  [直接编辑测试.py文件](#org938eb17)
-    5.  [代码测试的基本流程](#orgbfaefad)
-        1.  [依托工具 jupyter notebook](#org569f689)
-        2.  [流程 封装的最高级别是class类而不是def函数](#org2143052)
-    6.  [帮助命令](#orge097847)
-    7.  [异常处理——try语句](#org9ee60ce)
-        1.  [基本知识](#orgf1799d7)
-        2.  [用法说明](#orgfe52a10)
-        3.  [代码示例](#org907ca82)
-    8.  [爬虫](#org0d82877)
-        1.  [最优网页路径选择](#orgddaf014)
-        2.  [最优标签ID name 特征爬取选择](#org4a5193b)
-        3.  [获取html信息：request库](#orgedc6f34)
-        4.  [使用python中的selenium库快速定位html中标签的位置](#orga352017)
-        5.  [Selenium知识体系](#org037ef13)
-    9.  [库](#orgbc1114b)
-        1.  [threading](#org030d2ff)
-        2.  [pandas数据处理库](#orga6cce8b)
-    10. [python环境迁移/虚拟环境创建 conda创建环境 pip安装packages](#org3d76580)
-        1.  [打包所有已安装的package](#org88704b1)
-        2.  [虚拟环境建立 conda](#orga1fce15)
-        3.  [conda设置国内服务器镜像](#org31de672)
-        4.  [虚拟环境建立 pip](#org2443b6e)
-        5.  [pip设置国内服务器镜像](#orge6c0e8e)
-        6.  [常见问题 setup egg<sub>info</sub>](#orgd993087)
-    11. [基线模型](#org5531c67)
-        1.  [语法](#org9ecef23)
-    12. [Docker部署](#orgde6168f)
-        1.  [准备工作](#orgda19ff8)
-    13. [必备操作集锦](#org36ac291)
-        1.  [正则表达式](#orge6a57b1)
-        2.  [字符串合并、替换](#org56c6060)
-        3.  [文件名按名称进行排序(list + numpy)方法](#orgbf47c60)
-        4.  [list与string互转 list与numpy互转](#orgf20220d)
-        5.  [将字符串、列表、字典等数据结构存储为本地文件 pickle](#org90c6a80)
-        6.  [读取，写入txt文件](#orge0bc1a4)
-        7.  [获取html内容的python写法](#org6fe4c0e)
-        8.  [为python模拟浏览器登陆添加header](#org2708cd5)
-        9.  [快速获取某元素xpath的方法](#org23f6a29)
-        10. [接管已打开的浏览器方法：解决反爬虫](#orgb60ba9d)
-        11. [python中的模型保存于转换](#org57c90a1)
-        12. [Tensorboard保存与查看](#orge03e4bb)
-        13. [将列表转换为二维数组，以方便排序和查看最大元素](#orga064afc)
-        14. [emacs中代码块批量缩进](#orgcc0975a)
-        15. [python中保存数据 与第三条结合使用](#org000c4a2)
-        16. [批量化 封装化处理图片，脚本的模板](#org957fc1e)
-        17. [numpy按元素操作](#org3f5ed2d)
-        18. [excel文件终极处理](#org6c9d3cb)
-        19. [路径下所有文件检索方法](#org6385504)
-        20. [init封装.py格式](#orgc9eefd4)
-        21. [TensorFlow使用的GPU](#org3abf799)
-        22. [tensorboard中graph图使用说明](#org9ce513f)
-        23. [python中的class类](#org92e66e8)
-        24. [assert](#org3960704)
-        25. [TensorFlow将模型保存为pb模型](#org38a5e2f)
-        26. [测试目录是否testdir存在，如果不存在，它将为您创建目录](#org6b6583b)
-        27. [如何确认库中有没有某个特定的module](#orgd5f7c28)
-        28. [scipy.misc 找不到imread解决方案](#orgb227e93)
-        29. [import future](#orga443a1a)
-        30. [init.py文件的作用](#org80f4569)
-        31. [如何用python批量复制文件](#org5be6637)
-        32. [求解线性、非线性方程组](#org77f1805)
-        33. [文件名处理、拼接全部集锦](#org1e8a675)
-        34. [判断变量是否已经被定义，是否存在](#org41816aa)
-        35. [在图片上添加文字、直线、和点（圆）以及cv2.imshow方法快速展示图形结果（便于debug）](#org56e1e98)
-        36. [平方和平方根的计算 以及直线斜率及度数的计算公式](#org80bb831)
-        37. [numpy 库](#org918da59)
-        38. [带有索引的enumerate枚举方法](#orgad899a4)
-        39. [.gitignore 文件编写 和通过github进行版本控制的方法](#org3777dc5)
-        40. [pip使用方法](#org990098b)
-6.  [Matlab语言](#org9ffab1f)
-    1.  [知识补充 cell的使用](#org1cc4ad4)
-        1.  [将矩阵保存到cell里面，从而用一个for循环索引cell的编号来画图](#org66b1c3c)
-        2.  [代码](#org35bef06)
-    2.  [for循环处理画图语句](#orge9e4088)
-    3.  [类 class 函数变量名： 变量名.成员变量](#org3e943f4)
-    4.  [matlab中运行python代码](#org86cc449)
-        1.  [配置python环境](#org92ef6b4)
-        2.  [使用方法及调试](#orgf005edf)
-7.  [C++语言 & linux系统](#org0cbd65e)
-    1.  [windows下子系统linux搭建](#org2e612a4)
-        1.  [安装ubuntu](#org62a90b9)
-        2.  [设置root命令并获取root权限](#org3690c9e)
-        3.  [安装必备package](#orgaabb3f3)
-        4.  [编译和运行](#orgb3feae8)
-        5.  [文件管理](#org1255a9b)
-        6.  [ubuntu系统文件夹功能介绍](#org21eb22c)
-        7.  [环境变量设置](#org44b5a74)
-        8.  [ssh登录用法](#org5dd7b16)
-        9.  [vim编辑器基本使用方法](#orgf96b5e7)
-        10. [ssh之后退出当前登录](#org532c389)
-        11. [OpenCV安装](#orgf159a90)
-        12. [anaconda安装](#org9839ace)
-        13. [必备操作集锦](#orgdd1293c)
-    2.  [windows下gcc g++平台搭建](#org2a2bfec)
-    3.  [Makefile环境搭建](#org1678cdf)
-        1.  [make命令](#org87e6d13)
-        2.  [makefile的生成](#org2b33d99)
-        3.  [Makefile书写规范](#org30bbf27)
-        4.  [重要问题](#org917ab7f)
-        5.  [大型程序](#org024a01e)
-    4.  [SDK 软件开发工具包：opencv等库的安装及使用](#orgb843613)
-        1.  [依赖](#orge6fe8a9)
-        2.  [通过cmake编译opencv库生成opencv.sln文件](#org8674de2)
-        3.  [编译和安装](#org32b07fe)
-        4.  [基本知识](#orgaa076ee)
-    5.  [ubuntu及oracal虚拟机 （过时）](#org2007872)
-    6.  [可以直接用成熟的Windows shell程序](#orgc5989cf)
-    7.  [MobaXterm 连接bender](#org1478748)
-    8.  [cygwin 类Unix的Windows端软件](#org43eb551)
-    9.  [在emacs中编译 运行cpp文件](#org887d7d0)
-        1.  [代码调试逻辑](#org71665db)
-        2.  [一键编译并运行c++ mode](#orgb37a55a)
-        3.  [一键编译C++ mode](#org81bc1fc)
-        4.  [一键打印输出变量的值 调试方法](#orgeea765d)
-        5.  [打开命令行工具的方法](#orgf8427d9)
-        6.  [编译/执行命令](#orgb70aa1b)
-        7.  [编译环境配置](#org6f75281)
-        8.  [必备操作集锦](#orgab03d51)
-    10. [debug gdb](#orgcc1775c)
-        1.  [emacs打开方式](#org22b6ff8)
-        2.  [基本调试语法](#orgd4ff01e)
-    11. [C++基本语法](#org604fcbd)
-        1.  [基本符号](#org1bbbfa6)
-        2.  [函数用法](#org34f8d4f)
-        3.  [字符常量、转义字符、运算符、循环体](#org03d39f7)
-        4.  [数组](#orgc9929d8)
-        5.  [指向数组的指针](#orgb971fb3)
-        6.  [字符串序列](#org2da71ed)
-        7.  [时间和日期](#orgf4f6431)
-        8.  [c++的基本输入输出](#orgce34e22)
-        9.  [public private](#org8175e6e)
-        10. [vector向量](#org4bc61c5)
-        11. [unordered-map 字典](#org579813d)
-        12. [构造函数和析构函数 类对象的初始化赋值和分配空间清除](#orga8951c0)
-        13. [:: -> :](#orgac28c54)
-        14. [new关键字的](#org0b0ed87)
-        15. [typedef](#orgabcb3cd)
-        16. [template 模板](#org25c7ad1)
-        17. [#define语句](#org0864bca)
-    12. [c++代码书写](#orgb75895c)
-        1.  [写法规范](#orgbf976d2)
-        2.  [代码示例](#orgb76af6e)
-    13. [linux-ubuntu环境Docker部署流程](#org05b83d5)
-        1.  [docker安装](#orgab96354)
-        2.  [win10 linux子系统systemctl报错](#orga4fb14b)
-        3.  [添加当前用户权限 避免每次使用docker都需要sudo](#org4e518c7)
-8.  [Html语言](#org585a2ac)
-    1.  [配置](#org5a10233)
-    2.  [学习抓取某网站的技巧](#orgbc36fbc)
-    3.  [html基本知识](#orgfde6bb1)
-        1.  [常用标签](#org1a470f1)
-    4.  [最重要的函数find<sub>all</sub>](#org983c214)
-        1.  [name参数](#orged5b0e5)
-        2.  [keyword参数](#org7d92493)
-        3.  [sting参数](#orgac57ae8)
-        4.  [limit参数](#org145aa2e)
-        5.  [recursive参数](#org71ff7c6)
-        6.  [使用说明](#orge34c50d)
-9.  [Adobe Illustrator 作图软件](#org25aa646)
-    1.  [基本工具及快捷键](#orge4ba624)
-    2.  [使用逻辑](#orgc3a32ef)
-        1.  [基本图形库](#orgc347032)
-        2.  [锚点的使用](#orgd1715f7)
-        3.  [形状生成器](#orgb835a8f)
-10. [Adobe Photoshop 作图软件](#orgbf35d75)
-    1.  [基本快捷键](#orgb7567bf)
-11. [github代码库管理](#org5595d64)
-    1.  [忽略文件配置](#org93373f5)
-        1.  [编写逻辑](#org9028184)
-        2.  [编写代码](#org5360025)
-        3.  [注意事项](#org37b18f5)
-        4.  [无法commit到远端的问题解决](#orgfee8c95)
-12. [Algorithems & Data Structure](#orgb4066c7)
-    1.  [Sorting](#org6cdaafc)
-        1.  [Insertion sort](#orgf2480fb)
-        2.  [divide-and-conquer approach 分治法 又称为merge sort归并排序](#org16ace95)
-        3.  [heapsort堆排序](#orgdde24a9)
-        4.  [Quicksort 快速排序](#org56cc750)
-        5.  [Counting Sort计数排序](#orgd37982c)
-        6.  [Radix Sort基数排序](#org624b3ab)
-        7.  [Bucket Sort桶排序](#org20e3cc1)
-        8.  [七种sort算法](#org143cb34)
-        9.  [一句话概括七种排序算法](#org2adfa5a)
-    2.  [中位数和顺序统计量](#org4422c7a)
-    3.  [数据结构](#org2fb8890)
-        1.  [基本数据结构](#orgf73d483)
-        2.  [散列表](#orgb010699)
-        3.  [二叉搜索树](#orgadc169a)
-        4.  [红黑树](#orgb867d02)
-    4.  [高级设计和分析技术](#orgdc8f54e)
-        1.  [动态规划](#org103ece3)
-        2.  [贪心算法](#orga26fa1d)
-        3.  [摊还分析](#orgaf12f41)
-13. [Algorithems & Data Structure 2019 11 02](#orgfed23b8)
-    1.  [学习思想及标准](#org47d31a2)
-    2.  [10个数据结构+10种算法](#org82449b3)
-        1.  [数组](#orgba0bf83)
-        2.  [链表](#org48766c1)
-    3.  [数据结构c++语言清华大学邓俊辉](#org5069af1)
-        1.  [复杂度](#orga2d1fd2)
-        2.  [递归](#orge376918)
-        3.  [抽象数据类型 ADT](#org275b17e)
-        4.  [列表](#org3bb041a)
-        5.  [栈与队列](#org11b3607)
-        6.  [二叉树](#orgfd56b17)
-        7.  [图](#orgaa928bc)
-        8.  [搜索树](#org5e7243d)
-14. [LeetCode学习](#org8a9aa11)
-    1.  [学习策略及逻辑](#orgb1f6560)
-    2.  [正序题号](#orgbc89c60)
-        1.  [哈希表 Hash table](#org2a84181)
-    3.  [python版本](#orga61c950)
-        1.  [1](#orgd024f63)
-        2.  [2](#org5dd5fde)
-        3.  [3](#orge599127)
-        4.  [4](#orga478722)
-        5.  [5](#orgd253bde)
-        6.  [6](#orgad053ce)
-        7.  [7](#org590b7cd)
-        8.  [8](#org5ad16dc)
-        9.  [9](#org92d6499)
-        10. [10](#org00612d0)
-        11. [11](#orge42e871)
-        12. [12](#org48c9440)
-        13. [13](#org2cbd7a4)
-        14. [14](#org271a7c9)
-        15. [15](#orga163ed1)
-        16. [16](#org703cacd)
-        17. [17](#org0e53cbb)
-        18. [18](#org587d99c)
-        19. [19](#org1ec5f3b)
-        20. [20](#orgefb0312)
-        21. [21](#orge87cb32)
-    4.  [c++版本](#org5d36323)
-        1.  [1](#org785a131)
-    5.  [C-Plus-Plus题解库](#orgb92eb1b)
-        1.  [sorting](#org37a2a01)
-15. [人工智能-AI](#org2cba444)
-    1.  [Paper研读](#orgde44ef2)
-        1.  [Dr. Amit](#orga4cf5c4)
-    2.  [决策树](#org7e1fdbc)
-        1.  [基本特点](#org4236585)
-        2.  [CART分类树](#orge662dab)
-    3.  [随机森林](#orgdf1af63)
-        1.  [基本概念](#org544341c)
-        2.  [随机性](#orgc9a8a39)
-        3.  [随机森林分类效果（错误率）与两个因素有关：](#org13ff390)
-        4.  [袋外误差率 out of bag error(oob error)](#org5c93005)
-    4.  [分类与回归](#org5bb7053)
-        1.  [回归 不需要加上softmax函数](#orgb9b4f1a)
-        2.  [分类](#org621e81e)
-        3.  [聚类 也成为无监督分类](#org2167505)
-        4.  [降维](#org412cc49)
-16. [Spring 2018](#org4d67f81)
-    1.  [EE 147](#orgeb09952)
-        1.  [Lab answers](#orgc31dd4a)
-        2.  [淘宝course hero](#org31d324d)
-    2.  [EE 243](#org37d6156)
-        1.  [hw2](#orgae702cc)
-        2.  [Project proposal](#orge479d51)
-        3.  [hw3](#org1930424)
-        4.  [hw4](#org748ebe4)
-        5.  [hw5](#orga647ff9)
-        6.  [hw6](#org82280bc)
-        7.  [SFM](#orgc69bff0)
-    3.  [EE 297](#org6f1b2c5)
-17. [小技巧](#orgc2d566c)
-    1.  [电脑使用](#orgc34de46)
-        1.  [ThinkPad T440 快速启动使用SSD加速](#org9e10ea2)
-        2.  [笔记本外接显示器](#org0affb7a)
-    2.  [autohotkey](#orgc52dace)
-    3.  [vpn使用](#orgec24040)
-        1.  [NordVPN](#org4e909cc)
-    4.  [linux环境](#org5218130)
-        1.  [ssh登录用法](#orgb456c30)
-        2.  [vim编辑器基本使用方法](#orgf0611df)
-        3.  [ssh之后退出当前登录](#org7980b33)
-    5.  [git客户端更新 windows](#org8219694)
-    6.  [只要是涉及到处理图像的问题](#org4e463d1)
-    7.  [cmd获取本机IP地址](#orgdfb019b)
-    8.  [windows执行linux命令 bash 运行shell脚本](#org82fa5dd)
-18. [能力](#org7f5a24b)
-    1.  [Top Layers](#org8282a6f)
-    2.  [问题处理流程](#org5d41f86)
-        1.  [解决问题的思想](#org3a4569f)
-    3.  [Verify](#org404b819)
-    4.  [Demo](#org6b9f11b)
-    5.  [核心能力 精简版](#org953bc36)
-        1.  [效率提升 + 解决能力](#org30b13cd)
-    6.  [顶层设计](#org4ba8001)
-        1.  [能力测试](#org45bd1d4)
-        2.  [状态保持](#org1375552)
-        3.  [神级分析能力：](#orgb12231c)
-    7.  [能力树](#org6755fee)
-        1.  [时间规划](#orgebfb9c6)
-        2.  [分析能力](#orgcf2e01a)
-        3.  [处理问题](#org1b02f2b)
-        4.  [状态保持](#org76ef164)
-        5.  [时间规划：](#org45d48af)
-        6.  [学习效率](#org11a001f)
-        7.  [学习专注](#org656013e)
-        8.  [学习类型](#org2345c02)
-        9.  [作业-文本表述能力](#orgc5ad1d4)
-        10. [英语听力](#org10cf8f0)
-        11. [乒乓球](#org09f2cc8)
-        12. [论文阅读、文献理解](#orgfc51a3a)
-        13. [PPT制作](#orgdf70f11)
-        14. [英语听力](#orgf8eec8c)
-19. [技能提升](#org97cb924)
-    1.  [思路](#org89f422c)
-    2.  [学习优先级](#org66cacf5)
-    3.  [必备技能](#org6b777a6)
-    4.  [加分项](#org7d27519)
-    5.  [参考模型](#orgc4cfbd8)
-    6.  [技能树](#org03ea893)
-        1.  [深度学习框架](#org298324e)
-        2.  [C++框架](#org579a080)
-        3.  [项目部署框架](#org6eb7436)
-        4.  [华为任职要求](#orgcc3083d)
-20. [终极写作模板 latex完美版](#orga25a5f2)
-    1.  [源代码](#org58a19a1)
-21. [待完成插件](#orge50a96a)
-22. [待办事项](#org41de559)
-    1.  [紧急类型](#orge5bbd6e)
-        1.  [完成EE243 Hw3](#orgdbc857b)
-        2.  [完成EE147 Lab3并提交](#orgff01c4b)
-        3.  [开始进行EE243的project](#org0e25c2f)
-        4.  [复习EE147 期中考试](#org242f8d5)
-        5.  [完成EE297 project proposal](#orgb93d26c)
-        6.  [顶层能力](#orga3f41b0)
-    2.  [学习知识，技能 长期任务](#org6234675)
-        1.  [算法 C++ 英语 深度学习](#orga9955c8)
-        2.  [关于emacs Python 支持 以及jupyter notebook支持 matlab支持](#org80d2748)
-        3.  [学习英语](#orge36f278)
-        4.  [学习Python语言 Tesoroflow](#org5e43a5b)
-        5.  [学习emacs orgmode中的思维导图gtd](#org51a5cf8)
-        6.  [学习子龙山人知乎视频中关于package自定义，加速emacs启动等相关内容](#org34a8c5b)
-        7.  [学习使用latex编辑公式 也即math mode](#orgc8352c8)
-        8.  [学习使用思维导图模式来处理Ability的demo](#org3ab13ee)
-        9.  [解决掉demo.org转换html文件时速度极慢的问题](#org90ef5f5)
-        10. [关于emacs中的解决不了的问题，可以咨询Chen Bin在github](#org87d09c7)
-        11. [最有效的学习layer配置自定义](#org9d30d18)
-        12. [学习latex中配置begin environment的方法，对于论文写作很有帮助](#orga7c7ab5)
-        13. [中文字体设置 https://www.jianshu.com/p/b1751078e28e](#orgaf7977e)
-    3.  [需要处理的事情](#org2068be7)
-        1.  [美国 Fall 2019](#orgf0bae1e)
-        2.  [完成州内学费申请](#org51e5af6)
-        3.  [完成Kim grad student form 截止日期 6.15](#orge10d12f)
-    4.  [零碎的事情](#orgcdf267c)
-        1.  [EE243 HW3 problem 1 考虑迭代问题和K值聚类](#org09d8fac)
-23. [代码测试区](#orgcaf6af4)
-24. [emacs版本控制文件位置](#org65b21be)
-    1.  [20191111](#org2d5d926)
+1.  [Top Layer](#org7cf5efc)
+    1.  [Install Emacs](#orgad5145c)
+        1.  [Up to date backup](#org2e349b4)
+        2.  [win10安装核心解决方案](#org2a3edfb)
+        3.  [安装注意事项：](#org51db4fd)
+        4.  [错误代码说明](#org2b78c49)
+    2.  [版本控制](#orgbc6e62e)
+        1.  [创建不受emacs官方git管理的文件夹](#orgc934786)
+    3.  [初始化配置](#org9a8fe21)
+        1.  [代码管理](#orgd73faea)
+        2.  [git必备包](#org6614d46)
+    4.  [必备操作集锦](#org492cc7b)
+        1.  [不重启emacs直接生效配置方法](#org928bbc7)
+        2.  [选中、复制、粘贴、查找](#org61b4a87)
+        3.  [光标操作](#orga50cb5a)
+        4.  [命令主菜单](#orgf9e6e48)
+        5.  [帮助主菜单](#orgdb1cd2e)
+        6.  [多buffer管理：](#org7e3c9a4)
+        7.  [根目录Roaming打开方式及三种快速目录切换](#org291ca93)
+        8.  [设置默认文件夹](#orga0c6652)
+        9.  [补全工具选择：](#orge37e2d1)
+        10. [中文字体支持，数字加字母乱码解决方案](#org9cd3a07)
+        11. [删除文中多行空白行](#orgd3557aa)
+        12. [SPC键位说明：](#org6182bd2)
+        13. [recentf快速打开最近目录](#org2ea9f5b)
+        14. [不重启重载配置的方法，利用SPC=M-m](#org3259f72)
+        15. [手写configuration文件，对于package installation](#org209f860)
+        16. [图片显示问题 org-mode](#org4153875)
+        17. [终极图片处理](#orgeea7eb9)
+        18. [正则表达式](#orgd1828cb)
+        19. [undo-redo undo-tree](#org5d9cc14)
+        20. [大小写转换](#orgede68b2)
+        21. [快速打开init.el文件的方法](#orgd953e02)
+        22. [设置emacs为默认全屏打开](#org68cf57e)
+        23. [取消每次打开.py文件都要询问一次是否载入python layer](#org3b72945)
+        24. [设置emacs默认的python版本，cmd输入python打开的版本](#orgd021cf6)
+        25. [设置jupyter notebook的默认启动路径](#orgcd9c9c0)
+        26. [reload buffer](#org5259566)
+        27. [文件管理：快速打开新文件及新窗口的方法以及最近文件的方法](#orgf56fab1)
+        28. [重命名buffer](#org38c80c5)
+        29. [Ctrl+space被搜狗输入法占用](#orgf7c4e25)
+        30. [鼠标指针消失](#org6a54690)
+        31. [emacs中python-mode出现flycheck多种位置错误](#orgc406ab9)
+2.  [Emaces Usful Command](#org4b35575)
+    1.  [Command](#orgb61f7ba)
+        1.  [常用命令](#orgaee8e06)
+        2.  [命令主菜单](#org3891fa6)
+        3.  [帮助](#orgec19363)
+    2.  [一些解决方案](#org85d6381)
+        1.  [多buffer管理：](#orgfe52890)
+        2.  [任意文件同一个窗口打开](#orgd091914)
+        3.  [快捷跳转行数](#orgd9a9ef8)
+        4.  [设置在左侧显示行数功能](#orgd171157)
+        5.  [复制粘贴及矩形区域选择解决方案](#orge79e2cc)
+        6.  [笔记，保存及预览设置](#orgf4d3fc7)
+        7.  [在org mode里面插入图片，并且可以选择直接在本文文档中查看图片](#org93e4d00)
+    3.  [Spacemacs](#orgb958fa1)
+        1.  [Spacemacs 配置文件 添加package cuda-mode](#org4043993)
+        2.  [Spacemacs 配置文件 初始化init.el文件 使所有buffer默认打开company模式](#org84cef5d)
+    4.  [Company 自动补全包 命令集](#orge36d190)
+    5.  [Expand-region 快捷键文本选中 package](#orga8665e8)
+    6.  [Magit package自动上传本地文档到github](#org41ff2d9)
+    7.  [Git-auto-commit 每次保存文件自动commit到github 需要在.spaces中初始化才能startup载入](#org757cd3b)
+        1.  [配置步骤](#orgacb0bb5)
+        2.  [使用方法](#orgcbb83c9)
+        3.  [按键配置代码 init.el文件](#org1928762)
+    8.  [Evil-nerd-commenter Package](#org9cfc0a8)
+        1.  [配置步骤](#orgddcc528)
+        2.  [使用方法](#org722779b)
+    9.  [Flycheck](#org2759ee3)
+        1.  [配置方法](#org9c95754)
+    10. [Git 综述](#orgd765fcf)
+    11. [神器：global-set-key自定义绑定 键位 到命令](#org03b0a17)
+        1.  [方法一 修改init.el文件](#org24faeb9)
+        2.  [方法二 可能会出现单次设置单次使用](#org082b5bb)
+    12. [重要：配置private layer:yyang181](#orgeb740c6)
+        1.  [优先使用.spacemacs文件，如果没有，使用init.el文件生成.spacemacs](#orgc9a0686)
+        2.  [只修改两个文件init.el 和.spacemacs](#orgd202101)
+        3.  [设置users layer .spacemacs](#orgdc86fed)
+        4.  [.spacemacs文件](#org9917af8)
+    13. [Configuration Layers](#org8992747)
+        1.  [可以检查其他人的layer里面的文件来学习使用方法](#orgbffd759)
+        2.  [结构](#orgc4bc820)
+        3.  [layer中各种文件的作用](#org597a68e)
+        4.  [配置packages](#orga92288e)
+    14. [终极解决方案](#org5eb1b02)
+        1.  [优先在init.el文件中处理包](#org55fd705)
+        2.  [步骤：在init.el文件中导入package 并且配置即可](#org2e88c0c)
+        3.  [例子](#org3cdae6f)
+    15. [web浏览器 w3m](#org04d49af)
+        1.  [配置](#orgb973bb3)
+        2.  [effective operation](#org358aeb0)
+        3.  [一定要配置w3m emacs-w3m两个package在cygwin中](#org286b15b)
+        4.  [需要配合cygwin一起使用！](#org1d59ea8)
+        5.  [快捷键](#orga62f51e)
+        6.  [键位绑定](#org3d26a96)
+        7.  [可用的快捷键-一定要注意大小写](#org9753d2d)
+        8.  [github上面的推荐配置：](#org9d8c634)
+        9.  [自用配置 有错误 备用](#org3f8527f)
+    16. [web浏览器eww Windows可用](#orgb854c19)
+        1.  [配置](#org7496a8e)
+        2.  [快捷键](#org92dcc88)
+    17. [cygwin linux系统模拟](#org70cd6d1)
+        1.  [cygwin是什么](#org7221728)
+        2.  [安装](#org4f76a57)
+        3.  [基本操作](#org252b67f)
+        4.  [技巧](#orgaba9a16)
+        5.  [package installation methods](#orgfb83ed4)
+        6.  [package installation methods New version](#orgdc580eb)
+        7.  [安装w3m emacs-w3m的技术细节](#org2e6c0f2)
+    18. [Smex 让输入命令变得飞快](#org72e3aee)
+        1.  [配置：](#orgf169db4)
+    19. [web浏览器Xwidget & 附带安装pdf阅读器](#orgd0f20b4)
+        1.  [解决not compiled问题](#orga390720)
+    20. [PDF阅读器](#org0e126d1)
+3.  [Latex 编辑命令](#org2ff561d)
+    1.  [平台搭建](#orgf4639f3)
+        1.  [TeXLive + Emacs + AUCTex + SumatraPDF](#org79f3cc8)
+        2.  [通过清华镜像安装textlive](#orgaa656d8)
+        3.  [通过elpa emacs package管理工具安装AUXTex](#org4c630c7)
+        4.  [安装auctex package](#org8f05cc9)
+    2.  [emacs使用总结](#orgf134fe0)
+    3.  [auctex/preview使用方法](#org74b7c67)
+        1.  [auctex](#org6cc2dc6)
+        2.  [preview-latex](#org5e594d2)
+    4.  [导出pdf](#orgf80dc45)
+        1.  [编译方法](#org7b12fc0)
+        2.  [使用XeLaTex工具导出PDF](#org6f74a97)
+        3.  [可选解决方案：](#orge913aef)
+        4.  [终极解决方案：auctex package](#org46da4be)
+    5.  [中文环境包](#org0e96594)
+    6.  [latex编辑公式](#org11e48c9)
+        1.  [博客资源：如何写公式](#orgb8c21a4)
+        2.  [公式环境](#orga05d3dd)
+        3.  [公式符号](#orge4b2d1e)
+        4.  [其他还有一些数学环境里的「要」和「不要](#orgfca9cb8)
+    7.  [latex 设置字体格式](#orgc8d53b8)
+        1.  [设置字体大小](#orgc9a3665)
+        2.  [设置字体颜色](#org092371c)
+        3.  [设置字体居中](#org672040d)
+        4.  [设置字体加粗 下划线等命令](#org56da834)
+    8.  [latex设置段落格式](#org3f4779a)
+        1.  [首行缩进](#org2e7848f)
+        2.  [空行](#org21df3fb)
+    9.  [latex 插入图片](#orgd9c86d7)
+        1.  [一定要注意！！！！！！谁他妈说的，草，不确定](#org6fa4e1b)
+        2.  [图片路径设置格式](#org7437679)
+        3.  [一般需要包含的宏包](#org208f1f8)
+        4.  [神器：图片处理，超链接处理](#org79ba2d6)
+        5.  [nips图片格式](#org5b15ff9)
+        6.  [博客图片格式](#org5b265fb)
+        7.  [多个图片排列 tabular](#org8dc8880)
+    10. [latex 新建页](#org6444467)
+    11. [latex 脚注](#org230852c)
+    12. [latex 交叉引用 \label \ref](#org4af4fce)
+        1.  [用法解释](#org481970b)
+    13. [latex 中新建environment](#org7552c9c)
+        1.  [学习资料](#orge58e384)
+    14. [latex 中分栏](#org402d439)
+        1.  [网址：https://blog.csdn.net/u013225150/article/details/51713299](#org65977b8)
+        2.  [双栏模式进入和退出](#org0c003ed)
+        3.  [分栏的中间间距和竖线](#org8b4fb7f)
+    15. [latex 中语法高亮](#org41bb969)
+        1.  [以c语言为例](#org30f28c0)
+        2.  [更全面的代码参数设置见网址https://blog.csdn.net/lydyangliu/article/details/9208635](#org6989166)
+    16. [latex 中页边距设置](#orge0642e4)
+    17. [latex + bibtex生成参考文献](#org8cdff09)
+        1.  [latex书写](#org8965cd9)
+        2.  [同路径下文件](#org8c83412)
+        3.  [生成参考文献列表 1 2 1 1](#orge4eb6b4)
+        4.  [最终代码示例](#org76a8b26)
+4.  [Org mode](#org3180b9d)
+    1.  [配置](#orgb918c55)
+    2.  [Useful Command](#orgc2cfc89)
+        1.  [编译](#org7603fff)
+        2.  [标题](#orgc5f0145)
+        3.  [块标签](#orgceb1a62)
+        4.  [排版段落格式](#org546aa18)
+        5.  [设置默认在org mode下面使用缩进格式](#org682ccec)
+    3.  [产生时间戳](#org9d637ff)
+    4.  [待办事项功能](#org95c7f0e)
+        1.  [使用方法](#org925cd73)
+        2.  [命令：](#orgfd4b1f5)
+        3.  [自定义TODO标签的格式](#orgd1dd4d3)
+        4.  [自定义标签括号里面附加选项](#org4efbb24)
+        5.  [对所有org文档配置默认](#org6733279)
+        6.  [设置任务优先级](#org43f76e8)
+        7.  [步骤](#orgca1ac72)
+    5.  [超链接文件或者图片](#org9355efa)
+        1.  [常规解决方案iimage-mode](#orgddde169)
+        2.  [更好的解决方案: org-download + imagemagick](#org296187e)
+        3.  [使用方法](#org7ffb18f)
+    6.  [表格和图片增加标签和说明，并交叉引用](#org424f545)
+        1.  [命令](#orgc5cce31)
+    7.  [表格的输入](#orgd277ee0)
+        1.  [插入表格](#org83e87f7)
+        2.  [限制所在列的长度](#orgfb9208b)
+        3.  [美化表格](#org3f53a9a)
+        4.  [操作说明](#org515febe)
+    8.  [Org 一键导出latex之后转pdf的方法](#orgd0b314b)
+        1.  [方案对比md tex](#org5818e78)
+        2.  [目前暂时没有比较好的中文解决方案](#org641a4ba)
+        3.  [英文处理直接编译然后用pdftex输出所需要的pdf 中文只能暂时用html格式将就一下了](#orgc267dea)
+        4.  [配置.spacemacs文件来添加中文支持包](#orga0527dd)
+    9.  [Org mode配置latex环境及常用宏包](#org7e02473)
+    10. [Org mode 处理代码块](#org3dd53e1)
+        1.  [设置语言环境](#org431e812)
+        2.  [配置init.el文件](#org2064ef3)
+        3.  [命令快捷键](#org3bfcf45)
+        4.  [例子](#org68c3503)
+        5.  [测试matlab代码块](#org1f69094)
+        6.  [注意事项](#orgb005a89)
+    11. [Org-page package创建个人主页](#org92f25b9)
+        1.  [.emacs 文件源代码 手动添加package 注意：目前好像不能用](#orge47fc1f)
+    12. [orgmode中使用思维导图](#org2334fd3)
+        1.  [软件安装](#orgc2a6cff)
+        2.  [使用步骤](#orgc293b3a)
+    13. [org-markdown](#org4a3fa60)
+        1.  [emacs配置](#org7faf9af)
+        2.  [去掉table of contents](#org5cab1a6)
+    14. [org-babel代码运行](#orgc13133e)
+        1.  [配置](#orga20ca55)
+        2.  [](#org5ff41af)
+    15. [org-latex](#orgcbca1db)
+        1.  [使用细则](#org559a381)
+        2.  [步骤](#org6db4562)
+        3.  [可以顺利运行中文的package设置](#org9e4d441)
+        4.  [设置org-mode的默认pdf导出模板](#orga21eacc)
+        5.  [修改生成的latex文件中图片尺寸](#org83dfc5b)
+        6.  [公式](#org91d9e03)
+    16. [必备操作集锦](#org460949f)
+        1.  [org mode文档开头配置汇总说明](#org77f266b)
+        2.  [org mode编写导出为md pdf时出现下划线转义字符问题](#org0285700)
+        3.  [修改org-mode插入图片，图片的默认保存路径](#orge96da38)
+        4.  [**文本加粗的方式**](#orgcb98496)
+5.  [Python 语言](#orgcdfa946)
+    1.  [系列软件安装指南](#orgf784fd4)
+        1.  [稳定版本](#org5dadcec)
+        2.  [anaconda](#org25aea35)
+        3.  [TensorFlow](#org706ff8a)
+        4.  [常见问题解决](#org69fce96)
+        5.  [pytorch](#org06b95c6)
+        6.  [Jupyter notebook](#org743c098)
+    2.  [EIN中的使用方法](#org5b2b554)
+        1.  [打开浏览器的jupyter notebook](#org94c071c)
+        2.  [在emacs中用M-x ein:notebooklist-login登陆](#org1f7e915)
+        3.  [EIN中的文件管理](#orgf393279)
+        4.  [EIN:jupyter notebook编辑环境](#orgb0d4c81)
+    3.  [jupyter notebook魔法技巧](#orgcca5c31)
+        1.  [魔法函数](#orgef18240)
+        2.  [spyder风格模仿](#orgcf3ef7e)
+        3.  [创建新的.py文件并内容如下](#org308dbee)
+        4.  [画图](#orgee4412c)
+        5.  [jupyter notebook实时调整参数输出结果](#org12edb8e)
+    4.  [emacs中测试.py文件](#orge0af9ff)
+        1.  [将.py中的代码导入ipython块中](#org4ed4b5c)
+        2.  [直接编辑测试.py文件](#orgef0ce03)
+    5.  [代码测试的基本流程](#org8d5d05e)
+        1.  [依托工具 jupyter notebook](#org7551112)
+        2.  [流程 封装的最高级别是class类而不是def函数](#org35b903b)
+    6.  [帮助命令](#org6b97665)
+    7.  [异常处理——try语句](#org920d673)
+        1.  [基本知识](#orgc22b8b5)
+        2.  [用法说明](#org413778a)
+        3.  [代码示例](#org2b45b7c)
+    8.  [爬虫](#org7dcaae5)
+        1.  [最优网页路径选择](#orgabf1b1e)
+        2.  [最优标签ID name 特征爬取选择](#orgb9acd7e)
+        3.  [获取html信息：request库](#orgcb1a5a8)
+        4.  [使用python中的selenium库快速定位html中标签的位置](#org889775e)
+        5.  [Selenium知识体系](#orgba88074)
+    9.  [库](#org182b3ab)
+        1.  [threading](#orgac82128)
+        2.  [pandas数据处理库](#orgefa1d13)
+    10. [python环境迁移/虚拟环境创建 conda创建环境 pip安装packages](#org60ee56f)
+        1.  [打包所有已安装的package](#org986e002)
+        2.  [虚拟环境建立 conda](#org7ecb416)
+        3.  [conda设置国内服务器镜像](#org641103c)
+        4.  [虚拟环境建立 pip](#org3e2d401)
+        5.  [pip设置国内服务器镜像](#orgba8ff4a)
+        6.  [常见问题 setup egg<sub>info</sub>](#org19e7253)
+    11. [基线模型](#org4166da5)
+        1.  [语法](#orgecc4823)
+    12. [Docker部署](#org34a8f37)
+        1.  [准备工作](#org569e090)
+    13. [必备操作集锦](#orgb787e1f)
+        1.  [正则表达式](#orgbfaf0ab)
+        2.  [字符串合并、替换](#orgf35e1f9)
+        3.  [文件名按名称进行排序(list + numpy)方法](#orgca4dd7c)
+        4.  [list与string互转 list与numpy互转](#org5eb429d)
+        5.  [将字符串、列表、字典等数据结构存储为本地文件 pickle](#orgde4a3c0)
+        6.  [读取，写入txt文件](#org1cab427)
+        7.  [获取html内容的python写法](#org4307a7a)
+        8.  [为python模拟浏览器登陆添加header](#org2ae018e)
+        9.  [快速获取某元素xpath的方法](#org88aec32)
+        10. [接管已打开的浏览器方法：解决反爬虫](#org9875bc2)
+        11. [python中的模型保存于转换](#orgb9071f2)
+        12. [Tensorboard保存与查看](#org3c70861)
+        13. [将列表转换为二维数组，以方便排序和查看最大元素](#org4e6aa2a)
+        14. [emacs中代码块批量缩进](#org5966d86)
+        15. [python中保存数据 与第三条结合使用](#org061916c)
+        16. [批量化 封装化处理图片，脚本的模板](#orga623996)
+        17. [numpy按元素操作](#org1ad732a)
+        18. [excel文件终极处理](#org920f5f2)
+        19. [路径下所有文件检索方法](#org116ebd8)
+        20. [init封装.py格式](#org6a0aebd)
+        21. [TensorFlow使用的GPU](#orgdda831d)
+        22. [tensorboard中graph图使用说明](#org0d6ea56)
+        23. [python中的class类](#org8bc4d5c)
+        24. [assert](#orgeafa31c)
+        25. [TensorFlow将模型保存为pb模型](#org096e255)
+        26. [测试目录是否testdir存在，如果不存在，它将为您创建目录](#orgd6eecac)
+        27. [如何确认库中有没有某个特定的module](#orgc05ac9e)
+        28. [scipy.misc 找不到imread解决方案](#org5ea0e1d)
+        29. [import future](#org0e6a8f1)
+        30. [init.py文件的作用](#org89b61ff)
+        31. [如何用python批量复制文件](#org43a0771)
+        32. [求解线性、非线性方程组](#orge739a0e)
+        33. [文件名处理、拼接全部集锦](#org828e0ff)
+        34. [判断变量是否已经被定义，是否存在](#orgac43950)
+        35. [在图片上添加文字、直线、和点（圆）以及cv2.imshow方法快速展示图形结果（便于debug）](#orgcaf0806)
+        36. [平方和平方根的计算 以及直线斜率及度数的计算公式](#org9e419da)
+        37. [numpy 库](#org439620d)
+        38. [带有索引的enumerate枚举方法](#orgf31c0c2)
+        39. [.gitignore 文件编写 和通过github进行版本控制的方法](#orgdda8ddb)
+        40. [pip使用方法](#orge5df5be)
+6.  [Matlab语言](#org89209db)
+    1.  [知识补充 cell的使用](#org0216b19)
+        1.  [将矩阵保存到cell里面，从而用一个for循环索引cell的编号来画图](#org62e88c4)
+        2.  [代码](#org1f9cc2d)
+    2.  [for循环处理画图语句](#org1addbea)
+    3.  [类 class 函数变量名： 变量名.成员变量](#org8778273)
+    4.  [matlab中运行python代码](#orgbc7ddcc)
+        1.  [配置python环境](#orgac5b586)
+        2.  [使用方法及调试](#orgf150eb0)
+7.  [C++语言 & linux系统](#org99126f4)
+    1.  [windows下子系统linux搭建](#orgf8a36a9)
+        1.  [安装ubuntu](#org8358b96)
+        2.  [设置root命令并获取root权限](#org266c904)
+        3.  [安装必备package](#orge762880)
+        4.  [编译和运行](#org5ca6468)
+        5.  [文件管理](#org41018b9)
+        6.  [ubuntu系统文件夹功能介绍](#orgc839d86)
+        7.  [环境变量设置](#org475ecd5)
+        8.  [ssh登录用法](#org30eb779)
+        9.  [vim编辑器基本使用方法](#org217e481)
+        10. [ssh之后退出当前登录](#orgf5b33c7)
+        11. [OpenCV安装](#orgd37210f)
+        12. [anaconda安装](#org9216b75)
+        13. [必备操作集锦](#org4f3a1c0)
+    2.  [windows下gcc g++平台搭建](#orgf341234)
+    3.  [Makefile环境搭建](#org95424fd)
+        1.  [make命令](#orgdac85d1)
+        2.  [makefile的生成](#orga44e7b6)
+        3.  [Makefile书写规范](#orgc78bb6a)
+        4.  [重要问题](#org5965c30)
+        5.  [大型程序](#org9994835)
+    4.  [SDK 软件开发工具包：opencv等库的安装及使用](#orga9fdb4f)
+        1.  [依赖](#org7e848bc)
+        2.  [通过cmake编译opencv库生成opencv.sln文件](#orgee52eda)
+        3.  [编译和安装](#org3d8e7c8)
+        4.  [基本知识](#org9bf94fa)
+    5.  [ubuntu及oracal虚拟机 （过时）](#org0755e29)
+    6.  [可以直接用成熟的Windows shell程序](#org01974c0)
+    7.  [MobaXterm 连接bender](#orgcccc451)
+    8.  [cygwin 类Unix的Windows端软件](#orgcdc8ddd)
+    9.  [在emacs中编译 运行cpp文件](#orgc4ba55b)
+        1.  [代码调试逻辑](#orge7fd199)
+        2.  [一键编译并运行c++ mode](#org293888b)
+        3.  [一键编译C++ mode](#org0b2bfc1)
+        4.  [一键打印输出变量的值 调试方法](#org96c721d)
+        5.  [打开命令行工具的方法](#org12b77cf)
+        6.  [编译/执行命令](#org4afefb9)
+        7.  [编译环境配置](#org365bbd3)
+        8.  [必备操作集锦](#org321f113)
+    10. [debug gdb](#org4e9a486)
+        1.  [emacs打开方式](#org9f1e0f9)
+        2.  [基本调试语法](#orgb303cc5)
+    11. [C++基本语法](#org658f9de)
+        1.  [基本符号](#orgca7c6be)
+        2.  [函数用法](#org8f2d98e)
+        3.  [字符常量、转义字符、运算符、循环体](#orgb566a1c)
+        4.  [数组](#org0426f23)
+        5.  [指向数组的指针](#org1594afc)
+        6.  [字符串序列](#org6a2c3da)
+        7.  [时间和日期](#org07b94a6)
+        8.  [c++的基本输入输出](#org197af0c)
+        9.  [public private](#org99abd28)
+        10. [vector向量](#org287474c)
+        11. [unordered-map 字典](#org4c6a9c1)
+        12. [构造函数和析构函数 类对象的初始化赋值和分配空间清除](#org807f238)
+        13. [:: -> :](#org760fb75)
+        14. [new关键字的](#org19b6b89)
+        15. [typedef](#org761908c)
+        16. [template 模板](#orgf6c05b3)
+        17. [#define语句](#org30177d3)
+    12. [c++代码书写](#org9653bd7)
+        1.  [写法规范](#org885dac0)
+        2.  [代码示例](#orgb923c1f)
+    13. [linux-ubuntu环境Docker部署流程](#org614421d)
+        1.  [docker安装](#org699f37a)
+        2.  [win10 linux子系统systemctl报错](#org34b9455)
+        3.  [添加当前用户权限 避免每次使用docker都需要sudo](#orgb9cf580)
+8.  [Html语言](#org049aaab)
+    1.  [配置](#org67a0288)
+    2.  [学习抓取某网站的技巧](#orgd77c235)
+    3.  [html基本知识](#org926c5ee)
+        1.  [常用标签](#org1869236)
+    4.  [最重要的函数find<sub>all</sub>](#org2a18942)
+        1.  [name参数](#orgd147864)
+        2.  [keyword参数](#orgc219cce)
+        3.  [sting参数](#orgc0c5433)
+        4.  [limit参数](#orgff4ba7a)
+        5.  [recursive参数](#org4c1309c)
+        6.  [使用说明](#org66ac3dc)
+9.  [Adobe Illustrator 作图软件](#org36cddb0)
+    1.  [基本工具及快捷键](#org1209236)
+    2.  [使用逻辑](#org2b5abb4)
+        1.  [基本图形库](#org3bbc570)
+        2.  [锚点的使用](#org0061aa4)
+        3.  [形状生成器](#orgbc6909b)
+10. [Adobe Photoshop 作图软件](#org224cdc8)
+    1.  [基本快捷键](#org438e5d9)
+11. [github代码库管理](#org4a14f33)
+    1.  [忽略文件配置](#org698ba78)
+        1.  [编写逻辑](#org4f55d4f)
+        2.  [编写代码](#orgb866046)
+        3.  [注意事项](#org4de4beb)
+        4.  [无法commit到远端的问题解决](#org44e828a)
+12. [Algorithems & Data Structure](#org31d1934)
+    1.  [Sorting](#org00d5c06)
+        1.  [Insertion sort](#org9b18abf)
+        2.  [divide-and-conquer approach 分治法 又称为merge sort归并排序](#org11be1a5)
+        3.  [heapsort堆排序](#org8a8cdc5)
+        4.  [Quicksort 快速排序](#org8d04ce6)
+        5.  [Counting Sort计数排序](#orgd36883d)
+        6.  [Radix Sort基数排序](#orgcb5c093)
+        7.  [Bucket Sort桶排序](#orgfb8a676)
+        8.  [七种sort算法](#org82dffe6)
+        9.  [一句话概括七种排序算法](#org87d0ca5)
+    2.  [中位数和顺序统计量](#orga4c0119)
+    3.  [数据结构](#org00f0f90)
+        1.  [基本数据结构](#org5a2f1f8)
+        2.  [散列表](#org6fd04b1)
+        3.  [二叉搜索树](#org4902c3c)
+        4.  [红黑树](#orgb9216cb)
+    4.  [高级设计和分析技术](#org3a63b3c)
+        1.  [动态规划](#org711761f)
+        2.  [贪心算法](#org0aa08a5)
+        3.  [摊还分析](#org4cc6f63)
+13. [Algorithems & Data Structure 2019 11 02](#orgf5e9f2b)
+    1.  [学习思想及标准](#org82ae948)
+    2.  [10个数据结构+10种算法](#org4de73d3)
+        1.  [数组](#org8dfc0a5)
+        2.  [链表](#orgbd17ba0)
+    3.  [数据结构c++语言清华大学邓俊辉](#orgfe7144f)
+        1.  [复杂度](#org6aa35c4)
+        2.  [递归](#org6552a13)
+        3.  [抽象数据类型 ADT](#org59d4737)
+        4.  [列表](#orgcb1492c)
+        5.  [栈与队列](#orge499d73)
+        6.  [二叉树](#org13942ba)
+        7.  [图](#org3dc0787)
+        8.  [搜索树](#org020b469)
+14. [LeetCode学习](#org8dbfda4)
+    1.  [学习策略及逻辑](#org0746e59)
+    2.  [正序题号](#org771018a)
+        1.  [哈希表 Hash table](#orgd48d0a5)
+    3.  [python版本](#org041e25d)
+        1.  [1](#org2a847ac)
+        2.  [2](#orgb0b2d1d)
+        3.  [3](#org0545036)
+        4.  [4](#orgc37a569)
+        5.  [5](#org228ff88)
+        6.  [6](#orgd7a89fb)
+        7.  [7](#org51ba380)
+        8.  [8](#org79caeb0)
+        9.  [9](#org28e8393)
+        10. [10](#orga34d9a2)
+        11. [11](#org3a6c64d)
+        12. [12](#org4ef2b97)
+        13. [13](#orgd53e028)
+        14. [14](#orgfffa107)
+        15. [15](#orge61ab3d)
+        16. [16](#orga9bec50)
+        17. [17](#org37766e0)
+        18. [18](#org9a597cd)
+        19. [19](#org68f89f9)
+        20. [20](#orgd2cdc31)
+        21. [21](#orgfc24cf4)
+    4.  [c++版本](#org81bdf9e)
+        1.  [1](#org4257e1e)
+    5.  [C-Plus-Plus题解库](#orgdb7f871)
+        1.  [sorting](#org91d497e)
+15. [人工智能-AI](#org2471e2b)
+    1.  [Paper研读](#org25597b4)
+        1.  [Dr. Amit](#org494814d)
+    2.  [决策树](#org53482d0)
+        1.  [基本特点](#org8cfcae6)
+        2.  [CART分类树](#org92982f9)
+    3.  [随机森林](#orgaf0d9fb)
+        1.  [基本概念](#orgc660efe)
+        2.  [随机性](#orgeecbdda)
+        3.  [随机森林分类效果（错误率）与两个因素有关：](#orgcdb43e2)
+        4.  [袋外误差率 out of bag error(oob error)](#org19ac480)
+    4.  [分类与回归](#orgdbf64dd)
+        1.  [回归 不需要加上softmax函数](#org56322f9)
+        2.  [分类](#orgda6eada)
+        3.  [聚类 也成为无监督分类](#orgd46de66)
+        4.  [降维](#org81ac98e)
+16. [Spring 2018](#org62ca503)
+    1.  [EE 147](#org6505533)
+        1.  [Lab answers](#org3fc314a)
+        2.  [淘宝course hero](#org74226bb)
+    2.  [EE 243](#org902dd28)
+        1.  [hw2](#org7fe23cf)
+        2.  [Project proposal](#orga0dc79d)
+        3.  [hw3](#orga81a689)
+        4.  [hw4](#org6d84abd)
+        5.  [hw5](#org468e2c2)
+        6.  [hw6](#org47301c7)
+        7.  [SFM](#org3255675)
+    3.  [EE 297](#org22d2fb3)
+17. [小技巧](#org60e4874)
+    1.  [电脑使用](#org37e4846)
+        1.  [ThinkPad T440 快速启动使用SSD加速](#org43701c7)
+        2.  [笔记本外接显示器](#org86a9eff)
+    2.  [autohotkey](#orgf7c803b)
+    3.  [vpn使用](#org43a9ad6)
+        1.  [NordVPN](#orgeaabb49)
+    4.  [linux环境](#org9eae460)
+        1.  [ssh登录用法](#org1a8efcc)
+        2.  [vim编辑器基本使用方法](#org73f1bbc)
+        3.  [ssh之后退出当前登录](#orgb09937c)
+    5.  [git客户端更新 windows](#org4090579)
+    6.  [只要是涉及到处理图像的问题](#org763fc55)
+    7.  [cmd获取本机IP地址](#orgb92d6de)
+    8.  [windows执行linux命令 bash 运行shell脚本](#org40ad3dc)
+18. [能力](#orge91f0f8)
+    1.  [Top Layers](#orgaad7296)
+    2.  [问题处理流程](#orgf1102d5)
+        1.  [解决问题的思想](#orgde8150c)
+    3.  [Verify](#orge300e69)
+    4.  [Demo](#org4217c58)
+    5.  [核心能力 精简版](#org7500d52)
+        1.  [效率提升 + 解决能力](#orgf776265)
+    6.  [顶层设计](#org3b970f5)
+        1.  [能力测试](#orga4cc065)
+        2.  [状态保持](#org5982599)
+        3.  [神级分析能力：](#org4ffbef6)
+    7.  [能力树](#org48e1072)
+        1.  [时间规划](#orgee725d5)
+        2.  [分析能力](#org65e6b05)
+        3.  [处理问题](#orgfd2f736)
+        4.  [状态保持](#org522e085)
+        5.  [时间规划：](#orgac258e2)
+        6.  [学习效率](#org08344af)
+        7.  [学习专注](#org60b32c8)
+        8.  [学习类型](#org93f0221)
+        9.  [作业-文本表述能力](#org30a8143)
+        10. [英语听力](#orgba38fbf)
+        11. [乒乓球](#orgae8b566)
+        12. [论文阅读、文献理解](#orge00d3b8)
+        13. [PPT制作](#orge8a10e0)
+        14. [英语听力](#org4aed8af)
+19. [技能提升](#org77763c6)
+    1.  [思路](#org57d32db)
+    2.  [学习优先级](#org8a1d486)
+    3.  [必备技能](#orgb2865fe)
+    4.  [加分项](#orge563744)
+    5.  [参考模型](#orgd98e04b)
+    6.  [技能树](#orgc69acb3)
+        1.  [深度学习框架](#org5a9d208)
+        2.  [C++框架](#org64d5977)
+        3.  [项目部署框架](#orgf6c5064)
+        4.  [华为任职要求](#org90791be)
+20. [终极写作模板 latex完美版](#orgc9b5362)
+    1.  [源代码](#org36423b7)
+21. [待完成插件](#orga220caa)
+22. [待办事项](#org309a4a8)
+    1.  [紧急类型](#org498911c)
+        1.  [完成EE243 Hw3](#org680c01e)
+        2.  [完成EE147 Lab3并提交](#org5108f0d)
+        3.  [开始进行EE243的project](#orge15d474)
+        4.  [复习EE147 期中考试](#org3f7c64f)
+        5.  [完成EE297 project proposal](#orga486737)
+        6.  [顶层能力](#orgf5965dd)
+    2.  [学习知识，技能 长期任务](#org44b0274)
+        1.  [算法 C++ 英语 深度学习](#org31eee13)
+        2.  [关于emacs Python 支持 以及jupyter notebook支持 matlab支持](#org3d28ad5)
+        3.  [学习英语](#org7cb578d)
+        4.  [学习Python语言 Tesoroflow](#orgd772336)
+        5.  [学习emacs orgmode中的思维导图gtd](#org2c3fe2f)
+        6.  [学习子龙山人知乎视频中关于package自定义，加速emacs启动等相关内容](#org16a4833)
+        7.  [学习使用latex编辑公式 也即math mode](#orge10dabd)
+        8.  [学习使用思维导图模式来处理Ability的demo](#orgf127fc5)
+        9.  [解决掉demo.org转换html文件时速度极慢的问题](#org9a4b4c2)
+        10. [关于emacs中的解决不了的问题，可以咨询Chen Bin在github](#orgcbb09e2)
+        11. [最有效的学习layer配置自定义](#org67b44f6)
+        12. [学习latex中配置begin environment的方法，对于论文写作很有帮助](#org23c38b9)
+        13. [中文字体设置 https://www.jianshu.com/p/b1751078e28e](#orgb42c41a)
+    3.  [需要处理的事情](#org0e88d92)
+        1.  [美国 Fall 2019](#orgb375ab0)
+        2.  [完成州内学费申请](#org9133ecd)
+        3.  [完成Kim grad student form 截止日期 6.15](#orgcff2f87)
+    4.  [零碎的事情](#org7b832bf)
+        1.  [EE243 HW3 problem 1 考虑迭代问题和K值聚类](#org5edb115)
+23. [代码测试区](#org870af29)
+24. [emacs版本控制文件位置](#orgceed03d)
+    1.  [20191111](#orgc6c7970)
 
 
 
-<a id="org36e13fa"></a>
+<a id="org7cf5efc"></a>
 
 # Top Layer
 
 
-<a id="org11f906e"></a>
+<a id="orgad5145c"></a>
 
 ## Install Emacs
 
 
-<a id="orge78d750"></a>
+<a id="org2e349b4"></a>
 
 ### Up to date backup
 
@@ -637,7 +638,7 @@ github.com
 ！注意，git自动上传命令缺少.spacemacs，需要手动上传
 
 
-<a id="orge8574db"></a>
+<a id="org2a3edfb"></a>
 
 ### win10安装核心解决方案
 
@@ -645,7 +646,7 @@ github.com
 2.  核心是init.el文件，.spacemacs需要在2个user-config位置将init.el中要求的库对应添加
 
 
-<a id="orga6a489e"></a>
+<a id="org51db4fd"></a>
 
 ### 安装注意事项：
 
@@ -658,7 +659,7 @@ github.com
     7. 安装gnutls dll添加ssh等连接远端服务区的命令
 
 
-<a id="org99c2e9e"></a>
+<a id="org2b78c49"></a>
 
 ### 错误代码说明
 
@@ -666,12 +667,12 @@ Source Code Pro是一种字体
 百度搜索安装即可
 
 
-<a id="orgc160f53"></a>
+<a id="orgbc6e62e"></a>
 
 ## 版本控制
 
 
-<a id="org43b6f0f"></a>
+<a id="orgc934786"></a>
 
 ### 创建不受emacs官方git管理的文件夹
 
@@ -754,12 +755,12 @@ Source Code Pro是一种字体
         If a package is part of the end user's dotspacemacs-additional-packages, it will also be installed. 在layer层
 
 
-<a id="orga61bd79"></a>
+<a id="org9a8fe21"></a>
 
 ## 初始化配置
 
 
-<a id="org8cbb580"></a>
+<a id="orgd73faea"></a>
 
 ### 代码管理
 
@@ -784,7 +785,7 @@ Source Code Pro是一种字体
     2.  在.spacemacs 中layer函数中，additional—package中添加此package的名字
 
 
-<a id="org8e98d16"></a>
+<a id="org6614d46"></a>
 
 ### git必备包
 
@@ -814,12 +815,12 @@ Source Code Pro是一种字体
             2. 操作完成后保存文件即可
 
 
-<a id="orgc09f1fc"></a>
+<a id="org492cc7b"></a>
 
 ## 必备操作集锦
 
 
-<a id="org5cb6434"></a>
+<a id="org928bbc7"></a>
 
 ### 不重启emacs直接生效配置方法
 
@@ -829,7 +830,7 @@ Source Code Pro是一种字体
     M-x eval-buffer
 
 
-<a id="orgf1962b4"></a>
+<a id="org61b4a87"></a>
 
 ### 选中、复制、粘贴、查找
 
@@ -844,7 +845,7 @@ Source Code Pro是一种字体
     C-/ 取消之前的命令
 
 
-<a id="org3ec99ad"></a>
+<a id="orga50cb5a"></a>
 
 ### 光标操作
 
@@ -867,7 +868,7 @@ Source Code Pro是一种字体
     M-m 0-9 提供于windows-numbering包 作用：当有多个buffer同时打开时，一键切换当前选中buffer
 
 
-<a id="org072dd61"></a>
+<a id="orgf9e6e48"></a>
 
 ### 命令主菜单
 
@@ -878,7 +879,7 @@ Source Code Pro是一种字体
     c-h 帮助
 
 
-<a id="org53ec0c1"></a>
+<a id="orgdb1cd2e"></a>
 
 ### 帮助主菜单
 
@@ -889,7 +890,7 @@ Source Code Pro是一种字体
     c-h k 快捷键    
 
 
-<a id="org0911e26"></a>
+<a id="org7e3c9a4"></a>
 
 ### 多buffer管理：
 
@@ -912,7 +913,7 @@ Source Code Pro是一种字体
     M-m b 1-9 
 
 
-<a id="org6523fa8"></a>
+<a id="org291ca93"></a>
 
 ### 根目录Roaming打开方式及三种快速目录切换
 
@@ -924,7 +925,7 @@ Source Code Pro是一种字体
     SPC f r 快速打开最近文件目录
 
 
-<a id="org06b3ee4"></a>
+<a id="orga0c6652"></a>
 
 ### 设置默认文件夹
 
@@ -932,21 +933,21 @@ Source Code Pro是一种字体
     (setq default-directory "c:/Users/Administrator/test/emacs")
 
 
-<a id="orgce7adb3"></a>
+<a id="orge37e2d1"></a>
 
 ### 补全工具选择：
 
 ivy轻巧 极简主义
 
 
-<a id="org18c0342"></a>
+<a id="org9cd3a07"></a>
 
 ### 中文字体支持，数字加字母乱码解决方案
 
     (set-fontset-font "fontset-default" 'gb18030 '("Microsoft YaHei" . "unicode-bmp"))
 
 
-<a id="org867b732"></a>
+<a id="orgd3557aa"></a>
 
 ### 删除文中多行空白行
 
@@ -954,21 +955,21 @@ ivy轻巧 极简主义
     Flush lines containing match for regexp:^$    
 
 
-<a id="orge480992"></a>
+<a id="org6182bd2"></a>
 
 ### SPC键位说明：
 
     SPC = M-m    
 
 
-<a id="org4335d83"></a>
+<a id="org2ea9f5b"></a>
 
 ### recentf快速打开最近目录
 
     SPC f r
 
 
-<a id="org9a77410"></a>
+<a id="org3259f72"></a>
 
 ### 不重启重载配置的方法，利用SPC=M-m
 
@@ -977,7 +978,7 @@ ivy轻巧 极简主义
     M-x load-file init.el 可以重载任何文件
 
 
-<a id="orgdeef0b5"></a>
+<a id="org209f860"></a>
 
 ### 手写configuration文件，对于package installation
 
@@ -1008,7 +1009,7 @@ ivy轻巧 极简主义
                   (function :tag "Custom function")))     
 
 
-<a id="org248be8e"></a>
+<a id="org4153875"></a>
 
 ### 图片显示问题 org-mode
 
@@ -1018,7 +1019,7 @@ ivy轻巧 极简主义
 C-c C-x C-v org-taggle-inline-images
 
 
-<a id="org9a5c48b"></a>
+<a id="orgeea7eb9"></a>
 
 ### 终极图片处理
 
@@ -1062,7 +1063,7 @@ C-c C-x C-v org-taggle-inline-images
     如果出现无法插入图片的情况，可以尝试先建立文件夹
 
 
-<a id="org557a921"></a>
+<a id="orgd1828cb"></a>
 
 ### 正则表达式
 
@@ -1260,7 +1261,7 @@ C-c C-x C-v org-taggle-inline-images
         .*? 非贪婪模式，第一次匹配到就结束匹配
 
 
-<a id="orgd4ea3db"></a>
+<a id="org5d9cc14"></a>
 
 ### undo-redo undo-tree
 
@@ -1271,7 +1272,7 @@ C-c C-x C-v org-taggle-inline-images
     q 退出。    
 
 
-<a id="org12f968a"></a>
+<a id="orgede68b2"></a>
 
 ### 大小写转换
 
@@ -1293,7 +1294,7 @@ C-c C-x C-v org-taggle-inline-images
         M– M-l	negtive-argument; downcase-word
 
 
-<a id="orgef85980"></a>
+<a id="orgd953e02"></a>
 
 ### 快速打开init.el文件的方法
 
@@ -1307,7 +1308,7 @@ C-c C-x C-v org-taggle-inline-images
     (global-set-key (kbd "<f2>") 'open-init-file)
 
 
-<a id="org1083808"></a>
+<a id="org68cf57e"></a>
 
 ### 设置emacs为默认全屏打开
 
@@ -1316,7 +1317,7 @@ C-c C-x C-v org-taggle-inline-images
     (setq initial-frame-alist (quote ((fullscreen . maximized))))
 
 
-<a id="orgec81185"></a>
+<a id="org3b72945"></a>
 
 ### 取消每次打开.py文件都要询问一次是否载入python layer
 
@@ -1324,7 +1325,7 @@ C-c C-x C-v org-taggle-inline-images
 此外，如果.py文件的开头有类似于#usr/bin/python3等代码，会设置python的默认版本，也会引发询问python layer的过程。
 
 
-<a id="org5af9f38"></a>
+<a id="orgd021cf6"></a>
 
 ### 设置emacs默认的python版本，cmd输入python打开的版本
 
@@ -1345,7 +1346,7 @@ C-c C-x C-v org-taggle-inline-images
             先后顺序决定了优先使用哪个python.exe    
 
 
-<a id="org4275bdf"></a>
+<a id="orgcd9c9c0"></a>
 
 ### 设置jupyter notebook的默认启动路径
 
@@ -1363,7 +1364,7 @@ C-c C-x C-v org-taggle-inline-images
         把"%USERPROFILE%/"都删除即可，之后就可以用快捷方式直接打开了
 
 
-<a id="orgc1a68fa"></a>
+<a id="org5259566"></a>
 
 ### reload buffer
 
@@ -1372,7 +1373,7 @@ C-c C-x C-v org-taggle-inline-images
     M-x revert-buffer
 
 
-<a id="orgf658ddd"></a>
+<a id="orgf56fab1"></a>
 
 ### 文件管理：快速打开新文件及新窗口的方法以及最近文件的方法
 
@@ -1385,7 +1386,7 @@ C-c C-x C-v org-taggle-inline-images
     C-x 0 数字0 关闭当前子窗口
 
 
-<a id="org8c62807"></a>
+<a id="org38c80c5"></a>
 
 ### 重命名buffer
 
@@ -1393,7 +1394,7 @@ C-c C-x C-v org-taggle-inline-images
     M-x rename-file 重命名当前文件
 
 
-<a id="org59eef7c"></a>
+<a id="orgf7c4e25"></a>
 
 ### Ctrl+space被搜狗输入法占用
 
@@ -1462,14 +1463,14 @@ C-c C-x C-v org-taggle-inline-images
             Do not change the Hot keys for input languages in Control Panel, unless you want to do this all over again.     
 
 
-<a id="org289bb61"></a>
+<a id="org6a54690"></a>
 
 ### 鼠标指针消失
 
 对文本进行编辑，之后移动鼠标即可重现
 
 
-<a id="orge3ce987"></a>
+<a id="orgc406ab9"></a>
 
 ### emacs中python-mode出现flycheck多种位置错误
 
@@ -1478,17 +1479,17 @@ C-c C-x C-v org-taggle-inline-images
 解决方案：将python.exe在环境变量中设置为python3.8即可，将python3.8的路径上移即可
 
 
-<a id="orga610c36"></a>
+<a id="org4b35575"></a>
 
 # Emaces Usful Command
 
 
-<a id="orgbf3be57"></a>
+<a id="orgb61f7ba"></a>
 
 ## Command
 
 
-<a id="org4ee9211"></a>
+<a id="orgaee8e06"></a>
 
 ### 常用命令
 
@@ -1516,7 +1517,7 @@ C-c C-x C-v org-taggle-inline-images
     M-x eshell 打开命令行工具
 
 
-<a id="org6bc3cbb"></a>
+<a id="org3891fa6"></a>
 
 ### 命令主菜单
 
@@ -1527,7 +1528,7 @@ C-c C-x C-v org-taggle-inline-images
     c-h 帮助
 
 
-<a id="orgf75a961"></a>
+<a id="orgec19363"></a>
 
 ### 帮助
 
@@ -1538,12 +1539,12 @@ C-c C-x C-v org-taggle-inline-images
     c-h k 快捷键
 
 
-<a id="org092c601"></a>
+<a id="org85d6381"></a>
 
 ## 一些解决方案
 
 
-<a id="orgf375ecb"></a>
+<a id="orgfe52890"></a>
 
 ### 多buffer管理：
 
@@ -1558,7 +1559,7 @@ C-c C-x C-v org-taggle-inline-images
 以上几个快捷键就够用了
 
 
-<a id="org19bffd3"></a>
+<a id="orgd091914"></a>
 
 ### 任意文件同一个窗口打开
 
@@ -1566,14 +1567,14 @@ C-c C-x C-v org-taggle-inline-images
     type ~/然后回车 直接打开根目录
 
 
-<a id="org4c8562c"></a>
+<a id="orgd9a9ef8"></a>
 
 ### 快捷跳转行数
 
     M-g g 跳转到第几行  需要设置显示行数功能
 
 
-<a id="org2596812"></a>
+<a id="orgd171157"></a>
 
 ### 设置在左侧显示行数功能
 
@@ -1598,7 +1599,7 @@ C-c C-x C-v org-taggle-inline-images
     好处是，可以通过UI界面来配置初始化变量
 
 
-<a id="orgc94efbe"></a>
+<a id="orge79e2cc"></a>
 
 ### 复制粘贴及矩形区域选择解决方案
 
@@ -1611,7 +1612,7 @@ C-c C-x C-v org-taggle-inline-images
     完美！解决！
 
 
-<a id="org12af05f"></a>
+<a id="orgf4d3fc7"></a>
 
 ### 笔记，保存及预览设置
 
@@ -1626,7 +1627,7 @@ C-c C-x C-v org-taggle-inline-images
     需要刷新
 
 
-<a id="orgd1f4ca2"></a>
+<a id="org93e4d00"></a>
 
 ### 在org mode里面插入图片，并且可以选择直接在本文文档中查看图片
 
@@ -1637,12 +1638,12 @@ C-c C-x C-v org-taggle-inline-images
     最后可以用M-x iimage-mode 选择打开minor mode 来查看所插入的图片
 
 
-<a id="orgb4aa4c7"></a>
+<a id="orgb958fa1"></a>
 
 ## Spacemacs
 
 
-<a id="org7b2a8b1"></a>
+<a id="org4043993"></a>
 
 ### Spacemacs 配置文件 添加package cuda-mode
 
@@ -1679,7 +1680,7 @@ C-c C-x C-v org-taggle-inline-images
       )
 
 
-<a id="org17121ac"></a>
+<a id="org84cef5d"></a>
 
 ### Spacemacs 配置文件 初始化init.el文件 使所有buffer默认打开company模式
 
@@ -1691,7 +1692,7 @@ C-c C-x C-v org-taggle-inline-images
     (setq company-backends '((company-capf company-files company-elisp company-inf-ruby company-anaconda company-go company-irony company-clang company-cmake company-css company-yasnippet) (company-dabbrev company-dabbrev-code)))
 
 
-<a id="org2f58444"></a>
+<a id="orge36d190"></a>
 
 ## Company 自动补全包 命令集
 
@@ -1701,14 +1702,14 @@ C-c C-x C-v org-taggle-inline-images
     M-(digit) to quickly complete with one of the first 10 candidates.
 
 
-<a id="org0e93c0a"></a>
+<a id="orga8665e8"></a>
 
 ## Expand-region 快捷键文本选中 package
 
     M-m v 选中当前光标所在的单词，继续按v则扩大选区 V则缩小选区 具体命令见下方说明
 
 
-<a id="orge237d35"></a>
+<a id="org41ff2d9"></a>
 
 ## Magit package自动上传本地文档到github
 
@@ -1722,12 +1723,12 @@ C-c C-x C-v org-taggle-inline-images
     P u 大写P表示push命令
 
 
-<a id="org1663d3c"></a>
+<a id="org757cd3b"></a>
 
 ## Git-auto-commit 每次保存文件自动commit到github 需要在.spaces中初始化才能startup载入
 
 
-<a id="org52afda6"></a>
+<a id="orgacb0bb5"></a>
 
 ### 配置步骤
 
@@ -1742,7 +1743,7 @@ C-c C-x C-v org-taggle-inline-images
     git config --global user.email yyang181@github.com
 
 
-<a id="orgf602b2a"></a>
+<a id="orgcbb83c9"></a>
 
 ### 使用方法
 
@@ -1753,7 +1754,7 @@ C-c C-x C-v org-taggle-inline-images
     C-x p 打开gac模式，使得保存文件之后自动commit push
 
 
-<a id="org13c24ab"></a>
+<a id="org1928762"></a>
 
 ### 按键配置代码 init.el文件
 
@@ -1761,12 +1762,12 @@ C-c C-x C-v org-taggle-inline-images
     (global-set-key (kbd "C-x p") 'git-auto-commit-mode)
 
 
-<a id="org88d6122"></a>
+<a id="org9cfc0a8"></a>
 
 ## Evil-nerd-commenter Package
 
 
-<a id="orgfe05239"></a>
+<a id="orgddcc528"></a>
 
 ### 配置步骤
 
@@ -1784,19 +1785,19 @@ unsigned 需要在.spaces中初始化才能startup载入
     (evilnc-default-hotkeys) 使用默认按键
 
 
-<a id="orgcb2061a"></a>
+<a id="org722779b"></a>
 
 ### 使用方法
 
     C-u number M-; 注释从当前行开始的 number 行
 
 
-<a id="orgcd765aa"></a>
+<a id="org2759ee3"></a>
 
 ## Flycheck
 
 
-<a id="org88bf012"></a>
+<a id="org9c95754"></a>
 
 ### 配置方法
 
@@ -1812,7 +1813,7 @@ To enable Flycheck add the following to your init file:
     把这个变量的值修改即可
 
 
-<a id="org26943e0"></a>
+<a id="orgd765fcf"></a>
 
 ## Git 综述
 
@@ -1826,12 +1827,12 @@ To enable Flycheck add the following to your init file:
 -   单文件修改调试可以用此文中的快捷键方法
 
 
-<a id="org9f8056c"></a>
+<a id="org03b0a17"></a>
 
 ## 神器：global-set-key自定义绑定 键位 到命令
 
 
-<a id="orgc64bd63"></a>
+<a id="org24faeb9"></a>
 
 ### 方法一 修改init.el文件
 
@@ -1839,7 +1840,7 @@ To enable Flycheck add the following to your init file:
     (global-set-key (kbd "C-x g") 'magit-status)
 
 
-<a id="orgeda262b"></a>
+<a id="org082b5bb"></a>
 
 ### 方法二 可能会出现单次设置单次使用
 
@@ -1848,22 +1849,22 @@ To enable Flycheck add the following to your init file:
     type 需要绑定的命令 并按enter确认
 
 
-<a id="org2facd6e"></a>
+<a id="orgeb740c6"></a>
 
 ## 重要：配置private layer:yyang181
 
 
-<a id="org0c3c84d"></a>
+<a id="orgc9a0686"></a>
 
 ### 优先使用.spacemacs文件，如果没有，使用init.el文件生成.spacemacs
 
 
-<a id="org5ea95b4"></a>
+<a id="orgd202101"></a>
 
 ### 只修改两个文件init.el 和.spacemacs
 
 
-<a id="orgb4cf975"></a>
+<a id="orgdc86fed"></a>
 
 ### 设置users layer .spacemacs
 
@@ -1875,7 +1876,7 @@ To enable Flycheck add the following to your init file:
       ))
 
 
-<a id="orgb6fee14"></a>
+<a id="org9917af8"></a>
 
 ### .spacemacs文件
 
@@ -1954,17 +1955,17 @@ To enable Flycheck add the following to your init file:
         (setq-default dotspacemacs-line-numbers t)
 
 
-<a id="org608d08c"></a>
+<a id="org8992747"></a>
 
 ## Configuration Layers
 
 
-<a id="org9aced72"></a>
+<a id="orgbffd759"></a>
 
 ### 可以检查其他人的layer里面的文件来学习使用方法
 
 
-<a id="org7c664ca"></a>
+<a id="orgc4bc820"></a>
 
 ### 结构
 
@@ -1982,7 +1983,7 @@ To enable Flycheck add the following to your init file:
     [] = directory
 
 
-<a id="org595bb99"></a>
+<a id="org597a68e"></a>
 
 ### layer中各种文件的作用
 
@@ -2003,7 +2004,7 @@ To enable Flycheck add the following to your init file:
     installed from an online source using quelpa.
 
 
-<a id="org93628d3"></a>
+<a id="orga92288e"></a>
 
 ### 配置packages
 
@@ -2060,22 +2061,22 @@ To enable Flycheck add the following to your init file:
             (auto-package-update-maybe)
 
 
-<a id="org6711fcd"></a>
+<a id="org5eb1b02"></a>
 
 ## 终极解决方案
 
 
-<a id="orgccbe0ef"></a>
+<a id="org55fd705"></a>
 
 ### 优先在init.el文件中处理包
 
 
-<a id="org3d7fcc8"></a>
+<a id="org2e88c0c"></a>
 
 ### 步骤：在init.el文件中导入package 并且配置即可
 
 
-<a id="org0e005c5"></a>
+<a id="org3cdae6f"></a>
 
 ### 例子
 
@@ -2095,12 +2096,12 @@ To enable Flycheck add the following to your init file:
                          "jupyter")
 
 
-<a id="org3edd3a9"></a>
+<a id="org04d49af"></a>
 
 ## web浏览器 w3m
 
 
-<a id="org178e271"></a>
+<a id="orgb973bb3"></a>
 
 ### 配置
 
@@ -2110,7 +2111,7 @@ To enable Flycheck add the following to your init file:
 配置emacs并使用
 
 
-<a id="org2c95e3e"></a>
+<a id="org358aeb0"></a>
 
 ### effective operation
 
@@ -2118,19 +2119,19 @@ To enable Flycheck add the following to your init file:
 两个package需要安装，w3m和emacs-w3m
 
 
-<a id="org7dd7995"></a>
+<a id="org286b15b"></a>
 
 ### 一定要配置w3m emacs-w3m两个package在cygwin中
 
 cygwin中安装完成之后，windows系统中自动包含了所需的package
 
 
-<a id="org148b187"></a>
+<a id="org1d59ea8"></a>
 
 ### 需要配合cygwin一起使用！
 
 
-<a id="orga2b552a"></a>
+<a id="orga62f51e"></a>
 
 ### 快捷键
 
@@ -2140,7 +2141,7 @@ cygwin中安装完成之后，windows系统中自动包含了所需的package
     SPC a w b	用 helm 打开书签    
 
 
-<a id="org327a370"></a>
+<a id="org3d26a96"></a>
 
 ### 键位绑定
 
@@ -2174,7 +2175,7 @@ cygwin中安装完成之后，windows系统中自动包含了所需的package
     C-b	向上移动一页    
 
 
-<a id="org107afac"></a>
+<a id="org9753d2d"></a>
 
 ### 可用的快捷键-一定要注意大小写
 
@@ -2214,7 +2215,7 @@ cygwin中安装完成之后，windows系统中自动包含了所需的package
     　　C-c C-k ：停止载入
 
 
-<a id="orgceb70ef"></a>
+<a id="org9d8c634"></a>
 
 ### github上面的推荐配置：
 
@@ -2234,7 +2235,7 @@ cygwin中安装完成之后，windows系统中自动包含了所需的package
     )    
 
 
-<a id="org50c85ce"></a>
+<a id="org3f8527f"></a>
 
 ### 自用配置 有错误 备用
 
@@ -2261,12 +2262,12 @@ cygwin中安装完成之后，windows系统中自动包含了所需的package
     (setq w3m-view-this-url-new-session-in-background t)
 
 
-<a id="orgd65f2e7"></a>
+<a id="orgb854c19"></a>
 
 ## web浏览器eww Windows可用
 
 
-<a id="org7e991ec"></a>
+<a id="org7496a8e"></a>
 
 ### 配置
 
@@ -2278,7 +2279,7 @@ libxml2-2.dll  libiconv-2.dll  liblzma-5.dl  zlib1.dll
 将下载下来的整个文件夹添加到环境变量中即可
 
 
-<a id="orga95986c"></a>
+<a id="org92dcc88"></a>
 
 ### 快捷键
 
@@ -2298,12 +2299,12 @@ libxml2-2.dll  libiconv-2.dll  liblzma-5.dl  zlib1.dll
 原地址：<https://blog.csdn.net/MathaDora/article/details/79468528> 
 
 
-<a id="org65427f1"></a>
+<a id="org70cd6d1"></a>
 
 ## cygwin linux系统模拟
 
 
-<a id="org47abe1c"></a>
+<a id="org7221728"></a>
 
 ### cygwin是什么
 
@@ -2312,14 +2313,14 @@ unix与linux的区别
 gbd makefile 
 
 
-<a id="orgd627476"></a>
+<a id="org4f76a57"></a>
 
 ### 安装
 
 需要把c:/cygwin/bin添加到环境变量
 
 
-<a id="orgf77e6dc"></a>
+<a id="org252b67f"></a>
 
 ### 基本操作
 
@@ -2328,7 +2329,7 @@ gbd makefile
     cd D: 打开D盘
 
 
-<a id="org89e3f97"></a>
+<a id="orgaba9a16"></a>
 
 ### 技巧
 
@@ -2339,7 +2340,7 @@ libgc-dev
 libncurses5-dev
 
 
-<a id="orgdd12eb4"></a>
+<a id="orgfb83ed4"></a>
 
 ### package installation methods
 
@@ -2354,7 +2355,7 @@ libncurses5-dev
     cyt-get w3m
 
 
-<a id="org9359969"></a>
+<a id="orgdc580eb"></a>
 
 ### package installation methods New version
 
@@ -2376,7 +2377,7 @@ libncurses5-dev
         apt-cyg install nano
 
 
-<a id="orgbdd7a41"></a>
+<a id="org2e6c0f2"></a>
 
 ### 安装w3m emacs-w3m的技术细节
 
@@ -2400,12 +2401,12 @@ libncurses5-dev
     该文件夹中有configure文件
 
 
-<a id="org7f35e82"></a>
+<a id="org72e3aee"></a>
 
 ## Smex 让输入命令变得飞快
 
 
-<a id="org2856e56"></a>
+<a id="orgf169db4"></a>
 
 ### 配置：
 
@@ -2434,19 +2435,19 @@ libncurses5-dev
         smex-history-length to change the number of recent commands that Smex keeps track of.
 
 
-<a id="org3fbb999"></a>
+<a id="orgd0f20b4"></a>
 
 ## web浏览器Xwidget & 附带安装pdf阅读器
 
 
-<a id="orgeab88de"></a>
+<a id="orga390720"></a>
 
 ### 解决not compiled问题
 
 <https://emacs.stackexchange.com/questions/27293/your-emacs-does-not-come-with-xwidget-support-windows-10>
 
 
-<a id="org6067e41"></a>
+<a id="org0e126d1"></a>
 
 ## PDF阅读器
 
@@ -2473,22 +2474,22 @@ n\*\*\* Doc-view-mode
         M-x bookmark-delete	删除书签
 
 
-<a id="org18a07a6"></a>
+<a id="org2ff561d"></a>
 
 # Latex 编辑命令
 
 
-<a id="org206ff3f"></a>
+<a id="orgf4639f3"></a>
 
 ## 平台搭建
 
 
-<a id="org009ab0f"></a>
+<a id="org79f3cc8"></a>
 
 ### TeXLive + Emacs + AUCTex + SumatraPDF
 
 
-<a id="org7758814"></a>
+<a id="orgaa656d8"></a>
 
 ### 通过清华镜像安装textlive
 
@@ -2496,14 +2497,14 @@ n\*\*\* Doc-view-mode
 需要添加到环境变量，之后emacs才能在任何cmd中调用latex命令
 
 
-<a id="org6a7cb9b"></a>
+<a id="org4c630c7"></a>
 
 ### 通过elpa emacs package管理工具安装AUXTex
 
 否则无法编译导出pdf文件
 
 
-<a id="org860c487"></a>
+<a id="org8f05cc9"></a>
 
 ### 安装auctex package
 
@@ -2546,7 +2547,7 @@ n\*\*\* Doc-view-mode
     auctex-12.1.1库中只有preview.el文件
 
 
-<a id="orgf9f5cb1"></a>
+<a id="orgf134fe0"></a>
 
 ## emacs使用总结
 
@@ -2557,12 +2558,12 @@ n\*\*\* Doc-view-mode
     C-c C-v 直接查看生成的pdf文件   或者C-c C-c选择view
 
 
-<a id="orga7d3432"></a>
+<a id="org74b7c67"></a>
 
 ## auctex/preview使用方法
 
 
-<a id="org40c746d"></a>
+<a id="org6cc2dc6"></a>
 
 ### auctex
 
@@ -2589,7 +2590,7 @@ n\*\*\* Doc-view-mode
             C-c C-f C-d 删除字体信息 
 
 
-<a id="orgc0cd082"></a>
+<a id="org5e594d2"></a>
 
 ### preview-latex
 
@@ -2604,12 +2605,12 @@ n\*\*\* Doc-view-mode
     C-c C-k      LaTeX/TeX Output/Kill Job
 
 
-<a id="orgc3285fb"></a>
+<a id="orgf80dc45"></a>
 
 ## 导出pdf
 
 
-<a id="org13770b0"></a>
+<a id="org7b12fc0"></a>
 
 ### 编译方法
 
@@ -2621,7 +2622,7 @@ n\*\*\* Doc-view-mode
     之后打开pdf即可
 
 
-<a id="orgbbb78b8"></a>
+<a id="org6f74a97"></a>
 
 ### 使用XeLaTex工具导出PDF
 
@@ -2648,7 +2649,7 @@ n\*\*\* Doc-view-mode
 3.  中文支持需要针对textlive层面操作
 
 
-<a id="org2f56d46"></a>
+<a id="orge913aef"></a>
 
 ### 可选解决方案：
 
@@ -2676,7 +2677,7 @@ n\*\*\* Doc-view-mode
         Customize LaTeX Preview Pane (opens a customization buffer where you can set the command to use for generating previews)     
 
 
-<a id="org1c5a6e1"></a>
+<a id="org46da4be"></a>
 
 ### 终极解决方案：auctex package
 
@@ -2685,7 +2686,7 @@ C-c C-v 直接查看生成的pdf文件
 完美
 
 
-<a id="orge953b29"></a>
+<a id="org0e96594"></a>
 
 ## 中文环境包
 
@@ -2700,12 +2701,12 @@ C-c C-v 直接查看生成的pdf文件
      \end{CJK}
 
 
-<a id="org431f899"></a>
+<a id="org11e48c9"></a>
 
 ## latex编辑公式
 
 
-<a id="org604cff6"></a>
+<a id="orgb8c21a4"></a>
 
 ### 博客资源：如何写公式
 
@@ -2724,7 +2725,7 @@ C-c C-v 直接查看生成的pdf文件
     <https://cngg584.sharelatex.com/project/5ae1028219ebac1fe344cc04>
 
 
-<a id="orga352adf"></a>
+<a id="orga05d3dd"></a>
 
 ### 公式环境
 
@@ -2746,7 +2747,7 @@ C-c C-v 直接查看生成的pdf文件
         %公式转化为数学模式的符号$或者\[\]，因为它已经默认在数学模式下编辑
 
 
-<a id="org322832c"></a>
+<a id="orge4b2d1e"></a>
 
 ### 公式符号
 
@@ -2859,7 +2860,7 @@ C-c C-v 直接查看生成的pdf文件
             \infty
 
 
-<a id="org57572a2"></a>
+<a id="orgfca9cb8"></a>
 
 ### 其他还有一些数学环境里的「要」和「不要
 
@@ -2872,12 +2873,12 @@ C-c C-v 直接查看生成的pdf文件
     最后一行一定不能有\\ 并且空行跟换行符\\不能同时用
 
 
-<a id="org448dae0"></a>
+<a id="orgc8d53b8"></a>
 
 ## latex 设置字体格式
 
 
-<a id="org56849b6"></a>
+<a id="orgc9a3665"></a>
 
 ### 设置字体大小
 
@@ -2911,7 +2912,7 @@ C-c C-v 直接查看生成的pdf文件
         \Huge
 
 
-<a id="org9e9e8e2"></a>
+<a id="org092371c"></a>
 
 ### 设置字体颜色
 
@@ -2921,14 +2922,14 @@ C-c C-v 直接查看生成的pdf文件
     \colorbox[rgb]{r,g,b}{text}  %背景颜色
 
 
-<a id="org1ed93cb"></a>
+<a id="org672040d"></a>
 
 ### 设置字体居中
 
     \centerline{\large{Homework 1}}
 
 
-<a id="org810514e"></a>
+<a id="org56da834"></a>
 
 ### 设置字体加粗 下划线等命令
 
@@ -2971,12 +2972,12 @@ C-c C-v 直接查看生成的pdf文件
         emph{\textbf{blablablabla}}
 
 
-<a id="org1585de3"></a>
+<a id="org3f4779a"></a>
 
 ## latex设置段落格式
 
 
-<a id="org094389b"></a>
+<a id="org2e7848f"></a>
 
 ### 首行缩进
 
@@ -2984,7 +2985,7 @@ C-c C-v 直接查看生成的pdf文件
     \indent 设置缩进
 
 
-<a id="org6be6d67"></a>
+<a id="org21df3fb"></a>
 
 ### 空行
 
@@ -2992,12 +2993,12 @@ C-c C-v 直接查看生成的pdf文件
     \vspace{12pt} 不要再最后加\\
 
 
-<a id="org35b52e0"></a>
+<a id="orgd9c86d7"></a>
 
 ## latex 插入图片
 
 
-<a id="org98edb07"></a>
+<a id="org6fa4e1b"></a>
 
 ### 一定要注意！！！！！！谁他妈说的，草，不确定
 
@@ -3006,14 +3007,14 @@ C-c C-v 直接查看生成的pdf文件
 2.  要想同时使用多个图片，只能用tabular
 
 
-<a id="orgcd73d57"></a>
+<a id="org7437679"></a>
 
 ### 图片路径设置格式
 
     \includegraphics{images//1.png}
 
 
-<a id="orga833e14"></a>
+<a id="org208f1f8"></a>
 
 ### 一般需要包含的宏包
 
@@ -3022,7 +3023,7 @@ C-c C-v 直接查看生成的pdf文件
     \usepackage{subfigure}
 
 
-<a id="orga5afd23"></a>
+<a id="org79ba2d6"></a>
 
 ### 神器：图片处理，超链接处理
 
@@ -3106,7 +3107,7 @@ C-c C-v 直接查看生成的pdf文件
         \href{https://github.com/yyang181/ee243/blob/master/nips_2017/nips_2017.tex}{github}
 
 
-<a id="org07cf165"></a>
+<a id="org5b15ff9"></a>
 
 ### nips图片格式
 
@@ -3117,7 +3118,7 @@ C-c C-v 直接查看生成的pdf文件
     \end{figure}
 
 
-<a id="orgd3927d5"></a>
+<a id="org5b265fb"></a>
 
 ### 博客图片格式
 
@@ -3131,7 +3132,7 @@ C-c C-v 直接查看生成的pdf文件
     \end{figure}
 
 
-<a id="org00c0886"></a>
+<a id="org8dc8880"></a>
 
 ### 多个图片排列 tabular
 
@@ -3149,7 +3150,7 @@ C-c C-v 直接查看生成的pdf文件
     \end{figure}
 
 
-<a id="org9f7c52e"></a>
+<a id="org6444467"></a>
 
 ## latex 新建页
 
@@ -3157,7 +3158,7 @@ C-c C-v 直接查看生成的pdf文件
     \newpage
 
 
-<a id="org11dbee3"></a>
+<a id="org230852c"></a>
 
 ## latex 脚注
 
@@ -3166,12 +3167,12 @@ C-c C-v 直接查看生成的pdf文件
     \thanks{text} 直接脚注
 
 
-<a id="org4e193a5"></a>
+<a id="org4af4fce"></a>
 
 ## latex 交叉引用 \label \ref
 
 
-<a id="org2f610c5"></a>
+<a id="org481970b"></a>
 
 ### 用法解释
 
@@ -3182,29 +3183,29 @@ C-c C-v 直接查看生成的pdf文件
 使用的时候直接\ref这个label即可的到图片的编号。
 
 
-<a id="orgd81ec06"></a>
+<a id="org7552c9c"></a>
 
 ## latex 中新建environment
 
 
-<a id="org07253b2"></a>
+<a id="orge58e384"></a>
 
 ### 学习资料
 
 <http://www.latexstudio.net/archives/11218>
 
 
-<a id="orgb1cafb1"></a>
+<a id="org402d439"></a>
 
 ## latex 中分栏
 
 
-<a id="org9c36209"></a>
+<a id="org65977b8"></a>
 
 ### 网址：<https://blog.csdn.net/u013225150/article/details/51713299>
 
 
-<a id="orgcfc4db9"></a>
+<a id="org0c003ed"></a>
 
 ### 双栏模式进入和退出
 
@@ -3212,7 +3213,7 @@ C-c C-v 直接查看生成的pdf文件
     \onecolumn
 
 
-<a id="orgdb1b116"></a>
+<a id="org8b4fb7f"></a>
 
 ### 分栏的中间间距和竖线
 
@@ -3232,12 +3233,12 @@ C-c C-v 直接查看生成的pdf文件
         \end{multicols}
 
 
-<a id="org0eaf4fa"></a>
+<a id="org41bb969"></a>
 
 ## latex 中语法高亮
 
 
-<a id="org8600e15"></a>
+<a id="org30f28c0"></a>
 
 ### 以c语言为例
 
@@ -3267,7 +3268,7 @@ C-c C-v 直接查看生成的pdf文件
     \end{lstlisting}} 
 
 
-<a id="orgdd03a39"></a>
+<a id="org6989166"></a>
 
 ### 更全面的代码参数设置见网址<https://blog.csdn.net/lydyangliu/article/details/9208635>
 
@@ -3323,7 +3324,7 @@ C-c C-v 直接查看生成的pdf文件
     \begin{document}  
 
 
-<a id="orgd059a14"></a>
+<a id="orge0642e4"></a>
 
 ## latex 中页边距设置
 
@@ -3333,14 +3334,14 @@ C-c C-v 直接查看生成的pdf文件
     \geometry{a4paper,left=2cm,right=2cm,top=1cm,bottom=1cm}
 
 
-<a id="orgc93d97a"></a>
+<a id="org8cdff09"></a>
 
 ## latex + bibtex生成参考文献
 
 <https://blog.csdn.net/manjhOK/article/details/82820390>
 
 
-<a id="orgbd25af6"></a>
+<a id="org8965cd9"></a>
 
 ### latex书写
 
@@ -3356,7 +3357,7 @@ C-c C-v 直接查看生成的pdf文件
         \cite{von2003captcha}     
 
 
-<a id="org7b14e34"></a>
+<a id="org8c83412"></a>
 
 ### 同路径下文件
 
@@ -3369,7 +3370,7 @@ C-c C-v 直接查看生成的pdf文件
     把bibtex格式输入.txt之后修改后缀为.bib即可
 
 
-<a id="org541fb21"></a>
+<a id="orge4eb6b4"></a>
 
 ### 生成参考文献列表 1 2 1 1
 
@@ -3382,7 +3383,7 @@ C-c C-v 直接查看生成的pdf文件
 （4）再次点击“Latex”编译，即可查看生成结果。 
 
 
-<a id="orga12fda7"></a>
+<a id="org76a8b26"></a>
 
 ### 最终代码示例
 
@@ -3391,24 +3392,24 @@ C-c C-v 直接查看生成的pdf文件
     \cite{paszke2016enet}
 
 
-<a id="orgcefd1c2"></a>
+<a id="org3180b9d"></a>
 
 # Org mode
 
 
-<a id="org1f8c749"></a>
+<a id="orgb918c55"></a>
 
 ## 配置
 
 需要安装web-mode详情见html语言中的配置。
 
 
-<a id="orgb746661"></a>
+<a id="orgc2cfc89"></a>
 
 ## Useful Command
 
 
-<a id="orga605949"></a>
+<a id="org7603fff"></a>
 
 ### 编译
 
@@ -3416,7 +3417,7 @@ C-c C-v 直接查看生成的pdf文件
     c-c c-e 可选生成latex pdf
 
 
-<a id="org4893a09"></a>
+<a id="orgc5f0145"></a>
 
 ### 标题
 
@@ -3463,7 +3464,7 @@ C-c C-v 直接查看生成的pdf文件
         -S- 带有shift的表示TODO类型
 
 
-<a id="org4406e77"></a>
+<a id="orgceb1a62"></a>
 
 ### 块标签
 
@@ -3486,7 +3487,7 @@ C-c C-v 直接查看生成的pdf文件
      I    #+include: line 
 
 
-<a id="org9b7cc3c"></a>
+<a id="org546aa18"></a>
 
 ### 排版段落格式
 
@@ -3495,7 +3496,7 @@ C-c C-v 直接查看生成的pdf文件
 -   可以用上述块标签来表示源代码等
 
 
-<a id="org86975a1"></a>
+<a id="org682ccec"></a>
 
 ### 设置默认在org mode下面使用缩进格式
 
@@ -3503,7 +3504,7 @@ C-c C-v 直接查看生成的pdf文件
     org-startup-indented 设置该变量令所有文件都打开org-intend-mode
 
 
-<a id="org6036e62"></a>
+<a id="org9d637ff"></a>
 
 ## 产生时间戳
 
@@ -3529,12 +3530,12 @@ C-c C-v 直接查看生成的pdf文件
     前/后移日期或时间（小时/分），具体情况由光标所在位置而定
 
 
-<a id="org7c92a45"></a>
+<a id="org95c7f0e"></a>
 
 ## 待办事项功能
 
 
-<a id="org0231c93"></a>
+<a id="org925cd73"></a>
 
 ### 使用方法
 
@@ -3542,7 +3543,7 @@ C-c C-v 直接查看生成的pdf文件
     C-S enter 产生一个同级子树 to do标题    
 
 
-<a id="orgc68e435"></a>
+<a id="orgfd4b1f5"></a>
 
 ### 命令：
 
@@ -3554,7 +3555,7 @@ C-c C-v 直接查看生成的pdf文件
     C-c / t 以树的形式展示所有的 TODO 作用：快速浏览TODO任务
 
 
-<a id="org25bb979"></a>
+<a id="orgd1dd4d3"></a>
 
 ### 自定义TODO标签的格式
 
@@ -3562,7 +3563,7 @@ C-c C-v 直接查看生成的pdf文件
     #+SEQ_TODO: PENDING(p!) TODO(t!) | DONE(d!) ABORT(a@/!)
 
 
-<a id="org300a256"></a>
+<a id="org4efbb24"></a>
 
 ### 自定义标签括号里面附加选项
 
@@ -3573,7 +3574,7 @@ C-c C-v 直接查看生成的pdf文件
     如果同时设定@和！，使用“@/!”
 
 
-<a id="org14fd13f"></a>
+<a id="org6733279"></a>
 
 ### 对所有org文档配置默认
 
@@ -3583,14 +3584,14 @@ C-c C-v 直接查看生成的pdf文件
          ))    
 
 
-<a id="orgd5b20b5"></a>
+<a id="org43f76e8"></a>
 
 ### 设置任务优先级
 
 为任务设定优先级是通过 快捷键 S-UP/DOWN
 
 
-<a id="orgfc4220c"></a>
+<a id="orgca1ac72"></a>
 
 ### 步骤
 
@@ -3600,12 +3601,12 @@ C-c C-v 直接查看生成的pdf文件
 -   C-c / t 以树的形式展示所有的 TODO
 
 
-<a id="org8180bb3"></a>
+<a id="org9355efa"></a>
 
 ## 超链接文件或者图片
 
 
-<a id="org6c57d87"></a>
+<a id="orgddde169"></a>
 
 ### 常规解决方案iimage-mode
 
@@ -3616,7 +3617,7 @@ C-c C-v 直接查看生成的pdf文件
     #+ATTR_HTML: :width 100%   设置图片尺寸：表示宽度和浏览器页面宽度相同    
 
 
-<a id="orgacb555b"></a>
+<a id="org296187e"></a>
 
 ### 更好的解决方案: org-download + imagemagick
 
@@ -3638,7 +3639,7 @@ C-c C-v 直接查看生成的pdf文件
         则设置了org-download-screenshot-method的默认方法为imagemagick中的convert
 
 
-<a id="org9920b29"></a>
+<a id="org7ffb18f"></a>
 
 ### 使用方法
 
@@ -3649,12 +3650,12 @@ C-c C-v 直接查看生成的pdf文件
     C-c C-x C-v 显示所插入的图片 开启org-taggle-inline-image-mode 控制开启和关闭
 
 
-<a id="orga775d24"></a>
+<a id="org424f545"></a>
 
 ## 表格和图片增加标签和说明，并交叉引用
 
 
-<a id="org587489d"></a>
+<a id="orgc5cce31"></a>
 
 ### 命令
 
@@ -3664,12 +3665,12 @@ C-c C-v 直接查看生成的pdf文件
     \ref{table1}
 
 
-<a id="orgbe5d667"></a>
+<a id="orgd277ee0"></a>
 
 ## 表格的输入
 
 
-<a id="orga0006eb"></a>
+<a id="org83e87f7"></a>
 
 ### 插入表格
 
@@ -3708,7 +3709,7 @@ C-c C-v 直接查看生成的pdf文件
 </table>
 
 
-<a id="org01b5add"></a>
+<a id="orgfb9208b"></a>
 
 ### 限制所在列的长度
 
@@ -3747,7 +3748,7 @@ C-c C-v 直接查看生成的pdf文件
 </table>
 
 
-<a id="orgdcb6acd"></a>
+<a id="org3f53a9a"></a>
 
 ### 美化表格
 
@@ -3786,7 +3787,7 @@ C-c C-v 直接查看生成的pdf文件
 </table>
 
 
-<a id="org5647309"></a>
+<a id="org515febe"></a>
 
 ### 操作说明
 
@@ -3890,12 +3891,12 @@ C-c C-v 直接查看生成的pdf文件
     将表达式应用到表格中，使用快捷键： C-ucc . 结果如下：
 
 
-<a id="orgd789023"></a>
+<a id="orgd0b314b"></a>
 
 ## Org 一键导出latex之后转pdf的方法
 
 
-<a id="org2fcc8b3"></a>
+<a id="org5818e78"></a>
 
 ### 方案对比md tex
 
@@ -3904,17 +3905,17 @@ C-c C-v 直接查看生成的pdf文件
 对于风格固定、只专注于文字的情况，优先选用org-tex-pdf路径，使用固定模板
 
 
-<a id="org4ebbdae"></a>
+<a id="org641a4ba"></a>
 
 ### 目前暂时没有比较好的中文解决方案
 
 
-<a id="org6fdfffc"></a>
+<a id="orgc267dea"></a>
 
 ### 英文处理直接编译然后用pdftex输出所需要的pdf 中文只能暂时用html格式将就一下了
 
 
-<a id="org3fe8851"></a>
+<a id="orga0527dd"></a>
 
 ### 配置.spacemacs文件来添加中文支持包
 
@@ -3975,7 +3976,7 @@ C-c C-v 直接查看生成的pdf文件
       ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
 
-<a id="org4a0b034"></a>
+<a id="org7e02473"></a>
 
 ## Org mode配置latex环境及常用宏包
 
@@ -3992,19 +3993,19 @@ C-c C-v 直接查看生成的pdf文件
     #+OPTIONS: toc:nil
 
 
-<a id="orgbed98ac"></a>
+<a id="org3dd53e1"></a>
 
 ## Org mode 处理代码块
 
 
-<a id="org7dde212"></a>
+<a id="org431e812"></a>
 
 ### 设置语言环境
 
     在BEGIN_SRC 后面加上语言名字例如python
 
 
-<a id="org1ce13b8"></a>
+<a id="org2064ef3"></a>
 
 ### 配置init.el文件
 
@@ -4058,7 +4059,7 @@ C-c C-v 直接查看生成的pdf文件
         ))
 
 
-<a id="orgf4efca1"></a>
+<a id="org3bfcf45"></a>
 
 ### 命令快捷键
 
@@ -4070,21 +4071,21 @@ C-c C-v 直接查看生成的pdf文件
     C-c C-c 编译当前代码块并输出结果
 
 
-<a id="orge5db1b7"></a>
+<a id="org68c3503"></a>
 
 ### 例子
 
     (+ 1 2 3 4)
 
 
-<a id="org573df66"></a>
+<a id="org1f69094"></a>
 
 ### 测试matlab代码块
 
     print(100+200)
 
 
-<a id="org9fb8b01"></a>
+<a id="orgb005a89"></a>
 
 ### 注意事项
 
@@ -4095,14 +4096,14 @@ C-c C-v 直接查看生成的pdf文件
 直接删掉，然后重新启动emacs即可使用C-c C-c了
 
 
-<a id="orga420897"></a>
+<a id="org92f25b9"></a>
 
 ## Org-page package创建个人主页
 
 From <https://github.com/kelvinh/kelvinh.github.com>
 
 
-<a id="org28497a7"></a>
+<a id="orge47fc1f"></a>
 
 ### .emacs 文件源代码 手动添加package 注意：目前好像不能用
 
@@ -4119,12 +4120,12 @@ From <https://github.com/kelvinh/kelvinh.github.com>
     (setq op/personal-google-analytics-id "your_google_analytics_id")
 
 
-<a id="orga25ed90"></a>
+<a id="org2334fd3"></a>
 
 ## orgmode中使用思维导图
 
 
-<a id="orgeace23d"></a>
+<a id="orgc2a6cff"></a>
 
 ### 软件安装
 
@@ -4137,7 +4138,7 @@ From <https://github.com/kelvinh/kelvinh.github.com>
     <https://blog.csdn.net/afei__/article/details/51464783>
 
 
-<a id="orgc236296"></a>
+<a id="orgc293b3a"></a>
 
 ### 使用步骤
 
@@ -4146,12 +4147,12 @@ From <https://github.com/kelvinh/kelvinh.github.com>
 2.  用freemind软件打开.mm文件，并保存为.png即可
 
 
-<a id="org30e5b9c"></a>
+<a id="org4a3fa60"></a>
 
 ## org-markdown
 
 
-<a id="orge041b31"></a>
+<a id="org7faf9af"></a>
 
 ### emacs配置
 
@@ -4159,7 +4160,7 @@ From <https://github.com/kelvinh/kelvinh.github.com>
       (add-to-list 'org-export-backends 'md))    
 
 
-<a id="org519a8bf"></a>
+<a id="org5cab1a6"></a>
 
 ### 去掉table of contents
 
@@ -4168,12 +4169,12 @@ From <https://github.com/kelvinh/kelvinh.github.com>
     #+OPTIONS: toc:nil
 
 
-<a id="org29b6fa4"></a>
+<a id="orgc13133e"></a>
 
 ## org-babel代码运行
 
 
-<a id="org33993b8"></a>
+<a id="orga20ca55"></a>
 
 ### 配置
 
@@ -4196,17 +4197,17 @@ From <https://github.com/kelvinh/kelvinh.github.com>
             (R . t)))
 
 
-<a id="orged8cee2"></a>
+<a id="org5ff41af"></a>
 
 ### 
 
 
-<a id="org7e54856"></a>
+<a id="orgcbca1db"></a>
 
 ## org-latex
 
 
-<a id="orgb3e56d2"></a>
+<a id="org559a381"></a>
 
 ### 使用细则
 
@@ -4217,7 +4218,7 @@ From <https://github.com/kelvinh/kelvinh.github.com>
 org-mode和latex的书写规范一样，空一行代表换行
 
 
-<a id="orgade65e9"></a>
+<a id="org6db4562"></a>
 
 ### 步骤
 
@@ -4233,7 +4234,7 @@ org-mode和latex的书写规范一样，空一行代表换行
     3.  C-c C-c再运行一次可以直接打开pdf文件 用view命令替代xelatex
 
 
-<a id="orgaa953a7"></a>
+<a id="org9e4d441"></a>
 
 ### 可以顺利运行中文的package设置
 
@@ -4272,7 +4273,7 @@ org-mode和latex的书写规范一样，空一行代表换行
                      ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
 
 
-<a id="org15a33c4"></a>
+<a id="orga21eacc"></a>
 
 ### 设置org-mode的默认pdf导出模板
 
@@ -4335,7 +4336,7 @@ org-mode和latex的书写规范一样，空一行代表换行
                                       "xelatex -interaction nonstopmode %f"))    
 
 
-<a id="org87b9eac"></a>
+<a id="org83dfc5b"></a>
 
 ### 修改生成的latex文件中图片尺寸
 
@@ -4343,7 +4344,7 @@ org-mode和latex的书写规范一样，空一行代表换行
     修改width即可    
 
 
-<a id="org1ebd9db"></a>
+<a id="org91d9e03"></a>
 
 ### 公式
 
@@ -4361,12 +4362,12 @@ org mode中公式的用法和latex完全一致
     $$    $$ 插入行间公式
 
 
-<a id="orgaa5fa51"></a>
+<a id="org460949f"></a>
 
 ## 必备操作集锦
 
 
-<a id="org6ff9c2e"></a>
+<a id="org77f266b"></a>
 
 ### org mode文档开头配置汇总说明
 
@@ -4378,7 +4379,7 @@ org mode中公式的用法和latex完全一致
     #+OPTIONS: ^:{}         
 
 
-<a id="org6e7af1f"></a>
+<a id="org0285700"></a>
 
 ### org mode编写导出为md pdf时出现下划线转义字符问题
 
@@ -4399,7 +4400,7 @@ org mode中公式的用法和latex完全一致
         (setq org-export-with-sub-superscripts '{})     
 
 
-<a id="orgdfa68a5"></a>
+<a id="orge96da38"></a>
 
 ### 修改org-mode插入图片，图片的默认保存路径
 
@@ -4424,17 +4425,24 @@ org mode中公式的用法和latex完全一致
         (setq-default org-download-image-dir (file-name-sans-extension (buffer-name)))
 
 
-<a id="org82640a1"></a>
+<a id="orgcb98496"></a>
+
+### **文本加粗的方式**
+
+    *abc* 将abc加粗    
+
+
+<a id="orgcdfa946"></a>
 
 # Python 语言
 
 
-<a id="org4c4ccb0"></a>
+<a id="orgf784fd4"></a>
 
 ## 系列软件安装指南
 
 
-<a id="orgd8bc1cf"></a>
+<a id="org5dadcec"></a>
 
 ### 稳定版本
 
@@ -4445,7 +4453,7 @@ cudnn 7.6.4
 更换cuda版本只需要更改环境变量的顺序即可
 
 
-<a id="org043b20f"></a>
+<a id="org25aea35"></a>
 
 ### anaconda
 
@@ -4459,7 +4467,7 @@ cudnn 7.6.4
     Anaconda3\Library\bin     这是新加的环境变量
 
 
-<a id="orgad49d1b"></a>
+<a id="org706ff8a"></a>
 
 ### TensorFlow
 
@@ -4489,7 +4497,7 @@ cudnn 7.6.4
         conda install python=3.6.5
 
 
-<a id="org2eba5f0"></a>
+<a id="org69fce96"></a>
 
 ### 常见问题解决
 
@@ -4549,7 +4557,7 @@ cudnn 7.6.4
     只需要在cv2的site-package文件夹中将cv2.cp37-win<sub>amd64</sub> 替换为cv2.cp36-win<sub>amd64即可</sub>
 
 
-<a id="org5b9d2a4"></a>
+<a id="org06b95c6"></a>
 
 ### pytorch
 
@@ -4565,7 +4573,7 @@ cudnn 7.6.4
         torch.cuda.is_available()     
 
 
-<a id="org4503863"></a>
+<a id="org743c098"></a>
 
 ### Jupyter notebook
 
@@ -4998,17 +5006,17 @@ cudnn 7.6.4
                 %run file.py
 
 
-<a id="orgd966788"></a>
+<a id="org5b2b554"></a>
 
 ## EIN中的使用方法
 
 
-<a id="org60404db"></a>
+<a id="org94c071c"></a>
 
 ### 打开浏览器的jupyter notebook
 
 
-<a id="org35f17f3"></a>
+<a id="org1f7e915"></a>
 
 ### 在emacs中用M-x ein:notebooklist-login登陆
 
@@ -5016,7 +5024,7 @@ cudnn 7.6.4
 在cmd中输入 jupyter notebook list 来查询当前的url及密码，例如 <http://localhost:8888/?token=b09b8e943762452bd443e04ce6814ac536316368b2a1b6ae> token前面的是url 后面的即是密码，输入即可
 
 
-<a id="orgd86dcf6"></a>
+<a id="orgf393279"></a>
 
 ### EIN中的文件管理
 
@@ -5026,7 +5034,7 @@ cudnn 7.6.4
     g 重载当前notebook list    
 
 
-<a id="orgac4b521"></a>
+<a id="orgb0d4c81"></a>
 
 ### EIN:jupyter notebook编辑环境
 
@@ -5099,12 +5107,12 @@ cudnn 7.6.4
             C-c C-r         ein:notebook-restart-kernel-command      
 
 
-<a id="org5c07fae"></a>
+<a id="orgcca5c31"></a>
 
 ## jupyter notebook魔法技巧
 
 
-<a id="org7073fa1"></a>
+<a id="orgef18240"></a>
 
 ### 魔法函数
 
@@ -5122,7 +5130,7 @@ cudnn 7.6.4
     %ls?  魔法命令后面加上? 显示魔法命令的说明
 
 
-<a id="orge548631"></a>
+<a id="orgcf3ef7e"></a>
 
 ### spyder风格模仿
 
@@ -5142,7 +5150,7 @@ cudnn 7.6.4
     ?func/class即可
 
 
-<a id="org0a2d21a"></a>
+<a id="org308dbee"></a>
 
 ### 创建新的.py文件并内容如下
 
@@ -5151,7 +5159,7 @@ cudnn 7.6.4
     print(np.random.randint(1,5))    
 
 
-<a id="org769fde0"></a>
+<a id="orgee4412c"></a>
 
 ### 画图
 
@@ -5216,7 +5224,7 @@ cudnn 7.6.4
         hsv=cv2.cvtColor(img,cv2.COLOR_BGR2HSV)#HSV空间
 
 
-<a id="org8c443e3"></a>
+<a id="org12edb8e"></a>
 
 ### jupyter notebook实时调整参数输出结果
 
@@ -5307,19 +5315,19 @@ cudnn 7.6.4
             #return color_binary.astype(np.float32), combined, s_binary     
 
 
-<a id="orgddcb940"></a>
+<a id="orge0af9ff"></a>
 
 ## emacs中测试.py文件
 
 
-<a id="orgf3c4ad5"></a>
+<a id="org4ed4b5c"></a>
 
 ### 将.py中的代码导入ipython块中
 
     %load test.py #test.py是当前路径下的一个python文件    
 
 
-<a id="org938eb17"></a>
+<a id="orgef0ce03"></a>
 
 ### 直接编辑测试.py文件
 
@@ -5327,17 +5335,17 @@ init.el中已经配置好了anaconda中的ipython core
 直接C-c C-p即可打开ipython运行窗口
 
 
-<a id="orgbfaefad"></a>
+<a id="org8d5d05e"></a>
 
 ## 代码测试的基本流程
 
 
-<a id="org569f689"></a>
+<a id="org7551112"></a>
 
 ### 依托工具 jupyter notebook
 
 
-<a id="org2143052"></a>
+<a id="org35b903b"></a>
 
 ### 流程 封装的最高级别是class类而不是def函数
 
@@ -5347,7 +5355,7 @@ init.el中已经配置好了anaconda中的ipython core
 4.  组合模块
 
 
-<a id="orge097847"></a>
+<a id="org6b97665"></a>
 
 ## 帮助命令
 
@@ -5356,12 +5364,12 @@ init.el中已经配置好了anaconda中的ipython core
     help() 查询模块、类型、对象、方法、属性的详细信息     详细查看函数的功能
 
 
-<a id="org9ee60ce"></a>
+<a id="org920d673"></a>
 
 ## 异常处理——try语句
 
 
-<a id="orgf1799d7"></a>
+<a id="orgc22b8b5"></a>
 
 ### 基本知识
 
@@ -5379,7 +5387,7 @@ init.el中已经配置好了anaconda中的ipython core
         <语句> #退出try时总会执行finally语句    
 
 
-<a id="orgfe52a10"></a>
+<a id="org413778a"></a>
 
 ### 用法说明
 
@@ -5388,7 +5396,7 @@ try语句用来放可能会出错的代码，except语句保证即使try中语�
 finally语句则为依然报错，但是之前会执行finally中的语句
 
 
-<a id="org907ca82"></a>
+<a id="org2b45b7c"></a>
 
 ### 代码示例
 
@@ -5407,19 +5415,19 @@ finally语句则为依然报错，但是之前会执行finally中的语句
         print(e)
 
 
-<a id="org0d82877"></a>
+<a id="org7dcaae5"></a>
 
 ## 爬虫
 
 
-<a id="orgddaf014"></a>
+<a id="orgabf1b1e"></a>
 
 ### 最优网页路径选择
 
 根据网址的命名规则
 
 
-<a id="org4a5193b"></a>
+<a id="orgb9acd7e"></a>
 
 ### 最优标签ID name 特征爬取选择
 
@@ -5428,7 +5436,7 @@ finally语句则为依然报错，但是之前会执行finally中的语句
 3.  div[2] 表示第二个div标签 //\*[@id="Profile-following"]/div[2]/div[1]/div/div/div[2]/h2/a
 
 
-<a id="orgedc6f34"></a>
+<a id="orgcb1a5a8"></a>
 
 ### 获取html信息：request库
 
@@ -5455,7 +5463,7 @@ finally语句则为依然报错，但是之前会执行finally中的语句
         r.content http响应内容的二进制形式     
 
 
-<a id="orga352017"></a>
+<a id="org889775e"></a>
 
 ### 使用python中的selenium库快速定位html中标签的位置
 
@@ -5500,7 +5508,7 @@ finally语句则为依然报错，但是之前会执行finally中的语句
             print(i.items())  # 查询标签所有内容    
 
 
-<a id="org037ef13"></a>
+<a id="orgba88074"></a>
 
 ### Selenium知识体系
 
@@ -5820,12 +5828,12 @@ finally语句则为依然报错，但是之前会执行finally中的语句
                 print('Total solving number: ', num)
 
 
-<a id="orgbc1114b"></a>
+<a id="org182b3ab"></a>
 
 ## 库
 
 
-<a id="org030d2ff"></a>
+<a id="orgac82128"></a>
 
 ### threading
 
@@ -5857,17 +5865,17 @@ finally语句则为依然报错，但是之前会执行finally中的语句
         print(threading.activeCount())     
 
 
-<a id="orga6cce8b"></a>
+<a id="orgefa1d13"></a>
 
 ### pandas数据处理库
 
 
-<a id="org3d76580"></a>
+<a id="org60ee56f"></a>
 
 ## python环境迁移/虚拟环境创建 conda创建环境 pip安装packages
 
 
-<a id="org88704b1"></a>
+<a id="org986e002"></a>
 
 ### 打包所有已安装的package
 
@@ -5876,7 +5884,7 @@ finally语句则为依然报错，但是之前会执行finally中的语句
     pip install -r packages.txt  //批量安装package
 
 
-<a id="orga1fce15"></a>
+<a id="org7ecb416"></a>
 
 ### 虚拟环境建立 conda
 
@@ -5888,7 +5896,7 @@ finally语句则为依然报错，但是之前会执行finally中的语句
     conda remove -n rcnn
 
 
-<a id="org31de672"></a>
+<a id="org641103c"></a>
 
 ### conda设置国内服务器镜像
 
@@ -5903,7 +5911,7 @@ finally语句则为依然报错，但是之前会执行finally中的语句
     conda config --set show_channel_urls yes    
 
 
-<a id="org2443b6e"></a>
+<a id="org3e2d401"></a>
 
 ### 虚拟环境建立 pip
 
@@ -5920,7 +5928,7 @@ finally语句则为依然报错，但是之前会执行finally中的语句
     pip uinstall –r requestment.txt
 
 
-<a id="orge6c0e8e"></a>
+<a id="orgba8ff4a"></a>
 
 ### pip设置国内服务器镜像
 
@@ -5977,7 +5985,7 @@ finally语句则为依然报错，但是之前会执行finally中的语句
             timeout = 6000
 
 
-<a id="orgd993087"></a>
+<a id="org19e7253"></a>
 
 ### 常见问题 setup egg<sub>info</sub>
 
@@ -5987,12 +5995,12 @@ finally语句则为依然报错，但是之前会执行finally中的语句
     pip install setuptools
 
 
-<a id="org5531c67"></a>
+<a id="org4166da5"></a>
 
 ## 基线模型
 
 
-<a id="org9ecef23"></a>
+<a id="orgecc4823"></a>
 
 ### 语法
 
@@ -6179,12 +6187,12 @@ finally语句则为依然报错，但是之前会执行finally中的语句
         # --rescale 是可选参数 echo 是定位参数必选
 
 
-<a id="orgde6168f"></a>
+<a id="org34a8f37"></a>
 
 ## Docker部署
 
 
-<a id="orgda19ff8"></a>
+<a id="org569e090"></a>
 
 ### 准备工作
 
@@ -6209,12 +6217,12 @@ finally语句则为依然报错，但是之前会执行finally中的语句
         RUN pip install -r requirements.txt     
 
 
-<a id="org36ac291"></a>
+<a id="orgb787e1f"></a>
 
 ## 必备操作集锦
 
 
-<a id="orge6a57b1"></a>
+<a id="orgbfaf0ab"></a>
 
 ### 正则表达式
 
@@ -6256,7 +6264,7 @@ finally语句则为依然报错，但是之前会执行finally中的语句
             a = re.findall(pattern, string, flags=0)
 
 
-<a id="org56c6060"></a>
+<a id="orgf35e1f9"></a>
 
 ### 字符串合并、替换
 
@@ -6277,7 +6285,7 @@ finally语句则为依然报错，但是之前会执行finally中的语句
         print str.replace("is", "was", 3);
 
 
-<a id="orgbf47c60"></a>
+<a id="orgca4dd7c"></a>
 
 ### 文件名按名称进行排序(list + numpy)方法
 
@@ -6306,7 +6314,7 @@ numpy版本可以又list转换而来
         print(data)     
 
 
-<a id="orgf20220d"></a>
+<a id="org5eb429d"></a>
 
 ### list与string互转 list与numpy互转
 
@@ -6327,7 +6335,7 @@ numpy版本可以又list转换而来
         arr = temp.tolist()      
 
 
-<a id="org90c6a80"></a>
+<a id="orgde4a3c0"></a>
 
 ### 将字符串、列表、字典等数据结构存储为本地文件 pickle
 
@@ -6348,7 +6356,7 @@ numpy版本可以又list转换而来
         pkl_file.close()     
 
 
-<a id="orge0bc1a4"></a>
+<a id="org1cab427"></a>
 
 ### 读取，写入txt文件
 
@@ -6376,7 +6384,7 @@ numpy版本可以又list转换而来
             f.write(str)                 #将字符串写入文件中     
 
 
-<a id="org6fe4c0e"></a>
+<a id="org4307a7a"></a>
 
 ### 获取html内容的python写法
 
@@ -6390,7 +6398,7 @@ numpy版本可以又list转换而来
     html = requests.get(url, headers=header).text    
 
 
-<a id="org2708cd5"></a>
+<a id="org2ae018e"></a>
 
 ### 为python模拟浏览器登陆添加header
 
@@ -6405,14 +6413,14 @@ numpy版本可以又list转换而来
     3.  然后复制其中的user-agent，其他的cookie还有Accept可以要也可以不要，主要是伪装成浏览器，所以我就用了user-agent
 
 
-<a id="org23f6a29"></a>
+<a id="org88aec32"></a>
 
 ### 快速获取某元素xpath的方法
 
 在浏览器右键该元素，然后检查 右击复制xpath路径即可
 
 
-<a id="orgb60ba9d"></a>
+<a id="org9875bc2"></a>
 
 ### 接管已打开的浏览器方法：解决反爬虫
 
@@ -6462,7 +6470,7 @@ numpy版本可以又list转换而来
             在浏览器控制台network选项卡界面下，查找403的名称
 
 
-<a id="org57c90a1"></a>
+<a id="orgb9071f2"></a>
 
 ### python中的模型保存于转换
 
@@ -6537,7 +6545,7 @@ numpy版本可以又list转换而来
 3.  pb模型的保存于导入
 
 
-<a id="orge03e4bb"></a>
+<a id="org3c70861"></a>
 
 ### Tensorboard保存与查看
 
@@ -6568,7 +6576,7 @@ numpy版本可以又list转换而来
             http://127.0.0.1:6006/      
 
 
-<a id="orga064afc"></a>
+<a id="org4e6aa2a"></a>
 
 ### 将列表转换为二维数组，以方便排序和查看最大元素
 
@@ -6583,7 +6591,7 @@ numpy版本可以又list转换而来
         a = [[i for i in line] for line in sort_lines]       
 
 
-<a id="orgcc0975a"></a>
+<a id="org5966d86"></a>
 
 ### emacs中代码块批量缩进
 
@@ -6591,7 +6599,7 @@ numpy版本可以又list转换而来
     C-c < 向左缩进代码块    
 
 
-<a id="org000c4a2"></a>
+<a id="org061916c"></a>
 
 ### python中保存数据 与第三条结合使用
 
@@ -6657,7 +6665,7 @@ numpy版本可以又list转换而来
             pts1
 
 
-<a id="org957fc1e"></a>
+<a id="orga623996"></a>
 
 ### 批量化 封装化处理图片，脚本的模板
 
@@ -6719,7 +6727,7 @@ numpy版本可以又list转换而来
         generate(image_files, dir_output1_images, dir_output2_images)
 
 
-<a id="org3f5ed2d"></a>
+<a id="org1ad732a"></a>
 
 ### numpy按元素操作
 
@@ -6727,7 +6735,7 @@ numpy版本可以又list转换而来
     pts2[pts2 > 1] = 0 
 
 
-<a id="org6c9d3cb"></a>
+<a id="org920f5f2"></a>
 
 ### excel文件终极处理
 
@@ -6843,7 +6851,7 @@ numpy版本可以又list转换而来
         2.  具体上网站上学习即可
 
 
-<a id="org6385504"></a>
+<a id="org116ebd8"></a>
 
 ### 路径下所有文件检索方法
 
@@ -6852,7 +6860,7 @@ numpy版本可以又list转换而来
     allxls = sorted([os.path.join(dir_input, file) for file in os.listdir(dir_input) if file.endswith('.xlsx')])    
 
 
-<a id="orgc9eefd4"></a>
+<a id="org6a0aebd"></a>
 
 ### init封装.py格式
 
@@ -6860,7 +6868,7 @@ numpy版本可以又list转换而来
         run()
 
 
-<a id="org3abf799"></a>
+<a id="orgdda831d"></a>
 
 ### TensorFlow使用的GPU
 
@@ -6871,7 +6879,7 @@ numpy版本可以又list转换而来
     print('Found GPU at: {}'.format(device_name))    
 
 
-<a id="org9ce513f"></a>
+<a id="org0d6ea56"></a>
 
 ### tensorboard中graph图使用说明
 
@@ -6883,7 +6891,7 @@ numpy版本可以又list转换而来
 2.  
 
 
-<a id="org92e66e8"></a>
+<a id="org8bc4d5c"></a>
 
 ### python中的class类
 
@@ -6910,7 +6918,7 @@ numpy版本可以又list转换而来
             VALIDATION_STEPS = 100 # 200     
 
 
-<a id="org3960704"></a>
+<a id="orgeafa31c"></a>
 
 ### assert
 
@@ -6920,7 +6928,7 @@ assert condition 判断条件是否满足，如果为false则raise an error
     assert '.' not in source, 'Source name can not contain a dot'
 
 
-<a id="org38a5e2f"></a>
+<a id="org096e255"></a>
 
 ### TensorFlow将模型保存为pb模型
 
@@ -6988,7 +6996,7 @@ assert condition 判断条件是否满足，如果为false则raise an error
         print([n.name for n in graph.as_graph_def().node])     
 
 
-<a id="org6b6583b"></a>
+<a id="orgd6eecac"></a>
 
 ### 测试目录是否testdir存在，如果不存在，它将为您创建目录
 
@@ -7009,7 +7017,7 @@ assert condition 判断条件是否满足，如果为false则raise an error
         print(e)    
 
 
-<a id="orgd5f7c28"></a>
+<a id="orgc05ac9e"></a>
 
 ### 如何确认库中有没有某个特定的module
 
@@ -7017,7 +7025,7 @@ assert condition 判断条件是否满足，如果为false则raise an error
     dir(scipy.misc)    
 
 
-<a id="orgb227e93"></a>
+<a id="org5ea0e1d"></a>
 
 ### scipy.misc 找不到imread解决方案
 
@@ -7032,7 +7040,7 @@ assert condition 判断条件是否满足，如果为false则raise an error
         pip install mkl numpy
 
 
-<a id="orga443a1a"></a>
+<a id="org0e6a8f1"></a>
 
 ### import future
 
@@ -7041,7 +7049,7 @@ assert condition 判断条件是否满足，如果为false则raise an error
     from __future__ import division
 
 
-<a id="org80f4569"></a>
+<a id="org89b61ff"></a>
 
 ### init.py文件的作用
 
@@ -7093,7 +7101,7 @@ init的py文件是一个module的指示器。如果一个文件夹里面有这�
             修改Anaconda3/Lib/site-packages/torch/utils/cpp_extension.py文件
 
 
-<a id="org5be6637"></a>
+<a id="org43a0771"></a>
 
 ### 如何用python批量复制文件
 
@@ -7104,7 +7112,7 @@ init的py文件是一个module的指示器。如果一个文件夹里面有这�
     copyfile(source_file, des_file)    
 
 
-<a id="org77f1805"></a>
+<a id="orge739a0e"></a>
 
 ### 求解线性、非线性方程组
 
@@ -7131,7 +7139,7 @@ init的py文件是一个module的指示器。如果一个文件夹里面有这�
         print(r)
 
 
-<a id="org1e8a675"></a>
+<a id="org828e0ff"></a>
 
 ### 文件名处理、拼接全部集锦
 
@@ -7151,7 +7159,7 @@ init的py文件是一个module的指示器。如果一个文件夹里面有这�
         '[(](.*?)[)]' 表示（）内部的所有元素
 
 
-<a id="org41816aa"></a>
+<a id="orgac43950"></a>
 
 ### 判断变量是否已经被定义，是否存在
 
@@ -7168,7 +7176,7 @@ init的py文件是一个module的指示器。如果一个文件夹里面有这�
     输出结果为TRUE、FALSE
 
 
-<a id="org56e1e98"></a>
+<a id="orgcaf0806"></a>
 
 ### 在图片上添加文字、直线、和点（圆）以及cv2.imshow方法快速展示图形结果（便于debug）
 
@@ -7195,7 +7203,7 @@ init的py文件是一个module的指示器。如果一个文件夹里面有这�
         cv2.destroyAllWindows()     
 
 
-<a id="org80bb831"></a>
+<a id="org9e419da"></a>
 
 ### 平方和平方根的计算 以及直线斜率及度数的计算公式
 
@@ -7226,7 +7234,7 @@ init的py文件是一个module的指示器。如果一个文件夹里面有这�
         dis = math.fabs(k * point1_x - point1_y + b) / math.pow(k * k + 1, 0.5)     
 
 
-<a id="org918da59"></a>
+<a id="org439620d"></a>
 
 ### numpy 库
 
@@ -7236,14 +7244,14 @@ init的py文件是一个module的指示器。如果一个文件夹里面有这�
         p_arr = np.append(p_arr,p_) #直接向p_arr里添加p_     
 
 
-<a id="orgad899a4"></a>
+<a id="orgf31c0c2"></a>
 
 ### 带有索引的enumerate枚举方法
 
     for i, element in enumerate(seq):
 
 
-<a id="org3777dc5"></a>
+<a id="orgdda8ddb"></a>
 
 ### .gitignore 文件编写 和通过github进行版本控制的方法
 
@@ -7287,6 +7295,8 @@ init的py文件是一个module的指示器。如果一个文件夹里面有这�
         
         可以直接删除
         git rm -r --cached .
+        此处命令执行完成之后即可通过github desktop进行commit命令了
+        
         git add .
         git commit -m 'update .gitignore'
 
@@ -7296,7 +7306,7 @@ init的py文件是一个module的指示器。如果一个文件夹里面有这�
         git check-ignore -v App.class
 
 
-<a id="org990098b"></a>
+<a id="orge5df5be"></a>
 
 ### pip使用方法
 
@@ -7311,22 +7321,22 @@ init的py文件是一个module的指示器。如果一个文件夹里面有这�
     pip uninstall packagename    
 
 
-<a id="org9ffab1f"></a>
+<a id="org89209db"></a>
 
 # Matlab语言
 
 
-<a id="org1cc4ad4"></a>
+<a id="org0216b19"></a>
 
 ## 知识补充 cell的使用
 
 
-<a id="org66b1c3c"></a>
+<a id="org62e88c4"></a>
 
 ### 将矩阵保存到cell里面，从而用一个for循环索引cell的编号来画图
 
 
-<a id="org35bef06"></a>
+<a id="org1f9cc2d"></a>
 
 ### 代码
 
@@ -7335,7 +7345,7 @@ init的py文件是一个module的指示器。如果一个文件夹里面有这�
     lines=cell([1 n]);创建一个1行n列的cell
 
 
-<a id="orge9e4088"></a>
+<a id="org1addbea"></a>
 
 ## for循环处理画图语句
 
@@ -7351,17 +7361,17 @@ init的py文件是一个module的指示器。如果一个文件夹里面有这�
     suptitle('DCT 4-by-4 basis images');
 
 
-<a id="org3e943f4"></a>
+<a id="org8778273"></a>
 
 ## 类 class 函数变量名： 变量名.成员变量
 
 
-<a id="org86cc449"></a>
+<a id="orgbc7ddcc"></a>
 
 ## matlab中运行python代码
 
 
-<a id="org92ef6b4"></a>
+<a id="orgac5b586"></a>
 
 ### 配置python环境
 
@@ -7369,7 +7379,7 @@ init的py文件是一个module的指示器。如果一个文件夹里面有这�
     其中D:/anaconda/python.exe 是python解释器的路径    
 
 
-<a id="orgf005edf"></a>
+<a id="orgf150eb0"></a>
 
 ### 使用方法及调试
 
@@ -7383,17 +7393,17 @@ init的py文件是一个module的指示器。如果一个文件夹里面有这�
     这里numpy表示的是python下的numpy库，reshape和matlab里面的reshape作用一样
 
 
-<a id="org0cbd65e"></a>
+<a id="org99126f4"></a>
 
 # C++语言 & linux系统
 
 
-<a id="org2e612a4"></a>
+<a id="orgf8a36a9"></a>
 
 ## windows下子系统linux搭建
 
 
-<a id="org62a90b9"></a>
+<a id="org8358b96"></a>
 
 ### 安装ubuntu
 
@@ -7419,7 +7429,7 @@ init的py文件是一个module的指示器。如果一个文件夹里面有这�
 3.  ubuntu可以直接访问命令行
 
 
-<a id="org3690c9e"></a>
+<a id="org266c904"></a>
 
 ### 设置root命令并获取root权限
 
@@ -7436,7 +7446,7 @@ init的py文件是一个module的指示器。如果一个文件夹里面有这�
     sudo passwd -l root  
 
 
-<a id="orgaabb3f3"></a>
+<a id="orge762880"></a>
 
 ### 安装必备package
 
@@ -7445,7 +7455,7 @@ init的py文件是一个module的指示器。如果一个文件夹里面有这�
     sudo apt install build-essential    
 
 
-<a id="orgb3feae8"></a>
+<a id="org5ca6468"></a>
 
 ### 编译和运行
 
@@ -7456,7 +7466,7 @@ init的py文件是一个module的指示器。如果一个文件夹里面有这�
     ./a.out 
 
 
-<a id="org1255a9b"></a>
+<a id="org41018b9"></a>
 
 ### 文件管理
 
@@ -7467,7 +7477,7 @@ init的py文件是一个module的指示器。如果一个文件夹里面有这�
 可以直接打开windows桌面修改文件及其路径即可
 
 
-<a id="org21eb22c"></a>
+<a id="orgc839d86"></a>
 
 ### ubuntu系统文件夹功能介绍
 
@@ -7501,7 +7511,7 @@ init的py文件是一个module的指示器。如果一个文件夹里面有这�
     /media目录主要用于挂载多媒体设备。    
 
 
-<a id="org44b5a74"></a>
+<a id="org475ecd5"></a>
 
 ### 环境变量设置
 
@@ -7522,14 +7532,14 @@ init的py文件是一个module的指示器。如果一个文件夹里面有这�
     source /etc/profile
 
 
-<a id="org5dd7b16"></a>
+<a id="org30eb779"></a>
 
 ### ssh登录用法
 
 ssh yangyixin@10.106.20.31
 
 
-<a id="orgf96b5e7"></a>
+<a id="org217e481"></a>
 
 ### vim编辑器基本使用方法
 
@@ -7554,14 +7564,14 @@ Ecs 切换输入模式和命令模式
         O：在当前光标所在行的上方，新建一行，并转为输入模式；    
 
 
-<a id="org532c389"></a>
+<a id="orgf5b33c7"></a>
 
 ### ssh之后退出当前登录
 
 exit
 
 
-<a id="orgf159a90"></a>
+<a id="orgd37210f"></a>
 
 ### OpenCV安装
 
@@ -7658,7 +7668,7 @@ exit
             target_link_libraries(opencv_test LINK_PRIVATE ${OpenCV_LIBS})      
 
 
-<a id="org9839ace"></a>
+<a id="org9216b75"></a>
 
 ### anaconda安装
 
@@ -7679,7 +7689,7 @@ exit
         source ~/.bashrc
 
 
-<a id="orgdd1293c"></a>
+<a id="org4f3a1c0"></a>
 
 ### 必备操作集锦
 
@@ -7837,7 +7847,7 @@ exit
         sudo apt install pip3
 
 
-<a id="org2a2bfec"></a>
+<a id="orgf341234"></a>
 
 ## windows下gcc g++平台搭建
 
@@ -7854,12 +7864,12 @@ g++ -v
 需要安装修改mingw中的make.exe名字
 
 
-<a id="org1678cdf"></a>
+<a id="org95424fd"></a>
 
 ## Makefile环境搭建
 
 
-<a id="org87e6d13"></a>
+<a id="orgdac85d1"></a>
 
 ### make命令
 
@@ -7867,14 +7877,14 @@ g++ -v
 2.  修改mingw32-make.exe 更名为make.exe
 
 
-<a id="org2b33d99"></a>
+<a id="orga44e7b6"></a>
 
 ### makefile的生成
 
 新建无格式的文本，注意不能为txt,名字为：Makefile 格式一定是TAB不能为4个空格
 
 
-<a id="org30bbf27"></a>
+<a id="orgc78bb6a"></a>
 
 ### Makefile书写规范
 
@@ -7960,7 +7970,7 @@ g++ -v
                 gcc -c hello.c -o hello.o
 
 
-<a id="org917ab7f"></a>
+<a id="org5965c30"></a>
 
 ### 重要问题
 
@@ -7980,7 +7990,7 @@ g++ -v
     linux可以g++生成.out之后直接./a.out即可
 
 
-<a id="org024a01e"></a>
+<a id="org9994835"></a>
 
 ### 大型程序
 
@@ -7993,12 +8003,12 @@ g++ -v
 4）对于编译链接，我们可以采用范性编程的思想，利用find和patsubst等命令来构造sources和objects等变量
 
 
-<a id="orgb843613"></a>
+<a id="orga9fdb4f"></a>
 
 ## SDK 软件开发工具包：opencv等库的安装及使用
 
 
-<a id="orge6fe8a9"></a>
+<a id="org7e848bc"></a>
 
 ### 依赖
 
@@ -8019,7 +8029,7 @@ g++ -v
     添加环境变量build\install\x64\mingw\bin
 
 
-<a id="org8674de2"></a>
+<a id="orgee52eda"></a>
 
 ### 通过cmake编译opencv库生成opencv.sln文件
 
@@ -8029,7 +8039,7 @@ g++ -v
     cmake -S d:/opencv/sources -B d:/opencv/build -G "MinGW Makefiles"
 
 
-<a id="org32b07fe"></a>
+<a id="org3d8e7c8"></a>
 
 ### 编译和安装
 
@@ -8038,7 +8048,7 @@ g++ -v
 接下来make
 
 
-<a id="orgaa076ee"></a>
+<a id="org9bf94fa"></a>
 
 ### 基本知识
 
@@ -8049,7 +8059,7 @@ g++ -v
     SDK: 开发集成工具环境,API就是数据接口。在SDK环境下调用API数据
 
 
-<a id="org2007872"></a>
+<a id="org0755e29"></a>
 
 ## ubuntu及oracal虚拟机 （过时）
 
@@ -8065,14 +8075,14 @@ Oracle和ubuntu都可以从官网下载
 需要在cpu configuration 中开启硬件虚拟化
 
 
-<a id="orgc5989cf"></a>
+<a id="org01974c0"></a>
 
 ## 可以直接用成熟的Windows shell程序
 
 MobaXterm
 
 
-<a id="org1478748"></a>
+<a id="orgcccc451"></a>
 
 ## MobaXterm 连接bender
 
@@ -8091,21 +8101,21 @@ MobaXterm
     exit 退出bender系统
 
 
-<a id="org43eb551"></a>
+<a id="orgcdc8ddd"></a>
 
 ## cygwin 类Unix的Windows端软件
 
 可以将windows的命令行变成一个可以直接运行cpp文件的shell
 
 
-<a id="org887d7d0"></a>
+<a id="orgc4ba55b"></a>
 
 ## 在emacs中编译 运行cpp文件
 
 <https://blog.csdn.net/shuxiao9058/article/details/7633054>
 
 
-<a id="org71665db"></a>
+<a id="orge7fd199"></a>
 
 ### 代码调试逻辑
 
@@ -8116,7 +8126,7 @@ MobaXterm
 5.  使用命令M-x gdb打开调试窗口，并对程序进行测试
 
 
-<a id="orgb37a55a"></a>
+<a id="org293888b"></a>
 
 ### 一键编译并运行c++ mode
 
@@ -8130,7 +8140,7 @@ init.el设置代码，并将命令绑定到快捷键F5
     (global-set-key [(f5)] 'your-g++-compile-and-run)  ;;快捷键F9
 
 
-<a id="org81bc1fc"></a>
+<a id="org0b2bfc1"></a>
 
 ### 一键编译C++ mode
 
@@ -8147,7 +8157,7 @@ init.el设置代码 将编译命令绑定到F9
     (global-set-key [(f9)] 'quick-compile)  ;;快捷键F9
 
 
-<a id="orgeea765d"></a>
+<a id="org96c721d"></a>
 
 ### 一键打印输出变量的值 调试方法
 
@@ -8170,7 +8180,7 @@ init.el设置代码 将编译命令绑定到F9
         注意事项：不要在调用DebugP的时候对变量进行任何操作！错误示范：DebugP(a++);
 
 
-<a id="orgf8427d9"></a>
+<a id="org12b77cf"></a>
 
 ### 打开命令行工具的方法
 
@@ -8178,7 +8188,7 @@ init.el设置代码 将编译命令绑定到F9
     M-m ! 直接在buffer的缓冲区打开一个shell命令输入接口    
 
 
-<a id="orgb70aa1b"></a>
+<a id="org4afefb9"></a>
 
 ### 编译/执行命令
 
@@ -8191,7 +8201,7 @@ init.el设置代码 将编译命令绑定到F9
     dir == ls 查看当前目录下的所有文件    
 
 
-<a id="org6f75281"></a>
+<a id="org365bbd3"></a>
 
 ### 编译环境配置
 
@@ -8204,7 +8214,7 @@ init.el设置代码 将编译命令绑定到F9
     Makefile
 
 
-<a id="orgab03d51"></a>
+<a id="org321f113"></a>
 
 ### 必备操作集锦
 
@@ -8213,12 +8223,12 @@ init.el设置代码 将编译命令绑定到F9
     不同于python EIN模式，c++ mode可以直接选中区域，TAB即可
 
 
-<a id="orgcc1775c"></a>
+<a id="org4e9a486"></a>
 
 ## debug gdb
 
 
-<a id="org22b6ff8"></a>
+<a id="org9f1e0f9"></a>
 
 ### emacs打开方式
 
@@ -8226,7 +8236,7 @@ M-x gud-gdb
 或者直接在shell中键入命令 gdb test.exe
 
 
-<a id="orgd4ff01e"></a>
+<a id="orgb303cc5"></a>
 
 ### 基本调试语法
 
@@ -8282,12 +8292,12 @@ M-x gud-gdb
     “通过set variable <变量>=<表达式>”来修改变量的值。
 
 
-<a id="org604fcbd"></a>
+<a id="org658f9de"></a>
 
 ## C++基本语法
 
 
-<a id="org1bbbfa6"></a>
+<a id="orgca7c6be"></a>
 
 ### 基本符号
 
@@ -8332,7 +8342,7 @@ M-x gud-gdb
     如果A为假，输出C
 
 
-<a id="org34f8d4f"></a>
+<a id="org8f2d98e"></a>
 
 ### 函数用法
 
@@ -8418,12 +8428,12 @@ M-x gud-gdb
         只能定义一次不同文件中的声明就是引用该变量的数值
 
 
-<a id="org03d39f7"></a>
+<a id="orgb566a1c"></a>
 
 ### 字符常量、转义字符、运算符、循环体
 
 
-<a id="orgc9929d8"></a>
+<a id="org0426f23"></a>
 
 ### 数组
 
@@ -8438,7 +8448,7 @@ M-x gud-gdb
     int threedim[5][10][4];   //多维数组
 
 
-<a id="orgb971fb3"></a>
+<a id="org1594afc"></a>
 
 ### 指向数组的指针
 
@@ -8473,21 +8483,21 @@ M-x gud-gdb
     int\* a跟int \*a是一样的，只是int \*a更严谨，
 
 
-<a id="org2da71ed"></a>
+<a id="org6a2c3da"></a>
 
 ### 字符串序列
 
 string类包含了所需的标准库
 
 
-<a id="orgf4f6431"></a>
+<a id="org07b94a6"></a>
 
 ### 时间和日期
 
 使用日期和时间相关的函数和结构，需要在 C++ 程序中引用 <ctime> 头文件
 
 
-<a id="orgce34e22"></a>
+<a id="org197af0c"></a>
 
 ### c++的基本输入输出
 
@@ -8515,7 +8525,7 @@ cerr: 非缓冲，当即显示
 clog: 缓冲，延迟显示
 
 
-<a id="org8175e6e"></a>
+<a id="org99abd28"></a>
 
 ### public private
 
@@ -8557,7 +8567,7 @@ clog: 缓冲，延迟显示
         };     
 
 
-<a id="org4bc61c5"></a>
+<a id="org287474c"></a>
 
 ### vector向量
 
@@ -8638,7 +8648,7 @@ clog: 缓冲，延迟显示
         operator[]         // 返回容器中指定位置的一个引用。     
 
 
-<a id="org579813d"></a>
+<a id="org4c6a9c1"></a>
 
 ### unordered-map 字典
 
@@ -8657,7 +8667,7 @@ clog: 缓冲，延迟显示
     如果.find()查找不到该元素，则返回.end()
 
 
-<a id="orga8951c0"></a>
+<a id="org807f238"></a>
 
 ### 构造函数和析构函数 类对象的初始化赋值和分配空间清除
 
@@ -8694,7 +8704,7 @@ clog: 缓冲，延迟显示
 4.  代码示例
 
 
-<a id="orgac28c54"></a>
+<a id="org760fb75"></a>
 
 ### :: -> :
 
@@ -8768,7 +8778,7 @@ clog: 缓冲，延迟显示
             }      
 
 
-<a id="org0b0ed87"></a>
+<a id="org19b6b89"></a>
 
 ### new关键字的
 
@@ -8791,14 +8801,14 @@ clog: 缓冲，延迟显示
         ListNode* pNode = new ListNode(0);     
 
 
-<a id="orgabcb3cd"></a>
+<a id="org761908c"></a>
 
 ### typedef
 
 用typedef简化复杂的声明和定义 相当于给某种复杂的数据类型起一个别名，方便多次使用
 
 
-<a id="org25c7ad1"></a>
+<a id="orgf6c05b3"></a>
 
 ### template 模板
 
@@ -8844,7 +8854,7 @@ clog: 缓冲，延迟显示
         };      
 
 
-<a id="org0864bca"></a>
+<a id="org30177d3"></a>
 
 ### #define语句
 
@@ -8864,12 +8874,12 @@ clog: 缓冲，延迟显示
     #endif
 
 
-<a id="orgb75895c"></a>
+<a id="org9653bd7"></a>
 
 ## c++代码书写
 
 
-<a id="orgbf976d2"></a>
+<a id="org885dac0"></a>
 
 ### 写法规范
 
@@ -8880,7 +8890,7 @@ clog: 缓冲，延迟显示
 5.  指针的写法： int\* a
 
 
-<a id="orgb76af6e"></a>
+<a id="orgb923c1f"></a>
 
 ### 代码示例
 
@@ -8925,12 +8935,12 @@ clog: 缓冲，延迟显示
     };    
 
 
-<a id="org05b83d5"></a>
+<a id="org614421d"></a>
 
 ## linux-ubuntu环境Docker部署流程
 
 
-<a id="orgab96354"></a>
+<a id="org699f37a"></a>
 
 ### docker安装
 
@@ -8944,7 +8954,7 @@ clog: 缓冲，延迟显示
     systemctl enable docker
 
 
-<a id="orga4fb14b"></a>
+<a id="org34b9455"></a>
 
 ### win10 linux子系统systemctl报错
 
@@ -8966,7 +8976,7 @@ System has not been booted with systemd as init system (PID 1). Can’t operate.
     sudo apt-get install docker-ce
 
 
-<a id="org4e518c7"></a>
+<a id="orgb9cf580"></a>
 
 ### 添加当前用户权限 避免每次使用docker都需要sudo
 
@@ -8980,12 +8990,12 @@ System has not been booted with systemd as init system (PID 1). Can’t operate.
     id -nG
 
 
-<a id="org585a2ac"></a>
+<a id="org049aaab"></a>
 
 # Html语言
 
 
-<a id="org5a10233"></a>
+<a id="org67a0288"></a>
 
 ## 配置
 
@@ -9012,19 +9022,19 @@ System has not been booted with systemd as init system (PID 1). Can’t operate.
     (add-hook 'web-mode-hook  'my-web-mode-hook)
 
 
-<a id="orgbc36fbc"></a>
+<a id="orgd77c235"></a>
 
 ## 学习抓取某网站的技巧
 
 将网页与源代码按照从上到下依次一一对应，识别代码与内容的匹配
 
 
-<a id="orgfde6bb1"></a>
+<a id="org926c5ee"></a>
 
 ## html基本知识
 
 
-<a id="org1a470f1"></a>
+<a id="org1869236"></a>
 
 ### 常用标签
 
@@ -9185,7 +9195,7 @@ System has not been booted with systemd as init system (PID 1). Can’t operate.
         注:selected="selected"可简写成selected，表示选中     
 
 
-<a id="org983c214"></a>
+<a id="org2a18942"></a>
 
 ## 最重要的函数find<sub>all</sub>
 
@@ -9193,7 +9203,7 @@ find<sub>all</sub>( name , attrs , recursive , string , \*\*kwargs )
 find<sub>all</sub>() 方法搜索当前tag的所有tag子节点,并判断是否符合过滤器的条件
 
 
-<a id="orged5b0e5"></a>
+<a id="orgd147864"></a>
 
 ### name参数
 
@@ -9201,7 +9211,7 @@ find<sub>all</sub>() 方法搜索当前tag的所有tag子节点,并判断是否�
 sb = soup.find<sub>all</sub>('img')
 
 
-<a id="org7d92493"></a>
+<a id="orgc219cce"></a>
 
 ### keyword参数
 
@@ -9209,28 +9219,28 @@ sb = soup.find<sub>all</sub>('img')
 soup.find<sub>all</sub>(href=re.compile("elsie"))
 
 
-<a id="orgac57ae8"></a>
+<a id="orgc0c5433"></a>
 
 ### sting参数
 
 通过 string 参数可以搜搜文档中的字符串内容.与 name 参数的可选值一样, string 参数接受 字符串 , 正则表达式 , 列表, True;
 
 
-<a id="org145aa2e"></a>
+<a id="orgff4ba7a"></a>
 
 ### limit参数
 
 这个参数其实就是控制我们获取数据的数量，效果和SQL语句中的limit一样；
 
 
-<a id="org71ff7c6"></a>
+<a id="org4c1309c"></a>
 
 ### recursive参数
 
 调用tag的 find<sub>all</sub>() 方法时,Beautiful Soup会检索当前tag的所有子孙节点,如果只想搜索tag的直接子节点,可以使用参数 recursive=False;
 
 
-<a id="orge34c50d"></a>
+<a id="org66ac3dc"></a>
 
 ### 使用说明
 
@@ -9243,12 +9253,12 @@ find<sub>parent</sub>() find<sub>parents</sub>() 查找父标签
 find<sub>next</sub><sub>siblings</sub>() 查找同类  注意：这两个函数一定要先把trs = trs[0]变成一个可以调用的类型
 
 
-<a id="org25aa646"></a>
+<a id="org36cddb0"></a>
 
 # Adobe Illustrator 作图软件
 
 
-<a id="orge4ba624"></a>
+<a id="org1209236"></a>
 
 ## 基本工具及快捷键
 
@@ -9267,19 +9277,19 @@ find<sub>next</sub><sub>siblings</sub>() 查找同类  注意：这两个函数�
     Shift + e 橡皮擦工具
 
 
-<a id="orgc3a32ef"></a>
+<a id="org2b5abb4"></a>
 
 ## 使用逻辑
 
 
-<a id="orgc347032"></a>
+<a id="org3bbc570"></a>
 
 ### 基本图形库
 
 可以直接从word、ppt文档中把基本图形复制粘贴到AI中，即可生成矢量图，并进行编辑
 
 
-<a id="orgd1715f7"></a>
+<a id="org0061aa4"></a>
 
 ### 锚点的使用
 
@@ -9292,19 +9302,19 @@ find<sub>next</sub><sub>siblings</sub>() 查找同类  注意：这两个函数�
 修改直线上的锚点位置：先用直接选择工具选中图形即可，之后拖动锚点即可修改图形形状
 
 
-<a id="orgb835a8f"></a>
+<a id="orgbc6909b"></a>
 
 ### 形状生成器
 
 交叉重叠的图形使用形状生成工具后，图形中的每一个交叉点都会变为单独的个体，按住Alt键点击对应位置，即可删除个体。
 
 
-<a id="orgbf35d75"></a>
+<a id="org224cdc8"></a>
 
 # Adobe Photoshop 作图软件
 
 
-<a id="orgb7567bf"></a>
+<a id="org438e5d9"></a>
 
 ## 基本快捷键
 
@@ -9327,17 +9337,17 @@ find<sub>next</sub><sub>siblings</sub>() 查找同类  注意：这两个函数�
        合并图层：选中两个图层之后 Ctrl + e 
 
 
-<a id="org5595d64"></a>
+<a id="org4a14f33"></a>
 
 # github代码库管理
 
 
-<a id="org93373f5"></a>
+<a id="org698ba78"></a>
 
 ## 忽略文件配置
 
 
-<a id="org9028184"></a>
+<a id="org4f55d4f"></a>
 
 ### 编写逻辑
 
@@ -9347,7 +9357,7 @@ find<sub>next</sub><sub>siblings</sub>() 查找同类  注意：这两个函数�
 .gitignore的管理范围是当前路径 因此可以用多个.gitignore对不同文件夹分逻辑管理
 
 
-<a id="org5360025"></a>
+<a id="orgb866046"></a>
 
 ### 编写代码
 
@@ -9361,14 +9371,14 @@ find<sub>next</sub><sub>siblings</sub>() 查找同类  注意：这两个函数�
     /dbg # 只忽略当前目录下的dbg文件和目录，子目录的dbg不在忽略范围内
 
 
-<a id="org37b18f5"></a>
+<a id="org4de4beb"></a>
 
 ### 注意事项
 
 注意：如果你创建.gitignore文件之前就push了某一文件，那么即使你在.gitignore文件中写入过滤该文件的规则，该规则也不会起作用，git仍然会对该文件进行版本管理。
 
 
-<a id="orgfee8c95"></a>
+<a id="org44e828a"></a>
 
 ### 无法commit到远端的问题解决
 
@@ -9379,17 +9389,17 @@ find<sub>next</sub><sub>siblings</sub>() 查找同类  注意：这两个函数�
 2.  设置.gitignore文件 忽略.git文件夹
 
 
-<a id="orgb4066c7"></a>
+<a id="org31d1934"></a>
 
 # Algorithems & Data Structure
 
 
-<a id="org6cdaafc"></a>
+<a id="org00d5c06"></a>
 
 ## Sorting
 
 
-<a id="orgf2480fb"></a>
+<a id="org9b18abf"></a>
 
 ### Insertion sort
 
@@ -9401,7 +9411,7 @@ find<sub>next</sub><sub>siblings</sub>() 查找同类  注意：这两个函数�
 ![img](Algorithems_&_Data_Structure/screenshot_2019-06-14_10-24-46.png)
 
 
-<a id="org16ace95"></a>
+<a id="org11be1a5"></a>
 
 ### divide-and-conquer approach 分治法 又称为merge sort归并排序
 
@@ -9424,7 +9434,7 @@ find<sub>next</sub><sub>siblings</sub>() 查找同类  注意：这两个函数�
     ![img](Algorithems_&_Data_Structure/screenshot_2019-06-17_16-59-54.png)
 
 
-<a id="orgdde24a9"></a>
+<a id="org8a8cdc5"></a>
 
 ### heapsort堆排序
 
@@ -9463,7 +9473,7 @@ find<sub>next</sub><sub>siblings</sub>() 查找同类  注意：这两个函数�
     ![img](Algorithems_&_Data_Structure/screenshot_2019-06-17_23-25-42.png)
 
 
-<a id="org56cc750"></a>
+<a id="org8d04ce6"></a>
 
 ### Quicksort 快速排序
 
@@ -9490,7 +9500,7 @@ find<sub>next</sub><sub>siblings</sub>() 查找同类  注意：这两个函数�
     不平衡：性能接近插入排序
 
 
-<a id="orgd37982c"></a>
+<a id="orgd36883d"></a>
 
 ### Counting Sort计数排序
 
@@ -9509,7 +9519,7 @@ find<sub>next</sub><sub>siblings</sub>() 查找同类  注意：这两个函数�
     ![img](Algorithems_&_Data_Structure/screenshot_2019-06-18_13-54-17.png)
 
 
-<a id="org624b3ab"></a>
+<a id="orgcb5c093"></a>
 
 ### Radix Sort基数排序
 
@@ -9521,7 +9531,7 @@ find<sub>next</sub><sub>siblings</sub>() 查找同类  注意：这两个函数�
     ![img](Algorithems_&_Data_Structure/screenshot_2019-06-18_14-16-26.png)
 
 
-<a id="org20e3cc1"></a>
+<a id="orgfb8a676"></a>
 
 ### Bucket Sort桶排序
 
@@ -9539,14 +9549,14 @@ find<sub>next</sub><sub>siblings</sub>() 查找同类  注意：这两个函数�
     桶排序：将元素取值范围均分，对范围进行排序，之后对每个桶进行排序，再合并即可
 
 
-<a id="org143cb34"></a>
+<a id="org82dffe6"></a>
 
 ### 七种sort算法
 
 ![img](Algorithems_&_Data_Structure/sort_algorithms_2019-06-13_18-32-29.png)
 
 
-<a id="org2adfa5a"></a>
+<a id="org87d0ca5"></a>
 
 ### 一句话概括七种排序算法
 
@@ -9620,17 +9630,17 @@ find<sub>next</sub><sub>siblings</sub>() 查找同类  注意：这两个函数�
 </table>
 
 
-<a id="org4422c7a"></a>
+<a id="orga4c0119"></a>
 
 ## 中位数和顺序统计量
 
 
-<a id="org2fb8890"></a>
+<a id="org00f0f90"></a>
 
 ## 数据结构
 
 
-<a id="orgf73d483"></a>
+<a id="org5a2f1f8"></a>
 
 ### 基本数据结构
 
@@ -9693,7 +9703,7 @@ find<sub>next</sub><sub>siblings</sub>() 查找同类  注意：这两个函数�
         x.right-child 指向结点x最右边的孩子结点
 
 
-<a id="orgb010699"></a>
+<a id="org6fd04b1"></a>
 
 ### 散列表
 
@@ -9731,7 +9741,7 @@ find<sub>next</sub><sub>siblings</sub>() 查找同类  注意：这两个函数�
 5.  完全散列
 
 
-<a id="orgadc169a"></a>
+<a id="org4902c3c"></a>
 
 ### 二叉搜索树
 
@@ -9750,7 +9760,7 @@ find<sub>next</sub><sub>siblings</sub>() 查找同类  注意：这两个函数�
     由于性质，左 中 右 从根结点向下开始搜索，路径唯一，复杂度为二叉树的告诉
 
 
-<a id="orgb867d02"></a>
+<a id="orgb9216cb"></a>
 
 ### 红黑树
 
@@ -9835,12 +9845,12 @@ find<sub>next</sub><sub>siblings</sub>() 查找同类  注意：这两个函数�
         ![img](Algorithems_&_Data_Structure/screenshot_2019-06-18_16-44-28.png)
 
 
-<a id="orgdc8f54e"></a>
+<a id="org3a63b3c"></a>
 
 ## 高级设计和分析技术
 
 
-<a id="org103ece3"></a>
+<a id="org711761f"></a>
 
 ### 动态规划
 
@@ -9908,7 +9918,7 @@ find<sub>next</sub><sub>siblings</sub>() 查找同类  注意：这两个函数�
     至此，动态规划的“问题建模就完成了”。
 
 
-<a id="orga26fa1d"></a>
+<a id="org0aa08a5"></a>
 
 ### 贪心算法
 
@@ -9926,17 +9936,17 @@ find<sub>next</sub><sub>siblings</sub>() 查找同类  注意：这两个函数�
 必须注意的是策略的选择必须具备无后效性，即某个状态的选择不会影响到之前的状态，只与当前状态有关，所以对采用的贪婪的策略一定要仔细分析其是否满足无后效性
 
 
-<a id="orgaf12f41"></a>
+<a id="org4cc6f63"></a>
 
 ### 摊还分析
 
 
-<a id="orgfed23b8"></a>
+<a id="orgf5e9f2b"></a>
 
 # Algorithems & Data Structure 2019 11 02
 
 
-<a id="org47d31a2"></a>
+<a id="org82ae948"></a>
 
 ## 学习思想及标准
 
@@ -9950,12 +9960,12 @@ find<sub>next</sub><sub>siblings</sub>() 查找同类  注意：这两个函数�
 LeetCode代码为准 把数据结构细节跑通
 
 
-<a id="org82449b3"></a>
+<a id="org4de73d3"></a>
 
 ## 10个数据结构+10种算法
 
 
-<a id="orgba0bf83"></a>
+<a id="org8dfc0a5"></a>
 
 ### 数组
 
@@ -10067,7 +10077,7 @@ LeetCode代码为准 把数据结构细节跑通
             }      
 
 
-<a id="org48766c1"></a>
+<a id="orgbd17ba0"></a>
 
 ### 链表
 
@@ -10093,12 +10103,12 @@ LeetCode代码为准 把数据结构细节跑通
         众所周知，我们使用头结点来代表整个列表。因此，在列表开头添加新节点时更新头结点 head 至关重要。
 
 
-<a id="org5069af1"></a>
+<a id="orgfe7144f"></a>
 
 ## 数据结构c++语言清华大学邓俊辉
 
 
-<a id="orga2d1fd2"></a>
+<a id="org6aa35c4"></a>
 
 ### 复杂度
 
@@ -10114,7 +10124,7 @@ LeetCode代码为准 把数据结构细节跑通
 3.  常数O(1)
 
 
-<a id="orge376918"></a>
+<a id="org6552a13"></a>
 
 ### 递归
 
@@ -10127,7 +10137,7 @@ LeetCode代码为准 把数据结构细节跑通
     减而治之的思想
 
 
-<a id="org275b17e"></a>
+<a id="org59d4737"></a>
 
 ### 抽象数据类型 ADT
 
@@ -10141,14 +10151,14 @@ LeetCode代码为准 把数据结构细节跑通
     size() get() put()等等
 
 
-<a id="org3bb041a"></a>
+<a id="orgcb1492c"></a>
 
 ### 列表
 
 从数组的静态存储方式更改为动态存储，其物理地址不需要连续，添加、删除操作所需要的时间大大缩小
 
 
-<a id="org11b3607"></a>
+<a id="orge499d73"></a>
 
 ### 栈与队列
 
@@ -10156,7 +10166,7 @@ LeetCode代码为准 把数据结构细节跑通
 队列：银行排队 先进先出fifo
 
 
-<a id="orgfd56b17"></a>
+<a id="org13942ba"></a>
 
 ### 二叉树
 
@@ -10194,7 +10204,7 @@ LeetCode代码为准 把数据结构细节跑通
     基本组成实体 节点
 
 
-<a id="orgaa928bc"></a>
+<a id="org3dc0787"></a>
 
 ### 图
 
@@ -10219,17 +10229,17 @@ LeetCode代码为准 把数据结构细节跑通
         邻接矩阵空间效率低，换为表的形式
 
 
-<a id="org5e7243d"></a>
+<a id="org020b469"></a>
 
 ### 搜索树
 
 
-<a id="org8a9aa11"></a>
+<a id="org8dbfda4"></a>
 
 # LeetCode学习
 
 
-<a id="orgb1f6560"></a>
+<a id="org0746e59"></a>
 
 ## 学习策略及逻辑
 
@@ -10239,12 +10249,12 @@ LeetCode代码为准 把数据结构细节跑通
 4.  尝试优化答题思路
 
 
-<a id="orgbc89c60"></a>
+<a id="org771018a"></a>
 
 ## 正序题号
 
 
-<a id="org2a84181"></a>
+<a id="orgd48d0a5"></a>
 
 ### 哈希表 Hash table
 
@@ -10310,12 +10320,12 @@ LeetCode代码为准 把数据结构细节跑通
         index = (value \* 2654435769) >> 28
 
 
-<a id="orga61c950"></a>
+<a id="org041e25d"></a>
 
 ## python版本
 
 
-<a id="orgd024f63"></a>
+<a id="org2a847ac"></a>
 
 ### 1
 
@@ -10409,7 +10419,7 @@ LeetCode代码为准 把数据结构细节跑通
         疯狂Python讲义的价格是: 89.00
 
 
-<a id="org5dd5fde"></a>
+<a id="orgb0b2d1d"></a>
 
 ### 2
 
@@ -10432,7 +10442,7 @@ LeetCode代码为准 把数据结构细节跑通
             if(l2!=None):l2=l2.next     
 
 
-<a id="orge599127"></a>
+<a id="org0545036"></a>
 
 ### 3
 
@@ -10440,7 +10450,7 @@ python中遍历问题，喜欢用字典dictionary，原因是速度快
 通过if判断是否之前添加过到字典中，从而查找到符合一定条件的值。
 
 
-<a id="orga478722"></a>
+<a id="orgc37a569"></a>
 
 ### 4
 
@@ -10454,7 +10464,7 @@ python中遍历问题，喜欢用字典dictionary，原因是速度快
         list.sort()              对列表进行排序，括号内为排序方法，可以缺省
 
 
-<a id="orgd253bde"></a>
+<a id="org228ff88"></a>
 
 ### 5
 
@@ -10591,7 +10601,7 @@ python中遍历问题，喜欢用字典dictionary，原因是速度快
             [^xyz]负值字符集合。匹配未包含的任意字符。例如，“[^abc]”可以匹配“plain”中的“plin”。      
 
 
-<a id="orgad053ce"></a>
+<a id="orgd7a89fb"></a>
 
 ### 6
 
@@ -10605,7 +10615,7 @@ python中遍历问题，喜欢用字典dictionary，原因是速度快
     ''.join([''.join(r) for r in rows])
 
 
-<a id="org590b7cd"></a>
+<a id="org51ba380"></a>
 
 ### 7
 
@@ -10615,7 +10625,7 @@ python中遍历问题，喜欢用字典dictionary，原因是速度快
     \*\*表示乘方
 
 
-<a id="org5ad16dc"></a>
+<a id="org79caeb0"></a>
 
 ### 8
 
@@ -10639,7 +10649,7 @@ python中遍历问题，喜欢用字典dictionary，原因是速度快
     a[0:-1] 数组中index 0 到结尾
 
 
-<a id="org92d6499"></a>
+<a id="org28e8393"></a>
 
 ### 9
 
@@ -10655,7 +10665,7 @@ python中遍历问题，喜欢用字典dictionary，原因是速度快
     '1#2#0#h#e#l#l#o#w# #w#o#r#l#d'
 
 
-<a id="org00612d0"></a>
+<a id="orga34d9a2"></a>
 
 ### 10
 
@@ -10669,22 +10679,22 @@ python中遍历问题，喜欢用字典dictionary，原因是速度快
     [index for (index,value) in enumerate(lst) if value == item]
 
 
-<a id="orge42e871"></a>
+<a id="org3a6c64d"></a>
 
 ### 11
 
 
-<a id="org48c9440"></a>
+<a id="org4ef2b97"></a>
 
 ### 12
 
 
-<a id="org2cbd7a4"></a>
+<a id="orgd53e028"></a>
 
 ### 13
 
 
-<a id="org271a7c9"></a>
+<a id="orgfffa107"></a>
 
 ### 14
 
@@ -10695,7 +10705,7 @@ python中遍历问题，喜欢用字典dictionary，原因是速度快
         print str.join( seq );     
 
 
-<a id="orga163ed1"></a>
+<a id="orge61ab3d"></a>
 
 ### 15
 
@@ -10704,27 +10714,27 @@ python中遍历问题，喜欢用字典dictionary，原因是速度快
     用指针于中心值两端
 
 
-<a id="org703cacd"></a>
+<a id="orga9bec50"></a>
 
 ### 16
 
 
-<a id="org0e53cbb"></a>
+<a id="org37766e0"></a>
 
 ### 17
 
 
-<a id="org587d99c"></a>
+<a id="org9a597cd"></a>
 
 ### 18
 
 
-<a id="org1ec5f3b"></a>
+<a id="org68f89f9"></a>
 
 ### 19
 
 
-<a id="orgefb0312"></a>
+<a id="orgd2cdc31"></a>
 
 ### 20
 
@@ -10733,17 +10743,17 @@ python中遍历问题，喜欢用字典dictionary，原因是速度快
     数据结构提供思路，需要动手去构建栈，而不是现成的栈给你使用
 
 
-<a id="orge87cb32"></a>
+<a id="orgfc24cf4"></a>
 
 ### 21
 
 
-<a id="org5d36323"></a>
+<a id="org81bdf9e"></a>
 
 ## c++版本
 
 
-<a id="org785a131"></a>
+<a id="org4257e1e"></a>
 
 ### 1
 
@@ -10755,29 +10765,29 @@ python中遍历问题，喜欢用字典dictionary，原因是速度快
     O（1）< O（logn）< O（n）< O（n<sup>2</sup>）
 
 
-<a id="orgb92eb1b"></a>
+<a id="orgdb7f871"></a>
 
 ## C-Plus-Plus题解库
 
 
-<a id="org37a2a01"></a>
+<a id="org91d497e"></a>
 
 ### sorting
 
 1.  
 
 
-<a id="org2cba444"></a>
+<a id="org2471e2b"></a>
 
 # 人工智能-AI
 
 
-<a id="orgde44ef2"></a>
+<a id="org25597b4"></a>
 
 ## Paper研读
 
 
-<a id="orga4cf5c4"></a>
+<a id="org494814d"></a>
 
 ### Dr. Amit
 
@@ -10814,12 +10824,12 @@ python中遍历问题，喜欢用字典dictionary，原因是速度快
                 输入门（input gate）负责处理当前序列位置的输入
 
 
-<a id="org7e1fdbc"></a>
+<a id="org53482d0"></a>
 
 ## 决策树
 
 
-<a id="org4236585"></a>
+<a id="org8cfcae6"></a>
 
 ### 基本特点
 
@@ -10844,7 +10854,7 @@ python中遍历问题，喜欢用字典dictionary，原因是速度快
     决策树容易过拟合，一般需要剪枝来缩小树结构规模、缓解过拟合。
 
 
-<a id="orge662dab"></a>
+<a id="org92982f9"></a>
 
 ### CART分类树
 
@@ -10871,12 +10881,12 @@ python中遍历问题，喜欢用字典dictionary，原因是速度快
     <https://shuwoom.com/?p=1452>
 
 
-<a id="orgdf1af63"></a>
+<a id="orgaf0d9fb"></a>
 
 ## 随机森林
 
 
-<a id="org544341c"></a>
+<a id="orgc660efe"></a>
 
 ### 基本概念
 
@@ -10885,7 +10895,7 @@ python中遍历问题，喜欢用字典dictionary，原因是速度快
 相对于单个决策树，增强了准确率降低了解释性
 
 
-<a id="orgc9a8a39"></a>
+<a id="orgeecbdda"></a>
 
 ### 随机性
 
@@ -10893,7 +10903,7 @@ python中遍历问题，喜欢用字典dictionary，原因是速度快
 2.  如果每个样本的特征维度为M，指定一个常数m<<M，随机地从M个特征中选取m个特征子集，每次树进行分裂时，从这m个特征中选择最优的；
 
 
-<a id="org13ff390"></a>
+<a id="orgcdb43e2"></a>
 
 ### 随机森林分类效果（错误率）与两个因素有关：
 
@@ -10904,17 +10914,17 @@ python中遍历问题，喜欢用字典dictionary，原因是速度快
 减小特征选择个数m，树的相关性和分类能力也会相应的降低；增大m，两者也会随之增大。所以关键问题是如何选择最优的m（或者是范围），这也是随机森林唯一的一个参数。
 
 
-<a id="org5c93005"></a>
+<a id="org19ac480"></a>
 
 ### 袋外误差率 out of bag error(oob error)
 
 
-<a id="org5bb7053"></a>
+<a id="orgdbf64dd"></a>
 
 ## 分类与回归
 
 
-<a id="orgb9b4f1a"></a>
+<a id="org56322f9"></a>
 
 ### 回归 不需要加上softmax函数
 
@@ -10923,7 +10933,7 @@ python中遍历问题，喜欢用字典dictionary，原因是速度快
 回归问题通常是用来预测一个值，如预测房价、未来的天气情况等等，例如一个产品的实际价格为500元，通过回归分析预测值为499元，我们认为这是一个比较好的回归分析。一个比较常见的回归算法是线性回归算法（LR）。另外，回归分析用在神经网络上，其最上层是不需要加上softmax函数的，而是直接对前一层累加即可。回归是对真实值的一种逼近预测。
 
 
-<a id="org621e81e"></a>
+<a id="orgda6eada"></a>
 
 ### 分类
 
@@ -10932,14 +10942,14 @@ python中遍历问题，喜欢用字典dictionary，原因是速度快
 分类问题是用于将事物打上一个标签，通常结果为离散值。例如判断一幅图片上的动物是一只猫还是一只狗，分类通常是建立在回归之上，分类的最后一层通常要使用softmax函数进行判断其所属类别。分类并没有逼近的概念，最终正确结果只有一个，错误的就是错误的，不会有相近的概念。最常见的分类方法是逻辑回归，或者叫逻辑分类。
 
 
-<a id="org2167505"></a>
+<a id="orgd46de66"></a>
 
 ### 聚类 也成为无监督分类
 
 如果给定一组样本特征 , 我们没有对应的属性值 , 而是想发掘这组样本在  维空间的分布, 比如分析哪些样本靠的更近，哪些样本之间离得很远, 这就是属于聚类问题
 
 
-<a id="org412cc49"></a>
+<a id="org81ac98e"></a>
 
 ### 降维
 
@@ -10948,36 +10958,36 @@ python中遍历问题，喜欢用字典dictionary，原因是速度快
 降维就是希望去除特征的冗余, 用更加少的维数来表示特征.降维算法最基础的就是PCA了, 后面的很多算法都是以PCA为基础演化而来
 
 
-<a id="org4d67f81"></a>
+<a id="org62ca503"></a>
 
 # Spring 2018
 
 
-<a id="orgeb09952"></a>
+<a id="org6505533"></a>
 
 ## EE 147
 
 
-<a id="orgc31dd4a"></a>
+<a id="org3fc314a"></a>
 
 ### Lab answers
 
 <https://www.coursehero.com/file/18388740/lab-2-report/>
 
 
-<a id="org31d324d"></a>
+<a id="org74226bb"></a>
 
 ### 淘宝course hero
 
 <http://www.coursehelper.cn/>
 
 
-<a id="org37d6156"></a>
+<a id="org902dd28"></a>
 
 ## EE 243
 
 
-<a id="orgae702cc"></a>
+<a id="org7fe23cf"></a>
 
 ### hw2
 
@@ -11111,7 +11121,7 @@ python中遍历问题，喜欢用字典dictionary，原因是速度快
             3.  4.b.3 featurematching.m
 
 
-<a id="orge479d51"></a>
+<a id="orga0dc79d"></a>
 
 ### Project proposal
 
@@ -11207,7 +11217,7 @@ python中遍历问题，喜欢用字典dictionary，原因是速度快
         an external camera pose per image and a 3D point cloud (the structure)
 
 
-<a id="org1930424"></a>
+<a id="orga81a689"></a>
 
 ### hw3
 
@@ -11296,7 +11306,7 @@ python中遍历问题，喜欢用字典dictionary，原因是速度快
                 <http://www.ilovematlab.cn/thread-133433-1-1.html>
 
 
-<a id="org748ebe4"></a>
+<a id="org6d84abd"></a>
 
 ### hw4
 
@@ -11328,7 +11338,7 @@ python中遍历问题，喜欢用字典dictionary，原因是速度快
         -   CSDN博客 <https://blog.csdn.net/u013473520/article/details/50730620>
 
 
-<a id="orga647ff9"></a>
+<a id="org468e2c2"></a>
 
 ### hw5
 
@@ -11363,7 +11373,7 @@ python中遍历问题，喜欢用字典dictionary，原因是速度快
             <http://www.baidu.com/s?wd=tensorflow%20cnn&rsv_spt=1&rsv_iqid=0xd5e9fcd2000137d2&issp=1&f=8&rsv_bp=1&rsv_idx=2&ie=utf-8&rqlang=cn&tn=baiduhome_pg&rsv_enter=1&oq=tf.device&rsv_t=52c8pid3X0GzXUClPNeEwrqgA0o5QJ3qz1IODBYGzx1dzVlTM62yaDCNsUsNHw8ehN7m&inputT=3837&rsv_pq=df2100dd00013093&rsv_sug3=22&rsv_sug2=0&rsv_sug4=3837>
 
 
-<a id="org82280bc"></a>
+<a id="org47301c7"></a>
 
 ### hw6
 
@@ -11380,7 +11390,7 @@ python中遍历问题，喜欢用字典dictionary，原因是速度快
         <https://blog.csdn.net/kokerf/article/details/72630863?locationNum=2&fps=1>
 
 
-<a id="orgc69bff0"></a>
+<a id="org3255675"></a>
 
 ### SFM
 
@@ -11433,22 +11443,22 @@ python中遍历问题，喜欢用字典dictionary，原因是速度快
     <https://blog.csdn.net/OptSolution/article/details/64442962>
 
 
-<a id="org6f1b2c5"></a>
+<a id="org22d2fb3"></a>
 
 ## EE 297
 
 
-<a id="orgc2d566c"></a>
+<a id="org60e4874"></a>
 
 # 小技巧
 
 
-<a id="orgc34de46"></a>
+<a id="org37e4846"></a>
 
 ## 电脑使用
 
 
-<a id="org9e10ea2"></a>
+<a id="org43701c7"></a>
 
 ### ThinkPad T440 快速启动使用SSD加速
 
@@ -11459,7 +11469,7 @@ python中遍历问题，喜欢用字典dictionary，原因是速度快
 开启快速启动须开启休眠功能
 
 
-<a id="org0affb7a"></a>
+<a id="org86a9eff"></a>
 
 ### 笔记本外接显示器
 
@@ -11478,19 +11488,19 @@ python中遍历问题，喜欢用字典dictionary，原因是速度快
         只在外接显示屏上显示 需要禁用核心显卡
 
 
-<a id="orgc52dace"></a>
+<a id="orgf7c803b"></a>
 
 ## autohotkey
 
 使用方法详见Top layers 必备操作集锦
 
 
-<a id="orgec24040"></a>
+<a id="org43a9ad6"></a>
 
 ## vpn使用
 
 
-<a id="org4e909cc"></a>
+<a id="orgeaabb49"></a>
 
 ### NordVPN
 
@@ -11498,19 +11508,19 @@ python中遍历问题，喜欢用字典dictionary，原因是速度快
 目前有效的方法，每次使用网上提供的最新的服务器
 
 
-<a id="org5218130"></a>
+<a id="org9eae460"></a>
 
 ## linux环境
 
 
-<a id="orgb456c30"></a>
+<a id="org1a8efcc"></a>
 
 ### ssh登录用法
 
 ssh yangyixin@10.106.20.31
 
 
-<a id="orgf0611df"></a>
+<a id="org73f1bbc"></a>
 
 ### vim编辑器基本使用方法
 
@@ -11535,21 +11545,21 @@ Ecs 切换输入模式和命令模式
         O：在当前光标所在行的上方，新建一行，并转为输入模式；    
 
 
-<a id="org7980b33"></a>
+<a id="orgb09937c"></a>
 
 ### ssh之后退出当前登录
 
 exit
 
 
-<a id="org8219694"></a>
+<a id="org4090579"></a>
 
 ## git客户端更新 windows
 
 git update-git-for-windows
 
 
-<a id="org4e463d1"></a>
+<a id="org763fc55"></a>
 
 ## 只要是涉及到处理图像的问题
 
@@ -11558,26 +11568,26 @@ git update-git-for-windows
     gray = cv2.medianBlur(gray, 3)
 
 
-<a id="orgdfb019b"></a>
+<a id="orgb92d6de"></a>
 
 ## cmd获取本机IP地址
 
     ipconfig   
 
 
-<a id="org82fa5dd"></a>
+<a id="org40ad3dc"></a>
 
 ## windows执行linux命令 bash 运行shell脚本
 
 需要安装git bash并添加到环境变量然后即可直接bash install.sh 执行命令了
 
 
-<a id="org7f5a24b"></a>
+<a id="orge91f0f8"></a>
 
 # 能力
 
 
-<a id="org8282a6f"></a>
+<a id="orgaad7296"></a>
 
 ## Top Layers
 
@@ -11596,12 +11606,12 @@ git update-git-for-windows
 英语
 
 
-<a id="org5d41f86"></a>
+<a id="orgf1102d5"></a>
 
 ## 问题处理流程
 
 
-<a id="org3a4569f"></a>
+<a id="orgde8150c"></a>
 
 ### 解决问题的思想
 
@@ -11610,14 +11620,14 @@ git update-git-for-windows
 个人价值和定位
 
 
-<a id="org404b819"></a>
+<a id="orge300e69"></a>
 
 ## Verify
 
 自律 时间规划写下来 正反馈机制
 
 
-<a id="org6b9f11b"></a>
+<a id="org4217c58"></a>
 
 ## Demo
 
@@ -11626,12 +11636,12 @@ git update-git-for-windows
 -   规划设计
 
 
-<a id="org953bc36"></a>
+<a id="org7500d52"></a>
 
 ## 核心能力 精简版
 
 
-<a id="org30b13cd"></a>
+<a id="orgf776265"></a>
 
 ### 效率提升 + 解决能力
 
@@ -11640,19 +11650,19 @@ git update-git-for-windows
 信息熵 
 
 
-<a id="org4ba8001"></a>
+<a id="org3b970f5"></a>
 
 ## 顶层设计
 
 
-<a id="org45bd1d4"></a>
+<a id="orga4cc065"></a>
 
 ### 能力测试
 
 生活=程序 尝试=验证 数字化
 
 
-<a id="org1375552"></a>
+<a id="org5982599"></a>
 
 ### 状态保持
 
@@ -11677,7 +11687,7 @@ git update-git-for-windows
         提前做好计划，什么时候该干什么确定下来
 
 
-<a id="orgb12231c"></a>
+<a id="org4ffbef6"></a>
 
 ### 神级分析能力：
 
@@ -11685,12 +11695,12 @@ git update-git-for-windows
 -   控制变量
 
 
-<a id="org6755fee"></a>
+<a id="org48e1072"></a>
 
 ## 能力树
 
 
-<a id="orgebfb9c6"></a>
+<a id="orgee725d5"></a>
 
 ### 时间规划
 
@@ -11726,7 +11736,7 @@ git update-git-for-windows
 </table>
 
 
-<a id="orgcf2e01a"></a>
+<a id="org65e6b05"></a>
 
 ### 分析能力
 
@@ -11734,7 +11744,7 @@ git update-git-for-windows
 -   细化
 
 
-<a id="org1b02f2b"></a>
+<a id="orgfd2f736"></a>
 
 ### 处理问题
 
@@ -11743,7 +11753,7 @@ git update-git-for-windows
 -   控制变量
 
 
-<a id="org76ef164"></a>
+<a id="org522e085"></a>
 
 ### 状态保持
 
@@ -11751,7 +11761,7 @@ git update-git-for-windows
 -   能力分类检索
 
 
-<a id="org45d48af"></a>
+<a id="orgac258e2"></a>
 
 ### 时间规划：
 
@@ -11761,7 +11771,7 @@ git update-git-for-windows
 -   精力分配 取舍 分轻重缓急
 
 
-<a id="org11a001f"></a>
+<a id="org08344af"></a>
 
 ### 学习效率
 
@@ -11770,7 +11780,7 @@ git update-git-for-windows
 -   问题分类：理解类，实用类
 
 
-<a id="org656013e"></a>
+<a id="org60b32c8"></a>
 
 ### 学习专注
 
@@ -11780,7 +11790,7 @@ git update-git-for-windows
 -   兴趣 提升-持续投入
 
 
-<a id="org2345c02"></a>
+<a id="org93f0221"></a>
 
 ### 学习类型
 
@@ -11791,7 +11801,7 @@ git update-git-for-windows
 -   总结 知识归纳类：
 
 
-<a id="orgc5ad1d4"></a>
+<a id="org30a8143"></a>
 
 ### 作业-文本表述能力
 
@@ -11800,7 +11810,7 @@ git update-git-for-windows
 -   养成academic integrity习惯
 
 
-<a id="org10cf8f0"></a>
+<a id="orgba38fbf"></a>
 
 ### 英语听力
 
@@ -11809,7 +11819,7 @@ git update-git-for-windows
 -   语义分析，着重提供的信息
 
 
-<a id="org09f2cc8"></a>
+<a id="orgae8b566"></a>
 
 ### 乒乓球
 
@@ -11818,14 +11828,14 @@ git update-git-for-windows
 -   借力回推：不发力
 
 
-<a id="orgfc51a3a"></a>
+<a id="orge00d3b8"></a>
 
 ### 论文阅读、文献理解
 
 换位思考，如果你是作者你会怎么处理你的论文
 
 
-<a id="orgdf70f11"></a>
+<a id="orge8a10e0"></a>
 
 ### PPT制作
 
@@ -11833,7 +11843,7 @@ git update-git-for-windows
 以图表，时间轴等形式图形化展示出来
 
 
-<a id="orgf8eec8c"></a>
+<a id="org4aed8af"></a>
 
 ### 英语听力
 
@@ -11841,12 +11851,12 @@ git update-git-for-windows
 跟读：
 
 
-<a id="org97cb924"></a>
+<a id="org77763c6"></a>
 
 # 技能提升
 
 
-<a id="org89f422c"></a>
+<a id="org57d32db"></a>
 
 ## 思路
 
@@ -11855,7 +11865,7 @@ git update-git-for-windows
 3.  精准掌握意向岗位的核心需求，重新编写技能书：看招聘信息
 
 
-<a id="org66cacf5"></a>
+<a id="org8a1d486"></a>
 
 ## 学习优先级
 
@@ -11869,7 +11879,7 @@ git update-git-for-windows
 8.  项目部署框架
 
 
-<a id="org6b777a6"></a>
+<a id="orgb2865fe"></a>
 
 ## 必备技能
 
@@ -11880,7 +11890,7 @@ git update-git-for-windows
 -   AI理论知识
 
 
-<a id="org7d27519"></a>
+<a id="orge563744"></a>
 
 ## 加分项
 
@@ -11888,19 +11898,19 @@ git update-git-for-windows
 -   算法部署到设备端、嵌入式、云端
 
 
-<a id="orgc4cfbd8"></a>
+<a id="orgd98e04b"></a>
 
 ## 参考模型
 
 libfacedetection
 
 
-<a id="org03ea893"></a>
+<a id="orgc69acb3"></a>
 
 ## 技能树
 
 
-<a id="org298324e"></a>
+<a id="org5a9d208"></a>
 
 ### 深度学习框架
 
@@ -11920,7 +11930,7 @@ libfacedetection
     学习paperswithcode网站中所有CV领域的最佳实现方法
 
 
-<a id="org579a080"></a>
+<a id="org64d5977"></a>
 
 ### C++框架
 
@@ -11929,7 +11939,7 @@ libfacedetection
 3.  熟悉Hadoop/Spark/Hive技术优先（华为）
 
 
-<a id="org6eb7436"></a>
+<a id="orgf6c5064"></a>
 
 ### 项目部署框架
 
@@ -11946,7 +11956,7 @@ libfacedetection
 11. 了解druid/hbase/flume/kafka/zeppelin等组件并针对大数据背景下丌同的应用场景做出合理架构,了解K8S管理容器技术
 
 
-<a id="orgcc3083d"></a>
+<a id="org90791be"></a>
 
 ### 华为任职要求
 
@@ -11968,19 +11978,19 @@ libfacedetection
 来自 <https://www.zhipin.com/job_detail/ff204f25da7586461HR92du7F1Q~.html?ka=comp_joblist_9> 
 
 
-<a id="orga25a5f2"></a>
+<a id="orgc9b5362"></a>
 
 # 终极写作模板 latex完美版
 
 
-<a id="org58a19a1"></a>
+<a id="org36423b7"></a>
 
 ## 源代码
 
 详情见github中的相关文件
 
 
-<a id="orge50a96a"></a>
+<a id="orga220caa"></a>
 
 # 待完成插件
 
@@ -11997,12 +12007,12 @@ evil-leader
 -   最后，如果你对编程有些了解，那么所有你不满意的地方，都可以自己改，而不是向作者抱怨能否再下一版本实现某某功能。
 
 
-<a id="org41de559"></a>
+<a id="org309a4a8"></a>
 
 # TODO 待办事项
 
 
-<a id="orge5bbd6e"></a>
+<a id="org498911c"></a>
 
 ## 紧急 紧急类型
 
@@ -12010,22 +12020,22 @@ evil-leader
 -   State "TODO"       from "TODO"       <span class="timestamp-wrapper"><span class="timestamp">[2018-04-24 �ܶ� 10:44]</span></span>
 
 
-<a id="orgdbc857b"></a>
+<a id="org680c01e"></a>
 
 ### TODO 完成EE243 Hw3
 
 
-<a id="orgff01c4b"></a>
+<a id="org5108f0d"></a>
 
 ### TODO 完成EE147 Lab3并提交
 
 
-<a id="org0e25c2f"></a>
+<a id="orge15d474"></a>
 
 ### TODO 开始进行EE243的project
 
 
-<a id="org242f8d5"></a>
+<a id="org3f7c64f"></a>
 
 ### TODO 复习EE147 期中考试
 
@@ -12034,98 +12044,98 @@ evil-leader
 -   课本前五章，不包括减法
 
 
-<a id="orgb93d26c"></a>
+<a id="orga486737"></a>
 
 ### TODO 完成EE297 project proposal
 
 
-<a id="orga3f41b0"></a>
+<a id="orgf5965dd"></a>
 
 ### TODO 顶层能力
 
 
-<a id="org6234675"></a>
+<a id="org44b0274"></a>
 
 ## 学习 学习知识，技能 长期任务
 
 -   State "学习"       from "TODO"       <span class="timestamp-wrapper"><span class="timestamp">[2018-04-24 �ܶ� 10:53]</span></span>
 
 
-<a id="orga9955c8"></a>
+<a id="org31eee13"></a>
 
 ### TODO 算法 C++ 英语 深度学习
 
 
-<a id="org80d2748"></a>
+<a id="org3d28ad5"></a>
 
 ### TODO 关于emacs Python 支持 以及jupyter notebook支持 matlab支持
 
 -   State "TODO"       from "学习"       <span class="timestamp-wrapper"><span class="timestamp">[2018-04-24 �ܶ� 10:55]</span></span>
 
 
-<a id="orge36f278"></a>
+<a id="org7cb578d"></a>
 
 ### TODO 学习英语
 
 
-<a id="org5e43a5b"></a>
+<a id="orgd772336"></a>
 
 ### TODO 学习Python语言 Tesoroflow
 
 
-<a id="org51a5cf8"></a>
+<a id="org2c3fe2f"></a>
 
 ### TODO 学习emacs orgmode中的思维导图gtd
 
 
-<a id="org34a8c5b"></a>
+<a id="org16a4833"></a>
 
 ### TODO 学习子龙山人知乎视频中关于package自定义，加速emacs启动等相关内容
 
 
-<a id="orgc8352c8"></a>
+<a id="orge10dabd"></a>
 
 ### TODO 学习使用latex编辑公式 也即math mode
 
 
-<a id="org3ab13ee"></a>
+<a id="orgf127fc5"></a>
 
 ### TODO 学习使用思维导图模式来处理Ability的demo
 
 
-<a id="org90ef5f5"></a>
+<a id="org9a4b4c2"></a>
 
 ### TODO 解决掉demo.org转换html文件时速度极慢的问题
 
 
-<a id="org87d09c7"></a>
+<a id="orgcbb09e2"></a>
 
 ### TODO 关于emacs中的解决不了的问题，可以咨询Chen Bin在github
 
 
-<a id="org9d30d18"></a>
+<a id="org67b44f6"></a>
 
 ### TODO 最有效的学习layer配置自定义
 
 <https://github.com/search?utf8=%E2%9C%93&q=.spacemacs+layer&type>=
 
 
-<a id="orga7c7ab5"></a>
+<a id="org23c38b9"></a>
 
 ### TODO 学习latex中配置begin environment的方法，对于论文写作很有帮助
 
 
-<a id="orgaf7977e"></a>
+<a id="orgb42c41a"></a>
 
 ### TODO 中文字体设置 <https://www.jianshu.com/p/b1751078e28e>
 
 
-<a id="org2068be7"></a>
+<a id="org0e88d92"></a>
 
 ## 事件 需要处理的事情
 
 
-<a id="orgf0bae1e"></a>
+<a id="orgb375ab0"></a>
 
 ### TODO 美国 Fall 2019
 
@@ -12146,35 +12156,35 @@ GRE及美国博士或者就业
 cssa接机
 
 
-<a id="org51e5af6"></a>
+<a id="org9133ecd"></a>
 
 ### TODO 完成州内学费申请
 
 -   State "TODO"       from "事件"       <span class="timestamp-wrapper"><span class="timestamp">[2018-04-24 �ܶ� 11:02]</span></span>
 
 
-<a id="orge10d12f"></a>
+<a id="orgcff2f87"></a>
 
 ### TODO 完成Kim grad student form 截止日期 6.15
 
 <https://mail.google.com/mail/u/1/#inbox/162f9d4479616148>
 
 
-<a id="orgcdf267c"></a>
+<a id="org7b832bf"></a>
 
 ## 零碎 零碎的事情
 
 -   State "事件"       from              <span class="timestamp-wrapper"><span class="timestamp">[2018-04-24 �ܶ� 11:06]</span></span>
 
 
-<a id="org09d8fac"></a>
+<a id="org5edb115"></a>
 
 ### IDEA EE243 HW3 problem 1 考虑迭代问题和K值聚类
 
 -   State "IDEA"       from "TODO"       <span class="timestamp-wrapper"><span class="timestamp">[2018-05-09 ���� 11:04]</span></span>
 
 
-<a id="orgcaf6af4"></a>
+<a id="org870af29"></a>
 
 # 代码测试区
 
@@ -12182,12 +12192,12 @@ cssa接机
     import time
 
 
-<a id="org65b21be"></a>
+<a id="orgceed03d"></a>
 
 # emacs版本控制文件位置
 
 
-<a id="org2d5d926"></a>
+<a id="orgc6c7970"></a>
 
 ## 20191111
 
