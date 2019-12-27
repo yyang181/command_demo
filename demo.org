@@ -2739,9 +2739,13 @@ pip install whl
 **** 更改python版本从3.7-3.6之后出现cv2无法import问题
 只需要在cv2的site-package文件夹中将cv2.cp37-win_amd64 替换为cv2.cp36-win_amd64即可
 *** pytorch
+**** 安装方式
+从官网找命令，一定是pip来安装package，conda只用来创建虚拟环境！！！
 **** 安装环境
 一定要是python3.6.7  
+
 vs2017 对应cuda 10.0
+
 vs2019 对应cuda 10.1
 
 **** 如何判断cuda工具包是否可用
