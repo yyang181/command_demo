@@ -6445,6 +6445,7 @@ git config --global credential.helper store
 ** GPU集群训练
 *** sbatch命令
 北京大学高性能计算中心说明https://hpc.pku.edu.cn/guide_sbatch.html
+更详细的使用说明https://ubccr.freshdesk.com/support/solutions/articles/5000688140-submitting-a-slurm-job-script
     #+begin_src 
 脚本文件名为job.sh
 #!/bin/bash                     或者#!/bin/sh
