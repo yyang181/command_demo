@@ -6437,8 +6437,39 @@ git rm filename
 git commit -m "修复XXbug"
 git pull <远程主机名> <远程分支名> 
 git push <远程主机名> <远程分支名>    
+git log 查看历史记录
     #+end_src
 ** GPU集群训练
+*** slurm命令
+    #+begin_src 
+sinfo
+
+批处理
+# !/bin/bash
+#SBATCH -J name
+
+启动批处理脚本
+sbatch
+
+查看作业状态
+使用squeue命令
+squeue -u yangyixin  查看用户作业
+squeue -p Pixel  查看分区作业
+
+取消作业
+使用scancel命令，示例
+scancel [jobid]
+scancel 98833434
+
+查看之前作业
+使用sacct命令    
+
+seninfo | grep Superresolution   查看节点有多少张卡
+squeue | grep Pixel       查看任务排队情况
+swatch -l                 查看任务排队情况
+swatch -q                 查看磁盘占用情况，是否超额，也可使用  lfs quota -u linzhineng /mnt/lustre -h
+du -h --max-depth=1 ./     查看某一目录下的磁盘空间占用情况，方便删除大额数据
+    #+end_src
 *** 集群计算
     #+begin_src 
  srun -p Test --gres=gpu:1 --job-name=TEST python -u ~/SenseSR_trainModel_lmdb/framework/train_vivo710_new_x4_with_x2data.py --config ~/SenseSR_trainModel_lmdb/train_scripts/config_OPPO710_20190124data_iso100part_EDSR_x2_ps20200103mask_noiseware.yml     
