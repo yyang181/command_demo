@@ -6443,6 +6443,33 @@ git log 查看历史记录
 git config --global credential.helper store
     #+end_src
 ** GPU集群训练
+*** sbatch命令
+北京大学高性能计算中心说明https://hpc.pku.edu.cn/guide_sbatch.html
+    #+begin_src 
+脚本文件名为job.sh
+#!/bin/bash                     或者#!/bin/sh
+#SBATCH -o job.%j.out
+#SBATCH --partition=C032M0128G
+#SBATCH --qos=low
+#SBATCH -A hpcxxxxxx
+#SBATCH -J myFirstJob
+#SBATCH --get-user-env
+#SBATCH --nodes=2
+#SBATCH --ntasks-per-node=4
+#SBATCH --mail-type=end
+#SBATCH --mail-user=xxxx@pku.edu.cn
+#SBATCH --time=120:00:00
+
+srun hostname -s | sort -n >slurm.hosts
+
+module load intel/2017.1
+mpiicc -o hellompi.o hellompi.c
+mpirun -n 8 -machinefile slurm.hosts ./hellompi.o
+rm -rf slurm.hosts    
+
+提交作业
+$ sbatch job.sh
+    #+end_src
 *** slurm命令
     #+begin_src 
 sinfo
