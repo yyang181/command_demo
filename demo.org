@@ -6438,6 +6438,9 @@ git commit -m "修复XXbug"
 git pull <远程主机名> <远程分支名> 
 git push <远程主机名> <远程分支名>    
 git log 查看历史记录
+
+保存凭据
+git config --global credential.helper store
     #+end_src
 ** GPU集群训练
 *** slurm命令
@@ -6474,6 +6477,7 @@ du -h --max-depth=1 ./     查看某一目录下的磁盘空间占用情况，�
     #+begin_src 
  srun -p Test --gres=gpu:1 --job-name=TEST python -u ~/SenseSR_trainModel_lmdb/framework/train_vivo710_new_x4_with_x2data.py --config ~/SenseSR_trainModel_lmdb/train_scripts/config_OPPO710_20190124data_iso100part_EDSR_x2_ps20200103mask_noiseware.yml     
     #+end_src
+
 *** 通用Python文件训练： 
     #+begin_src 
 srun -N 1 -n 1 -p Pixel2 --gres=gpu:1 -w SZ-IDC1-172-20-21-[51-60] --job-name=Test python test.py 
