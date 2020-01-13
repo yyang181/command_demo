@@ -6282,6 +6282,175 @@ su - yyx
 显示所有权限用户，如果出现yyx则表示添加成功
 id -nG
     #+end_src
+* ubuntu系统16.04版本
+** Ubuntu设置国内镜像
+sudo cp /etc/apt/sources.list /etc/apt/sources.list.backup
+sudo emacs /etc/apt/sources.list
+清华大学镜像网址：https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/
+sudo apt-get update
+** Ubuntu下emacs26.3安装
+*** emacs
+    #+begin_src 
+ sudo add-apt-repository ppa:kelleyk/emacs 
+ sudo apt update 
+ sudo apt install emacs26     
+    #+end_src
+***  spacemacs安装
+    #+begin_src 
+ git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+ 安装完成之后需要手动移除.emacs文件
+ rm .emacs
+ 一定要记住手动修改根目录路径为符合Ubuntu文件系统逻辑的表述    
+    #+end_src
+*** emacs输入法设置
+    #+begin_src 
+1. 设置环境变量
+emacs ~/.bashrc 
+export LC_CTYPE=zh_CN.UTF-8
+source ~/.bashrc
+2. 修改输入法config
+将trigger input method修改为Ctrl+Shift即可
+3. 从terminal启动emacs    
+4. 设置user-emacs-directionary，为C-x C-f打开的路径
+    #+end_src
+*** Source Code Pro字体安装
+    #+begin_src 
+wget https://github.com/adobe-fonts/source-code-pro/archive/2.030R-ro/1.050R-it.tar.gz
+tar xvf 1.050R-it.tar.gz
+sudo mkdir -p /usr/share/fonts/opentype
+sudo cp -r source-code-pro-2.030R-ro-1.050R-it/OTF/* /usr/share/fonts/opentype
+sudo fc-cache -f -v    
+    #+end_src
+
+** 基本软件安装
+*** 搜狗输入法
+**** 安装
+ #+begin_src 
+ sougou for linux 
+ sudo dpkg -i package.deb
+ sudo apt-get install libqtwebkit4
+ sudo apt-get install fonts-droid-fallback
+ sudo apt-get install libopencc1
+ sudo apt-get -f install
+
+ sudo add-apt-repository ppa:fcitx-team/nightly  //添加FCITX仓库
+ sudo apt-get update//更新仓库
+ sudo apt-get install fcitx //安装fcitx输入法框架
+ #+end_src
+**** 搜狗输入法后选框乱码 卸载重装即可
+https://blog.csdn.net/zhuiqiuzhuoyue583/article/details/86750278
+1.重启配置文件
+#+begin_src 
+killall fcitx
+fcitx -r
+#+end_src
+2.删除错误的配置文件
+#+begin_src 
+cd ~/.config
+sudo rm -rf SogouPY* sogou*
+#+end_src
+*** anaconda安装
+安装完成之后需要更新环境变量
+source ~/.bashrc 
+如果没有环境变量，则需要在.bashrc中添加
+#+begin_src 
+export PATH=/home/aeasringnar/anaconda3/bin:$PATH
+#+end_src
+*** seafile软件安装
+    #+begin_src 
+sudo add-apt-repository ppa:seafile/seafile-client
+sudo apt-get update
+sudo apt-get install seafile-gui
+服务器地址：
+http://file.intra.sensetime.com/    
+    #+end_src
+*** 微信
+    #+begin_src 
+sudo snap install electronic-wechat    
+    #+end_src
+*** filezilla登陆方式说明：
+FTP normal
+Host: 172.20.20.21
+Usersname: LADP
+Passwords: LADP
+*** wine Ubuntu下Windows应用安装解决方案
+    #+begin_src 
+https://wiki.winehq.org/Ubuntu_zhcn
+sudo dpkg --add-architecture i386 
+wget -nc https://dl.winehq.org/wine-builds/winehq.key
+sudo apt-key add winehq.key
+sudo apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ xenial main'
+sudo apt update
+sudo apt install --install-recommends winehq-stable
+wine --version出现则说明安装成功
+wine 软件.exe即可安装程序    
+    #+end_src
+字体及系统设置
+https://blog.csdn.net/ysy950803/article/details/80326832
+** ubuntu常用命令
+*** linux命令
+    #+begin_src 
+ls  列出目录（文件夹）中的文件和子目录 
+-l   长格式列出 
+-a   显示所有文件,包括隐藏文件和目录（所有以“.”为开始的文件和目录为隐藏文件） 
+
+chmod 777 + 文件名 修改权限为读写 
+文件权限说明 
+-rw-r--r-- 
+-表示普通文件 d是文件夹，l是连接文件 
+rw-r--r-- 9个符号表示权限  
+9个字符共分为3组，每组3个字符。 
+第1组表示创建这个文件的用户的权限，第2组表示创建创建这个文件的用户所在的组的权限，第3组表示其他用户的权限 
+Chmod 777  
+4表示读取权限，2表示写入权限，1表示执行权限 
+7=4+2+1 rwx 
+6=4+2     rw- 
+cp [-adfilprsu] 源文件(source) 目标文件(destination) 
+    -a:是指archive的意思，也说是指复制所有的目录 
+    -d:若源文件为连接文件(link file)，则复制连接文件属性而非文件本身 
+    -f:强制(force)，若有重复或其它疑问时，不会询问用户，而强制复制 
+    -i:若目标文件(destination)已存在，在覆盖时会先询问是否真的操作 
+    -l:建立硬连接(hard link)的连接文件，而非复制文件本身 
+    -p:与文件的属性一起复制，而非使用默认属性 
+    -r:递归复制，用于目录的复制操作 
+    -s:复制成符号连接文件(symbolic link)，即“快捷方式”文件 
+    -u:若目标文件比源文件旧，更新目标文件 
+    如将/test1目录下的file1复制到/test3目录，并将文件名改为file2,可输入以下命令： 
+    cp /test1/file1 /test3/file2     
+    #+end_src
+*** terminal常用快捷键
+https://blog.csdn.net/u014754386/article/details/80956816
+ Ctrl+Shift+C	 复制
+ Ctrl+Shift+V	 粘贴
+*** pytorch 0.4.1安装
+pip conda速度很慢，并且无法用镜像解决
+whl包安装
+https://download.pytorch.org/whl/cu90/torch_stable.html
+#+begin_src 
+pip install torch-0.4.1-cp37-cp37m-linux_x86_64.whl
+#+end_src
+*** Ubuntu下git常用操作
+    #+begin_src 
+git fetch origin
+git add .  
+git rm filename
+git commit -m "修复XXbug"
+git pull <远程主机名> <远程分支名> 
+git push <远程主机名> <远程分支名>    
+    #+end_src
+** GPU集群训练
+*** 集群计算
+    #+begin_src 
+ srun -p Test --gres=gpu:1 --job-name=TEST python -u ~/SenseSR_trainModel_lmdb/framework/train_vivo710_new_x4_with_x2data.py --config ~/SenseSR_trainModel_lmdb/train_scripts/config_OPPO710_20190124data_iso100part_EDSR_x2_ps20200103mask_noiseware.yml     
+    #+end_src
+*** 通用Python文件训练： 
+    #+begin_src 
+srun -N 1 -n 1 -p Pixel2 --gres=gpu:1 -w SZ-IDC1-172-20-21-[51-60] --job-name=Test python test.py 
+Sacct 查看之前的作业 
+scancle [job id] 取消作业 
+ssh yangyixin@jump01.sz.sensetime.com 
+cd SenseSR_trainModel_lmdb     
+    #+end_src
 
 * Html语言
 ** 配置
