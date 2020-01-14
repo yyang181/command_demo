@@ -6390,6 +6390,10 @@ https://blog.csdn.net/ysy950803/article/details/80326832
 ** ubuntu常用命令
 *** linux命令
     #+begin_src 
+pwd获取当前工作路径
+
+cat + 文件名 显示文件内容
+
 ls  列出目录（文件夹）中的文件和子目录 
 -l   长格式列出 
 -a   显示所有文件,包括隐藏文件和目录（所有以“.”为开始的文件和目录为隐藏文件） 
@@ -6418,10 +6422,46 @@ cp [-adfilprsu] 源文件(source) 目标文件(destination)
     如将/test1目录下的file1复制到/test3目录，并将文件名改为file2,可输入以下命令： 
     cp /test1/file1 /test3/file2     
     #+end_src
-*** terminal常用快捷键
-https://blog.csdn.net/u014754386/article/details/80956816
- Ctrl+Shift+C	 复制
- Ctrl+Shift+V	 粘贴
+*** terminal
+**** 常用快捷键
+ https://blog.csdn.net/u014754386/article/details/80956816
+  Ctrl+Shift+C	 复制
+  Ctrl+Shift+V	 粘贴
+**** tmux多终端管理工具
+https://www.cnblogs.com/sddai/p/10212897.html
+     #+begin_src 
+Ctrl+b 激活控制台
+c 创建新窗口     
+数字键 切换至指定窗口
+p 切换至上一窗口
+n 切换至下一窗口
+l 在前后两个窗口间互相切换
+w 通过窗口列表切换窗口
+, 重命名当前窗口；这样便于识别
+. 修改当前窗口编号；相当于窗口重新排序
+f 在所有窗口中查找指定文本
+
+2）常用到的几个组合键：
+ctrl+b ?            显示快捷键帮助
+ctrl+b 空格键       采用下一个内置布局，这个很有意思，在多屏时，用这个就会将多有屏幕竖着展示
+ctrl+b !            把当前窗口变为新窗口
+ctrl+b  "           模向分隔窗口
+ctrl+b %            纵向分隔窗口
+ctrl+b q            显示分隔窗口的编号
+ctrl+b o            跳到下一个分隔窗口。多屏之间的切换
+ctrl+b 上下键      上一个及下一个分隔窗口
+ctrl+b C-方向键    调整分隔窗口大小
+ctrl+b &           确认后退出当前tmux
+ctrl+b [           复制模式，即将当前屏幕移到上一个的位置上，其他所有窗口都向前移动一个。
+ctrl+b c           创建新窗口
+ctrl+b n           选择下一个窗口
+ctrl+b l           最后使用的窗口
+ctrl+b p           选择前一个窗口
+ctrl+b w           以菜单方式显示及选择窗口
+ctrl+b s           以菜单方式显示和选择会话。这个常用到，可以选择进入哪个tmux
+ctrl+b t           显示时钟。然后按enter键后就会恢复到shell终端状态
+ctrl+b d           脱离当前会话；这样可以暂时返回Shell界面，输入tmux attach能够重新进入之前的会话
+     #+end_src
 *** pytorch 0.4.1安装
 pip conda速度很慢，并且无法用镜像解决
 whl包安装
@@ -6470,6 +6510,129 @@ rm -rf slurm.hosts
 
 提交作业
 $ sbatch job.sh
+
+sbatch使用说明
+--help	显示sbatch命令的使用帮助信息；
+-A <account>	指定计费账户；
+-D, --chdir=<directory>	指定工作目录；
+--get-user-env	获取用户的环境变量；
+--gres=<list>	使用gpu这类资源，如申请两块gpu则--gres=gpu:2
+-J, --job-name=<jobname>	指定该作业的作业名；
+--mail-type=<type>	指定状态发生时，发送邮件通知，有效种类为（NONE, BEGIN, END, FAIL, REQUEUE, ALL）；
+--mail-user=<user>	发送给对应邮箱；
+-n, --ntasks=<number>	sbatch并不会执行任务，当需要申请相应的资源来运行脚本，默认情况下一个任务一个核心，--cpus-per-task参数可以修改该默认值；
+-c, --cpus-per-task=<ncpus>	每个任务所需要的核心数，默认为1；
+--ntasks-per-node=<ntasks>	每个节点的任务数，--ntasks参数的优先级高于该参数，如果使用--ntasks这个参数，那么将会变为每个节点最多运行的任务数；
+-o, --output=<filename pattern>	输出文件，作业脚本中的输出将会输出到该文件；
+-p, --partition=<partition_names>	将作业提交到对应分区；
+-q, --qos=<qos>	指定QOS；
+-t, --time=<time>	设置限定时间；
+
+-J, --job-name=<jobname>	Name for the job
+-n, --ntasks=<number>	Number of task
+-N, --nodes=<minnodes[-maxnodes]>	Number of nodes to assign. You may specifiy a range and SLURM will try to assignthe maxnodes you want and the job will run when the node available meet the minnodes requirement.
+-c, --cpus-per-task=<ncpus>	CPUs per task
+--mem=<size[units]>	Memory required per node. units may use [K|M|G|T]
+--mem-per-cpu=<size[units]>	Memory required per allocated CPU. units may use [K|M|G|T]
+-t, --time=<time>	Set a limit on total run time of the job. time may use "mins", "HH:MM:SS", "days-HH:MM:SS"
+-o,--output=<filename pattern>	Write the output to a file. By default both standard output and standard error are directed to the same file.
+-e, --error=<filename pattern>	Write the error to a file.
+--mail-type=<type>	Notify user by email when certain event types occur. type values are NONE, BEGIN, END, FAIL, REQUEUE, ALL
+--mail-user=<email>	Notify the user by which email address
+    #+end_src
+*** 节点状态查询
+    #+begin_src 
+scontrol show node <节点名> 查看节点的详细信息
+已经占用的资源为 AllocTRES=cpu=4,mem=8800M,gres/gpu=2
+
+seninfo | grep Superresolution   查看节点有多少张卡
+squeue | grep Pixel       查看任务排队情况
+swatch -l                 查看任务排队情况
+swatch -q                 查看磁盘占用情况，是否超额，也可使用  lfs quota -u linzhineng /mnt/lustre -h
+du -h --max-depth=1 ./     查看某一目录下的磁盘空间占用情况，方便删除大额数据    
+    #+end_src
+*** sh脚本参考
+**** 并行计算脚本
+***** 终极模板脚本
+      #+begin_src 
+#!/bin/bash
+
+#SBATCH -p Pixel2
+#SBATCH -J print_test
+#SBATCH -o test.out 
+#SBATCH --get-user-env
+#SBATCH --mail-type=END,FAIL          # Mail events (NONE, BEGIN, END, FAIL, ALL)
+#SBATCH --mail-user=yangyixin@sensetime.com     # Where to send mail	
+
+#SBATCH -N 4
+#SBATCH -n 4
+#SBATCH -c 1 # 1 core per task
+
+### 路径 主机 时间
+pwd; hostname; date
+
+echo "Running plot script on a single CPU core"
+
+srun --job-name=jobstep -o 1.out -N 1 -n 1 python -u test.py 0 &
+
+srun --job-name=jobstep -o 1.out -N 1 -n 1 python -u test2.py 1 &
+
+srun --job-name=jobstep -o 1.out -N 1 -n 1 python -u test3.py 2 &
+
+srun --job-name=jobstep -o 1.out -N 1 -n 1 python -u test.py 3 &
+
+wait
+
+date      
+      #+end_src
+***** 简要说明
+Job-Array是用来对同一条命令多次重复执行的
+多条不同的命令同时执行需要用&符号
+***** Job-Array方法
+      #+begin_src 
+ #SBATCH -a 0-3
+      #+end_src
+***** 多条命令同时执行方法
+      #+begin_src 
+squeue -s -u yangyixin     其中-s参数表示显示jobstp的详细信息
+#SBATCH -J print_test      设置的是jobname
+srun --job-name=large_time python -u test.py 设置的是jobstep名称
+      #+end_src
+**** 标准
+     #+begin_src 
+ #!/bin/bash
+ #SBATCH -p Pixel
+ #SBATCH -J makedata
+ #SBATCH --get-user-env
+ #SBATCH --mail-type=END,FAIL          # Mail events (NONE, BEGIN, END, FAIL, ALL)
+ #SBATCH --mail-user=yangyixin@sensetime.com     # Where to send mail	
+
+ ### 路径 主机 时间
+ pwd; hostname; date
+
+ ### 模块载入
+ ### module load python
+
+ echo "Running plot script on a single CPU core"
+
+ srun -p Pixel --job-name=makedata_x4_1  python -u ./preprocess/process/create_lmdb.py --config ./yyx/config_x4_vivo1926_20200113data_iso0-300part_x4_hr02_pslj0610.yml
+
+ python /ufrc/data/training/SLURM/plot_template.py
+
+ date    
+     #+end_src
+**** 备选
+     #+begin_src 
+#SBATCH -p Pixel
+#SBATCH -J makedata
+#SBATCH -o test.out
+#SBATCH --get-user-env
+#SBATCH --mail-type=END,FAIL          # Mail events (NONE, BEGIN, END, FAIL, ALL)
+#SBATCH --mail-user=yangyixin@sensetime.com     # Where to send mail	     
+     #+end_src
+*** sbatch运行之后查看srun输出结果的方法
+    #+begin_src 
+cat slurm-572188.out 即可    
     #+end_src
 *** slurm命令
     #+begin_src 
@@ -6500,6 +6663,9 @@ squeue | grep Pixel       查看任务排队情况
 swatch -l                 查看任务排队情况
 swatch -q                 查看磁盘占用情况，是否超额，也可使用  lfs quota -u linzhineng /mnt/lustre -h
 du -h --max-depth=1 ./     查看某一目录下的磁盘空间占用情况，方便删除大额数据
+
+任务追踪
+scontrol show job JOBID
     #+end_src
 *** 集群计算
     #+begin_src 
