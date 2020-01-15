@@ -6394,6 +6394,11 @@ pwd获取当前工作路径
 
 cat + 文件名 显示文件内容
 
+sudo apt-get --purge remove packages   
+sudo apt-get autoremove 
+sudo apt-get autoclean
+
+
 ls  列出目录（文件夹）中的文件和子目录 
 -l   长格式列出 
 -a   显示所有文件,包括隐藏文件和目录（所有以“.”为开始的文件和目录为隐藏文件） 
@@ -6553,37 +6558,40 @@ du -h --max-depth=1 ./     查看某一目录下的磁盘空间占用情况，�
     #+end_src
 *** sh脚本参考
 **** 并行计算脚本
+一个计算节点可以包含多个GPU 此时需要进行数据分发，影响并发训练速度
+一个计算节点只使用一个GPU，此时数据不用分发，计算速度快，但是loss下降不稳定
+结论：一个节点使用一个GPU即可 只指定gres 不指定节点的任务
 ***** 终极模板脚本
       #+begin_src 
-#!/bin/bash
-
-#SBATCH -p Pixel2
-#SBATCH -J print_test
-#SBATCH -o test.out 
+#!/bin/sh
+#SBATCH -p Pixel
+#SBATCH -J train_x1_model
+#SBATCH -o debug.out
+#SBATCH -N 4   # 总节点数
+#SBATCH -n 4
+#SBATCH --gres=gpu:4
 #SBATCH --get-user-env
 #SBATCH --mail-type=END,FAIL          # Mail events (NONE, BEGIN, END, FAIL, ALL)
 #SBATCH --mail-user=yangyixin@sensetime.com     # Where to send mail	
 
-#SBATCH -N 4
-#SBATCH -n 4
-#SBATCH -c 1 # 1 core per task
-
 ### 路径 主机 时间
 pwd; hostname; date
 
-echo "Running plot script on a single CPU core"
+### x1_1
+srun -p Pixel --gres=gpu:1 --job-name=x1_1 -o 1.out -N 1 -n 1 python -u /mnt/lustre/yangyixin/SenseSR_trainModel_lmdb/framework/train_vivo710_new_x1_with_x2data.py --config /mnt/lustre/yangyixin/yyx/config/config_x1_vivo1926_20200113data_iso0-300part_x2_hr02_pslj0610.yml &
 
-srun --job-name=jobstep -o 1.out -N 1 -n 1 python -u test.py 0 &
+### x1_2
+srun -p Pixel --gres=gpu:1 --job-name=x1_2 -o 2.out -N 1 -n 1 python -u /mnt/lustre/yangyixin/SenseSR_trainModel_lmdb/framework/train_vivo710_new_x1_with_x2data.py --config /mnt/lustre/yangyixin/yyx/config/config_x1_vivo1926_20200113data_iso0-300part_x2_hr02_pslj0610_04_lr03ps20200108mask.yml &
 
-srun --job-name=jobstep -o 1.out -N 1 -n 1 python -u test2.py 1 &
+### x1_3
+srun -p Pixel --gres=gpu:1 --job-name=x1_3 -o 3.out -N 1 -n 1 python -u /mnt/lustre/yangyixin/SenseSR_trainModel_lmdb/framework/train_vivo710_new_x1_with_x2data.py --config /mnt/lustre/yangyixin/yyx/config/config_x1_vivo1926_20200113data_iso0-300part_x2_hr02_pslj0610_07_lr03ps20200108mask.yml &
 
-srun --job-name=jobstep -o 1.out -N 1 -n 1 python -u test3.py 2 &
-
-srun --job-name=jobstep -o 1.out -N 1 -n 1 python -u test.py 3 &
+### x1_4
+srun -p Pixel --gres=gpu:1 --job-name=x1_4 -o 4.out -N 1 -n 1 python -u /mnt/lustre/yangyixin/SenseSR_trainModel_lmdb/framework/train_vivo710_new_x1_with_x2data.py --config /mnt/lustre/yangyixin/yyx/config/config_x1_vivo1926_20200113data_iso0-300part_x2_lr03_mean_EDSRx2_ps20200108mask_noiseware.yml &
 
 wait
 
-date      
+data
       #+end_src
 ***** 简要说明
 Job-Array是用来对同一条命令多次重复执行的
@@ -8337,6 +8345,24 @@ evil-leader
 - 可以尝试了解下org-mode的与其它组件的配合。以及可以了解下emacs和evil。另外也可以了解下配合git实现版本管理。
 - 最后，如果你对编程有些了解，那么所有你不满意的地方，都可以自己改，而不是向作者抱怨能否再下一版本实现某某功能。
 * TODO 待办事项
+** 临时处理
+1. 预训练模型x4_4 x2_4 重新执行
+2. 整理笔记中关于Ubuntu Linux系统的命令
+3. 记笔记方法确定
+4. emacs中关于中文输入法的问题解决
+5. 解决gitlab代码管理的风格
+6. 服务器文件整理
+7. 环境搭建的markdown语言
+8. sh脚本中的变量替代方法
+9. 自己吃透代码
+
+学习方向：
+对齐 网络结构
+超分 多帧 降噪 增强
+画质评测-增强
+去噪声 保留细节 清晰度梯度
+DSRCNN 单帧超分经典算法
+
 ** 紧急 [#A] 紧急类型
 - State "紧急"       from "TODO"       [2018-04-24 周二 10:49]
 - State "TODO"       from "TODO"       [2018-04-24 周二 10:44]
