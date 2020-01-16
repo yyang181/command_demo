@@ -1,16 +1,17 @@
 
 ;; ----- smex-history -----
 (
+ shell
  replace-string
  cd
  5x5
  arp
  dbx
  dig
- erc
 )
 
 ;; ----- smex-data -----
 (
  (replace-string . 1)
+ (shell . 1)
 )

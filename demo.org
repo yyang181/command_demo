@@ -6355,6 +6355,11 @@ source ~/.bashrc
 如果没有环境变量，则需要在.bashrc中添加
 #+begin_src 
 export PATH=/home/aeasringnar/anaconda3/bin:$PATH
+
+Ubuntu关闭anaconda自动进入base虚拟环境
+conda config --set auto_activate_base false  配置不自动激活base环境
+conda activate spacename  //环境的名称 激活环境
+conda deactivate          //退出环境
 #+end_src
 *** seafile软件安装
     #+begin_src 
@@ -6389,44 +6394,68 @@ wine 软件.exe即可安装程序
 https://blog.csdn.net/ysy950803/article/details/80326832
 ** ubuntu常用命令
 *** linux命令
-    #+begin_src 
-pwd获取当前工作路径
+**** 基本命令
+     #+begin_src 
+ pwd获取当前工作路径
 
-cat + 文件名 显示文件内容
+ cat + 文件名 显示文件内容
 
-sudo apt-get --purge remove packages   
-sudo apt-get autoremove 
-sudo apt-get autoclean
+ sudo apt-get -f install 安装所需要的依赖
+ sudo apt-get --purge remove packages   同时删除配置文件--purge
+ sudo apt-get autoremove 这条命令用来删除不需要的依赖软件包．
+ sudo apt-get autoclean 删除/var/cache/apt/archives目录下的deb安装包．但它只删除那些已经不能从软件仓库中下载的deb安装包．这就是说，Debian或Ubuntu已经不维护那些软件包了，或者那些软件包有了一个新的名字．
+ apt-get clean packages 删除这些deb安装包
 
+ dpkg -l 显示所有用dpkg安装的软件
+ sudo dpkg -r package 卸载package
 
-ls  列出目录（文件夹）中的文件和子目录 
--l   长格式列出 
--a   显示所有文件,包括隐藏文件和目录（所有以“.”为开始的文件和目录为隐藏文件） 
+ du -sh /var/cache/apt/archives 查看路径里面文件的大小
 
-chmod 777 + 文件名 修改权限为读写 
-文件权限说明 
--rw-r--r-- 
--表示普通文件 d是文件夹，l是连接文件 
-rw-r--r-- 9个符号表示权限  
-9个字符共分为3组，每组3个字符。 
-第1组表示创建这个文件的用户的权限，第2组表示创建创建这个文件的用户所在的组的权限，第3组表示其他用户的权限 
-Chmod 777  
-4表示读取权限，2表示写入权限，1表示执行权限 
-7=4+2+1 rwx 
-6=4+2     rw- 
-cp [-adfilprsu] 源文件(source) 目标文件(destination) 
-    -a:是指archive的意思，也说是指复制所有的目录 
-    -d:若源文件为连接文件(link file)，则复制连接文件属性而非文件本身 
-    -f:强制(force)，若有重复或其它疑问时，不会询问用户，而强制复制 
-    -i:若目标文件(destination)已存在，在覆盖时会先询问是否真的操作 
-    -l:建立硬连接(hard link)的连接文件，而非复制文件本身 
-    -p:与文件的属性一起复制，而非使用默认属性 
-    -r:递归复制，用于目录的复制操作 
-    -s:复制成符号连接文件(symbolic link)，即“快捷方式”文件 
-    -u:若目标文件比源文件旧，更新目标文件 
-    如将/test1目录下的file1复制到/test3目录，并将文件名改为file2,可输入以下命令： 
-    cp /test1/file1 /test3/file2     
-    #+end_src
+ env 显示所有的环境变量
+ echo $PATH 显示所有的环境变量
+ export RABBITMQ_CONFIG_FILE=/etc/rabbitmq/rabbitmq.config  环境变量指定
+
+ 当前用户的环境变量
+ ~/.bashrc    
+ export PATH=/home/yan/share/usr/local/arm/3.4.1/bin:$PATH
+ source .bashrc
+
+ 所有用户的环境变量
+ /etc/profile 
+ export PATH=/home/yan/share/usr/local/arm/3.4.1/bin:$PATH
+ source profile
+
+ whereis python 查看Python所在位置
+
+ ls  列出目录（文件夹）中的文件和子目录 
+ -l   长格式列出 
+ -a   显示所有文件,包括隐藏文件和目录（所有以“.”为开始的文件和目录为隐藏文件） 
+
+ chmod 777 + 文件名 修改权限为读写 
+ 文件权限说明 
+ -rw-r--r-- 
+ -表示普通文件 d是文件夹，l是连接文件 
+ rw-r--r-- 9个符号表示权限  
+ 9个字符共分为3组，每组3个字符。 
+ 第1组表示创建这个文件的用户的权限，第2组表示创建创建这个文件的用户所在的组的权限，第3组表示其他用户的权限 
+ Chmod 777  
+ 4表示读取权限，2表示写入权限，1表示执行权限 
+ 7=4+2+1 rwx 
+ 6=4+2     rw- 
+
+ cp [-adfilprsu] 源文件(source) 目标文件(destination) 
+     -a:是指archive的意思，也说是指复制所有的目录 
+     -d:若源文件为连接文件(link file)，则复制连接文件属性而非文件本身 
+     -f:强制(force)，若有重复或其它疑问时，不会询问用户，而强制复制 
+     -i:若目标文件(destination)已存在，在覆盖时会先询问是否真的操作 
+     -l:建立硬连接(hard link)的连接文件，而非复制文件本身 
+     -p:与文件的属性一起复制，而非使用默认属性 
+     -r:递归复制，用于目录的复制操作 
+     -s:复制成符号连接文件(symbolic link)，即“快捷方式”文件 
+     -u:若目标文件比源文件旧，更新目标文件 
+     如将/test1目录下的file1复制到/test3目录，并将文件名改为file2,可输入以下命令： 
+     cp /test1/file1 /test3/file2     
+     #+end_src
 *** terminal
 **** 常用快捷键
  https://blog.csdn.net/u014754386/article/details/80956816
@@ -6688,6 +6717,40 @@ scancle [job id] 取消作业
 ssh yangyixin@jump01.sz.sensetime.com 
 cd SenseSR_trainModel_lmdb     
     #+end_src
+
+** 必备操作集锦
+*** emacs中Python代码flycheck出现大量error
+**** 解决方案尝试：安装Python3.8 并设置为默认的python解释器
+ https://www.linuxidc.com/Linux/2019-07/159277.htm
+ #+begin_src 
+ sudo add-apt-repository ppa:deadsnakes/ppa
+ sudo apt update 
+ sudo apt install python3.8
+ python3.8 --version
+ #+end_src
+**** 在系统级修改 Python 版本
+     #+begin_src 
+首先罗列出所有可用的 python 替代版本信息
+sudo update-alternatives --list python
+
+将不同版本的Python.exe链接到Python解释器 /usr/bin/python  优先级2 > 1
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.8 3
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.5 2
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
+
+切换Python版本
+sudo update-alternatives --config python
+
+Ubuntu关闭anaconda自动进入base虚拟环境
+conda config --set auto_activate_base false
+
+移除替代版本
+update-alternatives --remove python /usr/bin/python2.7
+     #+end_src
+**** Ubuntu关闭anaconda自动进入base虚拟环境
+     #+begin_src 
+conda config --set auto_activate_base false     
+     #+end_src
 
 * Html语言
 ** 配置
