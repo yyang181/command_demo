@@ -4929,8 +4929,31 @@ num ** 0.5 平方根
      #+end_src
 **** 方法二
      #+begin_src 
-num * 0.5 平方
-num ** 0.5 平方根     
+import math
+
+math.pow(12, 2) # 144
+math.sqrt(144)  # 12
+     #+end_src
+**** 方法三
+import math
+
+pow(12, 2) # 144
+sqrt(144)  # 12
+**** floor 与 //
+     #+begin_src 
+import math
+ 
+print(math.floor(3.5))
+print(7 // 2)
+ 
+print(math.floor(-3.5))
+print(-7 // 2)
+ 
+print(math.floor(4.2))
+print(8.4 // 2)
+ 
+print(math.floor(-4.2))
+print(-8.4 // 2)     
      #+end_src
 **** 直线与水平线的夹角度数
      #+begin_src 
@@ -4953,6 +4976,21 @@ angle = np.rad2deg(np.arctan2(y[-1] - y[0], x[-1] - x[0]))
      #+begin_src 
 p_arr = np.concatenate((p_arr,[p_])) # 先将p_变成list形式进行拼接，注意输入为一个tuple
 p_arr = np.append(p_arr,p_) #直接向p_arr里添加p_     
+     #+end_src
+**** 只保留矩阵某些行
+     #+begin_src 
+a[1:]#取第二行之后地所有行
+a[0:2] #取第一行和第二行
+a[:,0:2] #取第一列和第二列
+a[1:,2:] #取第二行和第三行的第三列
+a[0:2] #取第一行和第二行     
+     #+end_src
+**** 对数组中的每一个元素进行操作
+     #+begin_src 
+a[0:3] = a[0:3] + 100 
+
+a = np.abs(a)     
+a = np.floor(a)     
      #+end_src
 *** 带有索引的enumerate枚举方法
     #+begin_src 
@@ -5020,6 +5058,125 @@ pip install --upgrade --user setuptools
 pip卸载包
 pip uninstall packagename    
     #+end_src
+*** 创建文件夹、处理文件
+    #+begin_src 
+获取当前工作路径
+import os
+print("1111")
+print (os.getcwd())#获得当前目录
+print (os.path.abspath('.'))#获得当前工作目录
+print (os.path.abspath('..'))#获得当前工作目录的父目录
+print (os.path.abspath(os.curdir))#获得当前工作目录
+
+
+    #+end_src
+*** 数据保存-Python合集
+**** python读取.mat文件
+     #+begin_src 
+from scipy.io import loadmat
+#读取文件
+para = 'para.mat'
+data = loadmat(para)
+
+data.keys()
+p_red = data['p_red']
+p_blue = data['p_blue']
+p_green = data['p_green']
+p_red, p_blue, p_green     
+     #+end_src
+**** python操作.yaml文件
+     #+begin_src 
+import os
+import yaml
+
+# 字典格式初始化yaml
+desired_caps = {
+                'platformName': 'Android',
+                'platformVersion': '7.0',
+                'deviceName': 'A5RNW18316011440',
+                'appPackage': 'com.tencent.mm',
+                'appActivity': '.ui.LauncherUI',
+                'automationName': 'Uiautomator2',
+                'unicodeKeyboard': [True,"hh"],
+                'resetKeyboard': True,
+                'noReset': True,
+                'chromeOptions': {'androidProcess': 'com.tencent.mm:tools'}
+                }
+
+# 读取yaml中的内容，字典格式
+with open(output_path, 'r') as f:
+    contents = yaml.load(open(inputname, 'r'), Loader=yaml.FullLoader)
+    contents['exp_name'] = exp_name
+    contents['hr_path'] = hr_path
+    contents['lr_path'] = lr_path
+    contents['dataroot'] = dataroot
+
+# 字典格式，写入yaml中的内容
+with open(output_path, 'w', encoding="utf-8") as nf:
+    yaml.dump(contents, nf)
+     #+end_src
+**** python操作.npy文件
+     #+begin_src 
+import numpy as np
+
+# 配置numpy数据
+a = {}
+# red    blue   green
+a['100iso'] = np.array(
+    [[0.0596, 0.2835], [0.0582, 0.2537], [0.0646, 0.2622]])
+a['300iso']= np.array(
+    [[0.1851, 0.3512], [0.1788, 0.2876], [0.1855, 0.3183]])
+a['500iso'] = np.array(
+    [[0.3145, 0.4648], [0.3002, 0.3464], [0.3254, 0.3859]])
+a['800iso'] = np.array(
+    [[0.5043, 0.9278], [0.4702, 0.7227], [0.5070, 0.8073]])
+a['1600iso'] = np.array(
+    [[1.0701, 2.5570], [0.8971, 2.2051], [1.0289, 2.3826]])
+a['3200iso'] = np.array(
+    [[2.0742, 9.7911], [1.8294, 8.5660], [2.0102, 9.2502]])
+
+# 保存numpy
+np.save('./calibrated_coefficient__param_1962.npy',a)     
+
+# 读取numpy 
+b = np.load('./calibrated_coefficient_param_1962.npy')
+     #+end_src
+*** 数据保存-MATLAB合集
+    #+begin_src 
+p = rand(1,10);
+q = ones(10);
+save('pqfile.mat','p','q')    
+    #+end_src
+*** type help dir帮助命令
+    #+begin_src 
+type 
+dir 
+help    
+    #+end_src
+*** 字典操作不能简单的复制！为浅拷贝
+**** 注意事项
+ 实例中 dict2 其实是 dict1 的引用（别名），所以输出结果都是一致的，dict3 父对象进行了深拷贝，不会随dict1 修改而修改，子对象是浅拷贝所以随 dict1 的修改而修改。
+     #+begin_src 
+ dict1 =  {'user':'runoob','num':[1,2,3]}
+ 
+ dict2 = dict1          # 浅拷贝: 引用对象
+ dict3 = dict1.copy()   # 浅拷贝：深拷贝父对象（一级目录），子对象（二级目录）不拷贝，还是引用
+ 
+ # 修改 data 数据
+ dict1['user']='root'
+ dict1['num'].remove(1)
+ 
+ # 输出结果
+ print(dict1)
+ print(dict2)
+ print(dict3)    
+     #+end_src
+**** 删除键值
+     #+begin_src 
+site= {'name': '我的博客地址', 'alexa': 10000, 'url':'http://blog.csdn.net/uuihoo/'}
+pop_obj=site.pop('name') # 删除要删除的键值对，如{'name':'我的博客地址'}这个键值对
+print pop_obj   # 输出 ：我的博客地址
+     #+end_src
 * Matlab语言
 ** 知识补充 cell的使用
 *** 将矩阵保存到cell里面，从而用一个for循环索引cell的编号来画图
@@ -6321,7 +6478,11 @@ sudo mkdir -p /usr/share/fonts/opentype
 sudo cp -r source-code-pro-2.030R-ro-1.050R-it/OTF/* /usr/share/fonts/opentype
 sudo fc-cache -f -v    
     #+end_src
-
+*** ein无法登陆处理方法
+由于之前设置了terminal作为shell而不是anaconda中的base环境，因此需要安装curl包即可
+#+begin_src 
+sudo apt-get install curl 
+#+end_src
 ** 基本软件安装
 *** 搜狗输入法
 **** 安装
@@ -6394,38 +6555,16 @@ wine 软件.exe即可安装程序
 https://blog.csdn.net/ysy950803/article/details/80326832
 ** ubuntu常用命令
 *** linux命令
-**** 基本命令
+**** 文件管理、权限、复制粘贴
      #+begin_src 
  pwd获取当前工作路径
 
  cat + 文件名 显示文件内容
 
- sudo apt-get -f install 安装所需要的依赖
- sudo apt-get --purge remove packages   同时删除配置文件--purge
- sudo apt-get autoremove 这条命令用来删除不需要的依赖软件包．
- sudo apt-get autoclean 删除/var/cache/apt/archives目录下的deb安装包．但它只删除那些已经不能从软件仓库中下载的deb安装包．这就是说，Debian或Ubuntu已经不维护那些软件包了，或者那些软件包有了一个新的名字．
- apt-get clean packages 删除这些deb安装包
-
- dpkg -l 显示所有用dpkg安装的软件
- sudo dpkg -r package 卸载package
-
  du -sh /var/cache/apt/archives 查看路径里面文件的大小
 
- env 显示所有的环境变量
- echo $PATH 显示所有的环境变量
- export RABBITMQ_CONFIG_FILE=/etc/rabbitmq/rabbitmq.config  环境变量指定
-
- 当前用户的环境变量
- ~/.bashrc    
- export PATH=/home/yan/share/usr/local/arm/3.4.1/bin:$PATH
- source .bashrc
-
- 所有用户的环境变量
- /etc/profile 
- export PATH=/home/yan/share/usr/local/arm/3.4.1/bin:$PATH
- source profile
-
- whereis python 查看Python所在位置
+ which python 查找系统PATH目录下的可执行文件
+ whereis python 查看Python所在位置 查找二进制（命令）、源文件、man文件 查找的面比which要广
 
  ls  列出目录（文件夹）中的文件和子目录 
  -l   长格式列出 
@@ -6455,6 +6594,36 @@ https://blog.csdn.net/ysy950803/article/details/80326832
      -u:若目标文件比源文件旧，更新目标文件 
      如将/test1目录下的file1复制到/test3目录，并将文件名改为file2,可输入以下命令： 
      cp /test1/file1 /test3/file2     
+
+移动文件到指定路径
+mv 1610.02357.pdf /media/canran/文件盘/book
+     #+end_src
+**** packages安装及dpkg 
+     #+begin_src 
+ sudo apt-get -f install 安装所需要的依赖
+ sudo apt-get --purge remove packages   同时删除配置文件--purge
+ sudo apt-get autoremove 这条命令用来删除不需要的依赖软件包．
+ sudo apt-get autoclean 删除/var/cache/apt/archives目录下的deb安装包．但它只删除那些已经不能从软件仓库中下载的deb安装包．这就是说，Debian或Ubuntu已经不维护那些软件包了，或者那些软件包有了一个新的名字．
+ apt-get clean packages 删除这些deb安装包
+
+ dpkg -l 显示所有用dpkg安装的软件
+ sudo dpkg -r package 卸载package     
+     #+end_src
+**** 环境变量设置
+     #+begin_src 
+ env 显示所有的环境变量
+ echo $PATH 显示所有的环境变量
+ export RABBITMQ_CONFIG_FILE=/etc/rabbitmq/rabbitmq.config  环境变量指定
+
+ 当前用户的环境变量
+ ~/.bashrc    
+ export PATH=/home/yan/share/usr/local/arm/3.4.1/bin:$PATH
+ source .bashrc
+
+ 所有用户的环境变量
+ /etc/profile 
+ export PATH=/home/yan/share/usr/local/arm/3.4.1/bin:$PATH
+ source profile     
      #+end_src
 *** terminal
 **** 常用快捷键
@@ -8418,6 +8587,14 @@ evil-leader
 7. 环境搭建的markdown语言
 8. sh脚本中的变量替代方法
 9. 自己吃透代码
+
+10. python中处理文件夹是否存在 def方式的写法
+11. Python执行Windows cmd功能实现
+12. 索引图片 后缀名等格式
+13. resize和reshape的区别
+14. 数据保存所有汇总集合
+15. numpy 库
+16. .mat - .npy流程打通
 
 学习方向：
 对齐 网络结构
