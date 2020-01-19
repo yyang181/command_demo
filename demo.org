@@ -5177,6 +5177,44 @@ site= {'name': '我的博客地址', 'alexa': 10000, 'url':'http://blog.csdn.net
 pop_obj=site.pop('name') # 删除要删除的键值对，如{'name':'我的博客地址'}这个键值对
 print pop_obj   # 输出 ：我的博客地址
      #+end_src
+*** 画图 
+**** matplotlib
+     #+begin_src 
+import matplotlib.pyplot as plt
+
+color_name = 'red'
+plt.title(color_name)
+plt.plot(x, sorted(y_red))
+plt.plot(x, y_red_gt)
+plt.savefig(color_name + '.png')
+plt.show()
+     #+end_src
+*** 动态变量
+**** 使用命令空间
+      #+begin_src 
+命名
+names = locals()
+
+colors_name = ['red', 'blue', 'green']
+for color_name in colors_name:
+    names['y_' + color_name] = color_name
+
+调用
+names = locals()
+
+colors_name = ['red', 'blue', 'green']
+for color_name in colors_name:
+    print(names.get('y_' + color_name), end=' ')
+      #+end_src
+**** 使用exec动态赋值
+     #+begin_src 
+for i in range(5):
+    exec('var{} = {}'.format(i, i))     
+
+print(var0, var1, var2, var3 ,var4)
+0 1 2 3 4
+
+     #+end_src
 * Matlab语言
 ** 知识补充 cell的使用
 *** 将矩阵保存到cell里面，从而用一个for循环索引cell的编号来画图
@@ -7123,6 +7161,42 @@ soup.find(id='primaryconsumers') ul标签中的属性
 soup.find(attrs={'data-custom':'custom'}) ul标签中的data-custom属性 值为custom 属性传递写法
 find_parent() find_parents() 查找父标签
 find_next_siblings() 查找同类  注意：这两个函数一定要先把trs = trs[0]变成一个可以调用的类型
+* batch批处理语言
+  #+begin_src 
+echo off，屏幕不显示bat文件中所有的命令行
+cd，英文change directory的缩写（切换目录）。例如cd d:</span>sybase，进入sybase目录
+md，英文make directory的缩写（创建目录。例如md c:</span>123
+rd，英文remove directory的缩写（删除目录）。例如rd c:</span>123
+del，英文delete的缩写（删除）。用于删除指定磁盘、目录中的一个或一组文件，例如del D:</span>gvim.exe  
+
+%，表示参数（在运行批处理文件时在文件名后加的字符串，例如%1、%2等）；
+运行C:\>t a.txt b.txt  
+%1 : 表示a.txt
+%2 : 表示b.txt 
+%var%，变量var；
+
+%cd%, %~dp0 表示当前路径
+%cd%代表的是当前工作目录
+%~dp0代表的是当前批处理文件所在完整目录（the batch file's directory，fixed）。
+cd = C:\program
+dp0 = C:\program\
+cd表示当前文件的工作路径 dp0表示所执行命令的工作路径
+优先使用%~dp0
+
+Test.bat: 假设传入的参数为：c:\temp\test1.txt
+echo %~d1 =>c:
+echo %~dp1 =>c:\temp\
+echo %~nx1 =>test1.txt
+echo %~n1 =>test1
+echo %~x1 =>.txt
+cho 当前目录路径：%~dp0
+  #+end_src
+** 示例
+*** 该脚本列出当前目录下面以if开头的文件，并打印出文件名
+    #+begin_src 
+ echo off
+ for %%f in (./if*) do echo %%f
+    #+end_src
 * Adobe Illustrator 作图软件
 ** 基本工具及快捷键
    #+begin_src 
@@ -8595,6 +8669,9 @@ evil-leader
 14. 数据保存所有汇总集合
 15. numpy 库
 16. .mat - .npy流程打通
+
+任务：
+packed数据 - unpacked数据 vivo处理工具
 
 学习方向：
 对齐 网络结构
