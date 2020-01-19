@@ -4754,21 +4754,22 @@ print([n.name for n in graph.as_graph_def().node])
      #+end_src
 *** 测试目录是否testdir存在，如果不存在，它将为您创建目录
     #+begin_src 
-import os  # Import the OS module
+import os  
 
-MESSAGE = 'The directory already exists.'
-CheckDir = 'testdir'
-try:
-    home = os.path.expanduser("~")  # Set the variable home by expanding the user's set home directory
-
-    if not os.path.exists(CheckDir):  # os.path.join() for making a full path safely
-        print("No directory found for " + CheckDir)  # Output if no directory
-        os.makedirs(CheckDir)  # If not create the directory, inside their home directory
-        print("Directory created for " + CheckDir)
-    else:
-        print(MESSAGE)
-except Exception as e:
-    print(e)    
+# direction check 
+def direction_check(CheckDir):
+    MESSAGE = 'The directory already exists.'
+    try:
+        home = os.path.expanduser("~")  # Set the variable home by expanding the user's set home directory
+        if not os.path.exists(CheckDir):  # os.path.join() for making a full path safely
+            print("No directory found for " + CheckDir)  # Output if no directory
+            os.makedirs(CheckDir)  # If not create the directory, inside their home directory
+            # os.makedirs(current_dir + '/' + checkdir1 + '/' + checkdir2 + '/' + checkdir3)  # If not create the directory, inside their home directory
+            print("Directory created for " + CheckDir)
+        # else:
+            # print(MESSAGE)
+    except Exception as e:
+        print(e)
     #+end_src
 *** 如何确认库中有没有某个特定的module
     #+begin_src 
@@ -7190,7 +7191,49 @@ echo %~nx1 =>test1.txt
 echo %~n1 =>test1
 echo %~x1 =>.txt
 cho 当前目录路径：%~dp0
+
+删除
+del .\TEST\*.o
+
+复制
+copy file1.txt 文件夹1
+copy file2.txt 文件夹2
+
+重命名
+ren *.txt *.mp3
+ren  *.gif *.jpg
+
   #+end_src
+** 变量
+   #+begin_src 
+#变量的引用及赋值                                                                             
+#基础用法
+set                    #显示目前所有可用的变量，包括系统变量和自定义的变量                                    
+echo %SystemDrive%     #显示系统盘盘符。系统变量可以直接引用                                                  
+set p                  #显示所有以p开头的变量，要是一个也没有的话就设errorlevel=1                                 
+set p=qwerdfzxc        #设置变量p，并赋值为 = 后面的字符串，即qwerdfzxc     
+
+字符串拼接
+SET Sender = %Sender1%, %Sender2%
+
+echo %p%          #显示变量p代表的字符串，即qwerdfzxc                                                     
+echo %p:~3%       #显示变量p中第3个字符以后的所有字符，即rdfzxc                                           
+echo %p:~3,3%     #显示第3个字符以后的3个字符，即rdf                                                      
+echo %p:~0,3%     #显示前3个字符，即qwe                                                                   
+echo %p:~-2%      #显示最后面的2个字符，即xc                                                              
+echo %p:~0,-2%    #显示除了最后2个字符以外的其它字符，即qwerdfz                                           
+echo %p:q=aa%     #用c替换变量<span>p</span>中所有的q，即显示aawerdfz                                                 
+echo %p:q=%      #将变量p中的所有q字符串置换为空，即显示werdfzxc                                     
+echo %p:*we=c%    #第一个bb及其之前的所有字符被替换为c，即显示crdfzxc                                     
+set p=%p:*q=c%    #设置变量p，赋值为 %p:*q=c% ，即cwerdfzxc                                               
+set /a p=39       #设置p为数值型变量，值为39                                                              
+set /a p=39/10    #支持运算符，有小数时用去尾法，39/10=3.9，去尾得3，p=3set /a p=p/10                     
+                  #用 /a 参数时，在 = 后面的变量可以不加%直接引用set /a p="1&0"                           
+                  #"与"运算，要加引号。其它支持的运算符参见set/?                                          
+set p=            #取消p变量                                                                              
+set /p p=         #请输入屏幕上显示"请输入"，并会将输入的字符串赋值给变量p注意这条可以用来取代 choice 命令
+
+   #+end_src
 ** 示例
 *** 该脚本列出当前目录下面以if开头的文件，并打印出文件名
     #+begin_src 
@@ -8662,8 +8705,6 @@ evil-leader
 8. sh脚本中的变量替代方法
 9. 自己吃透代码
 
-10. python中处理文件夹是否存在 def方式的写法
-11. Python执行Windows cmd功能实现
 12. 索引图片 后缀名等格式
 13. resize和reshape的区别
 14. 数据保存所有汇总集合
