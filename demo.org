@@ -6522,7 +6522,7 @@ sudo apt-get update
  sudo apt update 
  sudo apt install emacs26     
     #+end_src
-***  spacemacs安装
+*** spacemacs安装
     #+begin_src 
  git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
  安装完成之后需要手动移除.emacs文件
@@ -6553,6 +6553,23 @@ sudo fc-cache -f -v
 #+begin_src 
 sudo apt-get install curl 
 #+end_src
+*** MATLAB-mode支持
+**** ubuntu环境下安装方式很特殊
+https://sourceforge.net/p/matlab-emacs/src/ci/master/tree/
+     #+begin_src 
+ 下载源码，并放在~/.emacs.d/elpa文件夹下
+ git clone git://git.code.sf.net/p/matlab-emacs/src matlab-emacs-src    
+
+ 编译
+ make 
+
+ 在init.el中添加
+ ;; 设置MATLAB-mode
+ (add-to-list 'load-path "~/.emacs.d/elpa/matlab-emacs-src")
+ (load-library "matlab-load")
+ ;; Enable CEDET feature support for MATLAB code. (Optional)
+ (matlab-cedet-setup)
+     #+end_src
 ** 基本软件安装
 *** 搜狗输入法
 **** 安装
@@ -6642,6 +6659,7 @@ https://blog.csdn.net/ysy950803/article/details/80326832
  ls  列出目录（文件夹）中的文件和子目录 
  -l   长格式列出 
  -a   显示所有文件,包括隐藏文件和目录（所有以“.”为开始的文件和目录为隐藏文件） 
+ ls -la 可以显示当前路径下的符号链接 如在/usr/local路径
  查询当前路径下的所有文件信息
  ls -lhi
 
@@ -6791,6 +6809,33 @@ https://download.pytorch.org/whl/cu90/torch_stable.html
 #+begin_src 
 pip install torch-0.4.1-cp37-cp37m-linux_x86_64.whl
 #+end_src
+*** mmdetection安装
+**** 命令
+https://github.com/open-mmlab/mmdetection/blob/master/docs/INSTALL.md
+     #+begin_src 
+conda create -n open-mmlab python=3.7 -y
+conda activate open-mmlab
+
+conda install -c pytorch pytorch torchvision -y
+conda install cython -y
+git clone https://github.com/open-mmlab/mmdetection.git
+cd mmdetection
+pip install -v -e .
+
+mkdir data
+ln -s $COCO_ROOT data     
+     #+end_src
+**** python setup.py develop出现cuda错误解决方案
+     #+begin_src 
+配置环境变量
+emacs ~/.bashrc
+
+在末尾添加
+export PATH="/usr/local/cuda-9.0/bin:$PATH"
+export LD_LIBRARY_PATH="/usr/local/cuda-9.0/lib64:$LD_LIBRARY_PATH"
+
+source ~/.bashrc
+     #+end_src
 *** Ubuntu下git常用操作
     #+begin_src 
 git fetch origin
