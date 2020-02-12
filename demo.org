@@ -7124,6 +7124,9 @@ sinfo
 启动批处理脚本
 sbatch
 
+check the detailed info of job 
+scontrol show jobid 583807
+
 查看作业状态
 使用squeue命令
 squeue -u yangyixin  查看用户作业
