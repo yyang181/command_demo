@@ -4166,7 +4166,7 @@ re.M 说明：是一个参数，^$标志将会匹配每一行。默认情况下�
       #+begin_src 
 a = re.findall(pattern, string, flags=0)
       #+end_src
-*** 字符串合并、替换
+*** 文件夹-字符串合并、替换、分割、查找
 **** 合并字符串
  1. 直接相加
  2. 用join命令
@@ -4181,6 +4181,25 @@ str = "this is string example....wow!!! this is really string";
 print str.replace("is", "was");
 print str.replace("is", "was", 3);
 #+end_src
+**** 分割字符串
+     #+begin_src 
+只显示文件名，不包含上级路径
+name_images_in = img.split('\\')[1]      
+name = img.split('-')
+
+将文件名替换为
+des_file = fname.replace('images', r'images\0')
+# print(des_file)
+copyfile(fname, des_file)
+     #+end_src
+**** 查找字符串
+     #+begin_src 
+正则表达式精准识别所需要的字符
+import re
+
+m = re.findall('[(](.*?)[)]', img)
+'[(](.*?)[)]' 表示（）内部的所有元素     
+     #+end_src
 *** 文件名按名称进行排序(list + numpy)方法
 list版本：核心函数 sorted, 使用key参数
 numpy版本可以又list转换而来
@@ -4221,46 +4240,6 @@ temp = np.array(list)
 
 numpy.array转List:
 arr = temp.tolist()      
-     #+end_src
-*** 将字符串、列表、字典等数据结构存储为本地文件 pickle
-效果：可以直接在另外文件以原始格式打开数据
-**** 存储步骤
-     #+begin_src python
-import pickle
-pickle_file = open('result.pki','wb')
-pickle.dump(result, pickle_file)
-pickle_file.close()  
-     #+end_src
-**** 载入步骤
-     #+begin_src python 
-import pickle 
-pkl_file = open('result.pki','rb') 
-result = pickle.load(pkl_file)
-pkl_file.close()     
-     #+end_src
-*** 读取，写入txt文件
-**** 读取文件
-     #+begin_src 
-全数字读取，直接转换为np格式
-import numpy as np
-a = np.loadtxt('1.result.txt')
-
-按行读取
-data = []
-for line in open("data.txt","r"): #设置文件对象并读取每一行文件
-    data.append(line)               #将每一行文件加入到list中     
-
-按行读取并转换为数组格式
-np.array(data)
-
-字符串读取
-with open('1.result.txt',"r") as f:    #设置文件对象
-    str = f.read()    #可以是随便对文件的操作
-     #+end_src
-**** 写入文件
-     #+begin_src 
-with open('data.txt','w') as f:    #设置文件对象
-    f.write(str)                 #将字符串写入文件中     
      #+end_src
 *** 获取html内容的python写法
     #+begin_src python
@@ -4314,7 +4293,7 @@ VS C++ 14
  在浏览器控制台的console中输入：navigator.webdriver
 ****** 查找发爬虫js
 在浏览器控制台network选项卡界面下，查找403的名称
-*** python中的模型保存于转换
+*** python中的模型保存与转换
 **** ckpt模型的保存
 https://www.cnblogs.com/zerotoinfinity/p/10242849.html
 checkpoint是检查点的文件，文件保存了一个目录下所有的模型文件列表
@@ -4415,77 +4394,36 @@ for i in range(len(alphas)):
 C-c > 向右缩进代码块
 C-c < 向左缩进代码块    
     #+end_src
-*** python中保存数据 与第三条结合使用
-**** 格式及方法对应说明
-最优解：pickle,能够处理任何格式的python数据
-json只能用来处理字符串
-np用来处理矩阵
-
-字典用.json     不带s
-矩阵用np.save 
-列表用np.save 先转换为np 在转换回来
-列表用.json     不带s
-
-其中json.load 与json.loads的区别
-load 与 dump处理文件
-loads 与 dumps处理字符串
-**** 列表与Numpy互相转换
-     #+begin_src 
-# 保存
-import numpy as np
-a=np.array(a)
-np.save('a.npy',a)   # 保存为.npy格式
-# 读取
-a=np.load('a.npy')
-a=a.tolist()
-     
-     #+end_src
-**** .json文件保存
-***** 导出
-      #+begin_src 
-import json
-
-names = ['joker','joe','nacy','timi']
-
-filename='names.json'
-with open(filename,'w') as file_obj:
-    json.dump(names,file_obj)     
-      #+end_src
-***** 导入
-      #+begin_src 
-import json
-
-filename='names.json'
-with open(filename) as file_obj:
-    names = json.load(file_obj)
-    
-print(names)      
-      #+end_src
-**** np.array保存
-***** 导出
-      #+begin_src 
-import numpy as np
-pts1 = np.array
-np.save("filename.npy",pts1)
-      #+end_src
-***** 导出
-      #+begin_src 
-import numpy as np
-np.load("filename.npy")      
-pts1
-      #+end_src
-
 *** 批量化 封装化处理图片，脚本的模板
 **** 同时处理多种格式的文件的方法 
 ***** 方法示例 只能用于当前文件夹，不包括子文件夹
       #+begin_src 
+ 方法一
  import glob
  for jpg_file in glob.glob("./*[.jpg, .png]"):
      jpg2pgm( jpg_file , "/test" )
+
+ 方法二
+ # load all excel files
+ dir_input = './'
+ allxls = sorted([os.path.join(dir_input, file) for file in os.listdir(dir_input) if file.endswith('.xlsx')])    
       #+end_src
 ***** os.walk可以对所有子文件夹有效
       #+begin_src 
-      
+ 包含子目录中的内容
+ os.walk(top, topdown=True, onerror=None, followlinks=False)
+ 参数：
+ top 是你所要遍历的目录的地址
+ topdown 为真，则优先遍历top目录，否则优先遍历top的子目录 (默认为True)
+ onerror 需要一个 callable 对象，当walk需要异常时，会调用
+ followlinks 如果为真，则会遍历目录下的快捷方式(linux 下是 symbolic link)实际所指的目录 (默认为False)
+
+ sourceDir="/home/llp/caffe/d/train/apple"
+ targetDir="/home/llp/caffe/d/train"
+ for root, dirs, files in os.walk(sourceDir):
+     for file in files:
+         print(os.path.join(root,file).decode(‘gbk’)) #支持显示中文名称
+         shutil.copy(os.path.join(root,file),targetDir) #执行复制操作      
       #+end_src
 **** 批量处理流程
      #+begin_src 
@@ -4536,121 +4474,6 @@ pts1
  image_files = sorted([os.path.join(dir_input_images, file) for file in os.listdir(dir_input_images) if file.endswith(tpye_input_images, 'png')])
  generate(image_files, dir_output1_images, dir_output2_images)
      #+end_src
-*** numpy按元素操作
-    #+begin_src 
-pts2[:,0] = pts2[:,0] + 360
-pts2[pts2 > 1] = 0 
-    #+end_src
-*** excel文件终极处理
-核心教程https://blog.csdn.net/sinat_28576553/article/details/81275650
-**** xlsx格式
-***** package
-openpyxl, os
-***** 读取工作表
-      #+begin_src 
-      workbook=openpyxl.load_workbook(xls)
-      worksheet=workbook.worksheets[0]      
-      #+end_src
-***** 单元格元素查找
-      #+begin_src 
-worksheet.cell(row=i, column=5).value      起始为（1,1）而不是（0,0）
-      #+end_src
-***** 单元格元素修改
-      #+begin_src 
-worksheet.cell(i,j,worksheet.cell(row=i, column=j).value)  与查找的区别在于cell函数里面的元素个数      
-      #+end_src
-***** 工作表保存
-      #+begin_src 
-end_workbook.save(filename = 'test.xlsx)      
-      #+end_src
-***** 代码展示
-      #+begin_src 
-import openpyxl, os
-"""
-usage: 
-    just put all .xlsx files in the same direction of this .py file and set outname if you want.
-
-param:
-    name_output_xlsx: 输出的Excel文件名   
-    
-return:
-    
-"""
-
-def modify(xls, name_output_xlsx):
-    # load .xlsx file
-    workbook=openpyxl.load_workbook(xls)
-    worksheet=workbook.worksheets[0]
-    
-    #确认输出的Excel文件是否存在，如果不存在新建
-    if os.path.exists(name_output_xlsx) == False:
-        end_workbook = workbook
-    else:
-        end_workbook = openpyxl.load_workbook(name_output_xlsx)
-    
-    end_worksheet = end_workbook.worksheets[0]
-
-    for i in range(10, 14):
-#        print(i, worksheet.cell(row=i, column=5).value)
-        if worksheet.cell(row=i, column=5).value == None:
-            continue
-        else:
-            print('*****************************', xls, worksheet.cell(row=i, column=4).value)
-            for j in range(5, 10):     
-                print('Currently modifing: ',  worksheet.cell(row=i, column=4).value, worksheet.cell(row=2, column=j).value, end='\n')
-                
-                print(worksheet.cell(row=i, column=j).value,end="\n")
-                end_worksheet.cell(i,j,worksheet.cell(row=i, column=j).value)
-                print()
-    end_workbook.save(filename = name_output_xlsx)   
-
-if __name__ == '__main__':
-    #outpu param setting
-    name_output_xlsx = r'工作进展-计划表模板.xlsx'
-    
-    # load all excel files
-    dir_input = './'
-    allxls = sorted([os.path.join(dir_input, file) for file in os.listdir(dir_input) if file.endswith('.xlsx')])
-    
-    # modify and save as output xlsx
-    for num in range(len(allxls)):
-        modify(allxls[num], name_output_xlsx)      
-      #+end_src
-
-**** xls格式
-***** packages
-xlrd xlwt 
-***** 读数据
-****** 获取工作簿及工作表
-       #+begin_src 
-  import xlrd  #引入模块
- 
- #打开文件，获取excel文件的workbook（工作簿）对象
- workbook=xlrd.open_workbook("DataSource/Economics.xls")  #文件路径
-
- #获取所有sheet的名字
- names=workbook.sheet_names()
- print(names) #['各省市', '测试表']  输出所有的表名，以列表的形式
- 
- #通过sheet索引获得sheet对象
- worksheet=workbook.sheet_by_index(0)
- print(worksheet)  #<xlrd.sheet.Sheet object at 0x000001B98D99CFD0>
- 
- #通过sheet名获得sheet对象
- worksheet=workbook.sheet_by_name("各省市")
- print(worksheet) #<xlrd.sheet.Sheet object at 0x000001B98D99CFD0>
- 
- #由上可知，workbook.sheet_names() 返回一个list对象，可以对这个list对象进行操作
- sheet0_name=workbook.sheet_names()[0]  #通过sheet索引获取sheet名称
- print(sheet0_name)  #各省市
-       #+end_src
-****** 具体上网站上学习即可
-*** 路径下所有文件检索方法
-    #+begin_src 
-    # load all excel files
-    dir_input = './'
-    allxls = sorted([os.path.join(dir_input, file) for file in os.listdir(dir_input) if file.endswith('.xlsx')])    
-    #+end_src
 *** init封装.py格式
     #+begin_src 
 if __name__ == '__main__':
@@ -4858,13 +4681,7 @@ C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.2
 #+begin_src 
 修改Anaconda3/Lib/site-packages/torch/utils/cpp_extension.py文件
 #+end_src
-*** 如何用python批量复制文件
-注意：一定得是文件的名字.jpg这种 源文件和目标文件写法都是对应到文件
-    #+begin_src 
-from shutil import copyfile
 
-copyfile(source_file, des_file)    
-    #+end_src
 *** 求解线性、非线性方程组
 https://blog.csdn.net/ialexanderi/article/details/73953039
 **** sympy模块
@@ -4887,22 +4704,6 @@ def func(i):
 r = fsolve(func,[0, 0, 0])
 print(r)
 
-     #+end_src
-*** 文件名处理、拼接全部集锦
-**** 代码合集
-     #+begin_src 
-只显示文件名，不包含上级路径
-name_images_in = img.split('\\')[1]      
-name = img.split('-')
-
-将文件名替换为
-des_file = fname.replace('images', r'images\0')
-# print(des_file)
-copyfile(fname, des_file)
-
-正则表达式精准识别所需要的字符
-m = re.findall('[(](.*?)[)]', img)
-'[(](.*?)[)]' 表示（）内部的所有元素
      #+end_src
 *** 判断变量是否已经被定义，是否存在
     #+begin_src 
@@ -4992,6 +4793,43 @@ angle = np.rad2deg(np.arctan2(y[-1] - y[0], x[-1] - x[0]))
      dis = math.fabs(k * point1_x - point1_y + b) / math.pow(k * k + 1, 0.5)     
      #+end_src
 *** numpy 库 
+**** 创建数组
+     #+begin_src 
+     创建数组
+     ones() zeros() eye() identity() diag()     
+	   import numpy as np
+	   A = np.ones((4,4))   # 单位矩阵 ，参数:元组 A.shape -> (4,4)
+	   B = np.zeros((4,4))  # 零矩阵
+	   C = np.eye(4,k = 0,dtype=int)    # 主对角线为全为1的对角矩阵
+	   D = np.identity(4)   #4维单位矩阵
+	   E = np.diag(np.arange(1,5))# [1,2,3,4]主对角线矩阵
+	   F = np.diag([3,2,1],k = 1)# 右上角第1条为[3,2,1] 4维对角线矩阵
+	   print('右上角第1条为[3,2,1] 4维对角线矩阵 \n%s'%F)	
+
+     查看数组维度
+     np.shape(a)
+     a = np.ones((4, 2))
+     shape = np.shape(a)
+     (4, 2)
+
+     维度变更
+     resize会直接修改原始数组的数据，而返回None; reshape方法不会修改原始数组的数据，而返回一个新的数组
+     np.resize 如果新数组比原数组大，则将会copy原数组中的值对新数组进行填充
+     >>> a=np.array([[0,1],[2,3]])
+     >>> np.resize(a,(2,3))
+     array([[0, 1, 2],
+           [3, 0, 1]])
+     >>> np.resize(a,(1,4))
+     array([[0, 1, 2, 3]])
+     >>> np.resize(a,(2,4))
+     array([[0, 1, 2, 3],
+           [0, 1, 2, 3]])
+
+     np.reshape 在不改变原数组数据的情况下，将它reshape成一个新的维度
+     如果给定的数组数据和需要reshape的形状不符合时，将会报错。
+     a = np.array([[1,2,3],[4,5,6],[7,8,9]]) 
+     a.reshape((1,9)) 
+     #+end_src
 **** 添加元素
      #+begin_src 
 p_arr = np.concatenate((p_arr,[p_])) # 先将p_变成list形式进行拼接，注意输入为一个tuple
@@ -5007,10 +4845,57 @@ a[0:2] #取第一行和第二行
      #+end_src
 **** 对数组中的每一个元素进行操作
      #+begin_src 
+示例一
 a[0:3] = a[0:3] + 100 
 
 a = np.abs(a)     
 a = np.floor(a)     
+
+示例二
+pts2[:,0] = pts2[:,0] + 360
+pts2[pts2 > 1] = 0 
+     #+end_src
+*** os库
+**** 路径分割符号
+     #+begin_src 
+ os.sep 在Ubuntu系统上为/ 在Windows系统上为\\    
+     #+end_src
+**** 获取当前工作路径
+     #+begin_src 
+ import os
+ print("1111")
+ print (os.getcwd())#获得当前目录
+ print (os.path.abspath('.'))#获得当前工作目录
+ print (os.path.abspath('..'))#获得当前工作目录的父目录
+ print (os.path.abspath(os.curdir))#获得当前工作目录
+     #+end_src
+**** 索引路径下的所有文件
+     #+begin_src 
+ 不包含子目录中的内容
+ os.listdir(path)   只能返回当前path路径下的文件和文件夹，不包含子目录中的内容
+
+ 包含子目录中的内容
+ os.walk(top, topdown=True, onerror=None, followlinks=False)
+ 参数：
+ top 是你所要遍历的目录的地址
+ topdown 为真，则优先遍历top目录，否则优先遍历top的子目录 (默认为True)
+ onerror 需要一个 callable 对象，当walk需要异常时，会调用
+ followlinks 如果为真，则会遍历目录下的快捷方式(linux 下是 symbolic link)实际所指的目录 (默认为False)
+
+ sourceDir="/home/llp/caffe/d/train/apple"
+ targetDir="/home/llp/caffe/d/train"
+ for root, dirs, files in os.walk(sourceDir):
+     for file in files:
+         print(os.path.join(root,file).decode(‘gbk’)) #支持显示中文名称
+         shutil.copy(os.path.join(root,file),targetDir) #执行复制操作
+     #+end_src
+**** os.path.join方法
+     #+begin_src 
+ os.path.join(path1, path2, path3)
+ 
+ a=['1','2','3','4','5']
+ '-'.jion(a)
+ 1-2-3-4-5
      #+end_src
 *** 带有索引的enumerate枚举方法
     #+begin_src 
@@ -5078,7 +4963,7 @@ pip install --upgrade --user setuptools
 pip卸载包
 pip uninstall packagename    
     #+end_src
-*** 创建文件夹、处理文件
+*** 创建文件夹、处理文件-shutil库
     #+begin_src 
 获取当前工作路径
 import os
@@ -5096,14 +4981,18 @@ import os
 移动
 shutil.move(filePath, destPath)     
 
-复制
+复制 shutil.copy
 sourceDir="/home/llp/caffe/d/train/apple"
 targetDir="/home/llp/caffe/d/train"
 for root, dirs, files in os.walk(sourceDir):
-for file in files:
-print os.path.join(root,file).decode(‘gbk’) #支持显示中文名称
-shutil.copy(os.path.join(root,file),targetDir) #执行复制操作
+    for file in files:
+        print(os.path.join(root,file).decode(‘gbk’)) #支持显示中文名称
+        shutil.copy(os.path.join(root,file),targetDir) #执行复制操作
 
+复制 shutil.copyfile
+注意：一定得是文件的名字.jpg这种 源文件和目标文件写法都是对应到文件
+from shutil import copyfile
+copyfile(source_file, des_file)    
      #+end_src
 **** shutil库
      #+begin_src 
@@ -5188,6 +5077,184 @@ np.save('./calibrated_coefficient__param_1962.npy',a)
 # 读取numpy 
 b = np.load('./calibrated_coefficient_param_1962.npy')
      #+end_src
+**** python操作.txt文件
+***** 读取文件
+      #+begin_src 
+ 全数字读取，直接转换为np格式
+ import numpy as np
+ a = np.loadtxt('1.result.txt')
+
+ 按行读取
+ data = []
+ for line in open("data.txt","r"): #设置文件对象并读取每一行文件
+     data.append(line)               #将每一行文件加入到list中     
+
+ 按行读取并转换为数组格式
+ np.array(data)
+
+ 字符串读取
+ with open('1.result.txt',"r") as f:    #设置文件对象
+     str = f.read()    #可以是随便对文件的操作
+      #+end_src
+***** 写入文件
+      #+begin_src 
+ with open('data.txt','w') as f:    #设置文件对象
+     f.write(str)                 #将字符串写入文件中     
+      #+end_src
+**** python操作.xls .xlsx文件
+ 核心教程https://blog.csdn.net/sinat_28576553/article/details/81275650
+***** xlsx格式
+****** package
+ openpyxl, os
+****** 读取工作表
+       #+begin_src 
+       workbook=openpyxl.load_workbook(xls)
+       worksheet=workbook.worksheets[0]      
+       #+end_src
+****** 单元格元素查找
+       #+begin_src 
+ worksheet.cell(row=i, column=5).value      起始为（1,1）而不是（0,0）
+       #+end_src
+****** 单元格元素修改
+       #+begin_src 
+ worksheet.cell(i,j,worksheet.cell(row=i, column=j).value)  与查找的区别在于cell函数里面的元素个数      
+       #+end_src
+****** 工作表保存
+       #+begin_src 
+ end_workbook.save(filename = 'test.xlsx)      
+       #+end_src
+****** 代码展示
+       #+begin_src 
+ import openpyxl, os
+ """
+ usage: 
+     just put all .xlsx files in the same direction of this .py file and set outname if you want.
+
+ param:
+     name_output_xlsx: 输出的Excel文件名   
+    
+ return:
+    
+ """
+
+ def modify(xls, name_output_xlsx):
+     # load .xlsx file
+     workbook=openpyxl.load_workbook(xls)
+     worksheet=workbook.worksheets[0]
+    
+     #确认输出的Excel文件是否存在，如果不存在新建
+     if os.path.exists(name_output_xlsx) == False:
+         end_workbook = workbook
+     else:
+         end_workbook = openpyxl.load_workbook(name_output_xlsx)
+    
+     end_worksheet = end_workbook.worksheets[0]
+
+     for i in range(10, 14):
+ #        print(i, worksheet.cell(row=i, column=5).value)
+         if worksheet.cell(row=i, column=5).value == None:
+             continue
+         else:
+             print('*****************************', xls, worksheet.cell(row=i, column=4).value)
+             for j in range(5, 10):     
+                 print('Currently modifing: ',  worksheet.cell(row=i, column=4).value, worksheet.cell(row=2, column=j).value, end='\n')
+                
+                 print(worksheet.cell(row=i, column=j).value,end="\n")
+                 end_worksheet.cell(i,j,worksheet.cell(row=i, column=j).value)
+                 print()
+     end_workbook.save(filename = name_output_xlsx)   
+
+ if __name__ == '__main__':
+     #outpu param setting
+     name_output_xlsx = r'工作进展-计划表模板.xlsx'
+    
+     # load all excel files
+     dir_input = './'
+     allxls = sorted([os.path.join(dir_input, file) for file in os.listdir(dir_input) if file.endswith('.xlsx')])
+    
+     # modify and save as output xlsx
+     for num in range(len(allxls)):
+         modify(allxls[num], name_output_xlsx)      
+       #+end_src
+
+***** xls格式
+****** packages
+ xlrd xlwt 
+****** 读数据
+******* 获取工作簿及工作表
+        #+begin_src 
+   import xlrd  #引入模块
+ 
+  #打开文件，获取excel文件的workbook（工作簿）对象
+  workbook=xlrd.open_workbook("DataSource/Economics.xls")  #文件路径
+
+  #获取所有sheet的名字
+  names=workbook.sheet_names()
+  print(names) #['各省市', '测试表']  输出所有的表名，以列表的形式
+ 
+  #通过sheet索引获得sheet对象
+  worksheet=workbook.sheet_by_index(0)
+  print(worksheet)  #<xlrd.sheet.Sheet object at 0x000001B98D99CFD0>
+ 
+  #通过sheet名获得sheet对象
+  worksheet=workbook.sheet_by_name("各省市")
+  print(worksheet) #<xlrd.sheet.Sheet object at 0x000001B98D99CFD0>
+ 
+  #由上可知，workbook.sheet_names() 返回一个list对象，可以对这个list对象进行操作
+  sheet0_name=workbook.sheet_names()[0]  #通过sheet索引获取sheet名称
+  print(sheet0_name)  #各省市
+        #+end_src
+******* 具体上网站上学习即可
+**** python操作.pki文件-将字符串、列表、字典等数据结构存储为本地文件 pickle
+ 效果：可以直接在另外文件以原始格式打开数据
+***** 存储步骤
+      #+begin_src python
+ import pickle
+ pickle_file = open('result.pki','wb')
+ pickle.dump(result, pickle_file)
+ pickle_file.close()  
+      #+end_src
+***** 载入步骤
+      #+begin_src python 
+ import pickle 
+ pkl_file = open('result.pki','rb') 
+ result = pickle.load(pkl_file)
+ pkl_file.close()     
+      #+end_src
+**** Python操作.json文件
+***** 导出
+      #+begin_src 
+import json
+
+names = ['joker','joe','nacy','timi']
+
+filename='names.json'
+with open(filename,'w') as file_obj:
+    json.dump(names,file_obj)     
+      #+end_src
+***** 导入
+      #+begin_src 
+import json
+
+filename='names.json'
+with open(filename) as file_obj:
+    names = json.load(file_obj)
+    
+print(names)      
+      #+end_src
+**** 格式及方法对应说明
+最优解：pickle,能够处理任何格式的python数据
+json只能用来处理字符串
+np用来处理矩阵
+
+字典用.json     不带s
+矩阵用np.save 
+列表用np.save 先转换为np 在转换回来
+列表用.json     不带s
+
+其中json.load 与json.loads的区别
+load 与 dump处理文件
+loads 与 dumps处理字符串
 *** 数据保存-MATLAB合集
     #+begin_src 
 p = rand(1,10);
@@ -5268,6 +5335,8 @@ import argparse
 
 def parse_args():
     parser = argparse.ArgumentParser()
+    parser.add_argument("echo",help="echo the string")
+    parser.add_argument('--rescale', type=float, default=1.0, help='Rescaled LR Rate')
     parser.add_argument("--pb_path", type=str, default='./pretrained_model/FALSR-A.pb')
     parser.add_argument("--save_path", type=str, default='./result/')
     return parser.parse_args()    
@@ -5276,6 +5345,15 @@ if __name__ == '__main__':
     cfg = parse_args()
     pb_name = cfg.pb_path
     save_path = cfg.save_path
+
+#定位参数
+cfg.echo
+cfg.rescale
+
+# 命令行使用
+python model_lgb.py --type 开飞机 --Tag 1
+
+# --rescale 是可选参数 echo 是必选参数
     #+end_src
 * Matlab语言
 ** 知识补充 cell的使用
@@ -6596,9 +6674,10 @@ https://sourceforge.net/p/matlab-emacs/src/ci/master/tree/
  在init.el中添加
  ;; 设置MATLAB-mode
  (add-to-list 'load-path "~/.emacs.d/elpa/matlab-emacs-src")
- (load-library "matlab-load")
+ (load-library "matlab")
+ (require 'matlab)
  ;; Enable CEDET feature support for MATLAB code. (Optional)
- (matlab-cedet-setup)
+ ;; (matlab-cedet-setup)
      #+end_src
 ** 基本软件安装
 *** 搜狗输入法
