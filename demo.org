@@ -6726,9 +6726,16 @@ sudo apt-get install seafile-gui
 服务器地址：
 http://file.intra.sensetime.com/    
     #+end_src
-*** 微信
+*** 微信/onenote/qq音乐等Windows专属软件安装
     #+begin_src 
-sudo snap install electronic-wechat    
+sudo snap install electronic-wechat --devmode
+sudo electronic-wechat 即可打开应用
+
+snap常用命令
+snap list 列出所有已安装的软件
+snap search + package 搜索包
+snap install + package 安装
+snap remove + package 卸载
     #+end_src
 *** filezilla登陆方式说明：
 FTP normal
@@ -6819,6 +6826,9 @@ https://blog.csdn.net/ysy950803/article/details/80326832
  -r 就是向下递归，不管有多少级目录，一并删除；
  -f 就是直接强行删除，不作任何提示的意思。
 
+ 显示隐藏的文件夹
+ Ctrl + h
+
  linux硬链接与软链接
  内容-用户数据，即文件数据块 (data block)，数据块是记录文件真实内容的地方；
  文件名-元数据则是文件的附加属性，如文件名、文件大小、创建时间、所有者、文件所在的inode等信息。
@@ -6832,8 +6842,14 @@ https://blog.csdn.net/ysy950803/article/details/80326832
  sudo apt-get autoclean 删除/var/cache/apt/archives目录下的deb安装包．但它只删除那些已经不能从软件仓库中下载的deb安装包．这就是说，Debian或Ubuntu已经不维护那些软件包了，或者那些软件包有了一个新的名字．
  apt-get clean packages 删除这些deb安装包
 
+ dpkg 可以用来处理wine-stable安装问题
  dpkg -l 显示所有用dpkg安装的软件
  sudo dpkg -r package 卸载package     
+ dpkg -l | grep + package 显示指定包的详细信息
+ dpkg -i urserver.deb 安装.deb 
+ dpkg -r urserver 只删除包，不包括配置文件
+ dpkg -P urserver 彻底删除，包括配置文件
+
      #+end_src
 **** 环境变量设置
      #+begin_src 
@@ -7062,7 +7078,7 @@ srun -p Pixel --gres=gpu:1 --job-name=x1_4 -o 4.out -N 1 -n 1 python -u /mnt/lus
 
 wait
 
-data
+date
       #+end_src
 ***** 简要说明
 Job-Array是用来对同一条命令多次重复执行的
