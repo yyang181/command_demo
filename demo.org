@@ -5769,8 +5769,11 @@ sudo apt-get upgrade
   ln -s /usr/local/Python-3.6.9/bin/pip3.6 /usr/bin/pip
 
   7.直接添加环境变量 即可
-  emacs ~/.bash_profile
+  emacs ~/.bash_profile   或者为~/.bashrc
   export PATH=$PATH:$HOME/bin:/usr/local/Python-3.6.9/bin
+
+  之后需要执行环境变量
+  source ~/.bash_profile  或者为~/.bashrc
 
   8.检查python的版本
   python -V
@@ -5779,6 +5782,26 @@ sudo apt-get upgrade
 
   9.安装pip3
  sudo apt install pip3
+     #+end_src
+**** anaconda路径修改之后软链接重新对应方法
+     #+begin_src 
+1. 修改环境变量
+  emacs ~/.bashrc
+  export PATH=$PATH:$HOME/bin:/usr/local/Python-3.6.9/bin
+
+2. 修改软链接指向位置
+需要修改的软链接有两个
+anaconda/bin/conda  >> /usr/bin/conda 
+anaconda/etc/profile.d/conda.sh   >>   /etc/profile.d/conda.sh
+
+具体执行命令
+首先备份链接
+sudo mv /usr/bin/conda /usr/bin/conda.bak
+sudo mv /etc/profile.d/conda.sh /etc/profile.d/conda.sh.bak
+
+然后添加软链接
+sudo ln -s /path-to-anaconda/anaconda/bin/conda /usr/bin/conda 
+sudo ln -s /path-to-anaconda/anaconda/etc/profile.d/conda.sh /etc/profile.d/conda.sh      
      #+end_src
 ** windows下gcc g++平台搭建
 需要安装g++ gcc编译平台
@@ -6901,7 +6924,7 @@ c 创建新窗口
 p 切换至上一窗口
 n 切换至下一窗口
 l 在前后两个窗口间互相切换
-w 通过窗口列表切换窗口
+w 通过窗口列表切换窗口      重要
 , 重命名当前窗口；这样便于识别
 . 修改当前窗口编号；相当于窗口重新排序
 f 在所有窗口中查找指定文本
