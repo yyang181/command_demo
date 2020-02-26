@@ -4859,14 +4859,23 @@ pts2[pts2 > 1] = 0
 **** 路径分割符号
      #+begin_src 
  os.sep 在Ubuntu系统上为/ 在Windows系统上为\\    
+
+ os.path.join(path1, path2, path3)
+ 一定要使用os.path.join来书写文件路径，否则会出现unix与Windows系统不通用的问题
+
+解决办法1 可全部使用‘/’表示
+
+解决办法2 我们可以使用os.sep方法，他是一个变量，在Windows下，他等于‘\\’，在Linux下，他等于‘/’。
+
+解决方法3 os.path.join()方法是自带os.sep的。
      #+end_src
 **** 获取当前工作路径
      #+begin_src 
  import os
  print("1111")
- print (os.getcwd())#获得当前目录
+ print (os.getcwd())#获得当前目录 注意，结尾不带/
  print (os.path.abspath('.'))#获得当前工作目录
- print (os.path.abspath('..'))#获得当前工作目录的父目录
+ print (os.path.abspath('..'))#获得当前工作目录的父目录  注意，结尾不带/
  print (os.path.abspath(os.curdir))#获得当前工作目录
      #+end_src
 **** 索引路径下的所有文件
@@ -4897,6 +4906,18 @@ pts2[pts2 > 1] = 0
  '-'.jion(a)
  1-2-3-4-5
      #+end_src
+**** os.system类cmd执行命令
+***** cmd命令执行MATLAB脚本
+      #+begin_src 
+      os.system('matlab -nosplash -nodesktop -r yourmfile')
+      -nosplash 不显示splash界面 -nodesktop 不启动MATLAB客户端 
+      -r matlabcommand 执行matlab命令 不用带.m符号
+
+      技巧：m文件需要给输入参数
+      matlab -nosplash -nodesktop -r "test('D:/', 'D:/test')"
+
+      字符串中，"不要转义，直接写即可，'需要转义写为\'
+      #+end_src
 *** 带有索引的enumerate枚举方法
     #+begin_src 
 for i, element in enumerate(seq):
@@ -7634,19 +7655,22 @@ python generate.py
 3. 执行拍摄脚本
 run_code.bat 
 
-3. 预处理packaged数据文件
+4. 预处理packaged数据文件
 pyhton file_tricks.py 
 step1 预处理packaged数据文件
 
-4. 判断是否需要额外工具
+5. 判断是否需要额外工具
 python raw2png.py 
 
-4.1 无需额外工具
+5.1 无需额外工具
+python file_tricks.py 
 直接运行packed版本的matlab程序，生成.mat文件 以iso段为单位
 
 4.2 需要额外工具
+python file_tricks.py  自动识别mode并使用pack2unpack工具
 step2 pack2unpack工具使用
 step3 将unpakced数据保存在正确的位置
+
 运行unpacked版本的matlab程序，生成.mat文件 以iso段为单位
 
 4.3 验证
