@@ -7645,19 +7645,26 @@ dbg/ # 只忽略dbg目录，不忽略dbg文件
 待完成：
 pack2unpack批量执行代码
 
-1. 进入手机内存，确认图片路径， 
-cmd环境下： adb shell 进入手机内存，确认图片路径， 
-          adb pull /data/vendor/camera D:/ 将图片拉到本地电脑中
+1. 进入手机内存，核对图片保存路径， 
+cmd环境下： 
+#+begin_src 
+adb shell 进入手机内存，确认图片路径， 
+adb pull /data/vendor/camera D:/ 将图片拉到本地电脑中
+#+end_src
 
 2. 用raw_test里面的generate.py生成用来拍摄的.sh脚本
+#+begin_src 
 python generate.py
+#+end_src
 
 3. 执行拍摄脚本
-run_code.bat 
+#+begin_src 
+./run_bat *.bat 
+#+end_src
 
 4. 预处理packaged数据文件
 pyhton file_tricks.py 
-step1 预处理packaged数据文件
+step1() 预处理packaged数据文件
 
 5. 判断是否需要额外工具
 python raw2png.py 
@@ -7668,8 +7675,8 @@ python file_tricks.py
 
 4.2 需要额外工具
 python file_tricks.py  自动识别mode并使用pack2unpack工具
-step2 pack2unpack工具使用
-step3 将unpakced数据保存在正确的位置
+step2() pack2unpack工具使用
+step3() 将unpakced数据保存在正确的位置
 
 运行unpacked版本的matlab程序，生成.mat文件 以iso段为单位
 
