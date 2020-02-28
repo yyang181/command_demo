@@ -7640,6 +7640,20 @@ dbg/ # 只忽略dbg目录，不忽略dbg文件
 **** 方案一
 直接删除.git文件夹即可
 **** 设置.gitignore文件 忽略.git文件夹
+** git命令
+   #+begin_src 
+git status 查看状态
+git add .  stage所有更改
+git commit -m '1' 提交更改
+git push origin master 将变更提交到主分支上面
+git branch -a 查看所有分支
+git checkout 分支名 切换到指定分支
+git branch -d 分知名 删除本地分支
+
+重要
+提交当前分支到远端指定分支
+git push origin master:dev_yyx   将本地分支master提交到远端的dev_yyx中
+   #+end_src
 * SenseTime
 ** 标定流程记录
 待完成：
