@@ -4133,6 +4133,47 @@ WORKDIR /code
 # 安装支持
 RUN pip install -r requirements.txt     
      #+end_src
+** pytorch
+*** 神经网络基本结构
+**** 张量维度计算 & nn.Conv2D
+     #+begin_src 
+ 默认参数：
+ torch.nn.Conv2d(in_channels, out_channels, kernel_size, stride=1, padding=0, dilation=1, groups=1, bias=True)
+ 
+ 张量维度：
+ x = [batch_size, channels, height, width]                   [2, 1, 7, 3]
+ Conv2D = [channels, output, kernal_height, kernal_width]    [1, 8, 2, 3]
+ res = [batch_size, output, output_height, output_width]     [2, 8, 6, 1]
+ output_height = height - kernal_height + 1 + 2*padding = 7 - 2 + 1 + 2*0 = 6
+ output_width = width - kernal_width + 1 + 2*padding = 3 - 3 + 1 + 2*0 = 1
+ 计算公式
+ W2=(W1-F+2*P)/S+1,W1是卷积前的图像大小，W2为卷积后，F为卷积核大小，P为填充，S为步长 其中 向下取整
+
+ 计算示例：
+ x = inputs=torch.Tensor([[[[1,2,3],          # [1, 1, 3, ,3]
+           [4,5,6],
+           [7,8,9]]]])
+ conv1=nn.Conv2d(1,2,kernel_size=3,padding=1)
+ conv2=nn.Conv2d(1,2,kernel_size=3)
+
+ x = [1, 1, 3, 3]
+ output1 = [1, 2, 3, 3]
+ output2 = [1, 2, 1, 1]
+
+ 代码示例：
+ import torch
+
+ x = torch.randn(2,1,7,3)
+ conv = torch.nn.Conv2d(1,8,(2,3))
+ res = conv(x)
+
+ print(res.shape)    # shape = (2, 8, 6, 1)    
+     #+end_src
+**** 其他常用函数
+     #+begin_src 
+上采样：
+torch.nn.PixleShuffle(upscale_factor)     
+     #+end_src
 
 ** 必备操作集锦 
 *** 正则表达式
@@ -7616,7 +7657,7 @@ Shift + e 橡皮擦工具
 合并图层：选中两个图层之后 Ctrl + e 
    #+end_src
 
-* github代码库管理 
+* github
 ** 忽略文件配置
 *** 编写逻辑
 1. 在同级目录，即有.git文件夹的路径下新建.gitignore文件
@@ -8930,6 +8971,17 @@ ipconfig
 - 模仿
 - 控制变量
 ** 能力树
+*** 20200228-商汤最新版本
+**** 学习快速，高效获取某领域知识的方法
+***** 目标
+- 熟悉前沿进展 能够深刻理解、总结出最新工作的创新点和存在的问题。
+- 以解决问题为出发点，思考创新方法（整合或者革新）
+***** 读文章
+- 带着目的去读，核心贡献是什么，效果怎么样，有哪些不足，不足的根源出在哪里。
+- 如何快速获取文章核心思想
+
+**** 时间计划 
+具体到任务内容，完成的时间段
 *** 时间规划
  概览：PPT 英语 AI C++ 能力实践
  #+CAPTION: 每日计划
@@ -8988,7 +9040,7 @@ ipconfig
 *** 英语听力
  精听：
  跟读：
-* 技能提升
+* 专业知识、技能提升-牧原期间整理
 ** 思路 
 1. 完成项目
 2. 核心在于自我提升，学习获取知识的方法
