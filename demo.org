@@ -5083,6 +5083,9 @@ p_green = data['p_green']
 p_red, p_blue, p_green     
      #+end_src
 **** python操作.yaml文件
+注意事项：
+- yml文件中允许直接使用Python list格式的数据的
+- python数据格式dict 不允许直接用list作为值，只能用tuple并且在单元素尾部加逗号
      #+begin_src 
 import os
 import yaml
