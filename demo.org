@@ -4221,6 +4221,12 @@ a = re.findall(pattern, string, flags=0)
 str = "this is string example....wow!!! this is really string";
 print str.replace("is", "was");
 print str.replace("is", "was", 3);
+
+注意事项：
+str.replace()为浅复制，如果想使用赋值后的值，需要
+str2 = str.replace()
+或者
+return str.replace()
 #+end_src
 **** 分割字符串
      #+begin_src 
@@ -4958,6 +4964,18 @@ pts2[pts2 > 1] = 0
       matlab -nosplash -nodesktop -r "test('D:/', 'D:/test')"
 
       字符串中，"不要转义，直接写即可，'需要转义写为\'
+
+      示例：
+      cmd直接执行命令： && 表示同时执行   exit;表示执行完毕退出
+      cd cali_code && matlab -nosplash -nodesktop -r "one_Iso_fit('64', '833', '993', '12', '23', './vivo1962_0116/packed/master/iso100', 'gbbr', '4000', '3000');exit;"
+      
+      python字符串版本：需要转义
+      run_code = 'cd cali_code && matlab -nosplash -nodesktop -r "one_Iso_fit(\'64\', \'833\', \'\', \'12\', \'23\', \'./vivo1962_0116/packed/master/iso100\', \'gbbr\', \'4000\', \'3000\');exit;"'
+      #+end_src
+***** cmd命令执行.cmd文件
+      #+begin_src 
+      windows 环境下
+      start 60gray.cmd 
       #+end_src
 *** 带有索引的enumerate枚举方法
     #+begin_src 
@@ -5143,6 +5161,21 @@ np.save('./calibrated_coefficient__param_1962.npy',a)
 b = np.load('./calibrated_coefficient_param_1962.npy')
      #+end_src
 **** python操作.txt文件
+***** 读写简洁版本
+      #+begin_src 
+      # modify gray.cmd with correct image width and height
+      with open(CheckDir + '/' + checkdir4 + '.cmd', 'r+') as f:
+          str = f.read()
+          f.seek(0)
+          f.truncate()
+          str2 = str.replace('4000', '%s'%parameters[6]).replace('3000', '%s'%parameters[7])
+          print(str, parameters[6:8])
+          f.write(str2)      
+
+      # f.seek(0) 定位到文件开头
+      # f.truncate() 清空文本内容
+      # 如果没有如上两行，则会执行续写操作
+      #+end_src
 ***** 读取文件
       #+begin_src 
  全数字读取，直接转换为np格式
@@ -5419,6 +5452,13 @@ cfg.rescale
 python model_lgb.py --type 开飞机 --Tag 1
 
 # --rescale 是可选参数 echo 是必选参数
+    #+end_src
+*** 转义字符
+    #+begin_src 
+字符串中"双引号可以直接写
+
+单引号必须转移为\'
+\必须转义为 \\    
     #+end_src
 * Matlab语言
 ** 知识补充 cell的使用
@@ -8514,6 +8554,81 @@ O（1）< O（logn）< O（n）< O（n^2）
 **** 
 
 * 人工智能-AI
+** 基础知识
+*** 卷积操作
+**** 基本说明
+ 卷积操作如下：
+
+ http://cs231n.github.io/assets/conv-demo/index.html
+
+ https://zhuanlan.zhihu.com/p/35333316
+
+ 假设卷积层的输入特征图大小为C_in x H x W, 卷积核大小为K_1 x K_2, padding = P_1 x P_2, stride = S_1 x S_2, filter 数目为C_out。
+
+ 输出的特征图大小为C_out x H_out x W_out, 其中
+
+ 　　H_out = [(H - K_1 + 2P_1) / S_1] + 1
+
+ 　　W_out = [(W - K_2 + 2P_2) / S_2] + 1
+
+ []表示向下取整。
+
+ 卷积核的厚度H, 一般等于前层厚度M（输入通道数，或前层feature map数）
+**** 示例
+信息列表
+Filter个数：32
+原始图像shape：224*224*3
+卷积核大小为：2*2
+
+一个卷积核的参数：
+2*2*3=12         ！！！！！！ *3与输入图的通道数一致，kernel size为 2x2x3 与输入图 224x224x3卷积 通道数必须一致！！！，厚度为3 个数为32
+16个卷积核的参数总额：
+16*12 + 16 =192 + 16 = 208
+weight * x + bias根据这个公式，即可算的最终的参数总额为：208
+*** 计算卷积层的参数个数
+**** 卷积核参数量
+有 C_out 个卷积核
+
+每个卷积核为C_in 层，size K_1 x K_2
+
+C_out x C_in x K_1 x K_2
+**** 乘法计算量：
+ 为了得到输出的特征图的某一个位置的像素值，需要 C_in x K_1 x K_2次乘法操作，而特征图总共有C_out x H_out x W_out个像素，因此总计算量为
+ 　　　　　　　　　　　　　　　　　　　　C_out x H_out x W_out x ( C_in x K_1 x K_2)
+*** 计算卷积层前后的张量维度
+     #+begin_src 
+ 默认参数：
+ torch.nn.Conv2d(in_channels, out_channels, kernel_size, stride=1, padding=0, dilation=1, groups=1, bias=True)
+ 
+ 张量维度：
+ x = [batch_size, channels, height, width]                   [2, 1, 7, 3]
+ Conv2D = [channels, output, kernal_height, kernal_width]    [1, 8, 2, 3]
+ res = [batch_size, output, output_height, output_width]     [2, 8, 6, 1]
+ output_height = height - kernal_height + 1 + 2*padding = 7 - 2 + 1 + 2*0 = 6
+ output_width = width - kernal_width + 1 + 2*padding = 3 - 3 + 1 + 2*0 = 1
+ 计算公式
+ W2=(W1-F+2*P)/S+1,W1是卷积前的图像大小，W2为卷积后，F为卷积核大小，P为填充，S为步长 其中 向下取整
+
+ 计算示例：
+ x = inputs=torch.Tensor([[[[1,2,3],          # [1, 1, 3, ,3]
+           [4,5,6],
+           [7,8,9]]]])
+ conv1=nn.Conv2d(1,2,kernel_size=3,padding=1)
+ conv2=nn.Conv2d(1,2,kernel_size=3)
+
+ x = [1, 1, 3, 3]
+ output1 = [1, 2, 3, 3]
+ output2 = [1, 2, 1, 1]
+
+ 代码示例：
+ import torch
+
+ x = torch.randn(2,1,7,3)
+ conv = torch.nn.Conv2d(1,8,(2,3))
+ res = conv(x)
+
+ print(res.shape)    # shape = (2, 8, 6, 1)    
+     #+end_src
 ** Paper研读
 *** Dr. Amit
 **** Mazaheri_A_Skip_Connection_Architecture_for_Localization_of_Image_Manipulations_CVPRW_2019_paper
