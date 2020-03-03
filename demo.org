@@ -7659,6 +7659,43 @@ set /p p=         #请输入屏幕上显示"请输入"，并会将输入的字�
  for %%f in (./if*) do echo %%f
     #+end_src
 ** 必备操作集锦
+*** 最好用的批量处理文件脚本 借鉴vivo
+    #+begin_src 
+版本一
+@echo off
+setlocal enabledelayedexpansion
+
+for %%F in ("%cd%\Example\*.packed_word") do call :Go "%%F" 
+
+pause
+goto :exit
+
+:Go
+%cd%\PAK2RAW.exe %cd%\Example\ %~n1.packed_word 1 1 2 0
+
+:exit    
+
+版本二
+@echo off
+setlocal enabledelayedexpansion
+
+set width=4000	
+set height=3000
+
+cd ..
+cd ..
+
+for %%F in ("%cd%\*.raw") do call :Go "%%F" 
+
+pause
+goto :exit
+
+:Go
+%cd%\pack2unpack\rawUnpackU10.exe %cd%\%~n1.raw %cd%\%~n1_1.raw !width! !height!
+
+:exit
+
+    #+end_src
 *** 读取txt内容
     #+begin_src 
 delims负责切分字符串，而tokens负责提取字符串
@@ -7699,8 +7736,6 @@ adb pull %%G E:/test_unique/adb
 )
 
 pause    
-
-
 
     #+end_src
 
