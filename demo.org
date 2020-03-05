@@ -4953,6 +4953,10 @@ pts2[pts2 > 1] = 0
  '-'.jion(a)
  1-2-3-4-5
      #+end_src
+**** 检查路径中文件是否存在
+     #+begin_src 
+os.path.exists(path)     
+     #+end_src
 **** os.system类cmd执行命令
 ***** cmd命令执行MATLAB脚本
       #+begin_src 
@@ -5454,12 +5458,19 @@ python model_lgb.py --type 开飞机 --Tag 1
 # --rescale 是可选参数 echo 是必选参数
     #+end_src
 *** 转义字符
-    #+begin_src 
-字符串中"双引号可以直接写
+**** 终极方法
+     #+begin_src 
+可以直接将字符串设置为r''格式
+强制不进行任何转义
+r'E:\test\vivo'     \v是转义字符
+     #+end_src
+**** 部分说明
+     #+begin_src 
+ 字符串中"双引号可以直接写
 
-单引号必须转移为\'
-\必须转义为 \\    
-    #+end_src
+ 单引号必须转移为\'
+ \必须转义为 \\    
+     #+end_src
 *** 列表内部元素 规则查找
     #+begin_src 
 a = [1, 2, 3]
@@ -5470,6 +5481,56 @@ a[a > 1] = 0
     #+begin_src 
 isinstance(A, int)    
     #+end_src
+*** Windows GUI控制脚本 可以用来控制任何软件
+**** 库安装
+     #+begin_src 
+pip install pyautogui.py    
+     #+end_src
+**** 常用命令
+***** 网址
+https://pyautogui.readthedocs.io/en/latest/
+
+https://zhuanlan.zhihu.com/p/41662890
+***** 获取当前鼠标位置
+      #+begin_src 
+def get_mouse_location():
+    screenWidth, screenHeight = pyautogui.size() # Get the size of the primary monitor.
+    currentMouseX, currentMouseY = pyautogui.position() # Get the XY position of the mouse.
+    print(screenHeight, screenWidth, currentMouseX, currentMouseY)
+      #+end_src
+***** 鼠标操作
+      #+begin_src 
+    # 移动到指定位置 + 单击
+    pyautogui.click(1056, 720)
+
+    # 鼠标移动
+    pyautogui.moveTo(1056, 720)
+
+    # 暂停 单位：秒
+    pyautogui.PAUSE = 1
+
+    pyautogui.mouseDown()   #按下鼠标按键（左键）
+
+    pyautogui.mouseUp()     #释放鼠标按键（左键）
+
+    pyautogui.doubleClick() #双击鼠标左键
+
+    pyautogui.rightClick()  #单击鼠标右键
+
+    pyautogui.middleClick() #单击鼠标中键
+      #+end_src
+***** 键盘操作 
+      #+begin_src 
+      # 键入字符串
+      pyautogui.write(raw_name)
+      pyautogui.typewrite(字符串)
+      # pyautogui.write('G:/SenseSRdata/vivo1938_rawdata2/iso_0_300_lr_raw_disk_08_11_noiseratio00/img199_iso279_20-0ms_x2_disk08_11_noiseratio00_003')
+      pyautogui.PAUSE = interval      
+      
+      # 按键
+      pyautogui.typewrite([键盘键字符串])
+      pyautogui.press([键盘键字符串]) 
+      #+end_src
 * Matlab语言
 ** 知识补充 cell的使用
 *** 将矩阵保存到cell里面，从而用一个for循环索引cell的编号来画图
@@ -6920,6 +6981,7 @@ https://blog.csdn.net/ysy950803/article/details/80326832
  ls -R  显示当前路径下的所有文件和文件夹 只显示文件名
 
  ls -la 可以显示当前路径下的符号链接 如在/usr/local路径
+ ls -al 可以显示当前路径下的符号链接 如在/usr/local路径
  查询当前路径下的所有文件信息
  ls -lhi
  
@@ -6979,10 +7041,23 @@ https://blog.csdn.net/ysy950803/article/details/80326832
  显示隐藏的文件夹
  Ctrl + h
 
+ 查询命令所在的位置
+ which + 命令 
+ 例如： which python 
+
  linux硬链接与软链接
  内容-用户数据，即文件数据块 (data block)，数据块是记录文件真实内容的地方；
  文件名-元数据则是文件的附加属性，如文件名、文件大小、创建时间、所有者、文件所在的inode等信息。
  在 Linux 中，元数据中的 inode 号（inode 号即索引节点号）才是文件的唯一标识而非文件名。文件名仅是为了方便人们的记忆和使用，系统或程序通过 inode 号寻找正确的文件数据块。如图1：
+
+ linux软链接建立流程
+ 备份原有/usr/bin/python /usr/bin/pip 通过重命名 或者直接删除如果不需要保存的话 rm -rf /usr/bin/python
+ mv /usr/bin/python /usr/bin/python_bak
+ mv /usr/bin/pip /usr/bin/pip_bak
+
+ 建立可执行程序的软链接
+ sudo ln -s /usr/local/Python-3.6.9/bin/python3 /usr/bin/python
+ sudo ln -s /usr/local/Python-3.6.9/bin/pip3.6 /usr/bin/pip
      #+end_src
 **** dir 检索文件
      #+begin_src 
@@ -7738,7 +7813,10 @@ adb pull %%G E:/test_unique/adb
 pause    
 
     #+end_src
-
+*** windows优先用.cmd文件
+*** os.system执行cmd文件
+必须先进入该文件所在的路径，cmd默认禁止执行脚本，必须在文件路径内才能执行
+os.system('cd %s && start %s'%(root, file))
 * SenseTime-FrameWork
 ** Parrots 基于pytorch的框架
 *** 安装指南
