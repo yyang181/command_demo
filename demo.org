@@ -5091,6 +5091,16 @@ shutil.copytree( olddir, newdir, True/Flase) #把olddir拷贝一份newdir，如�
 shutil.rmtree( src )   #递归删除一个目录以及目录内的所有内容     
      #+end_src
 *** 数据保存-Python合集
+**** with open 模式
+     #+begin_src 
+            若文件不存在   是否覆盖
+r	  只能读	  报错	-
+r+	可读可写	报错	是
+w	  只能写	  创建	是
+w+  可读可写	创建	是
+a　　只能写	创建	否，追加写
+a+	可读可写	创建	否，追加写     
+     #+end_src
 **** python读取.mat文件
      #+begin_src 
 from scipy.io import loadmat
@@ -5105,39 +5115,55 @@ p_green = data['p_green']
 p_red, p_blue, p_green     
      #+end_src
 **** python操作.yaml文件
-注意事项：
-- yml文件中允许直接使用Python list格式的数据的
-- python数据格式dict 不允许直接用list作为值，只能用tuple并且在单元素尾部加逗号
-     #+begin_src 
-import os
-import yaml
+***** yaml原始库
+ 注意事项：
+ - yml文件中允许直接使用Python list格式的数据的
+ - python数据格式dict 不允许直接用list作为值，只能用tuple并且在单元素尾部加逗号
+      #+begin_src 
+ import os
+ import yaml
 
-# 字典格式初始化yaml
-desired_caps = {
-                'platformName': 'Android',
-                'platformVersion': '7.0',
-                'deviceName': 'A5RNW18316011440',
-                'appPackage': 'com.tencent.mm',
-                'appActivity': '.ui.LauncherUI',
-                'automationName': 'Uiautomator2',
-                'unicodeKeyboard': [True,"hh"],
-                'resetKeyboard': True,
-                'noReset': True,
-                'chromeOptions': {'androidProcess': 'com.tencent.mm:tools'}
-                }
+ # 字典格式初始化yaml
+ desired_caps = {
+                 'platformName': 'Android',
+                 'platformVersion': '7.0',
+                 'deviceName': 'A5RNW18316011440',
+                 'appPackage': 'com.tencent.mm',
+                 'appActivity': '.ui.LauncherUI',
+                 'automationName': 'Uiautomator2',
+                 'unicodeKeyboard': [True,"hh"],
+                 'resetKeyboard': True,
+                 'noReset': True,
+                 'chromeOptions': {'androidProcess': 'com.tencent.mm:tools'}
+                 }
 
-# 读取yaml中的内容，字典格式
-with open(output_path, 'r') as f:
-    contents = yaml.load(open(inputname, 'r'), Loader=yaml.FullLoader)
-    contents['exp_name'] = exp_name
-    contents['hr_path'] = hr_path
-    contents['lr_path'] = lr_path
-    contents['dataroot'] = dataroot
+ # 读取yaml中的内容，字典格式
+ with open(output_path, 'r') as f:
+     contents = yaml.load(open(inputname, 'r'), Loader=yaml.FullLoader)
+     contents['exp_name'] = exp_name
+     contents['hr_path'] = hr_path
+     contents['lr_path'] = lr_path
+     contents['dataroot'] = dataroot
 
-# 字典格式，写入yaml中的内容
-with open(output_path, 'w', encoding="utf-8") as nf:
-    yaml.dump(contents, nf)
-     #+end_src
+ # 字典格式，写入yaml中的内容
+ with open(output_path, 'w', encoding="utf-8") as nf:
+     yaml.dump(contents, nf)
+      #+end_src
+***** ruamel.yaml高级库
+      #+begin_src 
+      # 读取yaml内容
+    with open(yml_path, 'r',encoding="utf-8") as f:
+        contents = ruamel.yaml.round_trip_load(f)
+        project_name = contents['project_name']
+        lens = contents['CheckDirs2']
+        CheckDirs3 = contents['CheckDirs3']
+        npy_iso = contents['npy_iso']      
+
+     # 写入yml中 可保留字典键值顺序和注释
+     with open(output_path, 'w+', encoding='utf8') as nf:
+         ruamel.yaml.dump(contents, nf, default_flow_style=False, allow_unicode=True, Dumper = ruamel.yaml.RoundTripDumper)
+
+      #+end_src
 **** python操作.npy文件
      #+begin_src 
 import numpy as np
