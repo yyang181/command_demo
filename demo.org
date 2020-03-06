@@ -5423,6 +5423,10 @@ print pop_obj   # 输出 ：我的博客地址
      #+begin_src 
 dict_data = {key: {key_: val_+100 for key_, val_ in val.items()} 
              for key, val in dict_data.items()}     
+
+示例：
+dict = {'Name': 89, 'Age': 7, 'Class': 98}
+dict1 = {key : str(value) for key, value in dict.items()}
      #+end_src
 *** 画图 
 **** matplotlib
@@ -5544,7 +5548,9 @@ def get_mouse_location_interactively():
       #+end_src
 ***** 安全模式
       #+begin_src 
-当鼠标移动到upper-left位置的时候，中止程序
+!!! 默认已开启safe mode 屏幕four corners
+
+当鼠标移动到屏幕四个顶点位置的时候，中止程序
 pyautogui.FAILSAFE = True      
       #+end_src
 ***** 鼠标操作
