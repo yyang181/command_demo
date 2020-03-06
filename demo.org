@@ -5419,6 +5419,11 @@ site= {'name': '我的博客地址', 'alexa': 10000, 'url':'http://blog.csdn.net
 pop_obj=site.pop('name') # 删除要删除的键值对，如{'name':'我的博客地址'}这个键值对
 print pop_obj   # 输出 ：我的博客地址
      #+end_src
+**** 字典内容批量处理 简洁写法
+     #+begin_src 
+dict_data = {key: {key_: val_+100 for key_, val_ in val.items()} 
+             for key, val in dict_data.items()}     
+     #+end_src
 *** 画图 
 **** matplotlib
      #+begin_src 
@@ -5536,6 +5541,11 @@ def get_mouse_location_interactively():
             print('\b' * len(positionStr), end='', flush=True)
     except KeyboardInterrupt:
         print('\n')
+      #+end_src
+***** 安全模式
+      #+begin_src 
+当鼠标移动到upper-left位置的时候，中止程序
+pyautogui.FAILSAFE = True      
       #+end_src
 ***** 鼠标操作
       #+begin_src 
