@@ -5491,12 +5491,25 @@ pip install pyautogui.py
 https://pyautogui.readthedocs.io/en/latest/
 
 https://zhuanlan.zhihu.com/p/41662890
-***** 获取当前鼠标位置
+***** 获取当前鼠标位置 + 交互式获取鼠标位置
       #+begin_src 
+import pyautogui, sys
+
 def get_mouse_location():
     screenWidth, screenHeight = pyautogui.size() # Get the size of the primary monitor.
     currentMouseX, currentMouseY = pyautogui.position() # Get the XY position of the mouse.
     print(screenHeight, screenWidth, currentMouseX, currentMouseY)
+
+def get_mouse_location_interactively():
+    print('Press Ctrl-C to quit.')
+    try:
+        while True:
+            x, y = pyautogui.position()
+            positionStr = 'X: ' + str(x).rjust(4) + ' Y: ' + str(y).rjust(4)
+            print(positionStr, end='')
+            print('\b' * len(positionStr), end='', flush=True)
+    except KeyboardInterrupt:
+        print('\n')
       #+end_src
 ***** 鼠标操作
       #+begin_src 
@@ -5535,8 +5548,12 @@ def get_mouse_location():
       pyautogui.hotkey('ctrl', 'a') # 全选
 
       # 热键字典
-      
+      见网址2
       #+end_src
+***** 消息弹窗
+      pyautogui.alert('这个消息弹窗是文字+OK按钮')
+      pyautogui.confirm('这个消息弹窗是文字+OK+Cancel按钮')
+      pyautogui.prompt('这个消息弹窗是让用户输入字符串，单击OK')
 * Matlab语言
 ** 知识补充 cell的使用
 *** 将矩阵保存到cell里面，从而用一个for循环索引cell的编号来画图
