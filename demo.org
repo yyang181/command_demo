@@ -5530,6 +5530,12 @@ def get_mouse_location():
       # 按键
       pyautogui.typewrite([键盘键字符串])
       pyautogui.press([键盘键字符串]) 
+
+      # 组合热键
+      pyautogui.hotkey('ctrl', 'a') # 全选
+
+      # 热键字典
+      
       #+end_src
 * Matlab语言
 ** 知识补充 cell的使用
