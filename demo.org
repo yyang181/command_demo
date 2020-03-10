@@ -2143,6 +2143,15 @@ M-x 运行iimage-mode可以在emacs中直接显示/隐藏图片
 #+CAPTION: 电话拨打过快过多   设置图片标题
 #+ATTR_HTML: :width 100%   设置图片尺寸：表示宽度和浏览器页面宽度相同    
     #+end_src
+*** 锚点
+    #+begin_src 
+定义锚点位置：
+<<定位1>>
+
+假如想要返回到“定位1”的位置，即可定义如下连接:
+[[定位1][返回定位1]]
+来自 <https://www.cnblogs.com/halberd-lee/p/10614222.html> 
+    #+end_src
 *** 更好的解决方案: org-download + imagemagick
 **** 配置方法 
 ***** 安装
@@ -2611,6 +2620,7 @@ $$    $$ 插入行间公式
 #+end_src
 ** 必备操作集锦
 *** org mode文档开头配置汇总说明
+最优的可视化方式 org模式转换方式为 org markdown 
     #+begin_src 
 #+LATEX_HEADER: \usepackage[colorlinks=true,linkcolor=red]{hyperref}
 #+LATEX_CLASS: org-article
@@ -2654,6 +2664,11 @@ https://blog.csdn.net/weixin_34234823/article/details/92663464
 *** *文本加粗的方式*
     #+begin_src 
 *abc* 将abc加粗    
+    #+end_src
+*** emacs内容元数据
+    #+begin_src 
+<s tab 代码块
+<e tab 例子    
     #+end_src
 * Python 语言
 ** 系列软件安装指南
@@ -5596,6 +5611,186 @@ pyautogui.FAILSAFE = True
       pyautogui.alert('这个消息弹窗是文字+OK按钮')
       pyautogui.confirm('这个消息弹窗是文字+OK+Cancel按钮')
       pyautogui.prompt('这个消息弹窗是让用户输入字符串，单击OK')
+*** python发邮件
+**** 模块
+ smtplib模块主要负责发送邮件，email模块主要负责构造邮件
+**** 授权码
+授权码，从设置-账户
+作用：代替密码
+**** 封装的发邮件脚本 + windows 应用程序控制
+     #+begin_src 
+# 1. add automatic output path setting
+# 2. interactively get currentmouse position
+# 3. enable safe mode
+# 4. status check and set email alart
+
+import os
+import pyautogui
+import smtplib
+from email.mime.text import MIMEText
+from email.header import Header
+
+def status_check(num, num_bmps):
+# check if the software working correctly
+    if num <= num_bmps:
+        pass
+    else:
+        email_alart()
+        raise AssertionError('The program stopped unnornally')
+
+def email_alart():
+# send an email to alart 
+    host = 'smtp.qq.com'
+    post = 465
+
+    password = 'smaqseauflxobgdb'
+
+    msg_from = '171864200@qq.com'
+    msg_to = 'yangyixin@sensetime.com'
+
+    subject = "数据仿真报错"
+    content = "测试：数据仿真报错，请手动重启手机连接软件"
+
+    msg = MIMEText(content)
+    msg['Subject'] = subject
+    msg['From'] = msg_from
+    msg['To'] = msg_to
+
+    try:
+        # 通过ssl方式发送，服务器地址，端口
+        s = smtplib.SMTP_SSL(host, post)
+        # 登录到邮箱
+        s.login(msg_from, password)
+        # 发送邮件：发送方，收件方，要发送的消息
+        s.sendmail(msg_from, msg_to, msg.as_string())
+        print('成功')
+    except s.SMTPException as e:
+        print(e)
+    finally:
+        s.quit()
+
+def get_mouse_location():
+    screenWidth, screenHeight = pyautogui.size() # Get the size of the primary monitor.
+    currentMouseX, currentMouseY = pyautogui.position() # Get the XY position of the mouse.
+    print(screenHeight, screenWidth, currentMouseX, currentMouseY)
+
+def get_mouse_location_interactively():
+    print('Press Ctrl-C to quit.')
+    try:
+        while True:
+            x, y = pyautogui.position()
+            positionStr = 'X: ' + str(x).rjust(4) + ' Y: ' + str(y).rjust(4)
+            print(positionStr, end='')
+            print('\b' * len(positionStr), end='', flush=True)
+    except KeyboardInterrupt:
+        print('\n')
+
+def set_bmp_path(bmp_path):
+    ### set output file name
+    pyautogui.click(1056, 720)
+    pyautogui.PAUSE = interval
+
+    pyautogui.click(1056, 720)
+    pyautogui.PAUSE = interval
+
+    pyautogui.hotkey('ctrl', 'a')
+
+    pyautogui.press('backspace')
+    pyautogui.PAUSE = interval
+
+    pyautogui.write(bmp_path)
+    pyautogui.PAUSE = interval
+
+    pyautogui.click(1056, 720)
+    pyautogui.PAUSE = interval
+
+def autogui(interval, delay_per_raw, raw_name):
+    ### safe mode: allow you to abort this program when moving mouse to the upper-left
+    # open as default
+    # pyautogui.FAILSAFE = True
+
+    ### processing each file
+    # click: clear
+    pyautogui.click(1056, 720)
+    pyautogui.PAUSE = interval
+
+    # click: add
+    pyautogui.click(901, 723)
+    pyautogui.PAUSE = interval
+
+    # type in raw_name
+    pyautogui.write(raw_name)
+    # pyautogui.write('G:/SenseSRdata/vivo1938_rawdata2/iso_0_300_lr_raw_disk_08_11_noiseratio00/img199_iso279_20-0ms_x2_disk08_11_noiseratio00_003')
+    pyautogui.PAUSE = interval
+
+    # click: open
+    pyautogui.click(1548, 758)
+    pyautogui.PAUSE = interval
+
+    # click: select all
+    pyautogui.click(584, 751)
+    pyautogui.PAUSE = interval
+
+    # click: batch
+    pyautogui.click(662, 752)
+    pyautogui.PAUSE = interval
+
+    # wait for the end of processing
+    pyautogui.PAUSE = delay_per_raw
+
+    # click: clear
+    pyautogui.click(1056, 720)
+    pyautogui.PAUSE = interval
+
+def raw2bmp(raw_path, bmp_path, interval, delay_per_raw):
+    # setting bmp file path in pissca
+    # set_bmp_path(bmp_path)
+
+    # start
+    raws = sorted(os.listdir(raw_path.replace('\\', '/')))
+    bmps = sorted(os.listdir(bmp_path.replace('\\', '/')))
+    total_num = int(len(raws) / 3)
+    num = 1
+    for raw in raws:
+        if raw.endswith('.raw'):
+            img_name = raw.split('.')[0]
+            if os.path.exists(bmp_path + '/' + img_name + '_0.bmp'):
+                print('%s/%s %s has a bmp file exists'%(num, total_num, raw))
+                num += 1
+            else:
+                print('%s/%s start processing raw %s'%(num, total_num, raw))
+                num += 1
+
+                raw_name_win = raw_path + '/' + img_name
+                raw_name = raw_name_win.replace('/', '\\')
+
+                print(raw_name)
+                autogui(interval, delay_per_raw, raw_name)
+
+        # check if .bmp file was saved successfully
+        status_check(num - 1, len(sorted(os.listdir(bmp_path.replace('\\', '/')))))
+
+if __name__ == '__main__':
+    # data root
+    raw_path = r'G:\SenseSRdata\vivo1938_rawdata2\iso_0_300_lr_raw_disk_08_11_noiseratio00'
+    bmp_path = r'G:\SenseSRdata\vivo1938_traindata\iso_0_300_lr_disk_08_11_noise00'
+
+    interval = 1
+    delay_per_raw = 15
+
+    # get currentmousex, currentmousey
+    # get_mouse_location_interactively()
+
+    # main function for raw2bmp
+    raw2bmp(raw_path, bmp_path, interval, delay_per_raw)     
+     #+end_src
+**** raise AssertionError
+     #+begin_src 
+assert expression
+等价于
+if not expression:
+    raise AssertionError
+     #+end_src
 * Matlab语言
 ** 知识补充 cell的使用
 *** 将矩阵保存到cell里面，从而用一个for循环索引cell的编号来画图
@@ -7103,6 +7298,9 @@ https://blog.csdn.net/ysy950803/article/details/80326832
  -r 就是向下递归，不管有多少级目录，一并删除；
  -f 就是直接强行删除，不作任何提示的意思。
 
+ 想同时删除多个文件
+ rm -r /sdcard/dcim/camera/IMG_20200310_141841.jpg /sdcard/dcim/camera/IMG_20200310_141839_1.jpg
+
  显示隐藏的文件夹
  Ctrl + h
 
@@ -7185,6 +7383,14 @@ dir ./*raw 仅在cmd窗口中有效
       A：在当前光标所在行的行尾，转换为输入模式
       O：在当前光标所在行的上方，新建一行，并转为输入模式；    
       #+end_src
+**** 查看cuda版本
+     #+begin_src 
+cuda 版本
+cat /usr/local/cuda/version.txt     
+
+cudnn 版本
+cat /usr/local/cuda/include/cudnn.h | grep CUDNN_MAJOR -A 2
+     #+end_src
 *** terminal
 **** 常用快捷键
  https://blog.csdn.net/u014754386/article/details/80956816
