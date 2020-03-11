@@ -317,6 +317,8 @@ abbcdd abb cdd
 []表示仅识别出现过的字符
 (ab)  将括号中字符作为一个分组
 {}表示出现的次数
+
+\ 表示转义
 #+begin_src 
 m = re.findall('[(](.*?)[)]', img)
 
@@ -5521,12 +5523,31 @@ r'E:\test\vivo'     \v是转义字符
  单引号必须转移为\'
  \必须转义为 \\    
      #+end_src
-*** 列表内部元素 规则查找
-    #+begin_src 
-a = [1, 2, 3]
-a[a==1] = 0    
-a[a > 1] = 0
-    #+end_src
+*** 列表操作
+**** 内部元素 规则查找
+     #+begin_src 
+ a = [1, 2, 3]
+ a[a==1] = 0    
+ a[a > 1] = 0
+     #+end_src
+**** 去除重复元素
+     #+begin_src 
+list l 
+去掉重复元素之后的列表
+set(l)     
+     #+end_src
+**** 排列组合
+     #+begin_src 
+from itertools import product
+
+l = [1, 2, 3]
+print(list(product(l, l)))
+print(list(product(l, repeat=4)))
+
+# 组合
+from itertools import combinations
+print(list(combinations([1,2,3,4,5], 2)))     
+     #+end_src
 *** 检查数据类型
     #+begin_src 
 isinstance(A, int)    
@@ -5784,13 +5805,18 @@ if __name__ == '__main__':
     # main function for raw2bmp
     raw2bmp(raw_path, bmp_path, interval, delay_per_raw)     
      #+end_src
-**** raise AssertionError
+*** raise AssertionError
      #+begin_src 
 assert expression
 等价于
 if not expression:
     raise AssertionError
      #+end_src
+*** 判断图像是否完全相等
+如此简单！！！
+    #+begin_src 
+open(img1,"rb").read() == open(img2,"rb").read()    
+    #+end_src
 * Matlab语言
 ** 知识补充 cell的使用
 *** 将矩阵保存到cell里面，从而用一个for循环索引cell的编号来画图
@@ -7683,6 +7709,20 @@ ssh yangyixin@jump01.sz.sensetime.com
 cd SenseSR_trainModel_lmdb     
     #+end_src
 
+*** 必备操作 
+**** sbatch参数详细说明 + 多GPU同时运行的命令
+     #+begin_src 
+商汤集群最多同时使用的GPU为4
+ –gres=gpu:8    每个节点使用的GPU数目   Nodes-per-gpu
+ -n 1           使用的进程数目 = cpu核心 = 线程数目              一般固定设为1即可
+ -N 1            节点数目 每个节点都有8张卡！！！！！！即相当于几个服务器 固定设为1即可
+
+多GPU运行示例：
+srun -p Pixel --gres=gpu:4 -N 1 -n 1 --job-name=abpn_test python demo_4x.py
+意义：
+N 1 一个计算节点 
+每个计算节点调用了 n1个线程 gres4个GPU
+     #+end_src
 ** 必备操作集锦
 *** emacs中Python代码flycheck出现大量error
 **** 解决方案尝试：安装Python3.8 并设置为默认的python解释器
