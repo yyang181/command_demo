@@ -7723,6 +7723,29 @@ srun -p Pixel --gres=gpu:4 -N 1 -n 1 --job-name=abpn_test python demo_4x.py
 N 1 一个计算节点 
 每个计算节点调用了 n1个线程 gres4个GPU
      #+end_src
+**** seninfo崩溃之后的备用方法 cinfo 用来查询空卡
+**** 多卡同时训练的方法
+***** tensorflow版本
+      #+begin_src 
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "0, 1, 2, 3"     
+      #+end_src
+***** pytorch版本
+！！！需要注意吧batch size调大N倍
+      #+begin_src 
+import torch.nn as nn
+model=nn.DataParallel(model,device_ids=[0,1,2]) # multi-GPU      
+
+示例二
+import torch.nn as nn
+
+# instantiation
+net = MyNet.Net()
+# Parallel Computing
+net = nn.DataParallel(net)
+net = net.cuda()
+      #+end_src
+
 ** 必备操作集锦
 *** emacs中Python代码flycheck出现大量error
 **** 解决方案尝试：安装Python3.8 并设置为默认的python解释器
