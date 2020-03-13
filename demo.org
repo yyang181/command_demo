@@ -7254,10 +7254,46 @@ https://blog.csdn.net/ysy950803/article/details/80326832
 
  cat + 文件名 显示文件内容
 
+ 文件类资源管理：
  df -h查看系统中文件的使用情况
  du -sh * 查看当前目录下各个文件及目录占用空间大小
  du -sh /var/cache/apt/archives 查看路径里面文件的大小
  du -h --max-depth=1 ./     查看某一目录下的磁盘空间占用情况，方便删除大额数据
+
+ 计算资源管理：RSS是真实的内存的占用
+ top 
+s – 改变画面更新频率
+l – 关闭或开启第一部分第一行 top 信息的表示
+t – 关闭或开启第一部分第二行 Tasks 和第三行 Cpus 信息的表示
+m – 关闭或开启第一部分第四行 Mem 和 第五行 Swap 信息的表示
+N – 以 PID 的大小的顺序排列表示进程列表
+P – 以 CPU 占用率大小的顺序排列进程列表
+M – 以内存占用率大小的顺序排列进程列表
+h – 显示帮助
+n – 设置在进程列表所显示进程的数量
+q – 退出 top
+s – 改变画面更新周期
+
+ free显示当前内存占用
+
+ ps 列出当前用户所属的进程
+ ps -aux 列出所有用户进程
+ ps -aux | grep yangyixin  查找所有跟yangyixin有关的进程 ps -aux中（a指代all——所有的进程，u指代userid——执行该进程的用户id，x指代显示所有程序，不以终端机来区分）
+ ps系列
+ 简练写法：
+ ps -aux | sort -k3nr | head -K       K表示前K个
+ | head -1表示显示第一列，即标题列
+ | sort -r 表示反向排序，-n表示按数字排序，-k4表示列的第4个字符。
+ linux下获取占用CPU资源最多的10个进程，可以使用如下命令组合：
+ ps aux|head -1;ps aux|grep -v PID|sort -rn -k +3|head 
+ linux下获取占用内存资源最多的10个进程，可以使用如下命令组合：
+ ps aux|head -1;ps aux|grep -v PID|sort -rn -k +4|head 
+ 该命令组合实际上是下面两句命令：
+ ps aux|head -1
+ ps aux|grep -v PID|sort -rn -k +3|head
+ 其中第一句主要是为了获取标题（USER PID %CPU %MEM VSZ RSS TTY STAT START TIME COMMAND）。
+ 接下来的grep -v PID是将ps aux命令得到的标题去掉，即grep不包含PID这三个字母组合的行，再将其中结果使用sort排序。
+ sort -rn -k +3该命令中的-rn的r表示是结果倒序排列，n为以数值大小排序，而-k +3则是针对第3列的内容进行排序，再使用head命令获取默认前10行数据。(其中的|表示管道操作)
 
  which python 查找系统PATH目录下的可执行文件
  whereis python 查看Python所在位置 查找二进制（命令）、源文件、man文件 查找的面比which要广
