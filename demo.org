@@ -3421,6 +3421,12 @@ def thresholding_interative(img, grad_thx_min =211, grad_thx_max =255,grad_thy_m
     plt.imshow(color_binary*255, cmap = "gray")
     #return color_binary.astype(np.float32), combined, s_binary     
      #+end_src
+*** module 自动重新加载
+    #+begin_src 
+两行命令在开头执行一次即可
+cell1: %load_ext autoreload
+cell2: %autoreload 2    
+    #+end_src
 ** emacs中测试.py文件
 *** 将.py中的代码导入ipython块中
     #+begin_src 
@@ -4775,19 +4781,29 @@ print(r)
 
      #+end_src
 *** 判断变量是否已经被定义，是否存在
-    #+begin_src 
-方法一
-user_name 是变量名，需要在外面加上分号
-if isset('user_name'): 
-  print 'user_name is defined'
-else
-  print 'user_name is not defined'
+**** names定义域
+     #+begin_src 
+ 方法一
+ user_name 是变量名，需要在外面加上分号
+ if isset('user_name'): 
+   print 'user_name is defined'
+ else
+   print 'user_name is not defined'
 
-方法二
-a是变量名，需要加上分号
-'a' in vars()     
-输出结果为TRUE、FALSE
-    #+end_src
+ 方法二
+ a是变量名，需要加上分号
+ 'a' in vars()     
+ 输出结果为TRUE、FALSE
+     #+end_src
+**** 类中的函数、方法
+     #+begin_src 
+如果为类中的函数/方法,要用hasattr
+var = 'upscale_factor1'
+hasattr(opt, var) 判断是否存在
+
+获取函数或者方法
+invert_op = getattr(self, "invert_op", None)     
+     #+end_src
 *** 在图片上添加文字、直线、和点（圆）以及cv2.imshow方法快速展示图形结果（便于debug）
 **** 画图方法
       #+begin_src 
@@ -4924,6 +4940,13 @@ a = np.floor(a)
 pts2[:,0] = pts2[:,0] + 360
 pts2[pts2 > 1] = 0 
      #+end_src
+**** reshape
+     #+begin_src 
+reshape:在不改变原数组数据的情况下，将它reshape成一个新的维度。
+
+与resize的区别在于，如果维度不匹配reshape会报错
+来自 <https://blog.csdn.net/orangefly0214/article/details/83243912>      
+     #+end_src
 *** os库
 **** 路径分割符号
      #+begin_src 
@@ -4946,6 +4969,14 @@ pts2[pts2 > 1] = 0
  print (os.path.abspath('.'))#获得当前工作目录
  print (os.path.abspath('..'))#获得当前工作目录的父目录  注意，结尾不带/
  print (os.path.abspath(os.curdir))#获得当前工作目录
+     #+end_src
+**** 获取上级目录
+     #+begin_src 
+获取上级目录
+os.path.abspath(os.path.dirname('f:\\github\\code_test\\python\\sensetime'))
+
+os.path.dirname可以获取指定路径的上一级目录
+abspath获取绝对路径     
      #+end_src
 **** 索引路径下的所有文件
      #+begin_src 
@@ -5417,8 +5448,9 @@ type
 dir 
 help    
     #+end_src
-*** 字典操作不能简单的复制！为浅拷贝
+*** 字典
 **** 注意事项
+ 字典操作不能简单的复制！为浅拷贝
  实例中 dict2 其实是 dict1 的引用（别名），所以输出结果都是一致的，dict3 父对象进行了深拷贝，不会随dict1 修改而修改，子对象是浅拷贝所以随 dict1 的修改而修改。
      #+begin_src 
  dict1 =  {'user':'runoob','num':[1,2,3]}
@@ -5450,18 +5482,164 @@ dict_data = {key: {key_: val_+100 for key_, val_ in val.items()}
 dict = {'Name': 89, 'Age': 7, 'Class': 98}
 dict1 = {key : str(value) for key, value in dict.items()}
      #+end_src
+**** 对字典按value或者key进行排序
+     #+begin_src 
+a = {0: 10941, 1: 10943, 2: 10943, 3: 8559, 4: 0, 5: 0, 6: 0, 7: 0}
+sorted(a.items(), key = lambda x:x[1])  
+a.items()实际上是将d转换为可迭代对象，
+key=lambda item:item[0]的话则是选取第一个元素作为比较对象，也就是key值作为比较对象
+key=lambda item:item[1]的话则是选取第二个元素作为比较对象，也就是value值作为比较对象
+
+
+lambda作为一个表达式，定义了一个匿名函数，上例的代码x为入口参数，x+1为函数体，用函数来表示为：
+1 def g(x):
+2     return x+1
+     #+end_src
+**** 判断字典中是否有某个键值
+     #+begin_src 
+d = {"key1": 10, "key2": 23}
+if "key1" in d:
+    print("this will execute")
+if "nonexistent key" in d:
+    print("this will not")
+
+来自 <https://stackoverflow.com/questions/1602934/check-if-a-given-key-already-exists-in-a-dictionary>      
+     #+end_src
+*** 列表
+**** 获取重复元素的数目和位置
+     #+begin_src 
+X = [-1, 0, 1, 0, 1, 2, 1, 2]    
+# 获取重复元素的数目和位置
+result = {}
+for i in set(X):
+    id1 = [j for j,x in enumerate(X) if x==i]
+    result[i] = id1
+     #+end_src
+**** 判断两个列表是否完全相等
+     #+begin_src 
+1. a=[1,-1,0]
+2. b=[1,-1,0]
+3. c=[-1,1,0]
+
+import operator
+operator.eq(a,c)
+
+来自 <https://blog.csdn.net/baidu_15113429/article/details/80564114>      
+     #+end_src
+**** 截取np.narray
+     #+begin_src 
+中的某行某列
+Z = [0,2]   #定义行数
+d = [2,3]   #定义列数
+
+#代码
+C_zd = C[z,d]      
+     #+end_src
+**** 交叉concatenate
+     #+begin_src 
+Few approaches with stacking could be suggested -
+np.vstack((A,B)).ravel('F')
+np.stack((A,B)).ravel('F')
+np.ravel([A,B],'F')
+
+Sample run -
+In [291]: A
+Out[291]: array([3, 5, 6])
+In [292]: B
+Out[292]: array([13, 15, 16])
+In [293]: np.vstack((A,B)).ravel('F')
+Out[293]: array([ 3, 13,  5, 15,  6, 16])
+In [294]: np.ravel([A,B],'F')
+Out[294]: array([ 3, 13,  5, 15,  6, 16])
+
+来自 <https://stackoverflow.com/questions/47393362/concatenate-two-arrays-in-python-with-alternating-the-columns-in-numpy>      
+     #+end_src
+**** expand 与 append的区别
+append可以将整个元组、列表当成一个元素添加进愿列表中
+
+expand会将列表、元组拆分成单元素添加进原列表
 *** 画图 
 **** matplotlib
-     #+begin_src 
-import matplotlib.pyplot as plt
+***** 示例 不完整
+      #+begin_src 
+ import matplotlib.pyplot as plt
 
-color_name = 'red'
-plt.title(color_name)
-plt.plot(x, sorted(y_red))
-plt.plot(x, y_red_gt)
-plt.savefig(color_name + '.png')
+ color_name = 'red'
+ plt.title(color_name)
+ plt.plot(x, sorted(y_red))
+ plt.plot(x, y_red_gt)
+ plt.ylabel("Grade")
+ plt.ylabel("number")
+ plt.savefig(color_name + '.png', dpi=600)
+ plt.show()
+      #+end_src
+***** 功能拆分
+      #+begin_src 
+坐标轴标题
+plt.xlabel("Grade")
+plt.ylabel("number")      
+
+
+线型、风格设定说明
+https://www.cnblogs.com/liutongqing/p/6985805.html
+      #+end_src
+***** 中文字体解决
+      #+begin_src 
+中文字体
+# 简历绩点图
+import matplotlib.pyplot as plt
+import numpy as np
+plt.rcParams['font.sans-serif']=['SimHei'] #显示中文标签
+
+# UCR
+n = 3
+index_ls = ['Fall 2017','Winter 2018','Spring 2018']
+x = range(n)
+y1 = [2.43, 3.66, 4]
+y11 = np.ones(n) * 3.28
+
+fig = plt.figure(figsize=(12, 12))
+# fig = plt.figure()
+plt.plot(x, y1, color='r', linestyle='-', markerfacecolor='blue',marker='o')
+plt.plot(x, y11, color='b', linestyle='--')
+for a, b in zip(x, y1):  
+    plt.text(a, b, b,ha='center', va='bottom', fontsize=30)
+plt.text(x[0], y11[0], '平均GPA：3.28', ha='left', va='bottom', fontsize=30)
+
+plt.title(r"加州大学河滨分校每学期绩点", fontsize=30)
+plt.xlabel('学期/quarter制',fontsize=30,alpha=0.5)
+plt.ylabel('绩点/4分制',fontsize=30,alpha=0.5)
+plt.xticks(x,index_ls, size = 15)
+plt.yticks(size = 15)
+
+plt.savefig('UCR.png')
 plt.show()
-     #+end_src
+
+# UESTC
+n = 6
+index_ls = ['Fall 2013', 'Spring 2014', 'Fall 2014', 'Spring 2015', 'Fall 2016', 'Spring 2016'] 
+x = range(n)
+y2 = [3.10, 2.74, 3.80, 3.95, 4.00, 3.97]
+y22 = np.ones(n) * 3.60
+
+fig = plt.figure(figsize=(12, 12))
+# fig = plt.figure()
+plt.plot(x, y2, color='r', linestyle='-', markerfacecolor='blue',marker='o')
+plt.plot(x, y22, color='b', linestyle='--')
+for a, b in zip(x, y2):  
+    plt.text(a, b, b,ha='center', va='bottom', fontsize=30)
+    plt.text(x[0], y22[0], '平均GPA：3.60', ha='left', va='bottom', fontsize=30)
+
+plt.title(r"电子科技大学每学期绩点", fontsize=30)
+plt.xlabel('学期/学年制',fontsize=20,alpha=0.5)
+plt.ylabel('绩点/4分制',fontsize=20,alpha=0.5)
+plt.xticks(x,index_ls, size = 15)
+plt.yticks(size = 15)
+
+plt.savefig('UESTC.png')
+plt.show()
+      #+end_src
+
 *** 动态变量
 **** 使用命令空间
       #+begin_src 
@@ -5486,34 +5664,54 @@ for i in range(5):
 
 print(var0, var1, var2, var3 ,var4)
 0 1 2 3 4
-
      #+end_src
-*** 参数解析 parse args 
+**** 对于class，推荐使用setattr()方法
+     #+begin_src 
+setattr给对象添加属性或者方法
+getattr setattr
+
+来自 <https://www.cnblogs.com/Presley-lpc/p/9153865.html>      
+     #+end_src
+*** 全局变量
     #+begin_src 
-import argparse
-
-def parse_args():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("echo",help="echo the string")
-    parser.add_argument('--rescale', type=float, default=1.0, help='Rescaled LR Rate')
-    parser.add_argument("--pb_path", type=str, default='./pretrained_model/FALSR-A.pb')
-    parser.add_argument("--save_path", type=str, default='./result/')
-    return parser.parse_args()    
-
-if __name__ == '__main__':
-    cfg = parse_args()
-    pb_name = cfg.pb_path
-    save_path = cfg.save_path
-
-#定位参数
-cfg.echo
-cfg.rescale
-
-# 命令行使用
-python model_lgb.py --type 开飞机 --Tag 1
-
-# --rescale 是可选参数 echo 是必选参数
+global需要在函数内部声明，若在函数外声明，则函数依然无法操作x
+来自 <https://blog.csdn.net/xtingjie/article/details/71210182>     
     #+end_src
+*** 参数解析 parse args 
+**** 基本用法
+     #+begin_src 
+ import argparse
+
+ def parse_args():
+     parser = argparse.ArgumentParser()
+     parser.add_argument("echo",help="echo the string")
+     parser.add_argument('--rescale', type=float, default=1.0, help='Rescaled LR Rate')
+     parser.add_argument("--pb_path", type=str, default='./pretrained_model/FALSR-A.pb')
+     parser.add_argument("--save_path", type=str, default='./result/')
+     return parser.parse_args()    
+
+ if __name__ == '__main__':
+     cfg = parse_args()
+     pb_name = cfg.pb_path
+     save_path = cfg.save_path
+
+ #定位参数
+ cfg.echo
+ cfg.rescale
+
+ # 命令行使用
+ python model_lgb.py --type 开飞机 --Tag 1
+
+ # --rescale 是可选参数 echo 是必选参数
+
+ action作用是开关，传入该参数的时候，将该参数设置为true，默认值为false
+ parser.add_argument('--multiprocessing-distributed', action='store_true', help='Use multi-processing distributed training to launch')
+     #+end_src
+**** jupyter notebook用法
+     #+begin_src 
+args不为空导致报错，直接置空即可
+opt = parser.parse_args(args=[])     
+     #+end_src
 *** 转义字符
 **** 终极方法
      #+begin_src 
@@ -5810,18 +6008,109 @@ if __name__ == '__main__':
     # main function for raw2bmp
     raw2bmp(raw_path, bmp_path, interval, delay_per_raw)     
      #+end_src
-*** raise AssertionError
+*** try/raise AssertionError
      #+begin_src 
 assert expression
 等价于
 if not expression:
     raise AssertionError
+
+try:
+    os.mkdir(self.exp_dir)
+    os.mkdir(self.log_dir)
+    os.mkdir(self.checkpoint_dir)
+    os.mkdir(self.sample)
+    os.mkdir(self.web)
+    os.mkdir(self.img)
+    os.mkdir(self.test_dir)
+    print('Creating: %s\n          %s\n          %s\n          %s\n          %s'% (self.exp_dir, self.log_dir, self.sample, self.checkpoint_dir, self.test_dir))
+except NotImplementedError:
+    raise Exception('Check your dir.')
+except FileExistsError:
+    pass
      #+end_src
 *** 判断图像是否完全相等
 如此简单！！！
     #+begin_src 
 open(img1,"rb").read() == open(img2,"rb").read()    
     #+end_src
+*** 多GPU操作
+**** 基本概念
+     #+begin_src 
+ 设置可用的GPU ID
+ import os
+ os.environ['CUDA_VISIBLE_DEVICES'] = '0,1,2,3,4,5'
+ print(torch.cuda.device_count()) # 显示当前所用的GPU个数    
+
+ 分布式多GPU计算：3种多线程的实现方式
+ 1. slurm -n4 --ntasks-per-node=4
+ slurm初始化训练环境  指定task per node等  全局执行
+     # 初始化分布式训练环境
+     os.environ['SLURM_NTASKS']          #可用作world size
+     os.environ['SLURM_NODEID']          #node id
+     os.environ['SLURM_PROCID']          #可用作全局rank
+     os.environ['SLURM_LOCALID']         #local_rank
+     os.environ['SLURM_STEP_NODELIST']   #从中取得一个ip作为通讯ip
+     os.environ['SLURM_TASKS_PER_NODE']  # 每个节点的GPU数目
+     print('SLURM_NTASKS: %s SLURM_LOCALID: %s SLURM_NODEID: %s SLURM_PROCID: %s SLURM_STEP_NODELIST %s'%(str(os.environ['SLURM_NTASKS']), str(os.environ['SLURM_LOCALID']), str(os.environ['SLURM_NODEID']), str(os.environ['SLURM_PROCID']), str(os.environ['SLURM_STEP_NODELIST'])))
+
+ 2. -m torch.launch
+ -m启动初始化训练环境                               全局执行
+ os.environ['RANK'] WORLD_SIZE LOCAL_RANK
+
+ 3. mp.spawn
+ mp分发                                                      局部执行
+     #+end_src
+**** 分布式多GPU计算，slurm环境
+     #+begin_src 
+初始化多个节点，多个GPU
+dist.init_process_group(backend=args.dist_backend, init_method=args.dist_url, world_size=args.world_size, rank=args.rank)
+
+分发模型到多个节点，多个GPU
+model = torch.nn.parallel.DistributedDataParallel(model)
+
+分发数据
+if args.distributed:
+    train_sampler = torch.utils.data.distributed.DistributedSampler(train_dataset)     
+     #+end_src
+*** pytorch
+**** 基本语法
+     #+begin_src 
+model.cuda() tensor.cuda()
+对模型和相应的数据使用，将内存中的数据复制到GPU的显存中去,torch.FloatTensor 变为 torch.cuda.FloatTensor （GPU 0）这样代表这个数据现在存储在GPU中
+
+优先使用model.to(device)
+model.to(device) 可以将model或者tensor迁移到GPU中
+但是model不用保存，tensor一定要返回value
+# tensor a is in CPU
+device = torch.device('cuda:0')
+b = a.to(device)
+# a is still in CPU!
+# b is in GPU!
+# a and b are different 
+     #+end_src
+**** 查看tensor的大小
+     #+begin_src 
+显示张量大小
+tensor.shape     
+list(tensor.size())
+     #+end_src
+**** 模型保存
+     #+begin_src 
+只保存参数：
+Save:
+torch.save(model.state_dict(), PATH)
+Load:
+model = TheModelClass(*args, **kwargs)model.load_state_dict(torch.load(PATH))model.eval()
+
+保存整个模型
+Save:
+torch.save(model, PATH)
+Load:
+# Model class must be defined somewheremodel = torch.load(PATH)model.eval()
+
+来自 <https://pytorch.org/tutorials/beginner/saving_loading_models.html>      
+     #+end_src
 * Matlab语言
 ** 知识补充 cell的使用
 *** 将矩阵保存到cell里面，从而用一个for循环索引cell的编号来画图
@@ -7389,6 +7678,14 @@ s – 改变画面更新周期
  sudo ln -s /usr/local/Python-3.6.9/bin/python3 /usr/bin/python
  sudo ln -s /usr/local/Python-3.6.9/bin/pip3.6 /usr/bin/pip
      #+end_src
+**** 查找文件所在路径
+     #+begin_src 
+查找文件所在路径
+locate libopencv_imgcodecs.so.3.0     
+     #+end_src
+**** 列出可执行程序所有缺失的依赖包
+ldd + 可执行程序名字
+比如：ldd batchYUV2PNG
 **** dir 检索文件
      #+begin_src 
 /b 只显示文件名和路径信息，剥离权限等信息
@@ -7458,6 +7755,22 @@ cat /usr/local/cuda/version.txt
 cudnn 版本
 cat /usr/local/cuda/include/cudnn.h | grep CUDNN_MAJOR -A 2
      #+end_src
+**** 查看GPU信息
+     #+begin_src 
+nvidia-smi nvtop     
+     #+end_src
+**** 查看服务器可用端口号
+     #+begin_src 
+查看服务器端口  
+端口号状态：listen开放端口，established已经连接端口 
+端口号可用：1024 – 49151
+netstat -anptl 
+netstat -anptl  | grep LISTEN
+netstat -anptl | grep 3306
+
+查看ip地址
+ifconfig     
+     #+end_src
 *** terminal
 **** 常用快捷键
  https://blog.csdn.net/u014754386/article/details/80956816
@@ -7478,6 +7791,7 @@ w 通过窗口列表切换窗口      重要
 f 在所有窗口中查找指定文本
 
 2）常用到的几个组合键：
+Ctrl+b x            关闭当前窗口
 ctrl+b ?            显示快捷键帮助
 ctrl+b 空格键       采用下一个内置布局，这个很有意思，在多屏时，用这个就会将多有屏幕竖着展示
 ctrl+b !            把当前窗口变为新窗口
@@ -7497,6 +7811,22 @@ ctrl+b w           以菜单方式显示及选择窗口
 ctrl+b s           以菜单方式显示和选择会话。这个常用到，可以选择进入哪个tmux
 ctrl+b t           显示时钟。然后按enter键后就会恢复到shell终端状态
 ctrl+b d           脱离当前会话；这样可以暂时返回Shell界面，输入tmux attach能够重新进入之前的会话
+
+3)窗口管理
+tmux ls 
+tmux kill-window -t 16
+
+tmux attach -t 0 重新接入会话
+tmux a -t <session-name> 
+tmux a 
+
+tmux detach 断开当前会话（还可以使用快捷键：control+b，再按d）
+
+滚动屏幕
+C-b pageup 
+C-b pagedonw
+q 退出当前复制模式
+
      #+end_src
 *** pytorch 0.4.1安装
 pip conda速度很慢，并且无法用镜像解决
@@ -7544,6 +7874,11 @@ git log 查看历史记录
 
 保存凭据
 git config --global credential.helper store
+    #+end_src
+*** fpt服务器登陆
+    #+begin_src 
+浏览器直接输入：
+ftp://172.20.52.136    
     #+end_src
 ** GPU集群训练
 *** sbatch命令
@@ -7735,6 +8070,9 @@ du -h --max-depth=1 ./     查看某一目录下的磁盘空间占用情况，�
 
 任务追踪
 scontrol show job JOBID
+
+显存占用计算
+swatch -n SZ-IDC1-172-20-20-78 nv
     #+end_src
 *** 集群计算
     #+begin_src 
@@ -8034,6 +8372,7 @@ find_parent() find_parents() 查找父标签
 find_next_siblings() 查找同类  注意：这两个函数一定要先把trs = trs[0]变成一个可以调用的类型
 * batch批处理语言
 ** 基本语法
+https://blog.csdn.net/wal1314520/article/details/80362138
    #+begin_src 
  echo off，屏幕不显示bat文件中所有的命令行
  cd，英文change directory的缩写（切换目录）。例如cd d:</span>sybase，进入sybase目录
@@ -8065,6 +8404,9 @@ find_next_siblings() 查找同类  注意：这两个函数一定要先把trs = 
  echo %~x1 =>.txt
  cho 当前目录路径：%~dp0
 
+ touch + 文件名
+ 新建空文件
+
  删除
  del .\TEST\*.o
 
@@ -8079,6 +8421,16 @@ find_next_siblings() 查找同类  注意：这两个函数一定要先把trs = 
  一般情况下，默认的.cmd开头
  @echo off
  setlocal enabledelayedexpansion
+
+ rd 删除文件夹及其子文件和子文件夹
+ rd /s /q C:\Users\dell\AppData\Local\Temp\A
+
+ dir
+ 显示目录下的内容。有以下参数。
+ /w ，只显示缩略信息。
+ /p，如果一页占不下的话，分页显示。
+ /s，显示系统文件。
+ 以上三个可以一起使用。
 
    #+end_src
 ** 变量
@@ -8201,6 +8553,18 @@ pause
 *** os.system执行cmd文件
 必须先进入该文件所在的路径，cmd默认禁止执行脚本，必须在文件路径内才能执行
 os.system('cd %s && start %s'%(root, file))
+*** 字符串分割方法
+    #+begin_src 
+字符串分割操作
+假设原本的变量为
+%%s  %1 %0
+
+%0表示当前的.bat批处理文件  %1表示传入的第一个参数
+%~dp0当前批处理路径   %0 表示批处理文件本身  ~dp是变量扩充  其中d表示扩充到分区号 p表示扩充到路径
+%~nx1当前传入参数的完整文件名test.txt   其中%~n1表示前缀test %~x1表示后缀.txt
+%%~nxs 获取变量s的完整文件名
+同理可得，对变量%%s, %~nxs表示变量s的完整文件名    
+    #+end_src
 * SenseTime-FrameWork
 ** Parrots 基于pytorch的框架
 *** 安装指南
@@ -8318,6 +8682,14 @@ git push origin --delete 分支名 删除远端分支
 重要
 提交当前分支到远端指定分支
 git push origin master:dev_yyx   将本地分支master提交到远端的dev_yyx中
+
+配置账号信息
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+同时使用
+
+记录账号和密码
+git config --global credential.helper store
    #+end_src
 * SenseTime
 ** 标定流程记录
@@ -9138,6 +9510,8 @@ O（1）< O（logn）< O（n）< O（n^2）
 **** 
 
 * 人工智能-AI
+** 顶会截稿日期
+https://jackietseng.github.io/conference_call_for_paper/conferences.html
 ** 基础知识
 *** 卷积操作
 **** 基本说明
@@ -9213,6 +9587,44 @@ C_out x C_in x K_1 x K_2
 
  print(res.shape)    # shape = (2, 8, 6, 1)    
      #+end_src
+*** GPU显存占用计算
+    #+begin_src 
+https://blog.csdn.net/sweetseven_/article/details/96026706
+
+VGG中
+卷积核参数数量：
+cin * k * k * cout  138M
+对于float32 每个参数4bytes 
+显存占用：138M * 4 /1024/1024 = 528 MB
+
+layer输出参数：
+H * W * cout  15.2M
+显存占用：15.2 * 4 /1024/1024 = 58.12MB
+
+训练阶段：
+Memory for models:
+显存占用：params + SGD + momentum = 1.54G                       para x3
+如果优化器是Adam: params + SGD + momentum + RMSprop  para x4
+
+Memory for outputs: 正向传播+反向传播 因此x2
+batch size * 58.12 * 2 = 14.53G 
+
+Total memory:
+1.54G + 14.53G = 16.07G    
+    #+end_src
+*** 优化器
+    #+begin_src 
+优化器Adam，momentum是SGD传播过程中的优化方法
+
+momentum动量：SGD过程中为了避免陷入局部最小值，用动量来累计之前的梯度
+引入一个新的变量 v去积累之前的梯度，实际梯度方向为momentum和SGD向量之和
+
+AdaGrad: 梯度平方和累加r=r+g^2，梯度归一化w1=w1-g/square r * a  
+
+RMSprop  root mean square prop: AdaGrad基础上，对r和g^2给个权重系数，相当于结合历史梯度信息
+
+Adam=momentum+RMSprop    
+    #+end_src
 ** Paper研读
 *** Dr. Amit
 **** Mazaheri_A_Skip_Connection_Architecture_for_Localization_of_Image_Manipulations_CVPRW_2019_paper
