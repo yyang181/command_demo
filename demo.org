@@ -8161,6 +8161,13 @@ sacct 查看FINISHED作业
 sacct -e 查看可选命令
 sacct --format="JobId,Elapsed,CPUTime,CPUTimeRAW,AveCPU,TotalCPU,UserCPU,SystemCPU,AveRSS,MaxRSS" -j 600122
      #+end_src
+** UCR集群
+*** HPC
+**** 登陆方式
+     #+begin_src 
+ ssh -X username@cluster.hpcc.ucr.edu    
+     #+end_src
+
 ** 必备操作集锦
 *** emacs中Python代码flycheck出现大量error
 **** 解决方案尝试：安装Python3.8 并设置为默认的python解释器
