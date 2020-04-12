@@ -6111,6 +6111,19 @@ Load:
 
 来自 <https://pytorch.org/tutorials/beginner/saving_loading_models.html>      
      #+end_src
+*** time
+**** sleep
+     #+begin_src 
+# 中止1秒     
+import time 
+time.sleep(1)  
+     #+end_src
+**** 获取当前时间
+     #+begin_src 
+import datetime
+now_time = datetime.datetime.now()
+print(now_time)     
+     #+end_src
 * Matlab语言
 ** 知识补充 cell的使用
 *** 将矩阵保存到cell里面，从而用一个for循环索引cell的编号来画图
@@ -6152,6 +6165,20 @@ Matlab下的python命令全是以“py.”开头的，比如 py.numpy.reshape
     
     #+end_src
 * C++语言 & linux系统
+** vs code
+*** c++
+**** 基本配置
+编译环境需要配置
+-lstdc++
+
+示例：
+g++ -w -lstdc++ test.cpp test.o
+
+gcc可以编译c++文件，也可以编译c文件，但默认是编译c文件的，加-lstdc++表示编译c++文件，即链接c++库，加-lc表示链接c库，默认情况下就是链接c库，所以如果编译c文件可以不加-lc
+**** 使用技巧
+***** debug
+ 在函数最后一行return 0 添加断点，即可在左侧显示所有变量
+
 ** windows下子系统linux搭建
 *** 安装ubuntu
 https://blog.csdn.net/u012516524/article/details/79870414
@@ -10341,6 +10368,9 @@ https://mail.google.com/mail/u/1/#inbox/162f9d4479616148
 2. google drive 个人电脑ThinkPad X1 Extreme牧原文件夹
 
 3. google drive 我的云端硬盘emacs文件夹
+
+
+
 
 
 
