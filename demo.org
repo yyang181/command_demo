@@ -4947,6 +4947,19 @@ reshape:在不改变原数组数据的情况下，将它reshape成一个新的�
 与resize的区别在于，如果维度不匹配reshape会报错
 来自 <https://blog.csdn.net/orangefly0214/article/details/83243912>      
      #+end_src
+**** 矩阵对应元素concatenate
+     #+begin_src 
+np.ravel() 把矩阵变平，类似于flatten，但是方式为按位依次
+
+import numpy as np
+
+m = np.array([[1, 2], [3, 4]])
+n = np.array([[5, 6], [7, 8]])
+p = np.ravel([m, n], 'F')
+
+q = np.ravel([m.flatten(), n.flatten()], 'F')
+q, np.reshape(q, (2, 4))     
+     #+end_src
 *** os库
 **** 路径分割符号
      #+begin_src 
