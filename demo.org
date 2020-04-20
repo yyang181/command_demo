@@ -4915,10 +4915,15 @@ angle = np.rad2deg(np.arctan2(y[-1] - y[0], x[-1] - x[0]))
      a = np.array([[1,2,3],[4,5,6],[7,8,9]]) 
      a.reshape((1,9)) 
      #+end_src
-**** 添加元素
+**** 添加、删除元素
      #+begin_src 
+# 添加元素
 p_arr = np.concatenate((p_arr,[p_])) # 先将p_变成list形式进行拼接，注意输入为一个tuple
 p_arr = np.append(p_arr,p_) #直接向p_arr里添加p_     
+
+# 删除元素
+a = np.arrar([1, 2, 3, 4])
+np.delete(a, 0)  删除a中位置为0的元素
      #+end_src
 **** 只保留矩阵某些行
      #+begin_src 
@@ -5518,7 +5523,7 @@ if "nonexistent key" in d:
 
 来自 <https://stackoverflow.com/questions/1602934/check-if-a-given-key-already-exists-in-a-dictionary>      
      #+end_src
-*** 列表
+*** list列表
 **** 获取重复元素的数目和位置
      #+begin_src 
 X = [-1, 0, 1, 0, 1, 2, 1, 2]    
@@ -5571,6 +5576,11 @@ Out[294]: array([ 3, 13,  5, 15,  6, 16])
 append可以将整个元组、列表当成一个元素添加进愿列表中
 
 expand会将列表、元组拆分成单元素添加进原列表
+**** 删除元素
+     #+begin_src 
+list1 = list(range(100))
+list1 = list1.remove(0)     # 删除list中位置0的元素
+     #+end_src
 *** 画图 
 **** matplotlib
 ***** 示例 不完整
@@ -9555,6 +9565,22 @@ O（1）< O（logn）< O（n）< O（n^2）
 ** C-Plus-Plus题解库
 *** sorting 
 **** 
+** 核心要点
+*** 动态规划
+**** 理解
+是什么：
+能用动态规划解决的问题：
+1. 问题的答案依赖于问题的规模
+2. 大规模问题的答案可以由小规模问题的答案递推得到
+3. 将一个大问题拆分为多个小问题来解决，取决于该问题是否能用动态规划解决的是这些”小问题“会不会被被重复调用
+
+核心参数：
+建立状态转移方程、缓存并复用以往结果、按顺序从小往大算
+**** 用法
+     #+begin_example
+缓存中间结果：也就是搞个数组之类的变量记录中间结果。
+按顺序从小往大算：也就是搞个for循环依次计算。     
+     #+end_example
 
 * 人工智能-AI
 ** 顶会截稿日期
