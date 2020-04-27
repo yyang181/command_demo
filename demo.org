@@ -6156,6 +6156,55 @@ import datetime
 now_time = datetime.datetime.now()
 print(now_time)     
      #+end_src
+*** libtmux
+python控制tmux命令行，批量处理代码
+
+https://github.com/tmux-python/libtmux
+**** 示例
+ #+begin_src 
+import libtmux
+def main():
+    path = 'run_code.txt'
+
+    # 按行读取
+    data = []
+    with open('runcode2.txt','w') as f:
+        for line in open(path, 'r'):
+            if 'x1_' not in line and 'hr02_disk_0.8_1.1_noise_0.0_upx2_ps20200206' not in line and 'hr02_disk_0.8_1.1_noise_0.0_upx2_ps20200124mask' not in line:
+                if 'iso_0_300' in line:
+                    if 'lr02_disk_0.8_1.1_noise_0.2_tele2_norm' in line or 'lr02_disk_0.8_1.1_noise_0.13_tele2_norm' in line:
+                        continue
+
+                data.append(line)
+                f.write(line)
+                # f.write('\n')
+
+    # send to tmux using libtmux
+    server = libtmux.Server()
+
+    session = server.find_where({"session_name": "session_test"})
+    if session == None:
+        session = server.new_session(session_name="session_test", kill_session=True, attach=False)
+
+    start = 0
+    number = 2
+    for id in range(start, start + number):
+        # print(id, data[id])
+
+
+        # print(window)
+        # print(session.list_windows())
+        # for w in session.list_windows():
+        #     print(w)
+
+        window = session.select_window(id)
+        if window == None:
+            window = session.new_window(attach=True, window_name=str(id))
+
+        pane = window.attached_pane
+        pane.send_keys('cd /mnt/lustre21/DATAshare2/yangyixin/20200427')
+        pane.send_keys(data[id])
+ #+end_src
 * Matlab语言
 ** 知识补充 cell的使用
 *** 将矩阵保存到cell里面，从而用一个for循环索引cell的编号来画图
