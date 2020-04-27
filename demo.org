@@ -7935,6 +7935,11 @@ C-b pageup
 C-b pagedonw
 q 退出当前复制模式
 
+快速中止所有tmux
+1. 列出所有的terminal
+tmux ls
+2. 删除targetSession
+tmux kill-session -t targetSession
      #+end_src
 *** pytorch 0.4.1安装
 pip conda速度很慢，并且无法用镜像解决
