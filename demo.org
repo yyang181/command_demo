@@ -5673,27 +5673,45 @@ plt.savefig('UESTC.png')
 plt.show()
       #+end_src
 ***** 随机颜色生成
-      #+begin_src 
-import random
-def colors(n):
-    ret = []
-    r = int(random.random() * 256)
-    g = int(random.random() * 256)
-    b = int(random.random() * 256)
-    step = 256 / n
-    for i in range(n):
-        r += step
-        g += step
-        b += step
-        r = int(r) % 256
-        g = int(g) % 256
-        b = int(b) % 256
-        r_ = r/255
-        g_ = g/255
-        b_ = b/255
-        ret.append((r_,g_,b_))
-    return ret
-      #+end_src
+****** 最优效果
+       #+begin_src 
+import colorsys
+
+def random_colors(N, bright=True):
+    """
+    Generate random colors.
+    To get visually distinct colors, generate them in HSV space then
+    convert to RGB.
+    """
+    brightness = 1.0 if bright else 0.7
+    hsv = [(i / N, 1, brightness) for i in range(N)]
+    colors = list(map(lambda c: colorsys.hsv_to_rgb(*c), hsv))
+    random.shuffle(colors)
+    return colors       
+       #+end_src
+****** 次优效果
+       #+begin_src 
+ import random
+
+ def colors(n):
+     ret = []
+     r = int(random.random() * 256)
+     g = int(random.random() * 256)
+     b = int(random.random() * 256)
+     step = 256 / n
+     for i in range(n):
+         r += step
+         g += step
+         b += step
+         r = int(r) % 256
+         g = int(g) % 256
+         b = int(b) % 256
+         r_ = r/255
+         g_ = g/255
+         b_ = b/255
+         ret.append((r_,g_,b_))
+     return ret
+       #+end_src
 
 *** 动态变量
 **** 使用命令空间
