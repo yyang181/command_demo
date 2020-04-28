@@ -5676,20 +5676,23 @@ plt.show()
       #+begin_src 
 import random
 def colors(n):
-  ret = []
-  r = int(random.random() * 256)
-  g = int(random.random() * 256)
-  b = int(random.random() * 256)
-  step = 256 / n
-  for i in range(n):
-    r += step
-    g += step
-    b += step
-    r = int(r) % 256
-    g = int(g) % 256
-    b = int(b) % 256
-    ret.append((r,g,b)) 
-  return ret      
+    ret = []
+    r = int(random.random() * 256)
+    g = int(random.random() * 256)
+    b = int(random.random() * 256)
+    step = 256 / n
+    for i in range(n):
+        r += step
+        g += step
+        b += step
+        r = int(r) % 256
+        g = int(g) % 256
+        b = int(b) % 256
+        r_ = r/255
+        g_ = g/255
+        b_ = b/255
+        ret.append((r_,g_,b_))
+    return ret
       #+end_src
 
 *** 动态变量
