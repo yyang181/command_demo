@@ -5656,8 +5656,8 @@ y22 = np.ones(n) * 3.60
 
 fig = plt.figure(figsize=(12, 12))
 # fig = plt.figure()
-plt.plot(x, y2, color='r', linestyle='-', markerfacecolor='blue',marker='o')
-plt.plot(x, y22, color='b', linestyle='--')
+plt.plot(x, y2, color='r', linestyle='-', markerfacecolor='blue',marker='o', label='y2')
+plt.plot(x, y22, color='b', linestyle='--', label='y22')
 for a, b in zip(x, y2):  
     plt.text(a, b, b,ha='center', va='bottom', fontsize=30)
     plt.text(x[0], y22[0], '平均GPA：3.60', ha='left', va='bottom', fontsize=30)
@@ -5667,6 +5667,7 @@ plt.xlabel('学期/学年制',fontsize=20,alpha=0.5)
 plt.ylabel('绩点/4分制',fontsize=20,alpha=0.5)
 plt.xticks(x,index_ls, size = 15)
 plt.yticks(size = 15)
+plt.legend()
 
 plt.savefig('UESTC.png')
 plt.show()
