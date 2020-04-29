@@ -8288,6 +8288,15 @@ sacct 查看FINISHED作业
 sacct -e 查看可选命令
 sacct --format="JobId,Elapsed,CPUTime,CPUTimeRAW,AveCPU,TotalCPU,UserCPU,SystemCPU,AveRSS,MaxRSS" -j 600122
      #+end_src
+**** 批量取消job
+https://unix.stackexchange.com/questions/417426/best-way-to-cancel-all-the-slurm-jobs-from-shell-command-output
+     #+begin_src 
+只需要将197替换为使用的job id前缀即可
+查询
+squeue -u $USER | grep 197 | awk '{print $1}'      
+执行取消
+squeue -u $USER | grep 197 | awk '{print $1}' | xargs -n 1 scancel
+     #+end_src
 ** UCR集群
 *** HPC
 **** 登陆方式
