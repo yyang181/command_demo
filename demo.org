@@ -6246,6 +6246,26 @@ def main():
         pane.send_keys('cd /mnt/lustre21/DATAshare2/yangyixin/20200427')
         pane.send_keys(data[id])
  #+end_src
+**** 发送按键
+     #+begin_src 
+https://github.com/tmux-python/libtmux/issues/15
+
+示例代码
+libtmux.Server().sessions[0].attached_window.panes[0].send_keys('C-c', enter=False, suppress_history=False)     
+
+详细清单：
+pane.send_keys('')
+send_keys automatically sends enter, unless you do enter=False:
+pane.send_keys('echo "Hi"', enter=False)
+
+tmux allows a command to be bound to most keys, with or without a prefix
+key. When specifying keys, most represent themselves (for example ‘A’ to
+‘Z’). Ctrl keys may be prefixed with ‘C-’ or ‘^’, and Alt (meta) with
+‘M-’. In addition, the following special key names are accepted: Up,
+Down, Left, Right, BSpace, BTab, DC (Delete), End, Enter, Escape, F1 to
+F20, Home, IC (Insert), NPage/PageDown/PgDn, PPage/PageUp/PgUp, Space,
+and Tab.
+     #+end_src
 * Matlab语言
 ** 知识补充 cell的使用
 *** 将矩阵保存到cell里面，从而用一个for循环索引cell的编号来画图
