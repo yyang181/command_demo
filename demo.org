@@ -8868,6 +8868,7 @@ git branch -a 查看所有分支
 git checkout 分支名 切换到指定分支
 git branch -d 分知名 删除本地分支
 git push origin --delete 分支名 删除远端分支
+git diff filename1 比较当前修改后的filename1与仓库中的文件的差异
 
 重要
 提交当前分支到远端指定分支
