@@ -6282,6 +6282,45 @@ Down, Left, Right, BSpace, BTab, DC (Delete), End, Enter, Escape, F1 to
 F20, Home, IC (Insert), NPage/PageDown/PgDn, PPage/PageUp/PgUp, Space,
 and Tab.
      #+end_src
+*** map-lambda函数
+**** 基本用法
+     #+begin_src 
+ map(function,iterable,...)
+ 第一个参数接受一个函数名，后面的参数接受一个或多个可迭代的序列，返回的是一个集合。
+ 把函数依次作用在list中的每一个元素上，得到一个新的list并返回。注意，map不改变原list，而是返回一个新list。    
+
+ 示例一：
+ del square(x):
+     return x ** 2
+ 
+ map(square,[1,2,3,4,5])
+ 
+ # 结果如下:
+ [1,4,9,16,25]
+
+ 示例二：
+ map(lambdax, y : (x**y,x+y),[2,4,6],[3,2,1])
+ 
+ # 结果如下
+ [(8,5),(16,6),(6,7)]
+     #+end_src
+**** 实现类型转换
+     #+begin_src 
+将元组转换为list：
+map(int,(1,2,3))
+# 结果如下：
+[1,2,3]
+
+将字符串转换为list：
+map(int,'1234')
+# 结果如下：
+[1,2,3,4]
+
+提取字典中的key，并将结果放在一个list中：
+map(int,{1:2,2:3,3:4})
+# 结果如下
+[1,2,3]
+     #+end_src
 * Matlab语言
 ** 知识补充 cell的使用
 *** 将矩阵保存到cell里面，从而用一个for循环索引cell的编号来画图
