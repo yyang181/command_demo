@@ -4988,6 +4988,11 @@ q, np.reshape(q, (2, 4))
  print (os.path.abspath('..'))#获得当前工作目录的父目录  注意，结尾不带/
  print (os.path.abspath(os.curdir))#获得当前工作目录
      #+end_src
+**** 获取绝对路径
+     #+begin_src 
+适用条件：必须是用os.listdir()或者其他相关函数获取的不完整路径名
+os.path.abspath()     
+     #+end_src
 **** 获取上级目录
      #+begin_src 
 获取上级目录
@@ -5052,6 +5057,12 @@ os.path.exists(path)
       windows 环境下
       start 60gray.cmd 
       #+end_src
+**** os.rename
+重命名文件或者文件夹
+#+begin_src 
+import os
+os.rename("D:\\demo\\a.txt","D:\\demo\\b.txt")
+#+end_src
 *** 带有索引的enumerate枚举方法
     #+begin_src 
 for i, element in enumerate(seq):
@@ -5118,7 +5129,7 @@ pip install --upgrade --user setuptools
 pip卸载包
 pip uninstall packagename    
     #+end_src
-*** 创建文件夹、处理文件-shutil库
+*** shutil库-创建文件夹、处理文件
     #+begin_src 
 获取当前工作路径
 import os
@@ -5148,6 +5159,11 @@ for root, dirs, files in os.walk(sourceDir):
 注意：一定得是文件的名字.jpg这种 源文件和目标文件写法都是对应到文件
 from shutil import copyfile
 copyfile(source_file, des_file)    
+     #+end_src
+**** 重命名文件、文件夹 os库即可
+     #+begin_src 
+import os
+os.rename("D:\\demo\\a.txt","D:\\demo\\b.txt")
      #+end_src
 **** shutil库
      #+begin_src 
