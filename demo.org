@@ -8412,7 +8412,14 @@ update-alternatives --remove python /usr/bin/python2.7
      #+begin_src 
 conda config --set auto_activate_base false     
      #+end_src
-
+*** ubuntu查看cuda版本号和cudnn
+    #+begin_src 
+cuda
+cat /usr/local/cuda/version.txt
+    
+cudnn
+cat /usr/local/cuda/include/cudnn.h | grep CUDNN_MAJOR -A 2
+    #+end_src
 * Html语言
 ** 配置
 需要web-mode package
