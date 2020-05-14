@@ -6359,6 +6359,11 @@ map(int,{1:2,2:3,3:4})
 # 结果如下
 [1,2,3]
      #+end_src
+*** print动态替换当前打印输出
+    #+begin_src 
+    end='\r'
+    print('processing %s/%s'%(count, total), end="\r")    
+    #+end_src
 * Matlab语言
 ** 知识补充 cell的使用
 *** 将矩阵保存到cell里面，从而用一个for循环索引cell的编号来画图
