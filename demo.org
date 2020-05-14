@@ -3168,6 +3168,44 @@ run foo.py 运行文件
    #+BEGIN_SRC 
    %run file.py
    #+END_SRC
+*** 必备操作集锦
+**** ubuntu查看cuda版本号和cudnn
+     #+begin_src 
+ cuda
+ cat /usr/local/cuda/version.txt
+    
+ cudnn
+ cat /usr/local/cuda/include/cudnn.h | grep CUDNN_MAJOR -A 2
+     #+end_src
+**** pytorch 0.4.1 安装方法
+***** conda直接安装，网速可能较慢
+ https://pytorch.org/get-started/previous-versions/
+      #+begin_src 
+ Installing with CUDA 9
+
+ conda install pytorch=0.4.1 cuda90 -c pytorch
+
+ or
+
+ conda install pytorch=0.4.1 cuda92 -c pytorch
+
+ Installing with CUDA 8
+
+ conda install pytorch=0.4.1 cuda80 -c pytorch
+
+ Installing with CUDA 7.5
+
+ conda install pytorch=0.4.1 cuda75 -c pytorch
+
+ Installing without CUDA
+
+ conda install pytorch=0.4.1 -c pytorch     
+      #+end_src
+***** 下载安装包，用pip安装
+      #+begin_src 
+pip conda速度很慢，并且无法用镜像解决 whl包安装 https://download.pytorch.org/whl/cu90/torch_stable.html
+pip install torch-0.4.1-cp37-cp37m-linux_x86_64.whl      
+      #+end_src
 ** EIN中的使用方法
 *** 打开浏览器的jupyter notebook
 *** 在emacs中用M-x ein:notebooklist-login登陆 
