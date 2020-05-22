@@ -3206,6 +3206,16 @@ run foo.py 运行文件
 pip conda速度很慢，并且无法用镜像解决 whl包安装 https://download.pytorch.org/whl/cu90/torch_stable.html
 pip install torch-0.4.1-cp37-cp37m-linux_x86_64.whl      
       #+end_src
+***** torchvision版本匹配
+      #+begin_src 
+torch 0.4.0 == torchvision 0.2.0
+torch 0.4.1 == torchvision 0.2.1
+torch 1.1.0 == torchvision 0.3.0
+      #+end_src
+***** 如果pytorch版本较新，cuda版本较老，比如cuda 8.0
+处理方法：
+1. 先用低版本pytorch的正确安装方式安装cuda工具包和pytorch
+2. 将pytorch用pip install torch==1.1.0直接更新即可
 ** EIN中的使用方法
 *** 打开浏览器的jupyter notebook
 *** 在emacs中用M-x ein:notebooklist-login登陆 
