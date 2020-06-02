@@ -5049,6 +5049,19 @@ os.path.abspath(os.path.dirname('f:\\github\\code_test\\python\\sensetime'))
 os.path.dirname可以获取指定路径的上一级目录
 abspath获取绝对路径     
      #+end_src
+**** 分离文件名、路径名、后缀名
+     #+begin_src 
+import os
+file_path = "D:/test/test.py"
+(filepath,tempfilename) = os.path.split(file_path)
+(filename,extension) = os.path.splitext(tempfilename)
+
+其中:
+
+filepath为文件的目录,即D:/test
+filename为文件的名字,即test
+extension为文件的扩展名,即.py     
+     #+end_src
 **** 索引路径下的所有文件
      #+begin_src 
  不包含子目录中的内容
