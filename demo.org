@@ -613,7 +613,20 @@ return
        #+end_src
 ***** 禁用特定窗口的热键
 https://jingyan.baidu.com/article/77b8dc7f80b9386175eab663.html
+***** 组合键的使用
+      #+begin_src 
+组合键
 
+PgDn::
+{
+send ^bn
+return
+}
+
+含义：
+按下 PgDn 实现了右边的 ^bn 的功能
+^bn为ctrl + b + n      
+      #+end_src
 **** 修改注册表 已被证实无效
 ***** 说明
   1. 修改注册表，因为默认的注册表键值为Ctrl+space
