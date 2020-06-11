@@ -2787,6 +2787,10 @@ vs2019 对应cuda 10.1
      #+begin_src 
 import torch
 torch.cuda.is_available()     
+
+TensorFlow是否用gpu进行计算
+import tensorflow as tf
+sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))
      #+end_src
 *** Jupyter notebook
 **** EIN：在emacs中使用jupyter notebook
