@@ -3238,6 +3238,34 @@ torch 1.1.0 == torchvision 0.3.0
 标准方法，首先匹配cudatoolkit，之后用 pip install torch==1.5.0等方式更新torch版本即可
 conda install pytorch torchvision cudatoolkit=10.0 -c pytorch      
       #+end_src
+**** 终极pytorch cuda版本解决方案
+     #+begin_src 
+1. 卸载所有pytorch
+pip uninstall pytorch
+conda uninstall pytorch
+
+2.确保nvcc cuda版本
+nvcc -V 
+
+确认当前torch下的cuda版本
+import torch
+torch.version.cuda
+
+cuda
+cat /usr/local/cuda/version.txt
+
+cudnn
+cat /usr/local/cuda/include/cudnn.h | grep CUDNN_MAJOR -A 2
+
+3. 安装pytorch
+# cuda100可根据需要修改
+conda install -c pytorch magma-cuda100 
+conda install pytorch torchvision cudatoolkit=10.0 -c pytorch
+
+4. 确认GPU可用
+import torch
+torch.cuda.is_available()  
+     #+end_src
 ** EIN中的使用方法
 *** 打开浏览器的jupyter notebook
 *** 在emacs中用M-x ein:notebooklist-login登陆 
